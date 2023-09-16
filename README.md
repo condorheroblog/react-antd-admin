@@ -1,7 +1,5 @@
 # React-antd-admin
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Usage
 
 If you prefer to do it manually with the cleaner git history
@@ -40,9 +38,3 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ## Learn More
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-
-## TODO
-
-- [](jsx 元素自动对齐)
-- [](css 文件检查缩进)
-- [](添加 json 文件 lint)
