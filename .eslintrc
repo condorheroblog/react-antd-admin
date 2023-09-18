@@ -29,6 +29,8 @@
 	},
 	"rules": {
 		"react/react-in-jsx-scope": "off",
+		"react/jsx-indent": ["error", "tab"],
+		"react/jsx-one-expression-per-line": ["error", { "allow": "single-child" }],
 
 		// https://eslint.org/docs/latest/rules/
 		"keyword-spacing": [
