@@ -30,6 +30,16 @@
 	"rules": {
 		"react/react-in-jsx-scope": "off",
 		"react/jsx-indent": ["error", "tab"],
+		"react/jsx-newline": ["error"],
+		"react/jsx-wrap-multilines": ["error", {
+			"declaration": "parens",
+			"assignment": "parens",
+			"return": "parens-new-line",
+			"arrow": "parens",
+			"condition": "ignore",
+			"logical": "ignore",
+			"prop": "ignore"
+		}],
 		"react/jsx-one-expression-per-line": ["error", { "allow": "single-child" }],
 
 		// https://eslint.org/docs/latest/rules/
