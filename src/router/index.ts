@@ -1,9 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
-import { login } from "../pages/login";
 
 const router = createBrowserRouter([
 	{
-		Component: login,
+		lazy: async () => {
+			const mod = await import("#src/pages/login");
+			return {
+				...mod,
+				Component: mod.login
+			}
+		},
 		path: "/login"
 	},
 ]);

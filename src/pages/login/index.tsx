@@ -1,6 +1,6 @@
 
 
-import { Layout, Row, Col, Space, Form, Input, Button } from "antd";
+import { Layout, Row, Col, Space, Form, Input, Button, Grid } from "antd";
 import { createUseStyles } from "react-jss"
 import frameworkTemplate from "#src/assets/ images/framework-template.svg"
 import logo from "#src/assets/ images/logo.svg"
@@ -8,8 +8,8 @@ import logo from "#src/assets/ images/logo.svg"
 const useStyles = createUseStyles({
 	loginWrapper: {
 		width: "100%",
-		height: "35em",
-		minWidth: "30em",
+		height: "50vh",
+		// minWidth: "23vw",
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center",
@@ -59,10 +59,12 @@ const useStyles = createUseStyles({
 })
 
 const { Footer, Content } = Layout;
+const { useBreakpoint } = Grid;
 
 export function login (){
 	const classes = useStyles();
 	const [loginForm] = Form.useForm();
+	const screens = useBreakpoint();
 
 	return (
 
@@ -82,12 +84,14 @@ export function login (){
 					</Col>
 
 					<Col xs={24} sm={24} lg={12}>
-						<div className={classes.loginWrapper}>
-							<Space direction="vertical" style={{ minWidth: "23em" }}>
+						<div className={classes.loginWrapper} style={{ minWidth: !screens.lg ? "80vw" : "23vw" }}>
+							<Space direction="vertical" style={{ minWidth: "80%" }}>
 								<Space direction="vertical">
 									<div className={classes.hello}>Hello, Welcome to</div>
 
-									<div className={classes.loginLogoText}>React Antd Admin</div>
+									<Space className={classes.loginLogoText}>
+										React Antd Admin
+									</Space>
 								</Space>
 
 								<Form
@@ -104,9 +108,8 @@ export function login (){
 												message: "用户名不能为空",
 											},
 										]}
-										style={{ maxWidth: "25em" }}
 									>
-										<Input   />
+										<Input />
 									</Form.Item>
 
 									<Form.Item
