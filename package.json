@@ -2,6 +2,9 @@
 	"name": "react-antd-admin",
 	"version": "0.0.0",
 	"private": true,
+	"imports": {
+		"#*": "./*"
+	},
 	"dependencies": {
 		"antd": "^5.9.1",
 		"react": "^18.2.0",

@@ -2,8 +2,8 @@
 
 import { Layout, Row, Col, Space, Form, Input, Button } from "antd";
 import { createUseStyles } from "react-jss"
-import frameworkTemplate from "../../assets/ images/framework-template.svg"
-import logo from "../../assets/ images/logo.svg"
+import frameworkTemplate from "#src/assets/ images/framework-template.svg"
+import logo from "#src/assets/ images/logo.svg"
 
 const useStyles = createUseStyles({
 	loginWrapper: {
