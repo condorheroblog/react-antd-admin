@@ -147,7 +147,7 @@
 				"airbnb-typescript"
 			],
 			"parserOptions": {
-				"project": true
+				"project": "./tsconfig.json"
 			},
 			"rules": {
 				"@typescript-eslint/quotes": [
