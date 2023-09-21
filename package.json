@@ -56,9 +56,11 @@
 		"happy-dom": "^11.0.6",
 		"jsonc-eslint-parser": "^2.3.0",
 		"lint-staged": "^14.0.1",
+		"mockjs": "^1.1.0",
 		"simple-git-hooks": "^2.9.0",
 		"typescript": "^5.2.2",
 		"vite": "^4.4.9",
+		"vite-plugin-mock": "^3.0.0",
 		"vitest": "^0.34.4"
 	},
 	"simple-git-hooks": {

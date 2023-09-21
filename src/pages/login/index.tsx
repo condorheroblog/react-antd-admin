@@ -60,14 +60,32 @@ const useStyles = createUseStyles({
 
 const { Footer, Content } = Layout;
 const { useBreakpoint } = Grid;
-
+const FORM_INITIAL_VALUES = {
+	username: "admin",
+	password: "password",
+};
 export default function login() {
 	const classes = useStyles();
 	const [loginForm] = Form.useForm();
 	const screens = useBreakpoint();
 
-	return (
+	const handleFinish = (values: typeof FORM_INITIAL_VALUES) => {
+		fetch("/api/login", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(values),
+		})
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error("Network response was not ok");
+				}
+				return response.json();
+			});
+	};
 
+	return (
 		<Layout className={classes.section}>
 			<Content className={classes.content}>
 				<Row gutter={[{ xs: 0, sm: 0, lg: 120 }, 0]}>
@@ -98,6 +116,8 @@ export default function login() {
 									name="loginForm"
 									form={loginForm}
 									layout="vertical"
+									initialValues={FORM_INITIAL_VALUES}
+									onFinish={handleFinish}
 								>
 									<Form.Item
 										label="Username"
