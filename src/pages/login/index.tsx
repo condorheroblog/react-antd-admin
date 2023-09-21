@@ -1,9 +1,9 @@
-
-
-import { Layout, Row, Col, Space, Form, Input, Button, Grid } from "antd";
-import { createUseStyles } from "react-jss"
-import frameworkTemplate from "#src/assets/ images/framework-template.svg"
-import logo from "#src/assets/ images/logo.svg"
+import {
+	Layout, Row, Col, Space, Form, Input, Button, Grid,
+} from "antd";
+import { createUseStyles } from "react-jss";
+import frameworkTemplate from "#src/assets/ images/framework-template.svg";
+import logo from "#src/assets/ images/logo.svg";
 
 const useStyles = createUseStyles({
 	loginWrapper: {
@@ -49,19 +49,19 @@ const useStyles = createUseStyles({
 		height: "100%",
 		display: "flex",
 		flexDirection: "column",
-		backgroundImage: "radial-gradient(#FFFFFF, #DDE4F1)"
+		backgroundImage: "radial-gradient(#FFFFFF, #DDE4F1)",
 	},
 	footer: {
 		backgroundColor: "transparent",
 		display: "flex",
 		justifyContent: "center",
-	}
-})
+	},
+});
 
 const { Footer, Content } = Layout;
 const { useBreakpoint } = Grid;
 
-export function login (){
+export default function login() {
 	const classes = useStyles();
 	const [loginForm] = Form.useForm();
 	const screens = useBreakpoint();
@@ -122,10 +122,10 @@ export function login (){
 											},
 										]}
 									>
-										<Input.Password   />
+										<Input.Password />
 									</Form.Item>
 
-									<Form.Item  >
+									<Form.Item>
 										<Button
 											block
 											type="primary"
@@ -135,7 +135,6 @@ export function login (){
 										</Button>
 									</Form.Item>
 
-
 								</Form>
 							</Space>
 						</div>
@@ -143,7 +142,9 @@ export function login (){
 				</Row>
 			</Content>
 
-			<Footer className={classes.footer}>Copyright &copy; 2023 Condor Hero All right reserved</Footer>
+			<Footer className={classes.footer}>
+				Copyright &copy; 2023 Condor Hero All right reserved
+			</Footer>
 		</Layout>
 	);
 }

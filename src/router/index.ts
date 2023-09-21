@@ -6,10 +6,10 @@ const router = createBrowserRouter([
 			const mod = await import("#src/pages/login");
 			return {
 				...mod,
-				Component: mod.login
-			}
+				Component: mod.default,
+			};
 		},
-		path: "/login"
+		path: "/login",
 	},
 ]);
 

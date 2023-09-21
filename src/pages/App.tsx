@@ -1,14 +1,13 @@
 // import logo from "./logo.svg";
 // import "./App.css";
-import { Button } from "antd"
+import { Button } from "antd";
 
 function App() {
 	return (
 		<div className="App">
 			<header className="App-header">
 				{/* <img src={logo} className="App-logo" alt="logo" /> */}
-				<Button
-				>
+				<Button>
 					Edit
 					<code>src/App.tsx</code>
 					and save to reload.
