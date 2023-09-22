@@ -14,6 +14,9 @@ const useStyles = createUseStyles({
 		"& .ant-spin-container": {
 			height: "100%",
 		},
+		"& .ant-spin-spinning": {
+			maxHeight: "100% !important",
+		},
 	},
 });
 
