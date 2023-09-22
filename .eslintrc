@@ -59,7 +59,8 @@
 		"quotes": [
 			"error",
 			"double"
-		]
+		],
+		"no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsForRegex": ["^state"] }]
 	},
 	"ignorePatterns": [
 		".eslintrc",

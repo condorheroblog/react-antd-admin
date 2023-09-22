@@ -12,7 +12,6 @@ const adminInfo = {
 	avatar: Random.image(),
 	desc: "manager",
 	password: "admin",
-	token,
 	permissions: [
 		{
 			label: "主控台",
@@ -42,10 +41,14 @@ export default [
 		url: "/api/login",
 		timeout: 1000,
 		method: "post",
+		// statusCode: 401,
+		// response: () => ({ code: 401, message: "Unauthorized" }),
+		// statusCode: 400,
+		// response: () => ({ code: 404, message: "Not found" }),
 		response: () => resultSuccess({ token }),
 	},
 	{
-		url: "/api/admin_info",
+		url: "/api/user-info",
 		timeout: 1000,
 		method: "get",
 		response: () => resultSuccess(adminInfo),

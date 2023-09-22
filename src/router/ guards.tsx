@@ -1,9 +1,17 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useMatches } from "react-router-dom";
+import { useAppSelector } from "#src/store";
+import { GlobalSpin } from "#src/components";
 
 export function createRouterGuards() {
-	const token = "YOUR TOKEN VALUE";
-	if (!token) {
+	const matches = useMatches();
+	const isMatchLogin = matches.some((match) => match.pathname === "/login");
+
+	const token = useAppSelector(
+		(state) => state.user.token,
+	);
+
+	if (!isMatchLogin && !token) {
 		return <Navigate to="/login" replace />;
 	}
-	return <Outlet />;
+	return <GlobalSpin><Outlet /></GlobalSpin>;
 }

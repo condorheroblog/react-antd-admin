@@ -2,8 +2,12 @@ import {
 	Layout, Row, Col, Space, Form, Input, Button, Grid,
 } from "antd";
 import { createUseStyles } from "react-jss";
+import { useNavigate } from "react-router-dom";
+
+import { useAppDispatch } from "#src/store";
 import frameworkTemplate from "#src/assets/ images/framework-template.svg";
 import logo from "#src/assets/ images/logo.svg";
+import { authLogin } from "#src/store/slices/user";
 
 const useStyles = createUseStyles({
 	loginWrapper: {
@@ -64,25 +68,18 @@ const FORM_INITIAL_VALUES = {
 	username: "admin",
 	password: "password",
 };
-export default function login() {
+export type FormInitialValues = typeof FORM_INITIAL_VALUES;
+
+export default function Login() {
 	const classes = useStyles();
 	const [loginForm] = Form.useForm();
 	const screens = useBreakpoint();
+	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 
-	const handleFinish = (values: typeof FORM_INITIAL_VALUES) => {
-		fetch("/api/login", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(values),
-		})
-			.then((response) => {
-				if (!response.ok) {
-					throw new Error("Network response was not ok");
-				}
-				return response.json();
-			});
+	const handleFinish = (values: FormInitialValues) => {
+		dispatch(authLogin(values));
+		navigate("/");
 	};
 
 	return (
