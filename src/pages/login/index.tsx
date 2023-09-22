@@ -77,8 +77,8 @@ export default function Login() {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
-	const handleFinish = (values: FormInitialValues) => {
-		dispatch(authLogin(values));
+	const handleFinish = async (values: FormInitialValues) => {
+		await dispatch(authLogin(values));
 		navigate("/");
 	};
 
