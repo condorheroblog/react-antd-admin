@@ -1,17 +1,20 @@
+import { UserOutlined } from "@ant-design/icons";
+import { createElement } from "react";
 import type { AppRouteRecordRaw } from "../types";
 
 const routes: AppRouteRecordRaw[] = [
 	{
-		path: "/login",
+		path: "/about",
 		lazy: async () => {
-			const mod = await import("#src/pages/login");
+			const mod = await import("#src/pages/about");
 			return {
 				...mod,
 				Component: mod.default,
 			};
 		},
 		meta: {
-			title: "登录",
+			title: "About",
+			icon: createElement(UserOutlined),
 		},
 	},
 ];
