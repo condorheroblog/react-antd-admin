@@ -6,6 +6,7 @@
 		"#*": "./*"
 	},
 	"dependencies": {
+		"@ant-design/icons": "^5.2.6",
 		"@reduxjs/toolkit": "^1.9.5",
 		"antd": "^5.9.1",
 		"react": "^18.2.0",

@@ -5,9 +5,10 @@ import { createUseStyles } from "react-jss";
 import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch } from "#src/store";
-import frameworkTemplate from "#src/assets/ images/framework-template.svg";
-import logo from "#src/assets/ images/logo.svg";
+import frameworkTemplate from "#src/assets/images/framework-template.svg";
+import logo from "#src/assets/images/logo.svg";
 import { authLogin } from "#src/store/slices/user";
+import { Footer } from "#src/layout";
 
 const useStyles = createUseStyles({
 	loginWrapper: {
@@ -24,7 +25,6 @@ const useStyles = createUseStyles({
 	},
 	logo: {
 		width: "6em",
-		height: "6em",
 		color: "#000000E0",
 	},
 	logoText: {
@@ -62,7 +62,7 @@ const useStyles = createUseStyles({
 	},
 });
 
-const { Footer, Content } = Layout;
+const { Content } = Layout;
 const { useBreakpoint } = Grid;
 const FORM_INITIAL_VALUES = {
 	username: "admin",
@@ -91,7 +91,7 @@ export default function Login() {
 							<Space>
 								<img src={logo} alt="logo" className={classes.logo} />
 
-								<span className={classes.logoText}>React Antd Admin</span>
+								<h1 className={classes.logoText}>React Antd Admin</h1>
 							</Space>
 
 							<img src={frameworkTemplate} alt="framework-template" className={classes.template} />
@@ -158,10 +158,7 @@ export default function Login() {
 					</Col>
 				</Row>
 			</Content>
-
-			<Footer className={classes.footer}>
-				Copyright &copy; 2023 Condor Hero All right reserved
-			</Footer>
+			<Footer />
 		</Layout>
 	);
 }

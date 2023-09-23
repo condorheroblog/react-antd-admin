@@ -1,6 +1,7 @@
-import { Navigate, Outlet, useMatches } from "react-router-dom";
+import { Navigate, useMatches } from "react-router-dom";
 import { useAppSelector } from "#src/store";
 import { GlobalSpin } from "#src/components";
+import { ContainerLayout, ParentLayout } from "#src/layout";
 
 export function createRouterGuards() {
 	const matches = useMatches();
@@ -10,8 +11,12 @@ export function createRouterGuards() {
 		(state) => state.user.token,
 	);
 
-	if (!isMatchLogin && !token) {
+	if (isMatchLogin) {
+		return <ParentLayout />;
+	}
+
+	if (!token) {
 		return <Navigate to="/login" replace />;
 	}
-	return <GlobalSpin><Outlet /></GlobalSpin>;
+	return <GlobalSpin><ContainerLayout /></GlobalSpin>;
 }
