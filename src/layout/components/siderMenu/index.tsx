@@ -16,9 +16,12 @@ function getMenuItems(routeList: AppRouteRecordRaw[]) {
 			label: item?.meta?.title,
 		};
 		if (Array.isArray(item.children) && item.children.length > 0) {
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-expect-error
-			menuItem.children = getMenuItems(item.children);
+			const noIndexRoute = item.children.filter((route) => !route.index);
+			if (noIndexRoute.length > 0) {
+				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+				// @ts-expect-error
+				menuItem.children = getMenuItems(noIndexRoute);
+			}
 		}
 		return menuItem;
 	});

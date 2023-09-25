@@ -1,18 +1,13 @@
 import { NodeExpandOutlined, SisternodeOutlined, SubnodeOutlined } from "@ant-design/icons";
 import { createElement } from "react";
 import type { AppRouteRecordRaw } from "../types";
+import { ContainerLayout } from "#src/layout";
 
 const routes: AppRouteRecordRaw[] = [
 	{
 		path: "/route-nest",
 		id: "route-nest",
-		lazy: async () => {
-			const mod = await import("#src/layout");
-			return {
-				...mod,
-				Component: mod.ParentLayout,
-			};
-		},
+		Component: ContainerLayout,
 		meta: {
 			title: "多级菜单",
 			icon: createElement(NodeExpandOutlined),

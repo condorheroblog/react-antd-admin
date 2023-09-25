@@ -8,7 +8,7 @@ export interface IndexRouteMeta extends IndexRouteObject {
 export interface NonIndexRouteMeta extends NonIndexRouteObject {
 	redirect?: string;
 	meta?: RouteMeta;
-	children?: NonIndexRouteMeta[];
+	children?: AppRouteRecordRaw[];
 }
 
 export type AppRouteRecordRaw = IndexRouteMeta | NonIndexRouteMeta;
