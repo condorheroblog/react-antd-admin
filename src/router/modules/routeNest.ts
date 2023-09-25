@@ -9,6 +9,7 @@ const routes: AppRouteRecordRaw[] = [
 		id: "route-nest",
 		Component: ContainerLayout,
 		meta: {
+			sort: 10,
 			title: "多级菜单",
 			icon: createElement(NodeExpandOutlined),
 		},

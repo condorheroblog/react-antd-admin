@@ -11,6 +11,12 @@ export const routeModuleList = Object.keys(modules).reduce<AppRouteRecordRaw[]>(
 	return [...list, ...modList];
 }, []);
 
+function sortRoute(a: AppRouteRecordRaw, b: AppRouteRecordRaw) {
+	return (a.meta?.sort ?? 0) - (b.meta?.sort ?? 0);
+}
+
+routeModuleList.sort(sortRoute);
+
 export const router = createBrowserRouter([
 	{
 		path: "/",
@@ -19,5 +25,5 @@ export const router = createBrowserRouter([
 		children: routeModuleList,
 	},
 ]);
-console.log(router);
+
 export default router;

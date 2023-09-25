@@ -60,10 +60,7 @@ export function SiderMenu() {
 	const [openKeys, setOpenKeys] = useState<string[]>([]);
 	const routeList = (router.routes[0]?.children ?? []) as AppRouteRecordRaw[];
 
-	const getSelectedKeys = useMemo(() => {
-		const latestMatchRouteId = matches[matches.length - 1].id;
-		return [latestMatchRouteId];
-	}, [matches, routeList]);
+	const getSelectedKeys = useMemo(() => matches.map((item) => item.id), [matches, routeList]);
 
 	const handleSelect: MenuProps["onSelect"] = ({ key }) => {
 		if (/http(s)?:/.test(key)) {
