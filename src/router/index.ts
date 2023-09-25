@@ -14,9 +14,10 @@ export const routeModuleList = Object.keys(modules).reduce<AppRouteRecordRaw[]>(
 export const router = createBrowserRouter([
 	{
 		path: "/",
+		id: "root-route",
 		Component: createRouterGuards,
 		children: routeModuleList,
 	},
 ]);
-
+console.log(router);
 export default router;

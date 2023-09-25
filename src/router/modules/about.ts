@@ -5,6 +5,7 @@ import type { AppRouteRecordRaw } from "../types";
 const routes: AppRouteRecordRaw[] = [
 	{
 		path: "/about",
+		id: "about",
 		lazy: async () => {
 			const mod = await import("#src/pages/about");
 			return {
