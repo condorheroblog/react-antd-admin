@@ -1,8 +1,9 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useMatches } from "react-router-dom";
 import { useAppSelector } from "#src/store";
 import { ParentLayout } from "#src/layout";
 
 export function createRouterGuards() {
+	const matches = useMatches();
 	const token = useAppSelector(
 		(state) => state.user.token,
 	);
@@ -10,5 +11,10 @@ export function createRouterGuards() {
 	if (!token) {
 		return <Navigate to="/login" replace />;
 	}
+
+	if (matches.length === 1 && matches[0].pathname === "/") {
+		return <Navigate to={import.meta.env.VITE_BASE_HOME_PATH} replace />;
+	}
+
 	return <ParentLayout />;
 }

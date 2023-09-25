@@ -90,10 +90,8 @@ export default function Login() {
 						<Space direction="vertical">
 							<Space>
 								<img src={logo} alt="logo" className={classes.logo} />
-
 								<h1 className={classes.logoText}>React Antd Admin</h1>
 							</Space>
-
 							<img src={frameworkTemplate} alt="framework-template" className={classes.template} />
 						</Space>
 					</Col>
@@ -103,7 +101,6 @@ export default function Login() {
 							<Space direction="vertical" style={{ minWidth: "80%" }}>
 								<Space direction="vertical">
 									<div className={classes.hello}>Hello, Welcome to</div>
-
 									<Space className={classes.loginLogoText}>
 										React Antd Admin
 									</Space>

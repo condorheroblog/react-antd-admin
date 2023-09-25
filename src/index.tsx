@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import "./index.css";
 import { router } from "./router";
 import { store } from "#src/store";
+import { GlobalSpin } from "#src/components";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement,
@@ -13,7 +14,9 @@ const root = ReactDOM.createRoot(
 root.render(
 	<StrictMode>
 		<Provider store={store}>
-			<RouterProvider router={router} />
+			<GlobalSpin>
+				<RouterProvider router={router} />
+			</GlobalSpin>
 		</Provider>
 	</StrictMode>,
 );
