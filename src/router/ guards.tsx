@@ -1,20 +1,37 @@
-import { Navigate, useMatches } from "react-router-dom";
-import { useAppSelector } from "#src/store";
+import { useEffect, useCallback } from "react";
+import { useNavigate, useMatches, useLocation } from "react-router-dom";
 import { ParentLayout } from "#src/layout";
+import { useAppSelector, useAppDispatch } from "#src/store";
+import { userInfoThunk } from "#src/store/slices/user";
 
 export function RouterGuards() {
+	const location = useLocation();
 	const matches = useMatches();
-	const token = useAppSelector(
-		(state) => state.user.token,
+	const navigate = useNavigate();
+	const dispatch = useAppDispatch();
+	const userId = useAppSelector(
+		(state) => state.user.userId,
 	);
 
-	if (!token) {
-		return <Navigate to="/login" replace />;
-	}
+	const guardLogic = useCallback(async () => {
+		if (location.pathname !== "/login") {
+			const token = window.localStorage.getItem("token");
+			if (!token) {
+				navigate("/login", { replace: true });
+			} else {
+				if (matches.length === 1 && matches[0].pathname === "/") {
+					navigate(import.meta.env.VITE_BASE_HOME_PATH, { replace: true });
+				}
+				if (!userId) {
+					await dispatch(userInfoThunk());
+				}
+			}
+		}
+	}, [matches, location, userId]);
 
-	if (matches.length === 1 && matches[0].pathname === "/") {
-		return <Navigate to={import.meta.env.VITE_BASE_HOME_PATH} replace />;
-	}
+	useEffect(() => {
+		guardLogic();
+	}, [matches, location, userId]);
 
 	return <ParentLayout />;
 }

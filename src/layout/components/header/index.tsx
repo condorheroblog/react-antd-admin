@@ -1,8 +1,11 @@
-import { Layout, Button, theme } from "antd";
+import {
+	Layout, Button, theme, Row, Col, Space,
+} from "antd";
 import {
 	MenuFoldOutlined,
 	MenuUnfoldOutlined,
 } from "@ant-design/icons";
+import UserMenu from "./components/userMenu";
 
 const {
 	Header: AntdHeader,
@@ -20,16 +23,26 @@ export function Header({ collapsed, setCollapsed }: HeaderProps) {
 
 	return (
 		<AntdHeader style={{ padding: 0, background: colorBgContainer }}>
-			<Button
-				type="text"
-				icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-				onClick={() => setCollapsed(!collapsed)}
-				style={{
-					fontSize: "16px",
-					width: 64,
-					height: 64,
-				}}
-			/>
+			<Row justify="space-between">
+				<Col>
+					<Button
+						type="text"
+						icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+						onClick={() => setCollapsed(!collapsed)}
+						style={{
+							fontSize: "16px",
+							width: 64,
+							height: 64,
+						}}
+					/>
+
+				</Col>
+				<Col pull={1}>
+					<Space>
+						<UserMenu />
+					</Space>
+				</Col>
+			</Row>
 		</AntdHeader>
 
 	);

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "#src/store";
 import frameworkTemplate from "#src/assets/images/framework-template.svg";
 import logo from "#src/assets/images/logo.svg";
-import { authLogin } from "#src/store/slices/user";
+import { authLoginThunk } from "#src/store/slices/user";
 import { Footer } from "#src/layout";
 
 const useStyles = createUseStyles({
@@ -78,7 +78,7 @@ export default function Login() {
 	const navigate = useNavigate();
 
 	const handleFinish = async (values: FormInitialValues) => {
-		await dispatch(authLogin(values));
+		await dispatch(authLoginThunk(values));
 		navigate("/");
 	};
 
