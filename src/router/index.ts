@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import type { AppRouteRecordRaw } from "./types";
 
-import { createRouterGuards } from "./ guards";
+import { RouterGuards } from "./ guards";
 
 const modules = import.meta.glob<Record<string, { default: AppRouteRecordRaw[] }>>("./modules/**/*.ts", { eager: true });
 
@@ -17,13 +17,18 @@ function sortRoute(a: AppRouteRecordRaw, b: AppRouteRecordRaw) {
 
 routeModuleList.sort(sortRoute);
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+	[
+		{
+			path: "/",
+			id: "root-route",
+			Component: RouterGuards,
+			children: routeModuleList,
+		},
+	],
 	{
-		path: "/",
-		id: "root-route",
-		Component: createRouterGuards,
-		children: routeModuleList,
+		basename: import.meta.env.BASE_URL,
 	},
-]);
+);
 
 export default router;

@@ -2,7 +2,7 @@ import { Navigate, useMatches } from "react-router-dom";
 import { useAppSelector } from "#src/store";
 import { ParentLayout } from "#src/layout";
 
-export function createRouterGuards() {
+export function RouterGuards() {
 	const matches = useMatches();
 	const token = useAppSelector(
 		(state) => state.user.token,
