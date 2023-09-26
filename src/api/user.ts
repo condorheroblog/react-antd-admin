@@ -9,11 +9,11 @@ export interface FetchResponseType {
 
 export interface LoginResponseType { token: string }
 export function fetchLogin(data: FormInitialValues) {
-	return (request.url("/api/login").post(data)) as Promise<Record<"result", LoginResponseType>>;
+	return (request.url("/login").post(data)) as Promise<Record<"result", LoginResponseType>>;
 }
 
 export function fetchLogout() {
-	return (request.url("/api/logout").post()) as Promise<FetchResponseType>;
+	return (request.url("/logout").post()) as Promise<FetchResponseType>;
 }
 
 export interface UserinfoType {
@@ -30,5 +30,5 @@ export interface UserinfoType {
 }
 
 export function fetchUserInfo() {
-	return (request.url("/api/userinfo").get()) as Promise<Record<"result", UserinfoType>>;
+	return (request.url("/userinfo").get()) as Promise<Record<"result", UserinfoType>>;
 }

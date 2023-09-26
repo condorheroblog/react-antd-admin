@@ -16,8 +16,10 @@ function responseInterceptor(next: FetchLike): FetchLike {
 				if (response.status === 401) {
 					window.location.href = "/login";
 				}
+
 				const json = await response.json();
 				message.error(json.message);
+				return Promise.reject(response);
 			}
 			return response;
 		})

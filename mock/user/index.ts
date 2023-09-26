@@ -9,7 +9,7 @@ const adminInfo = {
 	userId: "1",
 	username: "admin",
 	realName: "Admin",
-	avatar: "http://localhost:3000/src/assets/images/logo.svg",
+	avatar: "https://p6-passport.byteacctimg.com/img/user-avatar/16981ccf6c67324125a416ddccee33cb~90x90.awebp",
 	desc: "manager",
 	password: "admin",
 	permissions: [

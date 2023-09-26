@@ -2,7 +2,6 @@ import {
 	Layout, Row, Col, Space, Form, Input, Button, Grid,
 } from "antd";
 import { createUseStyles } from "react-jss";
-import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch } from "#src/store";
 import frameworkTemplate from "#src/assets/images/framework-template.svg";
@@ -75,11 +74,9 @@ export default function Login() {
 	const [loginForm] = Form.useForm();
 	const screens = useBreakpoint();
 	const dispatch = useAppDispatch();
-	const navigate = useNavigate();
 
 	const handleFinish = async (values: FormInitialValues) => {
 		await dispatch(authLoginThunk(values));
-		navigate("/");
 	};
 
 	return (

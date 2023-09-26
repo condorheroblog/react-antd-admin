@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import type { MenuProps } from "antd";
 import { Avatar, Dropdown } from "antd";
 
@@ -13,7 +12,6 @@ const items: MenuProps["items"] = [
 ];
 
 export default function UserMenu() {
-	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 	const { avatar } = useAppSelector(
 		(state) => state.user,
@@ -21,7 +19,6 @@ export default function UserMenu() {
 	const onClick: MenuProps["onClick"] = async ({ key }) => {
 		if (key === "logout") {
 			await dispatch(authLogoutThunk());
-			navigate("/login");
 		}
 	};
 

@@ -7,12 +7,14 @@ export const authLoginThunk = createAsyncThunk("auth/login", async (loginPayload
 	const response = await fetchLogin(loginPayload);
 	const { token } = response.result;
 	window.localStorage.setItem("token", token);
+	window.location.href = "/";
 	return token;
 });
 
 export const authLogoutThunk = createAsyncThunk("auth/logout", async () => {
 	const response = await fetchLogout();
 	window.localStorage.removeItem("token");
+	window.location.href = "/login";
 	return response;
 });
 

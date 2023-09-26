@@ -25,5 +25,13 @@ export default defineConfig({
 	},
 	build: {
 		outDir: "build",
+		rollupOptions: {
+			output: {
+				manualChunks: {
+					react: ["react", "react-dom", "react-router-dom"],
+					antd: ["antd", "@ant-design/icons"],
+				},
+			},
+		},
 	},
 });
