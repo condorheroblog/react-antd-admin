@@ -2,17 +2,15 @@
 
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { viteMockServe } from "vite-plugin-mock";
+import { vitePluginFakeServer } from "vite-plugin-fake-server";
 
 // https://vitejs.dev/config/
 export default defineConfig({
 	// base: "/subpath/",
 	plugins: [
 		react(),
-		viteMockServe({
-			ignore: /^\\_/,
-			mockPath: "mock",
-			enable: true,
+		vitePluginFakeServer({
+			exclude: ["_util.ts"],
 		}),
 	],
 	test: {

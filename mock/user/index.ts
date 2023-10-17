@@ -1,4 +1,5 @@
 import Mock from "mockjs";
+import { defineFakeRoute } from "vite-plugin-fake-server/client";
 import { resultSuccess } from "../_util";
 
 const { Random } = Mock;
@@ -20,7 +21,7 @@ const adminInfo = {
 	],
 };
 
-export default [
+export default defineFakeRoute([
 	{
 		url: "/api/login",
 		timeout: 1000,
@@ -43,4 +44,4 @@ export default [
 		method: "get",
 		response: () => resultSuccess(adminInfo),
 	},
-];
+]);
