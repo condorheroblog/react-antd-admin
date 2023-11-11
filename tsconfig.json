@@ -22,6 +22,7 @@
 		"src",
 		"fake",
 		"tests",
-		"vite.config.ts"
+		"vite.config.ts",
+		"commitlint.config.ts"
 	]
 }

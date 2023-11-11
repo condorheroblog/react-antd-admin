@@ -37,6 +37,8 @@
 		]
 	},
 	"devDependencies": {
+		"@commitlint/cli": "^18.4.0",
+		"@commitlint/config-conventional": "^18.4.0",
 		"@faker-js/faker": "^8.2.0",
 		"@testing-library/jest-dom": "^6.1.4",
 		"@testing-library/react": "^14.1.0",
@@ -68,7 +70,8 @@
 		"vitest": "^0.34.6"
 	},
 	"simple-git-hooks": {
-		"pre-commit": "npx lint-staged"
+		"pre-commit": "npx lint-staged",
+		"commit-msg": "npx commitlint --edit"
 	},
 	"lint-staged": {
 		"*.{json,md,ts,tsx,js,jsx}": "eslint --fix"
