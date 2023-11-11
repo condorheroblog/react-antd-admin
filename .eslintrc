@@ -163,9 +163,11 @@
 					}
 				],
 				"import/no-extraneous-dependencies": [
-					"error",
+					0,
 					{
-						"devDependencies": true
+						"devDependencies": false,
+						"optionalDependencies": false,
+						"peerDependencies": false
 					}
 				],
 				"import/extensions": [

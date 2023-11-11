@@ -9,9 +9,7 @@ export default defineConfig({
 	// base: "/subpath/",
 	plugins: [
 		react(),
-		vitePluginFakeServer({
-			exclude: ["_util.ts"],
-		}),
+		vitePluginFakeServer({ enableProd: true }),
 	],
 	test: {
 		globals: true,

@@ -1,10 +1,8 @@
-import Mock from "mockjs";
-
 export function resultSuccess(result: unknown, { message = "ok" } = {}) {
-	return Mock.mock({
+	return {
 		code: 200,
 		result,
 		message,
 		type: "success",
-	});
+	};
 }

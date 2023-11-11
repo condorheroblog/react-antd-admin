@@ -20,7 +20,7 @@
 	},
 	"include": [
 		"src",
-		"mock",
+		"fake",
 		"tests",
 		"vite.config.ts"
 	]

@@ -1,10 +1,8 @@
-import Mock from "mockjs";
+import { faker } from "@faker-js/faker";
 import { defineFakeRoute } from "vite-plugin-fake-server/client";
-import { resultSuccess } from "../_util";
+import { resultSuccess } from "../utils";
 
-const { Random } = Mock;
-
-const token = Random.string("upper", 32, 32);
+const token = faker.string.uuid();
 
 const adminInfo = {
 	userId: "1",
