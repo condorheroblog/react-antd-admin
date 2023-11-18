@@ -10,7 +10,7 @@ const routes: AppRouteRecordRaw[] = [
 		Component: ContainerLayout,
 		meta: {
 			sort: 10,
-			title: "多级菜单",
+			title: "menus.nestMenus",
 			icon: createElement(NodeExpandOutlined),
 		},
 		children: [
@@ -25,7 +25,7 @@ const routes: AppRouteRecordRaw[] = [
 					};
 				},
 				meta: {
-					title: "menu1",
+					title: "menus.menu1",
 					icon: createElement(SisternodeOutlined),
 				},
 				children: [
@@ -40,7 +40,7 @@ const routes: AppRouteRecordRaw[] = [
 							};
 						},
 						meta: {
-							title: "menu1-1",
+							title: "menus.menu1-1",
 							icon: createElement(SubnodeOutlined),
 						},
 					},
@@ -55,7 +55,7 @@ const routes: AppRouteRecordRaw[] = [
 							};
 						},
 						meta: {
-							title: "menu1-2",
+							title: "menus.menu1-2",
 							icon: createElement(SubnodeOutlined),
 						},
 					},
@@ -72,7 +72,7 @@ const routes: AppRouteRecordRaw[] = [
 					};
 				},
 				meta: {
-					title: "menu2",
+					title: "menus.menu2",
 					icon: createElement(SubnodeOutlined),
 				},
 			},

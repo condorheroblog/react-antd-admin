@@ -2,6 +2,7 @@ import {
 	Layout, Row, Col, Space, Form, Input, Button, Grid,
 } from "antd";
 import { createUseStyles } from "react-jss";
+import { useTranslation } from "react-i18next";
 
 import { useAppDispatch } from "#src/store";
 import frameworkTemplate from "#src/assets/images/framework-template.svg";
@@ -74,6 +75,7 @@ export default function Login() {
 	const [loginForm] = Form.useForm();
 	const screens = useBreakpoint();
 	const dispatch = useAppDispatch();
+	const { t } = useTranslation();
 
 	const handleFinish = async (values: FormInitialValues) => {
 		await dispatch(authLoginThunk(values));
@@ -111,12 +113,12 @@ export default function Login() {
 									onFinish={handleFinish}
 								>
 									<Form.Item
-										label="Username"
+										label={t("common.username")}
 										name="username"
 										rules={[
 											{
 												required: true,
-												message: "用户名不能为空",
+												// message: "用户名不能为空",
 											},
 										]}
 									>
@@ -124,12 +126,12 @@ export default function Login() {
 									</Form.Item>
 
 									<Form.Item
-										label="Password"
+										label={t("common.password")}
 										name="password"
 										rules={[
 											{
 												required: true,
-												message: "密码不能为空",
+												// message: "密码不能为空",
 											},
 										]}
 									>
@@ -142,7 +144,7 @@ export default function Login() {
 											type="primary"
 											htmlType="submit"
 										>
-											Login
+											{t("common.login")}
 										</Button>
 									</Form.Item>
 

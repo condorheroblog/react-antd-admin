@@ -1,15 +1,26 @@
 import {
-	Layout, Button, theme, Row, Col, Space,
+	Layout, Button, theme, Row, Col, Menu,
 } from "antd";
-import {
-	MenuFoldOutlined,
-	MenuUnfoldOutlined,
-} from "@ant-design/icons";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import UserMenu from "./components/userMenu";
+import LanguageMenu from "./components/languageMenu";
 
 const {
 	Header: AntdHeader,
 } = Layout;
+
+const headerMenuItems = [
+	{
+		label: <LanguageMenu />,
+		key: "LanguageMenu",
+		// icon: <LanguageMenu />,
+	},
+	{
+		label: <UserMenu />,
+		key: "UserMenu",
+		// icon: <UserMenu />,
+	},
+];
 
 export interface HeaderProps {
 	collapsed: boolean;
@@ -35,12 +46,10 @@ export function Header({ collapsed, setCollapsed }: HeaderProps) {
 							height: 64,
 						}}
 					/>
-
 				</Col>
-				<Col pull={1}>
-					<Space>
-						<UserMenu />
-					</Space>
+
+				<Col span={6}>
+					<Menu mode="horizontal" items={headerMenuItems} style={{ justifyContent: "flex-end" }} inlineIndent={20} />
 				</Col>
 			</Row>
 		</AntdHeader>

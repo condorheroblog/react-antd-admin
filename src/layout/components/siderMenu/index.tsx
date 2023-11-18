@@ -2,6 +2,7 @@ import type { MenuProps } from "antd";
 import { Menu } from "antd";
 import { useState, useMemo, useEffect } from "react";
 import { useNavigate, useMatches } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { router } from "#src/router";
 import type { AppRouteRecordRaw } from "#src/router/types";
@@ -9,11 +10,13 @@ import type { AppRouteRecordRaw } from "#src/router/types";
 type MenuItem = Required<MenuProps>["items"][number];
 
 function getMenuItems(routeList: AppRouteRecordRaw[]) {
+	const { t } = useTranslation();
 	return routeList.map((item) => {
+		const label = item?.meta?.title;
 		const menuItem: MenuItem = {
 			key: item.id!,
 			icon: item?.meta?.icon,
-			label: item?.meta?.title,
+			label: label ? t(label) : label,
 		};
 		if (Array.isArray(item.children) && item.children.length > 0) {
 			const noIndexRoute = item.children.filter((route) => !route.index);

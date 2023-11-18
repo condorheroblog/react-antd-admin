@@ -1,0 +1,20 @@
+{
+	"menus": {
+		"about": "关于",
+		"aboutMe": "你好, 我的名字是 Condor Hero",
+		"nestMenus": "嵌套菜单",
+		"menu1": "菜单 1",
+		"menu1-1": "菜单 1-1",
+		"menu1-2": "菜单 1-2",
+		"menu2": "菜单 2"
+	},
+	"common": {
+		"username": "用户名",
+		"password": "密码",
+		"login": "登录",
+		"back": "返回",
+		"warning": "警告",
+		"delete": "删除",
+		"upload": "上传"
+	}
+}

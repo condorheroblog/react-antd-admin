@@ -10,7 +10,7 @@ const routes: AppRouteRecordRaw[] = [
 		Component: ContainerLayout,
 		meta: {
 			sort: 100,
-			title: "About",
+			title: "common.login",
 			icon: createElement(UserOutlined),
 		},
 		children: [

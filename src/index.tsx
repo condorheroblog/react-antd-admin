@@ -8,6 +8,9 @@ import { router } from "./router";
 import { store } from "#src/store";
 import { GlobalSpin } from "#src/components";
 
+// internationalization
+import "#src/locales";
+
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement,
 );
