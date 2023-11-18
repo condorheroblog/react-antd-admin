@@ -5,16 +5,20 @@ import translationZH from "./zh-CN/translation.json";
 
 export type LanguageType = "zh-CN" | "en";
 
-i18n.use(initReactI18next).init({
-	lng: "zh-CN",
-	resources: {
-		"zh-CN": {
-			translation: translationZH,
-		},
-		en: {
-			translation: translationEN,
-		},
+export const i18nResources = {
+	"zh-CN": {
+		translation: translationZH,
 	},
-});
+	en: {
+		translation: translationEN,
+	},
+};
+
+export const i18nInitOptions = {
+	lng: "zh-CN",
+	resources: i18nResources,
+};
+
+i18n.use(initReactI18next).init(i18nInitOptions);
 
 export default i18n;

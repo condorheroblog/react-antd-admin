@@ -1,7 +1,9 @@
 import { useEffect, useCallback } from "react";
 import { useNavigate, useMatches, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ParentLayout } from "#src/layout";
 import { useAppSelector, useAppDispatch } from "#src/store";
+import { i18nResources } from "#src/locales";
 import { userInfoThunk } from "#src/store/slices/user";
 
 export function RouterGuards() {
@@ -12,6 +14,7 @@ export function RouterGuards() {
 	const userId = useAppSelector(
 		(state) => state.user.userId,
 	);
+	const { i18n } = useTranslation();
 
 	const guardLogic = useCallback(async () => {
 		if (location.pathname !== "/login") {
@@ -32,6 +35,13 @@ export function RouterGuards() {
 	useEffect(() => {
 		guardLogic();
 	}, [matches, location, userId]);
+
+	useEffect(() => {
+		const localLanguage = localStorage.getItem("lng");
+		if (localLanguage && Object.keys(i18nResources).includes(localLanguage)) {
+			i18n.changeLanguage(localLanguage);
+		}
+	}, []);
 
 	return <ParentLayout />;
 }
