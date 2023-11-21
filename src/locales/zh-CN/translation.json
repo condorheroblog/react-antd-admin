@@ -13,8 +13,10 @@
 		"password": "密码",
 		"login": "登录",
 		"back": "返回",
+		"backHome": "返回首页",
 		"warning": "警告",
 		"delete": "删除",
-		"upload": "上传"
+		"upload": "上传",
+		"404SubTitle": "抱歉，您访问的页面不存在。"
 	}
 }

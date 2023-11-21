@@ -12,9 +12,11 @@
 		"username": "User Name",
 		"password": "Password",
 		"login": "Log In",
+		"backHome": "Back Home",
 		"back": "Back",
 		"warning": "Warning",
 		"delete": "Delete",
-		"upload": "Upload"
+		"upload": "Upload",
+		"404SubTitle": "Sorry, the page you visited does not exist."
 	}
 }

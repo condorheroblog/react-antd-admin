@@ -31,6 +31,7 @@ export const userSlice = createSlice({
 	initialState: {
 		token: window.localStorage.getItem("token"),
 		userId: "",
+		isLogin: false,
 		username: "",
 		realName: "",
 		avatar: "",
@@ -45,6 +46,7 @@ export const userSlice = createSlice({
 		builder.addCase(userInfoThunk.fulfilled, (state, action) => ({
 			...state,
 			...action.payload,
+			isLogin: !!action.payload.userId,
 		}));
 	},
 });

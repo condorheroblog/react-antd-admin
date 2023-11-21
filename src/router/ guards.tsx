@@ -11,7 +11,7 @@ export function RouterGuards() {
 	const matches = useMatches();
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
-	const userId = useAppSelector((state) => state.user.userId);
+	const isLogin = useAppSelector((state) => state.user.isLogin);
 	const { i18n } = useTranslation();
 
 	const guardLogic = useCallback(async () => {
@@ -23,16 +23,16 @@ export function RouterGuards() {
 				if (matches.length === 1 && matches[0].pathname === "/") {
 					navigate(import.meta.env.VITE_BASE_HOME_PATH, { replace: true });
 				}
-				if (!userId) {
+				if (!isLogin) {
 					await dispatch(userInfoThunk());
 				}
 			}
 		}
-	}, [matches, location, userId]);
+	}, [matches, location, isLogin]);
 
 	useEffect(() => {
 		guardLogic();
-	}, [matches, location, userId]);
+	}, [matches, location, isLogin]);
 
 	useEffect(() => {
 		const localLanguage = localStorage.getItem("lng");
