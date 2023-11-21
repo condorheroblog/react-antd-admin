@@ -20,6 +20,7 @@
 		"wretch": "^2.7.0"
 	},
 	"scripts": {
+		"analyzer": "vite-bundle-visualizer --output analyzer/stats.html",
 		"build": "vite build",
 		"eslint-flat-config-viewer": "eslint-flat-config-viewer",
 		"lint": "eslint .",
@@ -77,6 +78,7 @@
 		"simple-git-hooks": "^2.9.0",
 		"typescript": "^5.2.2",
 		"vite": "^5.0.0",
+		"vite-bundle-visualizer": "^0.11.0",
 		"vite-plugin-fake-server": "^2.0.0",
 		"vitest": "^0.34.6"
 	},
