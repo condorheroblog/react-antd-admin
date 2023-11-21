@@ -11,9 +11,7 @@ export function RouterGuards() {
 	const matches = useMatches();
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
-	const userId = useAppSelector(
-		(state) => state.user.userId,
-	);
+	const userId = useAppSelector((state) => state.user.userId);
 	const { i18n } = useTranslation();
 
 	const guardLogic = useCallback(async () => {

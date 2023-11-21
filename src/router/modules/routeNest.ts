@@ -1,4 +1,8 @@
-import { NodeExpandOutlined, SisternodeOutlined, SubnodeOutlined } from "@ant-design/icons";
+import {
+	NodeExpandOutlined,
+	SisternodeOutlined,
+	SubnodeOutlined,
+} from "@ant-design/icons";
 import { createElement } from "react";
 import type { AppRouteRecordRaw } from "../types";
 import { ContainerLayout } from "#src/layout";

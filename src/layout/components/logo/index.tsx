@@ -30,7 +30,9 @@ export function Logo({ collapsed }: LogoProps) {
 		<div className={classes.logoContainer}>
 			<img src={logo} alt="logo" className={classes.logo} />
 
-			{collapsed ? null : <h1 className={classes.logoText}>React Antd Admin</h1>}
+			{collapsed ? null : (
+				<h1 className={classes.logoText}>React Antd Admin</h1>
+			)}
 		</div>
 	);
 }

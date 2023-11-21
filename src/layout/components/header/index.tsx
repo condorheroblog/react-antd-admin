@@ -1,13 +1,9 @@
-import {
-	Layout, Button, theme, Row, Col, Menu,
-} from "antd";
+import { Layout, Button, theme, Row, Col, Menu } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import UserMenu from "./components/userMenu";
 import LanguageMenu from "./components/languageMenu";
 
-const {
-	Header: AntdHeader,
-} = Layout;
+const { Header: AntdHeader } = Layout;
 
 const headerMenuItems = [
 	{
@@ -49,10 +45,14 @@ export function Header({ collapsed, setCollapsed }: HeaderProps) {
 				</Col>
 
 				<Col span={6}>
-					<Menu mode="horizontal" items={headerMenuItems} style={{ justifyContent: "flex-end" }} inlineIndent={20} />
+					<Menu
+						mode="horizontal"
+						items={headerMenuItems}
+						style={{ justifyContent: "flex-end" }}
+						inlineIndent={20}
+					/>
 				</Col>
 			</Row>
 		</AntdHeader>
-
 	);
 }

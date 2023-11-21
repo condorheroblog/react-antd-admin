@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { LanguageType } from "#src/locales";
+import type { LanguageType } from "#src/locales";
 
 export const useLanguage = () => {
 	const { i18n } = useTranslation();
@@ -14,7 +14,10 @@ export const useLanguage = () => {
 	);
 
 	return useMemo(
-		() => ({ language: i18n.language as LanguageType, setLanguage: handleChangeLanguage }),
+		() => ({
+			language: i18n.language as LanguageType,
+			setLanguage: handleChangeLanguage,
+		}),
 		[handleChangeLanguage, i18n.language],
 	);
 };

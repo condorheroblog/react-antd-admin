@@ -3,13 +3,16 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchLogin, fetchUserInfo, fetchLogout } from "#src/api/user";
 import type { FormInitialValues } from "#src/pages/login";
 
-export const authLoginThunk = createAsyncThunk("auth/login", async (loginPayload: FormInitialValues) => {
-	const response = await fetchLogin(loginPayload);
-	const { token } = response.result;
-	window.localStorage.setItem("token", token);
-	window.location.href = "/";
-	return token;
-});
+export const authLoginThunk = createAsyncThunk(
+	"auth/login",
+	async (loginPayload: FormInitialValues) => {
+		const response = await fetchLogin(loginPayload);
+		const { token } = response.result;
+		window.localStorage.setItem("token", token);
+		window.location.href = "/";
+		return token;
+	},
+);
 
 export const authLogoutThunk = createAsyncThunk("auth/logout", async () => {
 	const response = await fetchLogout();
@@ -34,12 +37,15 @@ export const userSlice = createSlice({
 		desc: "",
 		password: "",
 	},
-	reducers: { },
+	reducers: {},
 	extraReducers: (builder) => {
 		builder.addCase(authLoginThunk.fulfilled, (state, action) => {
 			state.token = action.payload;
 		});
-		builder.addCase(userInfoThunk.fulfilled, (state, action) => ({ ...state, ...action.payload }));
+		builder.addCase(userInfoThunk.fulfilled, (state, action) => ({
+			...state,
+			...action.payload,
+		}));
 	},
 });
 

@@ -16,13 +16,8 @@
 		"jsx": "react-jsx",
 		"paths": {
 			"#*": ["./*"]
-		}
+		},
+		"types": ["vitest/globals"]
 	},
-	"include": [
-		"src",
-		"fake",
-		"tests",
-		"vite.config.ts",
-		"commitlint.config.ts"
-	]
+	"include": ["src", "fake", "tests", "vite.config.ts", "commitlint.config.ts"]
 }

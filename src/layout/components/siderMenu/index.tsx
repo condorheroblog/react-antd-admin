@@ -9,8 +9,10 @@ import type { AppRouteRecordRaw } from "#src/router/types";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
-function getMenuItems(routeList: AppRouteRecordRaw[]) {
-	const { t } = useTranslation();
+function getMenuItems(
+	routeList: AppRouteRecordRaw[],
+	t: (path: string) => string,
+) {
 	return routeList.map((item) => {
 		const label = item?.meta?.title;
 		const menuItem: MenuItem = {
@@ -23,15 +25,17 @@ function getMenuItems(routeList: AppRouteRecordRaw[]) {
 			if (noIndexRoute.length > 0) {
 				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 				// @ts-expect-error
-				menuItem.children = getMenuItems(noIndexRoute);
+				menuItem.children = getMenuItems(noIndexRoute, t);
 			}
 		}
 		return menuItem;
 	});
 }
 
-const getPathById = (menuItems: AppRouteRecordRaw[], id: string): string | null => {
-	// eslint-disable-next-line no-restricted-syntax
+const getPathById = (
+	menuItems: AppRouteRecordRaw[],
+	id: string,
+): string | null => {
 	for (const menuItem of menuItems) {
 		if (menuItem.id === id) {
 			return menuItem.path!;
@@ -48,7 +52,7 @@ const getPathById = (menuItems: AppRouteRecordRaw[], id: string): string | null 
 
 function findChildrenLen(menuItems: AppRouteRecordRaw[], key: string) {
 	const subRouteChildren: string[] = [];
-	// eslint-disable-next-line no-restricted-syntax
+
 	for (const { children, id } of menuItems) {
 		if (children && children.length) {
 			subRouteChildren.push(id as string);
@@ -62,8 +66,12 @@ export function SiderMenu() {
 	const navigate = useNavigate();
 	const [openKeys, setOpenKeys] = useState<string[]>([]);
 	const routeList = (router.routes[0]?.children ?? []) as AppRouteRecordRaw[];
+	const { t } = useTranslation();
 
-	const getSelectedKeys = useMemo(() => matches.map((item) => item.id), [matches, routeList]);
+	const getSelectedKeys = useMemo(
+		() => matches.map((item) => item.id),
+		[matches, routeList],
+	);
 
 	const handleSelect: MenuProps["onSelect"] = ({ key }) => {
 		if (/http(s)?:/.test(key)) {
@@ -77,8 +85,11 @@ export function SiderMenu() {
 	};
 
 	const handleOpenChange: MenuProps["onOpenChange"] = (keys) => {
+		// eslint-disable-next-line unicorn/prefer-includes
 		const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
-		const isExistChildren = latestOpenKey ? findChildrenLen(routeList, latestOpenKey) : false;
+		const isExistChildren = latestOpenKey
+			? findChildrenLen(routeList, latestOpenKey)
+			: false;
 		setOpenKeys(() => {
 			if (isExistChildren) {
 				if (latestOpenKey) {
@@ -98,7 +109,7 @@ export function SiderMenu() {
 		<Menu
 			mode="inline"
 			theme="dark"
-			items={getMenuItems(routeList)}
+			items={getMenuItems(routeList, t)}
 			openKeys={openKeys}
 			onOpenChange={handleOpenChange}
 			selectedKeys={getSelectedKeys}

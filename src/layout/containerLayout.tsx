@@ -16,18 +16,20 @@ export function ContainerLayout() {
 
 	return (
 		<Layout style={{ height: "100%" }}>
-			<Sider
-				trigger={null}
-				collapsible
-				collapsed={collapsed}
-			>
+			<Sider trigger={null} collapsible collapsed={collapsed}>
 				<Logo collapsed={collapsed} />
 				<SiderMenu />
 			</Sider>
 			<Layout>
 				<Header collapsed={collapsed} setCollapsed={setCollapsed} />
 				<Content style={{ margin: "2em 1em 0", overflow: "initial" }}>
-					<div style={{ padding: 24, textAlign: "center", background: colorBgContainer }}>
+					<div
+						style={{
+							padding: 24,
+							textAlign: "center",
+							background: colorBgContainer,
+						}}
+					>
 						<ParentLayout />
 					</div>
 				</Content>

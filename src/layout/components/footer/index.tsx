@@ -1,6 +1,4 @@
-import {
-	Layout,
-} from "antd";
+import { Layout } from "antd";
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({

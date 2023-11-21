@@ -13,9 +13,7 @@ const items: MenuProps["items"] = [
 
 export default function UserMenu() {
 	const dispatch = useAppDispatch();
-	const { avatar, username } = useAppSelector(
-		(state) => state.user,
-	);
+	const { avatar, username } = useAppSelector((state) => state.user);
 	const onClick: MenuProps["onClick"] = async ({ key }) => {
 		if (key === "logout") {
 			await dispatch(authLogoutThunk());

@@ -1,6 +1,4 @@
-import {
-	Layout, Row, Col, Space, Form, Input, Button, Grid,
-} from "antd";
+import { Layout, Row, Col, Space, Form, Input, Button, Grid } from "antd";
 import { createUseStyles } from "react-jss";
 import { useTranslation } from "react-i18next";
 
@@ -21,7 +19,8 @@ const useStyles = createUseStyles({
 		background: "#FFFFFF",
 		borderRadius: "0.8em",
 		border: "1px solid #F0F0F0",
-		boxShadow: "0 0.2em 1em 0 rgba(0, 0, 0, 0.1), 0 1em 2.3em 0 rgba(0, 0, 0, 0.1)",
+		boxShadow:
+			"0 0.2em 1em 0 rgba(0, 0, 0, 0.1), 0 1em 2.3em 0 rgba(0, 0, 0, 0.1)",
 	},
 	logo: {
 		width: "6em",
@@ -91,12 +90,19 @@ export default function Login() {
 								<img src={logo} alt="logo" className={classes.logo} />
 								<h1 className={classes.logoText}>React Antd Admin</h1>
 							</Space>
-							<img src={frameworkTemplate} alt="framework-template" className={classes.template} />
+							<img
+								src={frameworkTemplate}
+								alt="framework-template"
+								className={classes.template}
+							/>
 						</Space>
 					</Col>
 
 					<Col xs={24} sm={24} lg={12}>
-						<div className={classes.loginWrapper} style={{ minWidth: !screens.lg ? "80vw" : "23vw" }}>
+						<div
+							className={classes.loginWrapper}
+							style={{ minWidth: !screens.lg ? "80vw" : "23vw" }}
+						>
 							<Space direction="vertical" style={{ minWidth: "80%" }}>
 								<Space direction="vertical">
 									<div className={classes.hello}>Hello, Welcome to</div>
@@ -139,15 +145,10 @@ export default function Login() {
 									</Form.Item>
 
 									<Form.Item>
-										<Button
-											block
-											type="primary"
-											htmlType="submit"
-										>
+										<Button block type="primary" htmlType="submit">
 											{t("common.login")}
 										</Button>
 									</Form.Item>
-
 								</Form>
 							</Space>
 						</div>
