@@ -1,7 +1,6 @@
 {
 	"menus": {
 		"about": "关于",
-		"aboutMe": "你好, 我的名字是 Condor Hero",
 		"nestMenus": "嵌套菜单",
 		"menu1": "菜单 1",
 		"menu1-1": "菜单 1-1",
@@ -18,5 +17,14 @@
 		"delete": "删除",
 		"upload": "上传",
 		"404SubTitle": "抱歉，您访问的页面不存在。"
+	},
+	"about": {
+		"aboutProject": "关于项目",
+		"descriptions": "react-antd-admin 是一个基于 React 18、Vite 5 和 TypeScript 的中后台解决方案。它旨在帮助您快速搭建企业级中后台项目。无论是在采用新技术方面还是其他方面，它都能为您提供帮助。",
+		"projectMessage": "项目信息",
+		"version": "版本",
+		"lastBuildTime": "最后编译时间",
+		"dependencies": "生产依赖",
+		"devDependencies": "开发依赖"
 	}
 }

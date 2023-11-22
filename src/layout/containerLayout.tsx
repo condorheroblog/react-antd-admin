@@ -2,7 +2,7 @@ import { Layout, theme } from "antd";
 import { useState } from "react";
 import { Logo } from "./components/logo";
 import { Header } from "./components/header";
-import { Footer } from "./components/footer";
+// import { Footer } from "./components/footer";
 import { SiderMenu } from "./components/siderMenu";
 import { ParentLayout } from "./parentLayout";
 
@@ -22,18 +22,17 @@ export function ContainerLayout() {
 			</Sider>
 			<Layout>
 				<Header collapsed={collapsed} setCollapsed={setCollapsed} />
-				<Content style={{ margin: "2em 1em 0", overflow: "initial" }}>
+				<Content style={{ overflow: "auto" }}>
 					<div
 						style={{
-							padding: 24,
-							textAlign: "center",
-							background: colorBgContainer,
+							margin: "1.5em 1em 1em",
+							backgroundColor: colorBgContainer,
 						}}
 					>
 						<ParentLayout />
 					</div>
 				</Content>
-				<Footer />
+				{/* <Footer /> */}
 			</Layout>
 		</Layout>
 	);
