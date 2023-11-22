@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { fetchLogin, fetchUserInfo, fetchLogout } from "#src/api/user";
 import type { FormInitialValues } from "#src/pages/login";
+import { i18nResources } from "#src/locales";
 
 export const authLoginThunk = createAsyncThunk(
 	"auth/login",
@@ -32,27 +33,58 @@ export const userInfoThunk = createAsyncThunk("userinfo", async () => {
 	return response.result;
 });
 
+const CONSTANT_USERINFO = {
+	hasFetchedUserInfo: false,
+	userId: "",
+	username: "",
+	realName: "",
+	avatar: "",
+	desc: "",
+	password: "",
+};
+
+const token = window.localStorage.getItem("token");
+const lng = window.localStorage.getItem("lng") ?? "";
 export const userSlice = createSlice({
 	name: "user",
 	initialState: {
-		token: window.localStorage.getItem("token"),
-		userId: "",
-		isLogin: false,
-		username: "",
-		realName: "",
-		avatar: "",
-		desc: "",
-		password: "",
+		/**
+		 * authLoginThunk
+		 */
+		token,
+		hasFetchedToken: !!token,
+
+		// ---------
+
+		/**
+		 * userInfoThunk
+		 */
+		...CONSTANT_USERINFO,
+		// ignore illegality
+		lng: Object.keys(i18nResources).includes(lng) ? lng : "zh-CN",
 	},
-	reducers: {},
+	reducers: {
+		changeLanguage(state, action) {
+			state.lng = action.payload;
+		},
+	},
 	extraReducers: (builder) => {
 		builder.addCase(authLoginThunk.fulfilled, (state, action) => {
 			state.token = action.payload;
+			state.hasFetchedToken = true;
+		});
+		builder.addCase(authLogoutThunk.fulfilled, (state) => {
+			return {
+				...state,
+				token: "",
+				hasFetchedToken: false,
+				...CONSTANT_USERINFO,
+			};
 		});
 		builder.addCase(userInfoThunk.fulfilled, (state, action) => ({
 			...state,
 			...action.payload,
-			isLogin: !!action.payload.userId,
+			hasFetchedUserInfo: true,
 		}));
 	},
 });

@@ -16,8 +16,8 @@ const defaultConfig: Options = {
 		beforeRequest: [
 			(request) => {
 				store.dispatch(globalSlice.actions.openGlobalSpin());
-				const token =
-					store.getState().user.token || window.localStorage.getItem("token");
+				// Do not use redux to prevent tokens from being deleted
+				const token = window.localStorage.getItem("token");
 				request.headers.set("Authorization", `Bearer ${token}`);
 			},
 		],

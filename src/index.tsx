@@ -1,15 +1,17 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import { RouterProvider } from "react-router-dom";
+
 import { Provider } from "react-redux";
+import { initReactI18next } from "react-i18next";
+import i18n from "i18next";
 
 import "./index.css";
-import { router } from "./router";
+import App from "./App";
 import { store } from "#src/store";
-import { GlobalSpin } from "#src/components";
+import { i18nInitOptions } from "#src/locales";
 
 // internationalization
-import "#src/locales";
+i18n.use(initReactI18next).init(i18nInitOptions);
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement,
@@ -17,9 +19,7 @@ const root = ReactDOM.createRoot(
 root.render(
 	<StrictMode>
 		<Provider store={store}>
-			<GlobalSpin>
-				<RouterProvider router={router} />
-			</GlobalSpin>
+			<App />
 		</Provider>
 	</StrictMode>,
 );

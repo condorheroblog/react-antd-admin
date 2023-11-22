@@ -6,7 +6,8 @@ import { ContainerLayout } from "#src/layout";
 export default function Error404() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	const isLogin = !!window.localStorage.getItem("token");
+	// Do not use redux to prevent tokens from being deleted
+	const hasTokenInLocal = !!window.localStorage.getItem("token");
 
 	const Result404 = (
 		<Result
@@ -26,7 +27,7 @@ export default function Error404() {
 		/>
 	);
 
-	return isLogin ? (
+	return hasTokenInLocal ? (
 		<Routes>
 			<Route element={<ContainerLayout />} path="*">
 				<Route path="*" element={Result404}></Route>

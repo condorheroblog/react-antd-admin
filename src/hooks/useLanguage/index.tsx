@@ -1,13 +1,19 @@
 import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import type { LanguageType } from "#src/locales";
+import { useAppDispatch, userSlice } from "#src/store";
 
 export const useLanguage = () => {
 	const { i18n } = useTranslation();
+	const dispatch = useAppDispatch();
 
 	const handleChangeLanguage = useCallback(
 		async (locale: LanguageType) => {
-			localStorage.setItem("lng", locale);
+			// local language
+			window.localStorage.setItem("lng", locale);
+			// redux language
+			dispatch(userSlice.actions.changeLanguage(locale));
+			// react-i18n language
 			await i18n.changeLanguage(locale);
 		},
 		[i18n],
