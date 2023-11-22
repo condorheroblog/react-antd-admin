@@ -2,6 +2,7 @@ import type { Options } from "ky";
 import ky from "ky";
 import { message } from "antd";
 import { store, globalSlice } from "#src/store";
+import { rememberRoute } from "#src/utils";
 
 const defaultConfig: Options = {
 	// The input argument cannot start with a slash / when using prefixUrl option.
@@ -23,9 +24,9 @@ const defaultConfig: Options = {
 		afterResponse: [
 			async (request, options, response) => {
 				if (!response.ok) {
-					if (response.status === 401) {
-						// ?redirect=
-						window.location.href = "/login";
+					if (response.status === 401 || response.status === 403) {
+						// Remember the route before exiting
+						window.location.href = `/login${rememberRoute()}`;
 					} else {
 						const json = await response.json();
 						message.error(json.message || response.statusText);

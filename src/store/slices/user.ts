@@ -9,7 +9,13 @@ export const authLoginThunk = createAsyncThunk(
 		const response = await fetchLogin(loginPayload);
 		const { token } = response.result;
 		window.localStorage.setItem("token", token);
-		window.location.href = "/";
+		const searchParams = new URLSearchParams(window.location.search);
+		const redirect = searchParams.get("redirect");
+		if (redirect) {
+			window.location.href = redirect;
+		} else {
+			window.location.href = "/";
+		}
 		return token;
 	},
 );

@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ParentLayout } from "#src/layout";
 import { useAppSelector, useAppDispatch } from "#src/store";
 import { i18nResources } from "#src/locales";
+import { rememberRoute } from "#src/utils";
 import { userInfoThunk } from "#src/store/slices/user";
 
 export function RouterGuards() {
@@ -18,7 +19,8 @@ export function RouterGuards() {
 		if (location.pathname !== "/login") {
 			const token = window.localStorage.getItem("token");
 			if (!token) {
-				navigate("/login", { replace: true });
+				// Remember the route before exiting
+				navigate(`/login${rememberRoute()}`, { replace: true });
 			} else {
 				if (matches.length === 1 && matches[0].pathname === "/") {
 					navigate(import.meta.env.VITE_BASE_HOME_PATH, { replace: true });

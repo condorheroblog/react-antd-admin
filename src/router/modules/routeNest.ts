@@ -37,7 +37,7 @@ const routes: AppRouteRecordRaw[] = [
 						path: "/route-nest/menu1/menu1-1",
 						id: "route-nest_menu1_menu1-1",
 						lazy: async () => {
-							const mod = await import("#src/pages/routeNest/menu1/menu1-1");
+							const mod = await import("#src/pages/route-nest/menu1/menu1-1");
 							return {
 								...mod,
 								Component: mod.default,
@@ -52,7 +52,7 @@ const routes: AppRouteRecordRaw[] = [
 						path: "/route-nest/menu1/menu1-2",
 						id: "route-nest_menu1_menu1-2",
 						lazy: async () => {
-							const mod = await import("#src/pages/routeNest/menu1/menu1-2");
+							const mod = await import("#src/pages/route-nest/menu1/menu1-2");
 							return {
 								...mod,
 								Component: mod.default,
@@ -69,7 +69,7 @@ const routes: AppRouteRecordRaw[] = [
 				path: "/route-nest/menu2",
 				id: "route-nest_menu2",
 				lazy: async () => {
-					const mod = await import("#src/pages/routeNest/menu2");
+					const mod = await import("#src/pages/route-nest/menu2");
 					return {
 						...mod,
 						Component: mod.default,
