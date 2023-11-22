@@ -32,18 +32,18 @@ function getMenuItems(
 	});
 }
 
-const getPathById = (
+const getMenuById = (
 	menuItems: AppRouteRecordRaw[],
 	id: string,
-): string | null => {
+): AppRouteRecordRaw | null => {
 	for (const menuItem of menuItems) {
 		if (menuItem.id === id) {
-			return menuItem.path!;
+			return menuItem;
 		}
 		if (menuItem.children) {
-			const path = getPathById(menuItem.children, id);
-			if (path !== null) {
-				return path;
+			const findItem = getMenuById(menuItem.children, id);
+			if (findItem) {
+				return findItem;
 			}
 		}
 	}
@@ -77,9 +77,9 @@ export function SiderMenu() {
 		if (/http(s)?:/.test(key)) {
 			window.open(key);
 		} else {
-			const routePath = getPathById(routeList, key);
-			if (routePath) {
-				navigate(routePath);
+			const menuItem = getMenuById(routeList, key);
+			if (menuItem && menuItem.path) {
+				navigate(menuItem.path);
 			}
 		}
 	};
@@ -103,6 +103,14 @@ export function SiderMenu() {
 
 	useEffect(() => {
 		setOpenKeys(matches.map((item) => item.id));
+	}, [matches, routeList]);
+
+	useEffect(() => {
+		const currentOpenKey = matches[matches.length - 1].id;
+		const menuItem = getMenuById(routeList, currentOpenKey);
+		if (menuItem && menuItem.meta?.title) {
+			document.title = t(menuItem.meta?.title);
+		}
 	}, [matches, routeList]);
 
 	return (

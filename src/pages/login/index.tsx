@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Layout, Row, Col, Space, Form, Input, Button, Grid } from "antd";
 import { createUseStyles } from "react-jss";
 import { useTranslation } from "react-i18next";
@@ -79,6 +80,10 @@ export default function Login() {
 	const handleFinish = async (values: FormInitialValues) => {
 		await dispatch(authLoginThunk(values));
 	};
+
+	useEffect(() => {
+		document.title = t("common.login");
+	}, []);
 
 	return (
 		<Layout className={classes.section}>
