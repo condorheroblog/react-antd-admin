@@ -1,26 +1,21 @@
 import type { FormInitialValues } from "#src/pages/login";
 import { request } from "#src/utils";
 
-export interface FetchResponseType {
-	code: number;
-	message: string;
-	type: string;
-}
-
 export interface LoginResponseType {
 	token: string;
 }
+
 export function fetchLogin(data: FormInitialValues) {
-	return request.url("/login").post(data) as Promise<
-		Record<"result", LoginResponseType>
-	>;
+	return request
+		.post("login", { json: data })
+		.json<ApiResponse<LoginResponseType>>();
 }
 
 export function fetchLogout() {
-	return request.url("/logout").post() as Promise<FetchResponseType>;
+	return request.post("logout").json();
 }
 
-export interface UserinfoType {
+export interface UserInfoType {
 	userId: string;
 	username: string;
 	realName: string;
@@ -34,7 +29,5 @@ export interface UserinfoType {
 }
 
 export function fetchUserInfo() {
-	return request.url("/userinfo").get() as Promise<
-		Record<"result", UserinfoType>
-	>;
+	return request.get("userinfo").json<ApiResponse<UserInfoType>>();
 }

@@ -11,13 +11,13 @@
 		"@reduxjs/toolkit": "^1.9.7",
 		"antd": "^5.11.2",
 		"i18next": "^23.7.6",
+		"ky": "^1.1.3",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-i18next": "^13.5.0",
 		"react-jss": "^10.10.0",
 		"react-redux": "^8.1.3",
-		"react-router-dom": "^6.19.0",
-		"wretch": "^2.7.0"
+		"react-router-dom": "^6.19.0"
 	},
 	"scripts": {
 		"analyzer": "vite-bundle-visualizer --output analyzer/stats.html",
