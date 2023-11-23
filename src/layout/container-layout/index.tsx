@@ -1,10 +1,10 @@
 import { Layout, theme } from "antd";
 import { useState } from "react";
-import { Logo } from "./components/logo";
-import { Header } from "./components/header";
+import { Logo } from "../logo";
+import { Header } from "../header";
 // import { Footer } from "./components/footer";
-import { SiderMenu } from "./components/siderMenu";
-import { ParentLayout } from "./parentLayout";
+import { SiderMenu } from "../sider-menu";
+import { ParentLayout } from "../parent-layout";
 
 const { Content, Sider } = Layout;
 

@@ -1,5 +1,16 @@
 import { useEffect } from "react";
-import { Layout, Row, Col, Space, Form, Input, Button, Grid } from "antd";
+import type { GlobalToken } from "antd";
+import {
+	Layout,
+	Row,
+	Col,
+	Space,
+	Form,
+	Input,
+	Button,
+	Grid,
+	Typography,
+} from "antd";
 import { createUseStyles } from "react-jss";
 import { useTranslation } from "react-i18next";
 
@@ -9,57 +20,51 @@ import logo from "#src/assets/images/logo.svg";
 import { authLoginThunk } from "#src/store/slices/user";
 import { Footer } from "#src/layout";
 
-const useStyles = createUseStyles({
-	loginWrapper: {
-		width: "100%",
-		height: "50vh",
-		// minWidth: "23vw",
-		display: "flex",
-		justifyContent: "center",
-		alignItems: "center",
-		background: "#FFFFFF",
-		borderRadius: "0.8em",
-		border: "1px solid #F0F0F0",
-		boxShadow:
-			"0 0.2em 1em 0 rgba(0, 0, 0, 0.1), 0 1em 2.3em 0 rgba(0, 0, 0, 0.1)",
-	},
-	logo: {
-		width: "6em",
-		color: "#000000E0",
-	},
-	logoText: {
-		fontSize: "1.8em",
-		fontWeight: "bold",
-	},
-	template: {
-		width: "30em",
-	},
-	hello: {
-		fontSize: "1.8em",
-		fontWeight: "bold",
-	},
-	loginLogoText: {
-		fontSize: "1.8em",
-		fontWeight: "bold",
-		color: "rgb(0, 85, 0, .7)",
-		marginBottom: "1em",
-	},
-	content: {
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	section: {
-		height: "100%",
-		display: "flex",
-		flexDirection: "column",
-		backgroundImage: "radial-gradient(#FFFFFF, #DDE4F1)",
-	},
-	footer: {
-		backgroundColor: "transparent",
-		display: "flex",
-		justifyContent: "center",
-	},
+const { Title } = Typography;
+
+const useStyles = createUseStyles((theme: GlobalToken) => {
+	return {
+		loginWrapper: {
+			width: "100%",
+			height: "max(50vh, 400px)",
+			// minWidth: "23vw",
+			display: "flex",
+			justifyContent: "center",
+			alignItems: "center",
+			backgroundColor: theme.colorBgContainer,
+			borderRadius: "0.8em",
+			border: `1px solid ${theme.colorBorderSecondary}`,
+			boxShadow: theme.boxShadow,
+		},
+		helloText: {},
+		logo: {
+			width: "6em",
+		},
+		logoText: {
+			fontSize: "1.8em !important",
+		},
+		template: {
+			width: "30em",
+		},
+		content: {
+			display: "flex",
+			alignItems: "center",
+			justifyContent: "center",
+		},
+		section: {
+			height: "100%",
+			display: "flex",
+			flexDirection: "column",
+			backgroundImage: () => {
+				return `radial-gradient(${theme.colorBgContainer}, ${theme.colorPrimaryBg})`;
+			},
+		},
+		footer: {
+			backgroundColor: "transparent",
+			display: "flex",
+			justifyContent: "center",
+		},
+	};
 });
 
 const { Content } = Layout;
@@ -93,7 +98,9 @@ export default function Login() {
 						<Space direction="vertical">
 							<Space>
 								<img src={logo} alt="logo" className={classes.logo} />
-								<h1 className={classes.logoText}>React Antd Admin</h1>
+								<Title level={1} className={classes.logoText}>
+									React Antd Admin
+								</Title>
 							</Space>
 							<img
 								src={frameworkTemplate}
@@ -106,14 +113,16 @@ export default function Login() {
 					<Col xs={24} sm={24} lg={12}>
 						<div
 							className={classes.loginWrapper}
-							style={{ minWidth: !screens.lg ? "80vw" : "23vw" }}
+							style={{ minWidth: !screens.lg ? "70vw" : "20vw" }}
 						>
 							<Space direction="vertical" style={{ minWidth: "80%" }}>
 								<Space direction="vertical">
-									<div className={classes.hello}>Hello, Welcome to</div>
-									<Space className={classes.loginLogoText}>
+									<Title level={3} className={classes.helloText}>
+										Hello, Welcome to
+									</Title>
+									<Title style={{ marginTop: 0 }} level={5}>
 										React Antd Admin
-									</Space>
+									</Title>
 								</Space>
 
 								<Form
@@ -129,7 +138,6 @@ export default function Login() {
 										rules={[
 											{
 												required: true,
-												// message: "用户名不能为空",
 											},
 										]}
 									>
@@ -142,7 +150,6 @@ export default function Login() {
 										rules={[
 											{
 												required: true,
-												// message: "密码不能为空",
 											},
 										]}
 									>
