@@ -31,9 +31,12 @@ export default function LanguageMenu() {
 				selectable: true,
 				defaultSelectedKeys: [language],
 			}}
+			arrow
 			placement="bottom"
 		>
-			<TranslationOutlined style={{ fontSize: 18, cursor: "pointer" }} />
+			<div role="menuitem" tabIndex={-1}>
+				<TranslationOutlined style={{ transform: "scale(1.3)" }} />
+			</div>
 		</Dropdown>
 	);
 }

@@ -1,22 +1,39 @@
-import { Layout, Button, theme, Row, Col, Menu } from "antd";
+import type { GlobalToken } from "antd";
+import { Layout, Button, theme } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { createUseStyles } from "react-jss";
+
 import UserMenu from "./components/userMenu";
 import LanguageMenu from "./components/languageMenu";
+import ProjectSettings from "./components/projectSettings";
 
 const { Header: AntdHeader } = Layout;
 
-const headerMenuItems = [
-	{
-		label: <LanguageMenu />,
-		key: "LanguageMenu",
-		// icon: <LanguageMenu />,
-	},
-	{
-		label: <UserMenu />,
-		key: "UserMenu",
-		// icon: <UserMenu />,
-	},
-];
+const useStyles = createUseStyles((theme: GlobalToken) => {
+	return {
+		layoutHeader: {
+			display: "flex",
+			justifyContent: "space-between",
+			alignItems: "stretch",
+		},
+		layoutHeaderLeft: {},
+		layoutHeaderRight: {
+			display: "flex",
+			justifyContent: "center",
+			marginRight: "1.8em",
+			alignItems: "center",
+			"&>div": {
+				cursor: "pointer",
+				padding: ["0", ".7em"],
+			},
+			"&>div:hover": {
+				background: {
+					color: theme.colorBgTextHover,
+				},
+			},
+		},
+	};
+});
 
 export interface HeaderProps {
 	collapsed: boolean;
@@ -27,11 +44,12 @@ export function Header({ collapsed, setCollapsed }: HeaderProps) {
 	const {
 		token: { colorBgContainer },
 	} = theme.useToken();
+	const classes = useStyles();
 
 	return (
 		<AntdHeader style={{ padding: 0, background: colorBgContainer }}>
-			<Row justify="space-between">
-				<Col>
+			<div className={classes.layoutHeader}>
+				<div className={classes.layoutHeaderLeft}>
 					<Button
 						type="text"
 						icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -42,17 +60,14 @@ export function Header({ collapsed, setCollapsed }: HeaderProps) {
 							height: 64,
 						}}
 					/>
-				</Col>
+				</div>
 
-				<Col span={6}>
-					<Menu
-						mode="horizontal"
-						items={headerMenuItems}
-						style={{ justifyContent: "flex-end" }}
-						inlineIndent={20}
-					/>
-				</Col>
-			</Row>
+				<div className={classes.layoutHeaderRight} role="menu" tabIndex={0}>
+					<LanguageMenu />
+					<UserMenu />
+					<ProjectSettings />
+				</div>
+			</div>
 		</AntdHeader>
 	);
 }

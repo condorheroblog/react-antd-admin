@@ -18,6 +18,10 @@
 		"upload": "上传",
 		"404SubTitle": "抱歉，您访问的页面不存在。"
 	},
+	"projectSettings": {
+		"title": "项目设置",
+		"theme": "主题"
+	},
 	"about": {
 		"aboutProject": "关于项目",
 		"descriptions": "react-antd-admin 是一个基于 React 18、Vite 5 和 TypeScript 的中后台解决方案。它旨在帮助您快速搭建企业级中后台项目。无论是在采用新技术方面还是其他方面，它都能为您提供帮助。",

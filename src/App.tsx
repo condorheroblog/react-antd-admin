@@ -1,7 +1,7 @@
 import { ConfigProvider, theme as antdTheme } from "antd";
 import dayjs from "dayjs";
 import { RouterProvider } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 
 import "./index.css";
 import "dayjs/locale/zh-cn";
@@ -46,18 +46,24 @@ export default function App() {
 		i18n.changeLanguage(lng);
 	}, [lng]);
 
-	/** Initial theme */
-	useEffect(() => {
-		const setTheme = (dark = true) => {
+	const setTheme = useCallback(
+		(dark = true, isWriteLocalStorage = false) => {
 			dispatch(
 				globalSlice.actions.changeSiteTheme({
 					theme: dark ? "dark" : "light",
+					isWriteLocalStorage,
 				}),
 			);
-		};
+		},
+		[dispatch, globalSlice.actions.changeSiteTheme],
+	);
 
+	/** Initial theme */
+	useEffect(() => {
 		setTheme(theme === "dark");
+	}, [setTheme, theme]);
 
+	useEffect(() => {
 		// Watch system theme change
 		if (!localStorage.getItem("theme")) {
 			// https://developer.chrome.com/docs/devtools/rendering/emulate-css/
@@ -69,12 +75,13 @@ export default function App() {
 				setTheme(e.matches);
 			}
 
+			setTheme(darkModeMediaQuery.matches);
 			darkModeMediaQuery.addEventListener("change", matchMode);
 			return () => {
 				darkModeMediaQuery.removeEventListener("change", matchMode);
 			};
 		}
-	}, [theme]);
+	}, [setTheme]);
 
 	return (
 		<ConfigProvider

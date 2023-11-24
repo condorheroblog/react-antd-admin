@@ -18,6 +18,10 @@
 		"upload": "Upload",
 		"404SubTitle": "Sorry, the page you visited does not exist."
 	},
+	"projectSettings": {
+		"title": "Project Settings",
+		"theme": "Theme"
+	},
 	"about": {
 		"aboutProject": "About Project",
 		"descriptions": "react-ant-admin is a mid to backend solution based on React 18, Vite 5, and TypeScript. It is designed to help you quickly build enterprise level backend projects. It can help you in adopting new technologies and other aspects.",
