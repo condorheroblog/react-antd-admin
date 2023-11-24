@@ -101,6 +101,8 @@ export default defineFlatConfig([
 			"unicorn/prefer-type-error": "error",
 			// Use new when throwing error
 			"unicorn/throw-new-error": "error",
+			// Enforce a case style for filenames
+			// "unicorn/filename-case": "error",
 		},
 	},
 	{

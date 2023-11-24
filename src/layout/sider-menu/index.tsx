@@ -115,6 +115,7 @@ export function SiderMenu() {
 
 	return (
 		<Menu
+			style={{ height: "100%" }}
 			mode="inline"
 			theme="dark"
 			items={getMenuItems(routeList, t)}

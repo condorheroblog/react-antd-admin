@@ -11,7 +11,6 @@ const useStyles = createUseStyles({
 	},
 	logo: {
 		width: "2.4em",
-		color: "#000000E0",
 	},
 	logoText: {
 		fontSize: "1em",

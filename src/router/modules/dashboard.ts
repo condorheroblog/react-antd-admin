@@ -25,7 +25,7 @@ const routes: AppRouteRecordRaw[] = [
 					};
 				},
 				meta: {
-					title: "dashboard",
+					title: "Dashboard",
 					icon: createElement(DashboardOutlined),
 				},
 			},
