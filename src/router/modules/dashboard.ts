@@ -1,5 +1,6 @@
 import { DashboardOutlined } from "@ant-design/icons";
 import { createElement } from "react";
+
 import type { AppRouteRecordRaw } from "../types";
 import { ContainerLayout } from "#src/layout";
 

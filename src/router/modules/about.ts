@@ -1,7 +1,9 @@
 import { UserOutlined } from "@ant-design/icons";
 import { createElement } from "react";
+
 import type { AppRouteRecordRaw } from "../types";
 import { ContainerLayout } from "#src/layout";
+import { t } from "#src/locales";
 
 const routes: AppRouteRecordRaw[] = [
 	{
@@ -10,7 +12,7 @@ const routes: AppRouteRecordRaw[] = [
 		Component: ContainerLayout,
 		meta: {
 			sort: 100,
-			title: "menus.about",
+			title: t("menus.about"),
 			icon: createElement(UserOutlined),
 		},
 		children: [
@@ -25,7 +27,7 @@ const routes: AppRouteRecordRaw[] = [
 					};
 				},
 				meta: {
-					title: "About",
+					title: t("menus.about"),
 					icon: createElement(UserOutlined),
 				},
 			},

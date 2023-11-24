@@ -14,7 +14,7 @@ export interface NonIndexRouteMeta extends NonIndexRouteObject {
 export type AppRouteRecordRaw = IndexRouteMeta | NonIndexRouteMeta;
 
 export interface RouteMeta {
-	title: string;
+	title: ReactNode;
 	hidden?: boolean;
 	icon?: ReactNode;
 	sort?: number;

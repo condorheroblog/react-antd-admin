@@ -1,6 +1,8 @@
 import { LoginOutlined } from "@ant-design/icons";
 import { createElement } from "react";
+
 import type { AppRouteRecordRaw } from "../types";
+import { t } from "#src/locales";
 
 const routes: AppRouteRecordRaw[] = [
 	{
@@ -15,7 +17,7 @@ const routes: AppRouteRecordRaw[] = [
 		},
 		meta: {
 			icon: createElement(LoginOutlined),
-			title: "登录",
+			title: t("common.login"),
 			sort: 101,
 		},
 	},

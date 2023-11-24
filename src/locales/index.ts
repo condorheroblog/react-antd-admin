@@ -3,6 +3,8 @@ import enUS from "antd/locale/en_US";
 import translationEN from "./en/translation.json";
 import translationZH from "./zh-CN/translation.json";
 
+export * from "./t";
+
 export type LanguageType = "zh-CN" | "en";
 
 export const ANT_DESIGN_LOCALE = {

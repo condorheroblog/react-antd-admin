@@ -4,8 +4,10 @@ import {
 	SubnodeOutlined,
 } from "@ant-design/icons";
 import { createElement } from "react";
+
 import type { AppRouteRecordRaw } from "../types";
 import { ContainerLayout } from "#src/layout";
+import { t } from "#src/locales";
 
 const routes: AppRouteRecordRaw[] = [
 	{
@@ -14,7 +16,7 @@ const routes: AppRouteRecordRaw[] = [
 		Component: ContainerLayout,
 		meta: {
 			sort: 10,
-			title: "menus.nestMenus",
+			title: t("menus.nestMenus"),
 			icon: createElement(NodeExpandOutlined),
 		},
 		children: [
@@ -29,7 +31,7 @@ const routes: AppRouteRecordRaw[] = [
 					};
 				},
 				meta: {
-					title: "menus.menu1",
+					title: t("menus.menu1"),
 					icon: createElement(SisternodeOutlined),
 				},
 				children: [
@@ -44,7 +46,7 @@ const routes: AppRouteRecordRaw[] = [
 							};
 						},
 						meta: {
-							title: "menus.menu1-1",
+							title: t("menus.menu1-1"),
 							icon: createElement(SubnodeOutlined),
 						},
 					},
@@ -59,7 +61,7 @@ const routes: AppRouteRecordRaw[] = [
 							};
 						},
 						meta: {
-							title: "menus.menu1-2",
+							title: t("menus.menu1-2"),
 							icon: createElement(SubnodeOutlined),
 						},
 					},
@@ -76,7 +78,7 @@ const routes: AppRouteRecordRaw[] = [
 					};
 				},
 				meta: {
-					title: "menus.menu2",
+					title: t("menus.menu2"),
 					icon: createElement(SubnodeOutlined),
 				},
 			},
