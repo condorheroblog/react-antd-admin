@@ -10,6 +10,7 @@ export default function ProjectSettings() {
 	const { t } = useTranslation();
 	const [isOpen, setIsOpen] = useState(false);
 	const theme = useAppSelector((state) => state.global.theme);
+	const isMobile = useAppSelector((state) => state.global.isMobile);
 
 	return (
 		<>
@@ -27,6 +28,11 @@ export default function ProjectSettings() {
 				onClose={() => {
 					setIsOpen(false);
 				}}
+				{...(isMobile
+					? {
+							width: "56vw",
+					  }
+					: {})}
 				open={isOpen}
 			>
 				<div

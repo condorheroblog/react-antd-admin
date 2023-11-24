@@ -1,4 +1,3 @@
-import type { GlobalToken } from "antd";
 import { Drawer, Layout, theme } from "antd";
 import { useState } from "react";
 import { createUseStyles } from "react-jss";
@@ -8,27 +7,24 @@ import { Header } from "../header";
 // import { Footer } from "./components/footer";
 import { SiderMenu } from "../sider-menu";
 import { ParentLayout } from "../parent-layout";
-import { isMobile } from "#src/utils";
+import { useAppSelector } from "#src/store";
 
 const { Content, Sider } = Layout;
 
-const useStyles = createUseStyles((theme: GlobalToken) => {
-	console.log(theme);
-	return {
-		drawerStyles: {
-			"& .ant-drawer-body": {
-				padding: 0,
-				height: "100%",
-				"&>ul": {
-					paddingTop: "1em",
-				},
-			},
-			"& .ant-drawer-header": {
-				// backgroundColor: "#001529",
-				display: "none",
+const useStyles = createUseStyles({
+	drawerStyles: {
+		"& .ant-drawer-body": {
+			padding: 0,
+			height: "100%",
+			"&>ul": {
+				paddingTop: "1em",
 			},
 		},
-	};
+		"& .ant-drawer-header": {
+			// backgroundColor: "#001529",
+			display: "none",
+		},
+	},
 });
 
 export function ContainerLayout() {
@@ -37,10 +33,11 @@ export function ContainerLayout() {
 		token: { colorBgContainer },
 	} = theme.useToken();
 	const classes = useStyles();
+	const isMobile = useAppSelector((state) => state.global.isMobile);
 
 	return (
 		<Layout style={{ height: "100%" }}>
-			{isMobile() ? (
+			{isMobile ? (
 				<Drawer
 					open={collapsed}
 					placement="left"

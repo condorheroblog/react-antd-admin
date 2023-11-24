@@ -1,5 +1,6 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
+import { isMobile } from "#src/utils";
 
 export type ThemeType = "dark" | "light" | null;
 
@@ -8,6 +9,7 @@ export const globalSlice = createSlice({
 	initialState: {
 		globalSpin: false,
 		theme: localStorage.getItem("theme") as ThemeType,
+		isMobile: isMobile(),
 	},
 	reducers: {
 		openGlobalSpin(state) {
@@ -27,6 +29,9 @@ export const globalSlice = createSlice({
 				window.localStorage.setItem("theme", action.payload.theme ?? "");
 			}
 			state.theme = action.payload.theme;
+		},
+		changeWindowSize(state, action: PayloadAction<boolean>) {
+			state.isMobile = action.payload;
 		},
 	},
 });

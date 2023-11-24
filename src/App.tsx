@@ -58,6 +58,12 @@ export default function App() {
 		[dispatch, globalSlice.actions.changeSiteTheme],
 	);
 
+	const resize = useCallback(() => {
+		const rect = document.body.getBoundingClientRect();
+		const isMobile = rect.width < 960;
+		dispatch(globalSlice.actions.changeWindowSize(isMobile));
+	}, [dispatch]);
+
 	/** Initial theme */
 	useEffect(() => {
 		setTheme(theme === "dark");
@@ -82,6 +88,15 @@ export default function App() {
 			};
 		}
 	}, [setTheme]);
+
+	// Mobile or desktop
+	useEffect(() => {
+		window.addEventListener("resize", resize);
+
+		return () => {
+			window.removeEventListener("resize", resize);
+		};
+	}, [window, resize]);
 
 	return (
 		<ConfigProvider
