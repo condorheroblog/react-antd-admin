@@ -108,7 +108,7 @@ export function SiderMenu() {
 		const currentOpenKey = matches[matches.length - 1].id;
 		const menuItem = getMenuById(routeList, currentOpenKey);
 		if (menuItem && menuItem.meta?.title) {
-			console.log(menuItem.meta?.title);
+			// Need parent component forceRender
 			const documentTitle = menuItem.meta?.title;
 			document.title = (
 				isValidElement(documentTitle)

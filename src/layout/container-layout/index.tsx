@@ -39,6 +39,8 @@ export function ContainerLayout() {
 		<Layout style={{ height: "100%" }}>
 			{isMobile ? (
 				<Drawer
+					// The document.title of the sub component needs to be forced to render
+					forceRender
 					open={collapsed}
 					placement="left"
 					width="50vw"
