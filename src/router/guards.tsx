@@ -16,13 +16,15 @@ export function RouterGuards() {
 
 	const guardLogic = useCallback(async () => {
 		// Normal page
-		if (location.pathname !== "/login") {
+		if (!matches.some((match) => match.id === "login")) {
 			// Do not use redux to prevent tokens from being deleted
 			const hasTokenInLocal = window.localStorage.getItem("token");
 			if (!hasTokenInLocal) {
 				// Go to login page
 				// Remember the route before exiting
-				navigate(`/login${rememberRoute()}`, { replace: true });
+				navigate(`/login?redirect=${location.pathname}${location.search}`, {
+					replace: true,
+				});
 			} else {
 				// Fetch user profile
 				!hasFetchedUserInfo && (await dispatch(userInfoThunk()));
@@ -33,11 +35,11 @@ export function RouterGuards() {
 				}
 			}
 		}
-	}, [matches, location, hasFetchedUserInfo]);
+	}, [matches, hasFetchedUserInfo, rememberRoute]);
 
 	useEffect(() => {
 		guardLogic();
-	}, [matches, location, hasFetchedUserInfo]);
+	}, [matches]);
 
 	return <ParentLayout />;
 }
