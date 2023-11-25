@@ -64,14 +64,9 @@ export default function App() {
 		dispatch(globalSlice.actions.changeWindowSize(isMobile));
 	}, [dispatch]);
 
-	/** Initial theme */
-	useEffect(() => {
-		setTheme(theme === "dark");
-	}, [setTheme, theme]);
-
 	useEffect(() => {
 		// Watch system theme change
-		if (!localStorage.getItem("theme")) {
+		if (!theme) {
 			// https://developer.chrome.com/docs/devtools/rendering/emulate-css/
 			const darkModeMediaQuery = window.matchMedia(
 				"(prefers-color-scheme: dark)",
