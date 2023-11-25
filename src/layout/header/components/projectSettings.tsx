@@ -30,7 +30,7 @@ export default function ProjectSettings() {
 				}}
 				{...(isMobile
 					? {
-							width: "56vw",
+							width: "clamp(210px, 56vw, 220px)",
 					  }
 					: {})}
 				open={isOpen}

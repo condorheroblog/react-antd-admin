@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
 
-export function ParentLayout() {
+export default function ParentLayout() {
 	return <Outlet />;
 }

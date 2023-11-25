@@ -23,7 +23,7 @@ export interface LogoProps {
 	collapsed: boolean;
 }
 
-export function Logo({ collapsed }: LogoProps) {
+export default function Logo({ collapsed }: LogoProps) {
 	const classes = useStyles();
 	return (
 		<div className={classes.logoContainer}>

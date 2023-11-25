@@ -3,11 +3,16 @@ import {
 	SisternodeOutlined,
 	SubnodeOutlined,
 } from "@ant-design/icons";
-import { createElement } from "react";
+import { createElement, lazy } from "react";
 
 import type { AppRouteRecordRaw } from "../types";
 import { ContainerLayout } from "#src/layout";
 import { t } from "#src/locales";
+
+const ParentLayout = lazy(() => import("#src/layout/parent-layout"));
+const Menu1And1 = lazy(() => import("#src/pages/route-nest/menu1/menu1-1"));
+const Menu1And2 = lazy(() => import("#src/pages/route-nest/menu1/menu1-2"));
+const Menu2 = lazy(() => import("#src/pages/route-nest/menu2"));
 
 const routes: AppRouteRecordRaw[] = [
 	{
@@ -23,13 +28,7 @@ const routes: AppRouteRecordRaw[] = [
 			{
 				path: "/route-nest/menu1",
 				id: "route-nest_menu1",
-				lazy: async () => {
-					const mod = await import("#src/layout");
-					return {
-						...mod,
-						Component: mod.ParentLayout,
-					};
-				},
+				Component: ParentLayout,
 				meta: {
 					title: t("menus.menu1"),
 					icon: createElement(SisternodeOutlined),
@@ -38,13 +37,7 @@ const routes: AppRouteRecordRaw[] = [
 					{
 						path: "/route-nest/menu1/menu1-1",
 						id: "route-nest_menu1_menu1-1",
-						lazy: async () => {
-							const mod = await import("#src/pages/route-nest/menu1/menu1-1");
-							return {
-								...mod,
-								Component: mod.default,
-							};
-						},
+						Component: Menu1And1,
 						meta: {
 							title: t("menus.menu1-1"),
 							icon: createElement(SubnodeOutlined),
@@ -53,13 +46,7 @@ const routes: AppRouteRecordRaw[] = [
 					{
 						path: "/route-nest/menu1/menu1-2",
 						id: "route-nest_menu1_menu1-2",
-						lazy: async () => {
-							const mod = await import("#src/pages/route-nest/menu1/menu1-2");
-							return {
-								...mod,
-								Component: mod.default,
-							};
-						},
+						Component: Menu1And2,
 						meta: {
 							title: t("menus.menu1-2"),
 							icon: createElement(SubnodeOutlined),
@@ -70,13 +57,7 @@ const routes: AppRouteRecordRaw[] = [
 			{
 				path: "/route-nest/menu2",
 				id: "route-nest_menu2",
-				lazy: async () => {
-					const mod = await import("#src/pages/route-nest/menu2");
-					return {
-						...mod,
-						Component: mod.default,
-					};
-				},
+				Component: Menu2,
 				meta: {
 					title: t("menus.menu2"),
 					icon: createElement(SubnodeOutlined),

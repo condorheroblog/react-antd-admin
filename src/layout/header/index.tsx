@@ -40,7 +40,7 @@ export interface HeaderProps {
 	setCollapsed: (collapsed: boolean) => void;
 }
 
-export function Header({ collapsed, setCollapsed }: HeaderProps) {
+export default function Header({ collapsed, setCollapsed }: HeaderProps) {
 	const {
 		token: { colorBgContainer },
 	} = theme.useToken();

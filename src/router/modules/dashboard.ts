@@ -1,8 +1,10 @@
 import { DashboardOutlined } from "@ant-design/icons";
-import { createElement } from "react";
+import { createElement, lazy } from "react";
 
 import type { AppRouteRecordRaw } from "../types";
 import { ContainerLayout } from "#src/layout";
+
+const Dashboard = lazy(() => import("#src/pages/dashboard"));
 
 const routes: AppRouteRecordRaw[] = [
 	{
@@ -18,13 +20,7 @@ const routes: AppRouteRecordRaw[] = [
 			{
 				index: true,
 				id: "dashboard_index",
-				lazy: async () => {
-					const mod = await import("#src/pages/dashboard");
-					return {
-						...mod,
-						Component: mod.default,
-					};
-				},
+				Component: Dashboard,
 				meta: {
 					title: "Dashboard",
 					icon: createElement(DashboardOutlined),

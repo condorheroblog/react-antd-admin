@@ -59,7 +59,7 @@ function findChildrenLen(menuItems: AppRouteRecordRaw[], key: string) {
 	return subRouteChildren.includes(key);
 }
 
-export function SiderMenu() {
+export default function SiderMenu() {
 	const matches = useMatches();
 	const navigate = useNavigate();
 	const [openKeys, setOpenKeys] = useState<string[]>([]);

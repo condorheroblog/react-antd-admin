@@ -11,7 +11,7 @@ const useStyles = createUseStyles({
 
 const { Footer: AntdFooter } = Layout;
 
-export function Footer() {
+export default function Footer() {
 	const classes = useStyles();
 
 	return (

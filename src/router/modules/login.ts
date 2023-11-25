@@ -1,20 +1,16 @@
 import { LoginOutlined } from "@ant-design/icons";
-import { createElement } from "react";
+import { createElement, lazy } from "react";
 
 import type { AppRouteRecordRaw } from "../types";
 import { t } from "#src/locales";
+
+const Login = lazy(() => import("#src/pages/login"));
 
 const routes: AppRouteRecordRaw[] = [
 	{
 		path: "/login",
 		id: "login",
-		lazy: async () => {
-			const mod = await import("#src/pages/login");
-			return {
-				...mod,
-				Component: mod.default,
-			};
-		},
+		Component: Login,
 		meta: {
 			icon: createElement(LoginOutlined),
 			title: t("common.login"),

@@ -1,9 +1,11 @@
 import { UserOutlined } from "@ant-design/icons";
-import { createElement } from "react";
+import { createElement, lazy } from "react";
 
 import type { AppRouteRecordRaw } from "../types";
 import { ContainerLayout } from "#src/layout";
 import { t } from "#src/locales";
+
+const About = lazy(() => import("#src/pages/about"));
 
 const routes: AppRouteRecordRaw[] = [
 	{
@@ -19,13 +21,7 @@ const routes: AppRouteRecordRaw[] = [
 			{
 				index: true,
 				id: "about_index",
-				lazy: async () => {
-					const mod = await import("#src/pages/about");
-					return {
-						...mod,
-						Component: mod.default,
-					};
-				},
+				Component: About,
 				meta: {
 					title: t("menus.about"),
 					icon: createElement(UserOutlined),

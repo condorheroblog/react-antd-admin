@@ -1,7 +1,7 @@
 import { ConfigProvider, theme as antdTheme } from "antd";
 import dayjs from "dayjs";
 import { RouterProvider } from "react-router-dom";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, Suspense } from "react";
 
 import "./index.css";
 import "dayjs/locale/zh-cn";
@@ -105,7 +105,9 @@ export default function App() {
 		>
 			<JSSThemeProvider>
 				<GlobalSpin>
-					<RouterProvider router={router} />
+					<Suspense fallback={null}>
+						<RouterProvider router={router} />
+					</Suspense>
 				</GlobalSpin>
 			</JSSThemeProvider>
 		</ConfigProvider>
