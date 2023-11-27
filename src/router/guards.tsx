@@ -16,6 +16,18 @@ export function RouterGuards() {
 	const hasFetchedUserInfo = useAppSelector(
 		(state) => state.user.hasFetchedUserInfo,
 	);
+	const lng = useAppSelector((state) => state.user.lng);
+
+	const updateDocumentTitle = useCallback(async () => {
+		const currentRoute = matches[matches.length - 1];
+		const documentTitle = currentRoute.handle?.title;
+		const newTitle = (
+			isValidElement(documentTitle)
+				? t(documentTitle?.props.children)
+				: documentTitle
+		) as string;
+		document.title = newTitle || document.title;
+	}, [matches, lng]);
 
 	const guardLogic = useCallback(async () => {
 		const currentRoute = matches[matches.length - 1];
@@ -51,7 +63,11 @@ export function RouterGuards() {
 
 	useEffect(() => {
 		guardLogic();
-	}, [matches]);
+	}, [matches, guardLogic]);
+
+	useEffect(() => {
+		updateDocumentTitle();
+	}, [matches, lng, updateDocumentTitle]);
 
 	return <ParentLayout />;
 }

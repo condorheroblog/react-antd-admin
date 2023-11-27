@@ -11,15 +11,9 @@ const useStyles = createUseStyles({
 	},
 });
 
-const itemRender: BreadcrumbProps["itemRender"] = (
-	route,
-	params,
-	routes,
-	paths,
-) => {
+const itemRender: BreadcrumbProps["itemRender"] = (route, params, routes) => {
 	const last = routes.indexOf(route) === routes.length - 1;
-	console.log(route, params, routes, paths);
-	return last ? (
+	return last || !route.path ? (
 		<span>{route.title}</span>
 	) : (
 		<NavLink to={route.path}>{route.title}</NavLink>
