@@ -11,7 +11,7 @@ const routes: AppRouteRecordRaw[] = [
 		path: "/dashboard",
 		id: "dashboard",
 		Component: ContainerLayout,
-		meta: {
+		handle: {
 			sort: 1,
 			title: "Dashboard",
 			icon: createElement(DashboardOutlined),
@@ -21,7 +21,7 @@ const routes: AppRouteRecordRaw[] = [
 				index: true,
 				id: "dashboard_index",
 				Component: Dashboard,
-				meta: {
+				handle: {
 					title: "Dashboard",
 					icon: createElement(DashboardOutlined),
 				},

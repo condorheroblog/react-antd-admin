@@ -3,11 +3,11 @@ import type { IndexRouteObject, NonIndexRouteObject } from "react-router-dom";
 
 export interface IndexRouteMeta extends IndexRouteObject {
 	redirect?: string;
-	meta?: RouteMeta;
+	handle?: RouteMeta;
 }
 export interface NonIndexRouteMeta extends NonIndexRouteObject {
 	redirect?: string;
-	meta?: RouteMeta;
+	handle?: RouteMeta;
 	children?: AppRouteRecordRaw[];
 }
 

@@ -1,5 +1,7 @@
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, isValidElement } from "react";
 import { useNavigate, useMatches, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 import { ParentLayout } from "#src/layout";
 import { useAppSelector, useAppDispatch } from "#src/store";
 import { rememberRoute } from "#src/utils";
@@ -9,12 +11,22 @@ export function RouterGuards() {
 	const location = useLocation();
 	const matches = useMatches();
 	const navigate = useNavigate();
+	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 	const hasFetchedUserInfo = useAppSelector(
 		(state) => state.user.hasFetchedUserInfo,
 	);
 
 	const guardLogic = useCallback(async () => {
+		const currentRoute = matches[matches.length - 1];
+		const documentTitle = currentRoute.handle?.title;
+		const newTitle = (
+			isValidElement(documentTitle)
+				? t(documentTitle?.props.children)
+				: documentTitle
+		) as string;
+		document.title = newTitle || document.title;
+
 		// Normal page
 		if (!matches.some((match) => match.id === "login")) {
 			// Do not use redux to prevent tokens from being deleted

@@ -11,7 +11,7 @@ const routes: AppRouteRecordRaw[] = [
 		path: "/login",
 		id: "login",
 		Component: Login,
-		meta: {
+		handle: {
 			icon: createElement(LoginOutlined),
 			title: t("common.login"),
 			sort: 101,

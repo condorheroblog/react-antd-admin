@@ -17,7 +17,7 @@ export const routeModuleList = Object.keys(modules).reduce<AppRouteRecordRaw[]>(
 );
 
 function sortRoute(a: AppRouteRecordRaw, b: AppRouteRecordRaw) {
-	return (a.meta?.sort ?? 0) - (b.meta?.sort ?? 0);
+	return (a.handle?.sort ?? 0) - (b.handle?.sort ?? 0);
 }
 
 routeModuleList.sort(sortRoute);

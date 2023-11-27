@@ -12,7 +12,7 @@ const routes: AppRouteRecordRaw[] = [
 		path: "/about",
 		id: "about",
 		Component: ContainerLayout,
-		meta: {
+		handle: {
 			sort: 100,
 			title: t("menus.about"),
 			icon: createElement(UserOutlined),
@@ -22,7 +22,7 @@ const routes: AppRouteRecordRaw[] = [
 				index: true,
 				id: "about_index",
 				Component: About,
-				meta: {
+				handle: {
 					title: t("menus.about"),
 					icon: createElement(UserOutlined),
 				},
