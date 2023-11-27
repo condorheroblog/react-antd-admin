@@ -7,6 +7,7 @@ import Header from "../header";
 // import Footer from "./components/footer";
 import SiderMenu from "../sider-menu";
 import ParentLayout from "../parent-layout";
+import BreadcrumbViews from "../breadcrumb-views";
 import { useAppSelector } from "#src/store";
 
 const { Content, Sider } = Layout;
@@ -49,8 +50,6 @@ export default function ContainerLayout() {
 		<Layout style={{ height: "100%" }}>
 			{isMobile ? (
 				<Drawer
-					// The document.title of the sub component needs to be forced to render
-					forceRender
 					open={collapsed}
 					placement="left"
 					width="clamp(200px, 50vw, 210px)"
@@ -61,7 +60,12 @@ export default function ContainerLayout() {
 					<SiderMenu />
 				</Drawer>
 			) : (
-				<Sider trigger={null} collapsible collapsed={collapsed}>
+				<Sider
+					trigger={null}
+					collapsible
+					collapsed={collapsed}
+					// style={{ background: colorBgContainer }}
+				>
 					<Logo collapsed={collapsed} />
 					<SiderMenu />
 				</Sider>
@@ -72,11 +76,17 @@ export default function ContainerLayout() {
 				<Content style={{ overflow: "auto" }}>
 					<div
 						style={{
-							margin: "1.5em 1em 1em",
-							backgroundColor: colorBgContainer,
+							padding: "0 1em 1em",
 						}}
 					>
-						<ParentLayout />
+						<BreadcrumbViews></BreadcrumbViews>
+						<div
+							style={{
+								backgroundColor: colorBgContainer,
+							}}
+						>
+							<ParentLayout />
+						</div>
 					</div>
 				</Content>
 				{/* <Footer /> */}

@@ -63,6 +63,7 @@ export default function SiderMenu() {
 	const navigate = useNavigate();
 	const [openKeys, setOpenKeys] = useState<string[]>([]);
 	const lng = useAppSelector((state) => state.user.lng);
+	const isMobile = useAppSelector((state) => state.global.isMobile);
 	const routeList = (router.routes[0]?.children ?? []) as AppRouteRecordRaw[];
 
 	const getSelectedKeys = useMemo(
@@ -106,7 +107,7 @@ export default function SiderMenu() {
 		<Menu
 			// menuItem key is not changed when language changes
 			key={lng}
-			style={{ height: "100%" }}
+			style={{ height: isMobile ? "100%" : "initial" }}
 			mode="inline"
 			theme="dark"
 			items={getMenuItems(routeList)}
