@@ -15,7 +15,7 @@ export type AppRouteRecordRaw = IndexRouteMeta | NonIndexRouteMeta;
 
 export interface RouteMeta {
 	title: ReactNode;
-	hidden?: boolean;
+	hideMenu?: boolean;
 	icon?: ReactNode;
 	sort?: number;
 	permissions?: string[];

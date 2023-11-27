@@ -1,5 +1,4 @@
-import { LoginOutlined } from "@ant-design/icons";
-import { createElement, lazy } from "react";
+import { lazy } from "react";
 
 import type { AppRouteRecordRaw } from "../types";
 import { t } from "#src/locales";
@@ -12,7 +11,7 @@ const routes: AppRouteRecordRaw[] = [
 		id: "login",
 		Component: Login,
 		handle: {
-			icon: createElement(LoginOutlined),
+			hideMenu: true,
 			title: t("common.login"),
 			sort: 101,
 		},

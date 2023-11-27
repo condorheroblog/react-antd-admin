@@ -10,7 +10,7 @@ import { useAppSelector } from "#src/store";
 type MenuItem = Required<MenuProps>["items"][number];
 
 function getMenuItems(routeList: AppRouteRecordRaw[]) {
-	return routeList.map((item) => {
+	return routeList.reduce<MenuItem[]>((acc, item) => {
 		const label = item?.handle?.title;
 		const menuItem: MenuItem = {
 			key: item.id!,
@@ -25,8 +25,11 @@ function getMenuItems(routeList: AppRouteRecordRaw[]) {
 				menuItem.children = getMenuItems(noIndexRoute);
 			}
 		}
-		return menuItem;
-	});
+		if (item?.handle?.hideMenu) {
+			return acc;
+		}
+		return [...acc, menuItem];
+	}, []);
 }
 
 const getMenuById = (
