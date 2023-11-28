@@ -73,20 +73,22 @@ export default function ContainerLayout() {
 
 			<Layout>
 				<Header collapsed={collapsed} setCollapsed={setCollapsed} />
-				<Content style={{ overflow: "auto" }}>
+				<Content
+					style={{
+						overflow: "auto",
+						display: "flex",
+						flexDirection: "column",
+						padding: "0 1em 1em",
+					}}
+				>
+					<BreadcrumbViews></BreadcrumbViews>
 					<div
 						style={{
-							padding: "0 1em 1em",
+							flexGrow: 1,
+							backgroundColor: colorBgContainer,
 						}}
 					>
-						<BreadcrumbViews></BreadcrumbViews>
-						<div
-							style={{
-								backgroundColor: colorBgContainer,
-							}}
-						>
-							<ParentLayout />
-						</div>
+						<ParentLayout />
 					</div>
 				</Content>
 				{/* <Footer /> */}
