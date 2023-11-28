@@ -1,7 +1,7 @@
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
 import { useState, useMemo, useEffect } from "react";
-import { useNavigate, useMatches } from "react-router-dom";
+import { useNavigate, useMatches, Link } from "react-router-dom";
 
 import { router } from "#src/router";
 import type { AppRouteRecordRaw } from "#src/router/types";
@@ -12,10 +12,17 @@ type MenuItem = Required<MenuProps>["items"][number];
 function getMenuItems(routeList: AppRouteRecordRaw[]) {
 	return routeList.reduce<MenuItem[]>((acc, item) => {
 		const label = item?.handle?.title;
+		const externalLink = item?.handle?.externalLink;
 		const menuItem: MenuItem = {
 			key: item.id!,
 			icon: item?.handle?.icon,
-			label: label,
+			label: externalLink ? (
+				<Link to={externalLink} target="_blank" rel="noopener noreferrer">
+					{label}
+				</Link>
+			) : (
+				label
+			),
 		};
 		if (Array.isArray(item.children) && item.children.length > 0) {
 			const noIndexRoute = item.children.filter((route) => !route.index);
@@ -79,7 +86,7 @@ export default function SiderMenu() {
 			window.open(key);
 		} else {
 			const menuItem = getMenuById(routeList, key);
-			if (menuItem && menuItem.path) {
+			if (menuItem && menuItem.path && !menuItem?.handle?.externalLink) {
 				navigate(menuItem.path);
 			}
 		}

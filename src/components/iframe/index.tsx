@@ -13,7 +13,6 @@ export function Iframe() {
 		isValidElement(routeTitle) ? t(routeTitle?.props.children) : routeTitle
 	) as string;
 
-	console.log(matches);
 	return iframeLink ? (
 		<iframe
 			src={iframeLink}
