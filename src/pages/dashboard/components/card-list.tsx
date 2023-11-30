@@ -6,6 +6,7 @@ import {
 	MoneyCollectOutlined,
 	ShoppingCartOutlined,
 } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 const { Meta } = Card;
 const wrapperCol: ColProps = {
@@ -17,13 +18,14 @@ const wrapperCol: ColProps = {
 	xxl: 6,
 };
 export default function CardList() {
+	const { t } = useTranslation();
 	return (
 		<Row justify="space-between" gutter={[20, 20]}>
 			<Col {...wrapperCol}>
 				<Card>
 					<Meta
 						avatar={<UserOutlined style={{ fontSize: 30 }} />}
-						title="New Visits"
+						title={t("dashboard.newVisits")}
 						description="102,400"
 					/>
 				</Card>
@@ -32,7 +34,7 @@ export default function CardList() {
 				<Card>
 					<Meta
 						avatar={<MessageOutlined style={{ fontSize: 30 }} />}
-						title="Messages"
+						title={t("dashboard.messages")}
 						description="81,212"
 					/>
 				</Card>
@@ -41,7 +43,7 @@ export default function CardList() {
 				<Card>
 					<Meta
 						avatar={<MoneyCollectOutlined style={{ fontSize: 30 }} />}
-						title="Purchases"
+						title={t("dashboard.purchases")}
 						description="9,280"
 					/>
 				</Card>
@@ -50,7 +52,7 @@ export default function CardList() {
 				<Card>
 					<Meta
 						avatar={<ShoppingCartOutlined style={{ fontSize: 30 }} />}
-						title="Shoppings"
+						title={t("dashboard.shoppings")}
 						description="13,600"
 					/>
 				</Card>

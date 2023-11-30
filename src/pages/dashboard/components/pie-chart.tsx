@@ -2,21 +2,25 @@ import type { EChartsOption } from "echarts";
 import ReactECharts from "echarts-for-react";
 import { Card, Segmented } from "antd";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import type { PieDataType } from "#src/api/dashboard";
 import { fetchPie } from "#src/api/dashboard";
 
-const DATA_KEY = {
-	electronics: "电子产品",
-	home_goods: "家居用品",
-	apparel_accessories: "服装饰品",
-	food_beverages: "食品饮料",
-	beauty_skincare: "美容护肤",
-};
-
 export default function PieChart() {
+	const { t } = useTranslation();
 	const [data, setData] = useState<PieDataType[]>([]);
-	const [value, setValue] = useState<string | number>("全部渠道");
+	const [value, setValue] = useState<string | number>(
+		t("dashboard.allChannels"),
+	);
+
+	const DATA_KEY = {
+		electronics: t("dashboard.electronics"),
+		home_goods: t("dashboard.homeGoods"),
+		apparel_accessories: t("dashboard.apparelAccessories"),
+		food_beverages: t("dashboard.foodBeverages"),
+		beauty_skincare: t("dashboard.beautySkincare"),
+	};
 
 	const option: EChartsOption = {
 		title: {
@@ -34,7 +38,7 @@ export default function PieChart() {
 		},
 		series: [
 			{
-				name: "销售额类别占比",
+				name: t("dashboard.salesCategoryProportion"),
 				type: "pie",
 				radius: "55%",
 				center: ["50%", "60%"],
@@ -68,10 +72,14 @@ export default function PieChart() {
 
 	return (
 		<Card
-			title="销售额类别占比"
+			title={t("dashboard.salesCategoryProportion")}
 			extra={
 				<Segmented
-					options={["全部渠道", "线上", "门店"]}
+					options={[
+						t("dashboard.allChannels"),
+						t("dashboard.online"),
+						t("dashboard.site"),
+					]}
 					value={value}
 					onChange={(segmentedValue) => setValue(segmentedValue)}
 				></Segmented>

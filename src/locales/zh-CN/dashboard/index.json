@@ -1,0 +1,34 @@
+{
+	"newVisits": "新增浏览",
+	"messages": "消息",
+	"purchases": "购买金额",
+	"shoppings": "购买数量",
+
+	"sales": "销售额",
+	"thisWeek": "本周",
+	"thisMonth": "本月",
+	"thisYear": "本年",
+	"monday": "星期一",
+	"tuesday": "星期二",
+	"wednesday": "星期三",
+	"thursday": "星期四",
+	"friday": "星期五",
+	"saturday": "星期六",
+	"sunday": "星期日",
+
+	"views": "访问量",
+	"directAccess": "直接访问",
+	"emailMarketing": "邮件营销",
+	"affiliateAdvertise": "联盟广告",
+	"videoAdvertise": "视频广告",
+
+	"salesCategoryProportion": "销售额类别占比",
+	"electronics": "电子产品",
+	"homeGoods": "家居用品",
+	"apparelAccessories": "服装饰品",
+	"foodBeverages": "食品饮料",
+	"beautySkincare": "美容护肤",
+	"allChannels": "全部渠道",
+	"online": "线上",
+	"site": "门店"
+}

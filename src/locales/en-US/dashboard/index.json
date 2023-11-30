@@ -1,0 +1,34 @@
+{
+	"newVisits": "New Visits",
+	"messages": "Messages",
+	"purchases": "Purchases",
+	"shoppings": "Shoppings",
+
+	"sales": "Sales",
+	"thisWeek": "This Week",
+	"thisMonth": "This Month",
+	"thisYear": "This Year",
+
+	"monday": "Monday",
+	"tuesday": "Tuesday",
+	"wednesday": "Wednesday",
+	"thursday": "Thursday",
+	"friday": "Friday",
+	"saturday": "Saturday",
+	"sunday": "Sunday",
+	"views": "Views",
+	"directAccess": "Direct Access",
+	"emailMarketing": "Email Marketing",
+	"affiliateAdvertise": "Affiliate Advertise",
+	"videoAdvertise": "Video Advertise",
+
+	"salesCategoryProportion": "Sales Category Proportion",
+	"electronics": "Electronics",
+	"homeGoods": "Home Goods",
+	"apparelAccessories": "Apparel Accessories",
+	"foodBeverages": "Food Beverages",
+	"beautySkincare": "Beauty Skincare",
+	"allChannels": "All Channels",
+	"online": "Online",
+	"site": "Site"
+}

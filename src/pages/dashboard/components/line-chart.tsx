@@ -2,26 +2,27 @@ import type { EChartsOption } from "echarts";
 import ReactECharts from "echarts-for-react";
 import { Card, Radio } from "antd";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { fetchLine } from "#src/api/dashboard";
 
-const weekdays = {
-	Monday: "星期一",
-	Tuesday: "星期二",
-	Wednesday: "星期三",
-	Thursday: "星期四",
-	Friday: "星期五",
-	Saturday: "星期六",
-	Sunday: "星期日",
-};
-const DATA_KEYS = {
-	week: Object.values(weekdays),
-};
-
 export default function LineChart() {
+	const { t } = useTranslation();
 	const [value, setValue] = useState("week");
 
 	const [data, setData] = useState<string[]>([]);
+
+	const DATA_KEYS = {
+		week: [
+			t("dashboard.monday"),
+			t("dashboard.thursday"),
+			t("dashboard.wednesday"),
+			t("dashboard.thursday"),
+			t("dashboard.friday"),
+			t("dashboard.saturday"),
+			t("dashboard.sunday"),
+		],
+	};
 
 	const option: EChartsOption = {
 		dataZoom: {
@@ -62,7 +63,7 @@ export default function LineChart() {
 
 	return (
 		<Card
-			title="销售额"
+			title={t("dashboard.sales")}
 			extra={
 				<Radio.Group
 					defaultValue="week"
@@ -70,9 +71,9 @@ export default function LineChart() {
 					value={value}
 					onChange={(e) => setValue(e.target.value)}
 				>
-					<Radio.Button value="week">本周</Radio.Button>
-					<Radio.Button value="month">本月</Radio.Button>
-					<Radio.Button value="year">本年</Radio.Button>
+					<Radio.Button value="week">{t("dashboard.thisWeek")}</Radio.Button>
+					<Radio.Button value="month">{t("dashboard.thisMonth")}</Radio.Button>
+					<Radio.Button value="year">{t("dashboard.thisYear")}</Radio.Button>
 				</Radio.Group>
 			}
 		>

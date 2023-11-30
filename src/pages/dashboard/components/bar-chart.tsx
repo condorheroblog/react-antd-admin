@@ -1,8 +1,10 @@
 import type { EChartsOption } from "echarts";
 import ReactECharts from "echarts-for-react";
 import { Card } from "antd";
+import { useTranslation } from "react-i18next";
 
 export default function BarChart() {
+	const { t } = useTranslation();
 	const option: EChartsOption = {
 		title: {
 			text: "",
@@ -10,7 +12,12 @@ export default function BarChart() {
 		},
 		xAxis: {
 			type: "category",
-			data: ["直接访问", "邮件营销", "联盟广告", "视频广告"],
+			data: [
+				t("dashboard.directAccess"),
+				t("dashboard.emailMarketing"),
+				t("dashboard.affiliateAdvertise"),
+				t("dashboard.videoAdvertise"),
+			],
 		},
 		yAxis: {
 			type: "value",
@@ -20,16 +27,16 @@ export default function BarChart() {
 			{
 				type: "bar",
 				data: [
-					{ value: 335, name: "直接访问" },
-					{ value: 310, name: "邮件营销" },
-					{ value: 234, name: "联盟广告" },
-					{ value: 135, name: "视频广告" },
+					{ value: 335, name: t("dashboard.directAccess") },
+					{ value: 310, name: t("dashboard.emailMarketing") },
+					{ value: 234, name: t("dashboard.affiliateAdvertise") },
+					{ value: 135, name: t("dashboard.videoAdvertise") },
 				],
 			},
 		],
 	};
 	return (
-		<Card title="访问量">
+		<Card title={t("dashboard.views")}>
 			<ReactECharts option={option} />
 		</Card>
 	);
