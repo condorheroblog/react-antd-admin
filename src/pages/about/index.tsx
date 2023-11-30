@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { theme, Row, Col, Card, Descriptions, Tag, Typography } from "antd";
+
 import { dependenciesItems, devDependenciesItems } from "./constants";
 
 const { version } = __APP_INFO__.pkg;

@@ -2,6 +2,7 @@ import { DashboardOutlined } from "@ant-design/icons";
 import { createElement, lazy } from "react";
 
 import type { AppRouteRecordRaw } from "../types";
+
 import { ContainerLayout } from "#src/layout";
 
 const Dashboard = lazy(() => import("#src/pages/dashboard"));

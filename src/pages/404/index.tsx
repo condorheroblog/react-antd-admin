@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Button, Result } from "antd";
 import { useNavigate, Routes, Route } from "react-router-dom";
+
 import { ContainerLayout } from "#src/layout";
 
 export default function Error404() {

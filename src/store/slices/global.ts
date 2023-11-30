@@ -1,5 +1,6 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
+
 import { isMobile } from "#src/utils";
 
 export type ThemeType = "dark" | "light" | null;

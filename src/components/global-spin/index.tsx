@@ -1,7 +1,7 @@
 import { Spin } from "antd";
-
 import type { ReactNode } from "react";
 import { createUseStyles } from "react-jss";
+
 import { useAppSelector } from "#src/store";
 
 export interface GlobalSpinProps {

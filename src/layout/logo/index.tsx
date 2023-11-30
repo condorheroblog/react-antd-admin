@@ -1,4 +1,5 @@
 import { createUseStyles } from "react-jss";
+
 import logo from "#src/assets/images/logo.svg";
 
 const useStyles = createUseStyles({

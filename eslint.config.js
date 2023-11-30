@@ -50,23 +50,8 @@ export default defineFlatConfig([
 			"import/no-named-default": "error",
 			"import/no-self-import": "error",
 			"import/no-webpack-loader-syntax": "error",
-			"import/order": "error",
-		},
-	},
-	{
-		plugins: {
-			import: pluginImport,
-		},
-		rules: {
-			// https://github.com/import-js/eslint-plugin-import/issues/2556
-			// ...pluginImport.configs.recommended.rules,
-			"import/first": "error",
-			"import/no-duplicates": "error",
-			"import/no-mutable-exports": "error",
-			"import/no-named-default": "error",
-			"import/no-self-import": "error",
-			"import/no-webpack-loader-syntax": "error",
-			"import/order": "error",
+			"import/order": ["error", { "newlines-between": "always" }],
+			"import/newline-after-import": "error",
 		},
 	},
 	{

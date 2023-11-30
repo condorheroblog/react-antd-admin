@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Drawer, Divider, Switch } from "antd";
 import { SettingOutlined } from "@ant-design/icons";
-
 import { useTranslation } from "react-i18next";
+
 import { useAppDispatch, useAppSelector, globalSlice } from "#src/store";
 
 export default function ProjectSettings() {

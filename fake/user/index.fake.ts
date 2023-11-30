@@ -1,5 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { defineFakeRoute } from "vite-plugin-fake-server/client";
+
 import { resultSuccess } from "../utils";
 
 const token = faker.string.uuid();

@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
+
 import type { AppRouteRecordRaw } from "./types";
 import { RouterGuards } from "./guards";
+
 import Error404 from "#src/pages/404";
 
 const modules = import.meta.glob<

@@ -1,12 +1,12 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-
 import { Provider } from "react-redux";
 import { initReactI18next } from "react-i18next";
 import i18n from "i18next";
 
 import "./index.css";
 import App from "./App";
+
 import { store } from "#src/store";
 import { i18nInitOptions } from "#src/locales";
 

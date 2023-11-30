@@ -1,5 +1,4 @@
 import { theme } from "antd";
-
 import type { ReactNode } from "react";
 import { ThemeProvider } from "react-jss";
 

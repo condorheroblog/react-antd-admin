@@ -1,5 +1,6 @@
 import zhCN from "antd/locale/zh_CN";
 import enUS from "antd/locale/en_US";
+
 import translationEN from "./en/translation.json";
 import translationZH from "./zh-CN/translation.json";
 
