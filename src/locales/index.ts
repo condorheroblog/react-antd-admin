@@ -1,23 +1,23 @@
 import zhCN from "antd/locale/zh_CN";
 import enUS from "antd/locale/en_US";
 
-import translationEN from "./en/translation.json";
-import translationZH from "./zh-CN/translation.json";
+import translationZH from "./zh-CN";
+import translationEN from "./en-US";
 
 export * from "./t";
 
-export type LanguageType = "zh-CN" | "en";
+export type LanguageType = "zh-CN" | "en-US";
 
 export const ANT_DESIGN_LOCALE = {
 	"zh-CN": zhCN,
-	en: enUS,
+	"en-US": enUS,
 };
 
 export const i18nResources = {
 	"zh-CN": {
 		translation: translationZH,
 	},
-	en: {
+	"en-US": {
 		translation: translationEN,
 	},
 };

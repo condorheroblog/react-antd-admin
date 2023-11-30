@@ -16,6 +16,7 @@ export const useLanguage = () => {
 			dispatch(userSlice.actions.changeLanguage(locale));
 			// react-i18n language
 			await i18n.changeLanguage(locale);
+			// If you need to reload the page, please delete `key={lng}` in other files
 		},
 		[i18n],
 	);

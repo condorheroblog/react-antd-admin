@@ -24,6 +24,8 @@ export const authLoginThunk = createAsyncThunk(
 export const authLogoutThunk = createAsyncThunk("auth/logout", async () => {
 	const response = await fetchLogout();
 	window.localStorage.removeItem("token");
+	window.localStorage.removeItem("theme");
+	window.localStorage.removeItem("lng");
 	window.location.href = "/login";
 	return response;
 });

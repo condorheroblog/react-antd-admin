@@ -32,7 +32,7 @@ export default function App() {
 	 * @link https://day.js.org/docs/en/installation/installation
 	 */
 	useEffect(() => {
-		if (lng === "en") {
+		if (lng === "en-US") {
 			dayjs.locale("en");
 		} else if (lng === "zh-CN") {
 			dayjs.locale("zh-cn");

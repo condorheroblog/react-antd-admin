@@ -14,7 +14,7 @@ export default function Error404() {
 		<Result
 			status="404"
 			title="404"
-			subTitle={t("common.404SubTitle")}
+			subTitle={t("global.common.404SubTitle")}
 			extra={
 				<Button
 					type="primary"
@@ -22,7 +22,7 @@ export default function Error404() {
 						navigate("/");
 					}}
 				>
-					{t("common.backHome")}
+					{t("global.common.backHome")}
 				</Button>
 			}
 		/>

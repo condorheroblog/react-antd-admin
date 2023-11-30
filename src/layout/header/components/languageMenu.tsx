@@ -15,7 +15,7 @@ export default function LanguageMenu() {
 		},
 		{
 			label: "English",
-			key: "en",
+			key: "en-US",
 		},
 	];
 

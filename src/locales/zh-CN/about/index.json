@@ -1,0 +1,9 @@
+{
+	"aboutProject": "关于项目",
+	"descriptions": "react-antd-admin 是一个基于 React 18、Vite 5 和 TypeScript 的中后台解决方案。它旨在帮助您快速搭建企业级中后台项目。无论是在采用新技术方面还是其他方面，它都能为您提供帮助。",
+	"projectMessage": "项目信息",
+	"version": "版本",
+	"lastBuildTime": "最后编译时间",
+	"dependencies": "生产依赖",
+	"devDependencies": "开发依赖"
+}

@@ -87,7 +87,7 @@ export default function Login() {
 	};
 
 	useEffect(() => {
-		document.title = t("common.login");
+		document.title = t("global.common.login");
 	}, []);
 
 	return (
@@ -133,7 +133,7 @@ export default function Login() {
 									onFinish={handleFinish}
 								>
 									<Form.Item
-										label={t("common.username")}
+										label={t("global.common.username")}
 										name="username"
 										rules={[
 											{
@@ -145,7 +145,7 @@ export default function Login() {
 									</Form.Item>
 
 									<Form.Item
-										label={t("common.password")}
+										label={t("global.common.password")}
 										name="password"
 										rules={[
 											{
@@ -158,7 +158,7 @@ export default function Login() {
 
 									<Form.Item>
 										<Button block type="primary" htmlType="submit">
-											{t("common.login")}
+											{t("global.common.login")}
 										</Button>
 									</Form.Item>
 								</Form>

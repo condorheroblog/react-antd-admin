@@ -22,7 +22,7 @@ const routes: AppRouteRecordRaw[] = [
 		Component: ContainerLayout,
 		handle: {
 			sort: 10,
-			title: t("menus.nestMenus"),
+			title: t("global.menus.nestMenus"),
 			icon: createElement(NodeExpandOutlined),
 		},
 		children: [
@@ -31,7 +31,7 @@ const routes: AppRouteRecordRaw[] = [
 				id: "route-nest_menu1",
 				Component: ParentLayout,
 				handle: {
-					title: t("menus.menu1"),
+					title: t("global.menus.menu1"),
 					icon: createElement(SisternodeOutlined),
 				},
 				children: [
@@ -40,7 +40,7 @@ const routes: AppRouteRecordRaw[] = [
 						id: "route-nest_menu1_menu1-1",
 						Component: Menu1And1,
 						handle: {
-							title: t("menus.menu1-1"),
+							title: t("global.menus.menu1-1"),
 							icon: createElement(SubnodeOutlined),
 						},
 					},
@@ -49,7 +49,7 @@ const routes: AppRouteRecordRaw[] = [
 						id: "route-nest_menu1_menu1-2",
 						Component: Menu1And2,
 						handle: {
-							title: t("menus.menu1-2"),
+							title: t("global.menus.menu1-2"),
 							icon: createElement(SubnodeOutlined),
 						},
 					},
@@ -60,7 +60,7 @@ const routes: AppRouteRecordRaw[] = [
 				id: "route-nest_menu2",
 				Component: Menu2,
 				handle: {
-					title: t("menus.menu2"),
+					title: t("global.menus.menu2"),
 					icon: createElement(SubnodeOutlined),
 				},
 			},
