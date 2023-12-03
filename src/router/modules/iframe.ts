@@ -16,7 +16,7 @@ const routes: AppRouteRecordRaw[] = [
 		handle: {
 			icon: createElement(PaperClipOutlined),
 			title: t("global.menus.iframe"),
-			sort: 99,
+			sort: 90,
 		},
 		children: [
 			{

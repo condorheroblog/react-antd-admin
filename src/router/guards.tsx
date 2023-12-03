@@ -1,5 +1,10 @@
 import { useEffect, useCallback, isValidElement } from "react";
-import { useNavigate, useMatches, useLocation } from "react-router-dom";
+import {
+	useNavigate,
+	useMatches,
+	useLocation,
+	ScrollRestoration,
+} from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { whiteList } from "./index";
@@ -33,24 +38,32 @@ export function RouterGuards() {
 
 	const guardLogic = useCallback(async () => {
 		const currentRoute = matches[matches.length - 1];
-		// Normal page
-		if (!whiteList.includes(currentRoute.pathname)) {
-			// Do not use redux to prevent tokens from being deleted
-			const hasTokenInLocal = window.localStorage.getItem("token");
-			if (!hasTokenInLocal) {
-				// Go to login page
-				// Remember the route before exiting
-				navigate(`/login?redirect=${location.pathname}${location.search}`, {
-					replace: true,
-				});
-			} else {
-				// Fetch user profile
-				!hasFetchedUserInfo && (await dispatch(userInfoThunk()));
 
-				// Redirect to home page
-				if (matches.length === 1 && matches[0].pathname === "/") {
-					navigate(import.meta.env.VITE_BASE_HOME_PATH, { replace: true });
-				}
+		// Route whitelist
+		if (whiteList.has(currentRoute.pathname)) {
+			return;
+		}
+
+		// Route without login verification
+		if (currentRoute?.handle?.publicAccess) {
+			return;
+		}
+
+		// Do not use redux to prevent tokens from being deleted
+		const hasTokenInLocal = window.localStorage.getItem("token");
+		if (!hasTokenInLocal) {
+			// Go to login page
+			// Remember the route before exiting
+			navigate(`/login?redirect=${location.pathname}${location.search}`, {
+				replace: true,
+			});
+		} else {
+			// Fetch user profile
+			!hasFetchedUserInfo && (await dispatch(userInfoThunk()));
+
+			// Redirect to home page
+			if (matches.length === 1 && matches[0].pathname === "/") {
+				navigate(import.meta.env.VITE_BASE_HOME_PATH, { replace: true });
 			}
 		}
 	}, [matches, hasFetchedUserInfo, rememberRoute]);
@@ -63,5 +76,14 @@ export function RouterGuards() {
 		updateDocumentTitle();
 	}, [matches, lng, updateDocumentTitle]);
 
-	return <ParentLayout />;
+	return (
+		<>
+			<ParentLayout />
+			<ScrollRestoration
+				getKey={(location) => {
+					return location.pathname;
+				}}
+			/>
+		</>
+	);
 }

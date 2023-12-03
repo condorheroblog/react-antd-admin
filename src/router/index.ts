@@ -25,7 +25,7 @@ function sortRoute(a: AppRouteRecordRaw, b: AppRouteRecordRaw) {
 routeModuleList.sort(sortRoute);
 
 /** 路由白名单 */
-export const whiteList = ["/login"];
+export const whiteList = new Set(["/login"]);
 
 export const router = createBrowserRouter(
 	[

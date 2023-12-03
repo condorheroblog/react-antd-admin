@@ -4,6 +4,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { vitePluginFakeServer } from "vite-plugin-fake-server";
 import dayjs from "dayjs";
+
 import { dependencies, devDependencies, name, version } from "./package.json";
 
 const __APP_INFO__ = {

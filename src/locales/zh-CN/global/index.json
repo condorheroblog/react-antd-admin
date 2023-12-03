@@ -6,7 +6,12 @@
 		"menu1-1": "菜单 1-1",
 		"menu1-2": "菜单 1-2",
 		"menu2": "菜单 2",
-		"iframe": "外部页面"
+		"iframe": "外部页面",
+		"docs": "文档",
+		"home": "首页",
+		"guide": "指南",
+		"introduction": "介绍",
+		"i18n": "国际化"
 	},
 	"common": {
 		"username": "用户名",

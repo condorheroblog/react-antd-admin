@@ -21,4 +21,5 @@ export interface RouteMeta {
 	permissions?: string[];
 	iframeLink?: string;
 	externalLink?: string;
+	publicAccess?: boolean;
 }

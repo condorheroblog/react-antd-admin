@@ -6,7 +6,12 @@
 		"menu1-1": "Menu1-1",
 		"menu1-2": "Menu1-2",
 		"menu2": "Menu2",
-		"iframe": "External Page"
+		"iframe": "External Page",
+		"docs": "Docs",
+		"home": "Home",
+		"guide": "Guide",
+		"introduction": "Introduction",
+		"i18n": "I18n"
 	},
 	"common": {
 		"username": "User Name",
