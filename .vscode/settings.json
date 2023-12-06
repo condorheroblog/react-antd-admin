@@ -4,12 +4,14 @@
 	"eslint.experimental.useFlatConfig": true,
 	// Disable the default formatter, use eslint instead
 	"prettier.enable": false,
-	"editor.formatOnSave": false,
 	// Auto fix
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "explicit",
 		"source.organizeImports": "never"
 	},
+	"editor.formatOnSave": true,
+
+	"editor.renderWhitespace": "all",
 	// Enable eslint for all supported languages
 	"eslint.validate": [
 		"javascript",
@@ -31,4 +33,7 @@
 	"i18n-ally.displayLanguage": "zh-CN",
 	"i18n-ally.enabledFrameworks": ["react-i18next"],
 	"i18n-ally.keystyle": "nested"
+	// https://github.com/r5n-dev/vscode-react-javascript-snippets/issues/244
+	// "reactSnippets.settings.prettierEnabled": true,
+	// "reactSnippets.settings.importReactOnTop": false
 }
