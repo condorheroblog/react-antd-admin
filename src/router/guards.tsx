@@ -1,10 +1,5 @@
 import { useEffect, useCallback, isValidElement } from "react";
-import {
-	useNavigate,
-	useMatches,
-	useLocation,
-	ScrollRestoration,
-} from "react-router-dom";
+import { useNavigate, useMatches, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { whiteList } from "./index";
@@ -36,6 +31,7 @@ export function RouterGuards() {
 		document.title = newTitle || document.title;
 	}, [matches, lng]);
 
+	// router hooks
 	const guardLogic = useCallback(async () => {
 		const currentRoute = matches[matches.length - 1];
 
@@ -79,11 +75,6 @@ export function RouterGuards() {
 	return (
 		<>
 			<ParentLayout />
-			<ScrollRestoration
-				getKey={(location) => {
-					return location.pathname;
-				}}
-			/>
 		</>
 	);
 }

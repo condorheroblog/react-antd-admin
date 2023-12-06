@@ -21,7 +21,7 @@ export default function I18n() {
 	return (
 		<Typography
 			style={{
-				padding: "0 1em",
+				padding: "0 3em",
 			}}
 		>
 			<HashAnchor>国际化</HashAnchor>

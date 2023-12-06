@@ -76,6 +76,7 @@ export default function ContainerLayout() {
 				<Header collapsed={collapsed} setCollapsed={setCollapsed} />
 				<Content
 					style={{
+						scrollBehavior: "smooth",
 						overflow: "auto",
 						display: "flex",
 						flexDirection: "column",

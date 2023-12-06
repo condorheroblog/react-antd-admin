@@ -12,12 +12,15 @@ import { useAppSelector, useAppDispatch, globalSlice } from "#src/store";
 import { GlobalSpin, JSSThemeProvider } from "#src/components";
 import { ANT_DESIGN_LOCALE } from "#src/locales";
 import type { LanguageType } from "#src/locales";
+import { useScrollToHash } from "#src/hooks";
 
 export default function App() {
 	const { i18n } = useTranslation();
 	const lng = useAppSelector((state) => state.user.lng) as LanguageType;
 	const theme = useAppSelector((state) => state.global.theme);
 	const dispatch = useAppDispatch();
+
+	useScrollToHash();
 
 	/**
 	 * ant design internationalization
