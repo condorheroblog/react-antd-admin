@@ -5,13 +5,13 @@
 		"dbaeumer.vscode-eslint",
 		"dsznajder.es7-react-js-snippets",
 		"esbenp.prettier-vscode",
-		// vscode-icons-team.vscode-icons
+		// "vscode-icons-team.vscode-icons"
 		"file-icons.file-icons",
 		"lokalise.i18n-ally",
 		"mikestead.dotenv",
+		"naumovs.color-highlight",
 		"planbcoding.vscode-react-refactor",
 		"redhat.vscode-yaml",
-		"streetsidesoftware.code-spell-checker",
-		"vscode-icons-team.vscode-icons"
+		"streetsidesoftware.code-spell-checker"
 	]
 }
