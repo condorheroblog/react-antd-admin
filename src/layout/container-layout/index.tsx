@@ -61,12 +61,7 @@ export default function ContainerLayout() {
 					<SiderMenu />
 				</Drawer>
 			) : (
-				<Sider
-					trigger={null}
-					collapsible
-					collapsed={collapsed}
-					// style={{ background: colorBgContainer }}
-				>
+				<Sider trigger={null} collapsible collapsed={collapsed}>
 					<Logo collapsed={collapsed} />
 					<SiderMenu />
 				</Sider>
@@ -83,7 +78,7 @@ export default function ContainerLayout() {
 						padding: "0 1em 1em",
 					}}
 				>
-					<BreadcrumbViews></BreadcrumbViews>
+					<BreadcrumbViews />
 					<div
 						style={{
 							flexGrow: 1,

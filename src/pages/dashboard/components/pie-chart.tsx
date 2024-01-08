@@ -82,7 +82,7 @@ export default function PieChart() {
 					]}
 					value={value}
 					onChange={(segmentedValue) => setValue(segmentedValue)}
-				></Segmented>
+				/>
 			}
 		>
 			<ReactECharts option={option} />

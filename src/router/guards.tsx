@@ -72,9 +72,5 @@ export function RouterGuards() {
 		updateDocumentTitle();
 	}, [matches, lng, updateDocumentTitle]);
 
-	return (
-		<>
-			<ParentLayout />
-		</>
-	);
+	return <ParentLayout />;
 }

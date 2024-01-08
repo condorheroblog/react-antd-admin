@@ -23,15 +23,15 @@ export default function Dashboard() {
 		<div style={{ height: "100%", backgroundColor: colorBgLayout }}>
 			<Row gutter={[20, 20]}>
 				<Col span={24}>
-					<CardList></CardList>
+					<CardList />
 				</Col>
 				<Col span={24}>
-					<LineChart></LineChart>
+					<LineChart />
 				</Col>
 				<Col span={24}>
 					<Row justify="space-between" gutter={[20, 20]}>
 						<Col {...wrapperCol}>
-							<BarChart></BarChart>
+							<BarChart />
 						</Col>
 						<Col {...wrapperCol}>
 							<PieChart />

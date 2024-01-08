@@ -99,13 +99,13 @@ export default function I18n() {
 				<pre>{useInJSX}</pre>
 			</Paragraph>
 
-			<Divider></Divider>
+			<Divider />
 
 			<HashAnchor level={2}>在纯 JS 或 TS 中使用</HashAnchor>
 			<Paragraph>
 				<pre>{useInPureJS}</pre>
 			</Paragraph>
-			<Paragraph></Paragraph>
+			<Paragraph />
 		</Typography>
 	);
 }

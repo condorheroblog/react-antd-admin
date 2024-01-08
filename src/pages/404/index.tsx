@@ -31,7 +31,7 @@ export default function Error404() {
 	return hasTokenInLocal ? (
 		<Routes>
 			<Route element={<ContainerLayout />} path="*">
-				<Route path="*" element={Result404}></Route>
+				<Route path="*" element={Result404} />
 			</Route>
 		</Routes>
 	) : (
