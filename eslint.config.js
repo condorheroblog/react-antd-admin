@@ -134,6 +134,10 @@ export default defineFlatConfig([
 					html: true,
 				},
 			],
+			"react/jsx-filename-extension": [
+				2,
+				{ allow: "as-needed", extensions: [".jsx", ".tsx"] },
+			],
 		},
 	},
 	{
