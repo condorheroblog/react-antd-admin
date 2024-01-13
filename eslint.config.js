@@ -138,6 +138,7 @@ export default defineFlatConfig([
 				2,
 				{ allow: "as-needed", extensions: [".jsx", ".tsx"] },
 			],
+			"react/no-invalid-html-attribute": ["error"],
 		},
 	},
 	{
