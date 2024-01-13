@@ -3,7 +3,7 @@ export const i18nAlly = `
 	"i18n-ally.localesPaths": "src/locales",
 	// https://github.com/lokalise/i18n-ally/wiki/Path-Matcher
 	"i18n-ally.namespace": true,
-	"i18n-ally.pathMatcher": "{locale}/{namespaces}/index.json",
+	"i18n-ally.pathMatcher": "{locale}/{namespaces}.json",
 	"i18n-ally.sourceLanguage": "zh-CN",
 	"i18n-ally.displayLanguage": "zh-CN",
 	"i18n-ally.enabledFrameworks": ["react-i18next"],

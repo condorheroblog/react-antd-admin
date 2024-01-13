@@ -1,9 +1,9 @@
 import zhCN from "antd/locale/zh_CN";
 import enUS from "antd/locale/en_US";
 
-import translationZH from "./zh-CN";
-import translationEN from "./en-US";
+import { getZhCnLang, getEnUsLang } from "./helper";
 
+console.log(getZhCnLang(), getEnUsLang());
 export * from "./t";
 
 export type LanguageType = "zh-CN" | "en-US";
@@ -15,10 +15,10 @@ export const ANT_DESIGN_LOCALE = {
 
 export const i18nResources = {
 	"zh-CN": {
-		translation: translationZH,
+		translation: getZhCnLang(),
 	},
 	"en-US": {
-		translation: translationEN,
+		translation: getEnUsLang(),
 	},
 };
 
