@@ -3,6 +3,18 @@
 	"version": "0.0.0",
 	"private": true,
 	"type": "module",
+	"license": "MIT",
+	"packageManager": "pnpm@8.14.1",
+	"author": "Condor Hero",
+	"description": "React Hooks + TypeScript + Ant Design = react-antd-admin",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/condorheroblog/react-antd-admin.git"
+	},
+	"bugs": {
+		"url": "https://github.com/condorheroblog/react-antd-admin/issues"
+	},
+	"homepage": "https://github.com/condorheroblog/react-antd-admin/blob/main/README.md",
 	"imports": {
 		"#*": "./*"
 	},
