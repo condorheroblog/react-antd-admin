@@ -1,4 +1,4 @@
-import { faker } from "@faker-js/faker";
+import { faker } from "@faker-js/faker/locale/zh_CN";
 import { defineFakeRoute } from "vite-plugin-fake-server/client";
 
 import { resultSuccess } from "./utils";

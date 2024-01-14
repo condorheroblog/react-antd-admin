@@ -22,7 +22,7 @@ export default defineConfig({
 		setupFiles: ["./src/setupTests.ts"],
 	},
 	server: {
-		port: 3000,
+		port: 3333,
 	},
 	define: {
 		__APP_INFO__: JSON.stringify(__APP_INFO__),
@@ -34,6 +34,7 @@ export default defineConfig({
 				manualChunks: {
 					react: ["react", "react-dom", "react-router-dom"],
 					antd: ["antd", "@ant-design/icons"],
+					faker: ["@faker-js/faker"],
 				},
 			},
 		},
