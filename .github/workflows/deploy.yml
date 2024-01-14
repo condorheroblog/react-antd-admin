@@ -33,7 +33,7 @@ jobs:
           pnpm i
           pnpm run build
 
-      - name: spa-github-404-page 📒
+      - name: spa-github-404-page 🔷
         run: pnpm run spa-github-404-page
 
       - name: Deploy 🚀
