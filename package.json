@@ -23,15 +23,17 @@
 		"react-router-dom": "^6.21.2"
 	},
 	"scripts": {
-		"analyzer": "vite-bundle-visualizer --output analyzer/stats.html",
+		"start": "vite",
 		"build": "vite build",
+		"serve": "vite preview",
+		"spa-github-index-page": "node ./scripts/spa-github-index-page.mjs",
+		"spa-github-404-page": "node ./scripts/spa-github-404-page.mjs",
+		"analyzer": "vite-bundle-visualizer --output analyzer/stats.html",
 		"eslint-flat-config-viewer": "eslint-flat-config-viewer",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"postinstall": "simple-git-hooks",
 		"prettier": "prettier --write .",
-		"serve": "vite preview",
-		"start": "vite",
 		"test": "vitest"
 	},
 	"browserslist": {
