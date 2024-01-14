@@ -3,7 +3,6 @@ import enUS from "antd/locale/en_US";
 
 import { getZhCnLang, getEnUsLang } from "./helper";
 
-console.log(getZhCnLang(), getEnUsLang());
 export * from "./t";
 
 export type LanguageType = "zh-CN" | "en-US";

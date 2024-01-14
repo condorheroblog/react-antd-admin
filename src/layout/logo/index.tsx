@@ -1,4 +1,5 @@
 import { createUseStyles } from "react-jss";
+import { useNavigate } from "react-router-dom";
 
 import logo from "#src/assets/images/logo.svg";
 
@@ -9,6 +10,9 @@ const useStyles = createUseStyles({
 		alignItems: "center",
 		gap: "0.5em",
 		height: "4.5em",
+		"&:hover": {
+			cursor: "pointer",
+		},
 	},
 	logo: {
 		width: "2.4em",
@@ -26,8 +30,10 @@ export interface LogoProps {
 
 export default function Logo({ collapsed }: LogoProps) {
 	const classes = useStyles();
+	const navigate = useNavigate();
+
 	return (
-		<div className={classes.logoContainer}>
+		<div className={classes.logoContainer} onClick={() => navigate("/")}>
 			<img src={logo} alt="logo" className={classes.logo} />
 
 			{collapsed ? null : (

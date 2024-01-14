@@ -74,15 +74,15 @@
 		"eslint-plugin-unicorn": "^50.0.1",
 		"eslint-plugin-vitest": "^0.3.20",
 		"globals": "^13.24.0",
-		"happy-dom": "^13.0.6",
+		"happy-dom": "^13.1.0",
 		"jsonc-eslint-parser": "^2.4.0",
 		"lint-staged": "^15.2.0",
-		"prettier": "^3.2.1",
+		"prettier": "^3.2.2",
 		"simple-git-hooks": "^2.9.0",
 		"typescript": "^5.3.3",
 		"vite": "^5.0.11",
 		"vite-bundle-visualizer": "^1.0.0",
-		"vite-plugin-fake-server": "^2.1.0",
+		"vite-plugin-fake-server": "^2.1.1",
 		"vitest": "^1.2.0"
 	},
 	"simple-git-hooks": {

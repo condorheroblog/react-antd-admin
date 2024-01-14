@@ -14,7 +14,7 @@ const __APP_INFO__ = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	base: process.env.NODE_ENV === "development" ? "" : "/react-antd-admin/",
+	base: process.env.NODE_ENV === "development" ? "/" : "/react-antd-admin/",
 	plugins: [react(), vitePluginFakeServer({ enableProd: true })],
 	test: {
 		globals: true,
@@ -29,6 +29,7 @@ export default defineConfig({
 	},
 	build: {
 		outDir: "build",
+		sourcemap: false,
 		rollupOptions: {
 			output: {
 				manualChunks: {

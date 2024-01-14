@@ -13,9 +13,9 @@ export const authLoginThunk = createAsyncThunk(
 		const searchParams = new URLSearchParams(window.location.search);
 		const redirect = searchParams.get("redirect");
 		if (redirect) {
-			window.location.href = redirect;
+			window.location.href = `${import.meta.env.BASE_URL}${redirect.slice(1)}`;
 		} else {
-			window.location.href = "/";
+			window.location.href = `${import.meta.env.BASE_URL}`;
 		}
 		return token;
 	},
@@ -26,7 +26,7 @@ export const authLogoutThunk = createAsyncThunk("auth/logout", async () => {
 	window.localStorage.removeItem("token");
 	window.localStorage.removeItem("theme");
 	window.localStorage.removeItem("lng");
-	window.location.href = "/login";
+	window.location.href = `${import.meta.env.BASE_URL}login`;
 	return response;
 });
 

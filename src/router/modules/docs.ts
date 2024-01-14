@@ -9,10 +9,9 @@ import { createElement, lazy } from "react";
 
 import type { AppRouteRecordRaw } from "../types";
 
-import { ContainerLayout } from "#src/layout";
+import { ContainerLayout, ParentLayout } from "#src/layout";
 import { t } from "#src/locales";
 
-const ParentLayout = lazy(() => import("#src/layout/parent-layout"));
 const DocsIndex = lazy(() => import("#src/pages/docs/index"));
 const I18n = lazy(() => import("#src/pages/docs/guide/i18n"));
 

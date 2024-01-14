@@ -27,7 +27,7 @@ const defaultConfig: Options = {
 				if (!response.ok) {
 					if (response.status === 401 || response.status === 403) {
 						// Remember the route before exiting
-						window.location.href = `/login${rememberRoute()}`;
+						window.location.href = `${import.meta.env.BASE_URL}login${rememberRoute()}`;
 					} else {
 						const json = await response.json();
 						message.error(json.message || response.statusText);
