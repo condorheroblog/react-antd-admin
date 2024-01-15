@@ -1,40 +1,71 @@
 # React-antd-admin
 
-## Usage
+[Live Demo](https://condorheroblog.github.io/react-antd-admin/)
 
-If you prefer to do it manually with the cleaner git history
+![GitHub license](https://img.shields.io/github/license/condorheroblog/react-antd-admin?style=flat)
+![GitHub stars](https://img.shields.io/github/stars/condorheroblog/react-antd-admin?color=fa6470&style=flat)
+![GitHub forks](https://img.shields.io/github/forks/condorheroblog/react-antd-admin?style=flat)
+
+## 特性
+
+- [React Hooks](https://react.dev/)
+- [antd](https://ant.design/index-cn/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [Vite](https://vitejs.dev/)
+- [国际化](https://react.i18next.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [ESLint Flat Config](https://eslint.org/docs/latest/use/configure/configuration-files-new/)
+- [mock 数据](https://github.com/condorheroblog/vite-plugin-fake-server)
+
+## 使用
+
+### GitHub 模板
+
+[使用这个模板创建仓库](https://github.com/new?template_name=react-antd-admin&template_owner=condorheroblog)
+
+### 克隆到本地
+
+如果您更喜欢使用没有 git 历史记录的模板，手动执行此操作
 
 ```bash
-npx degit condorheroblog/react-antd-admin my-app
-cd my-app
-npm i
+npx degit condorheroblog/react-antd-admin react-antd-admin
+# or npx giget@latest gh:condorheroblog/react-antd-admin react-antd-admin
+cd react-antd-admin
+pnpm i # 如果你没装过 pnpm, 可以先运行: npm install -g pnpm
 ```
 
-In the project directory, you can run:
+### 清单
 
-### `npm start`
+使用此模板时，请尝试按照清单正确更新您自己的信息
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- 在 LICENSE 中改变作者名
+- 在 index.html 中改变标题和描述
+- 在 public 目录下改变favicon
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 开发
 
-### `npm test`
+只需要执行以下命令就可以在 `http://localhost:3333` 中看到页面：
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+pnpm run start
+# Or
+pnpm run dev
+```
 
-### `npm run build`
+## 构建
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+构建该应用只需要执行以下命令：
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+pnpm build
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+然后你会看到用于发布的 build 文件夹被生成。
 
-## Learn More
+## 预览
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+预览构建的应用只需要执行以下命令：
+
+```bash
+pnpm preview
+```
