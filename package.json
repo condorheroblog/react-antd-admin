@@ -36,9 +36,8 @@
 	},
 	"scripts": {
 		"dev": "vite",
-		"start": "vite",
 		"build": "vite build",
-		"serve": "vite preview",
+		"preview": "vite preview",
 		"spa-github-index-page": "node ./scripts/spa-github-index-page.mjs",
 		"spa-github-404-page": "node ./scripts/spa-github-404-page.mjs",
 		"analyzer": "vite-bundle-visualizer --output analyzer/stats.html",

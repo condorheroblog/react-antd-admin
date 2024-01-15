@@ -47,8 +47,6 @@ pnpm i # 如果你没装过 pnpm, 可以先运行: npm install -g pnpm
 只需要执行以下命令就可以在 `http://localhost:3333` 中看到页面：
 
 ```bash
-pnpm run start
-# Or
 pnpm run dev
 ```
 
