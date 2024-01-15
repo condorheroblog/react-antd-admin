@@ -50,9 +50,15 @@ export function RouterGuards() {
 		if (!hasTokenInLocal) {
 			// Go to login page
 			// Remember the route before exiting
-			navigate(`/login?redirect=${location.pathname}${location.search}`, {
-				replace: true,
-			});
+			if (location.pathname.length > 1) {
+				navigate(`/login?redirect=${location.pathname}${location.search}`, {
+					replace: true,
+				});
+			} else {
+				navigate(`/login`, {
+					replace: true,
+				});
+			}
 		} else {
 			// Fetch user profile
 			!hasFetchedUserInfo && (await dispatch(userInfoThunk()));
