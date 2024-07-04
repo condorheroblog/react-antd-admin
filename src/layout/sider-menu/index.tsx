@@ -5,7 +5,7 @@ import { Link, useMatches, useNavigate } from "react-router-dom";
 
 import { router } from "#src/router";
 import type { AppRouteRecordRaw } from "#src/router/types";
-import { useAppSelector } from "#src/store";
+import { useGlobalStore, useUserStore } from "#src/store";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -70,8 +70,8 @@ export default function SiderMenu() {
 	const matches = useMatches();
 	const navigate = useNavigate();
 	const [openKeys, setOpenKeys] = useState<string[]>([]);
-	const lng = useAppSelector(state => state.user.lng);
-	const isMobile = useAppSelector(state => state.global.isMobile);
+	const lng = useUserStore(state => state.lng);
+	const isMobile = useGlobalStore(state => state.isMobile);
 	const routeList = (router.routes[0]?.children ?? []) as AppRouteRecordRaw[];
 
 	const getSelectedKeys = useMemo(

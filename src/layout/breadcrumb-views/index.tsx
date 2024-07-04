@@ -3,7 +3,7 @@ import { Breadcrumb } from "antd";
 import { NavLink, useMatches } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 
-import { useAppSelector } from "#src/store";
+import { useUserStore } from "#src/store";
 
 const useStyles = createUseStyles({
 	breadcrumbViews: {
@@ -23,7 +23,7 @@ const itemRender: BreadcrumbProps["itemRender"] = (route, params, routes) => {
 };
 
 export default function BreadcrumbViews() {
-	const lng = useAppSelector(state => state.user.lng);
+	const lng = useUserStore(state => state.lng);
 	const matches = useMatches();
 	const classes = useStyles();
 

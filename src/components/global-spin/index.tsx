@@ -2,7 +2,7 @@ import { Spin } from "antd";
 import type { ReactNode } from "react";
 import { createUseStyles } from "react-jss";
 
-import { useAppSelector } from "#src/store";
+import { useGlobalStore } from "#src/store";
 
 export interface GlobalSpinProps {
 	children: ReactNode
@@ -23,7 +23,7 @@ const useStyles = createUseStyles({
 export function GlobalSpin({ children }: GlobalSpinProps) {
 	const classes = useStyles();
 
-	const spinning = useAppSelector(state => state.global.globalSpin);
+	const spinning = useGlobalStore(state => state.globalSpin);
 	return (
 		<Spin spinning={spinning} wrapperClassName={classes.rootSpin}>
 			{children}

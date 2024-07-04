@@ -14,10 +14,9 @@ import {
 import { createUseStyles } from "react-jss";
 import { useTranslation } from "react-i18next";
 
-import { useAppDispatch } from "#src/store";
 import frameworkTemplate from "#src/assets/images/framework-template.svg";
 import logo from "#src/assets/images/logo.svg";
-import { authLoginThunk } from "#src/store/slices/user";
+import { useUserStore } from "#src/store";
 import { Footer } from "#src/layout";
 
 const { Title } = Typography;
@@ -79,11 +78,11 @@ export default function Login() {
 	const classes = useStyles();
 	const [loginForm] = Form.useForm();
 	const screens = useBreakpoint();
-	const dispatch = useAppDispatch();
 	const { t } = useTranslation();
+	const login = useUserStore(state => state.login);
 
 	const handleFinish = async (values: FormInitialValues) => {
-		await dispatch(authLoginThunk(values));
+		await login(values);
 	};
 
 	useEffect(() => {

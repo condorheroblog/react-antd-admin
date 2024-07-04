@@ -9,7 +9,7 @@ import SiderMenu from "../sider-menu";
 import ParentLayout from "../parent-layout";
 import BreadcrumbViews from "../breadcrumb-views";
 
-import { useAppSelector } from "#src/store";
+import { useGlobalStore } from "#src/store";
 
 const { Content, Sider } = Layout;
 
@@ -45,7 +45,7 @@ export default function ContainerLayout() {
 		token: { colorBgContainer },
 	} = theme.useToken();
 	const classes = useStyles();
-	const isMobile = useAppSelector(state => state.global.isMobile);
+	const isMobile = useGlobalStore(state => state.isMobile);
 
 	return (
 		<Layout style={{ height: "100%" }}>

@@ -2,7 +2,7 @@ import type { Options } from "ky";
 import ky from "ky";
 import { message } from "antd";
 
-import { globalSlice, store } from "#src/store";
+import { useGlobalStore } from "#src/store";
 import { rememberRoute } from "#src/utils";
 
 const defaultConfig: Options = {
@@ -16,7 +16,7 @@ const defaultConfig: Options = {
 	hooks: {
 		beforeRequest: [
 			(request) => {
-				store.dispatch(globalSlice.actions.openGlobalSpin());
+				useGlobalStore.getState().openGlobalSpin();
 				// Do not use redux to prevent tokens from being deleted
 				const token = window.localStorage.getItem("token");
 				request.headers.set("Authorization", `Bearer ${token}`);
@@ -34,7 +34,7 @@ const defaultConfig: Options = {
 						message.error(json.message || response.statusText);
 					}
 				}
-				store.dispatch(globalSlice.actions.closeGlobalSpin());
+				useGlobalStore.getState().closeGlobalSpin();
 			},
 		],
 	},

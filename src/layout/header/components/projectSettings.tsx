@@ -3,14 +3,12 @@ import { Divider, Drawer, Switch } from "antd";
 import { SettingOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
-import { globalSlice, useAppDispatch, useAppSelector } from "#src/store";
+import { useGlobalStore } from "#src/store";
 
 export default function ProjectSettings() {
-	const dispatch = useAppDispatch();
 	const { t } = useTranslation();
 	const [isOpen, setIsOpen] = useState(false);
-	const theme = useAppSelector(state => state.global.theme);
-	const isMobile = useAppSelector(state => state.global.isMobile);
+	const { theme, isMobile, changeSiteTheme } = useGlobalStore();
 
 	return (
 		<>
@@ -18,7 +16,7 @@ export default function ProjectSettings() {
 				role="menuitem"
 				tabIndex={-1}
 				onClick={() => setIsOpen(true)}
-				onKeyDown={() => {}}
+				onKeyDown={() => { }}
 			>
 				<SettingOutlined style={{ transform: "scale(1.3)" }} />
 			</div>
@@ -46,12 +44,10 @@ export default function ProjectSettings() {
 					<Switch
 						checked={theme === "light"}
 						onChange={(checked) => {
-							dispatch(
-								globalSlice.actions.changeSiteTheme({
-									theme: !checked ? "dark" : "light",
-									isWriteLocalStorage: true,
-								}),
-							);
+							changeSiteTheme({
+								theme: !checked ? "dark" : "light",
+								isWriteLocalStorage: true,
+							});
 						}}
 						checkedChildren={(
 							<svg

@@ -8,17 +8,15 @@ import { useTranslation } from "react-i18next";
 
 import { router } from "./router";
 
-import { globalSlice, useAppDispatch, useAppSelector } from "#src/store";
+import { useGlobalStore, useUserStore } from "#src/store";
 import { GlobalSpin, JSSThemeProvider } from "#src/components";
 import { ANT_DESIGN_LOCALE } from "#src/locales";
-import type { LanguageType } from "#src/locales";
 import { useScrollToHash } from "#src/hooks";
 
 export default function App() {
 	const { i18n } = useTranslation();
-	const lng = useAppSelector(state => state.user.lng) as LanguageType;
-	const theme = useAppSelector(state => state.global.theme);
-	const dispatch = useAppDispatch();
+	const { lng } = useUserStore();
+	const { theme, changeWindowSize, changeSiteTheme } = useGlobalStore();
 
 	useScrollToHash();
 
@@ -53,21 +51,19 @@ export default function App() {
 
 	const setTheme = useCallback(
 		(dark = true, isWriteLocalStorage = false) => {
-			dispatch(
-				globalSlice.actions.changeSiteTheme({
-					theme: dark ? "dark" : "light",
-					isWriteLocalStorage,
-				}),
-			);
+			changeSiteTheme({
+				theme: dark ? "dark" : "light",
+				isWriteLocalStorage,
+			});
 		},
-		[dispatch, globalSlice.actions.changeSiteTheme],
+		[changeSiteTheme],
 	);
 
 	const resize = useCallback(() => {
 		const rect = document.body.getBoundingClientRect();
 		const isMobile = rect.width < 960;
-		dispatch(globalSlice.actions.changeWindowSize(isMobile));
-	}, [dispatch]);
+		changeWindowSize(isMobile);
+	}, [changeWindowSize]);
 
 	useEffect(() => {
 		// Watch system theme change

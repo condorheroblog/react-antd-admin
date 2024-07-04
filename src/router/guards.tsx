@@ -5,20 +5,19 @@ import { useTranslation } from "react-i18next";
 import { whiteList } from "./index";
 
 import { ParentLayout } from "#src/layout";
-import { useAppDispatch, useAppSelector } from "#src/store";
+import { useUserStore } from "#src/store";
 import { rememberRoute } from "#src/utils";
-import { userInfoThunk } from "#src/store/slices/user";
 
 export function RouterGuards() {
 	const location = useLocation();
 	const matches = useMatches();
 	const navigate = useNavigate();
 	const { t } = useTranslation();
-	const dispatch = useAppDispatch();
-	const hasFetchedUserInfo = useAppSelector(
-		state => state.user.hasFetchedUserInfo,
+	const hasFetchedUserInfo = useUserStore(
+		state => state.hasFetchedUserInfo,
 	);
-	const lng = useAppSelector(state => state.user.lng);
+	const lng = useUserStore(state => state.lng);
+	const getUserInfo = useUserStore(state => state.getUserInfo);
 
 	const updateDocumentTitle = useCallback(async () => {
 		const currentRoute = matches[matches.length - 1];
@@ -63,7 +62,7 @@ export function RouterGuards() {
 		}
 		else {
 			// Fetch user profile
-			!hasFetchedUserInfo && (await dispatch(userInfoThunk()));
+			!hasFetchedUserInfo && (await getUserInfo());
 
 			// Redirect to home page
 			if (matches.length === 1 && matches[0].pathname === "/") {

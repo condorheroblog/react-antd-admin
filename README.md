@@ -10,7 +10,7 @@
 
 - [React Hooks](https://react.dev/)
 - [antd](https://ant.design/index-cn/)
-- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [Zustand](https://zustand-demo.pmnd.rs/)
 - [Vite](https://vitejs.dev/)
 - [国际化](https://react.i18next.com/)
 - [TypeScript](https://www.typescriptlang.org/)

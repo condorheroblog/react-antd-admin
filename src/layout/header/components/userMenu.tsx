@@ -1,8 +1,7 @@
 import type { MenuProps } from "antd";
 import { Avatar, Dropdown } from "antd";
 
-import { useAppDispatch, useAppSelector } from "#src/store";
-import { authLogoutThunk } from "#src/store/slices/user";
+import { useUserStore } from "#src/store";
 
 const items: MenuProps["items"] = [
 	{
@@ -12,11 +11,11 @@ const items: MenuProps["items"] = [
 ];
 
 export default function UserMenu() {
-	const dispatch = useAppDispatch();
-	const { avatar } = useAppSelector(state => state.user);
+	const avatar = useUserStore(state => state.avatar);
+	const logout = useUserStore(state => state.logout);
 	const onClick: MenuProps["onClick"] = async ({ key }) => {
 		if (key === "logout") {
-			await dispatch(authLogoutThunk());
+			await logout();
 		}
 	};
 

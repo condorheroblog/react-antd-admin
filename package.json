@@ -22,6 +22,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
     "spa-github-index-page": "node ./scripts/spa-github-index-page.mjs",
     "spa-github-404-page": "node ./scripts/spa-github-404-page.mjs",
     "analyzer": "vite-bundle-visualizer --output analyzer/stats.html",
@@ -33,7 +34,6 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.7",
-    "@reduxjs/toolkit": "^2.2.6",
     "antd": "^5.19.0",
     "dayjs": "^1.11.11",
     "echarts": "^5.5.1",
@@ -44,8 +44,8 @@
     "react-dom": "^18.3.1",
     "react-i18next": "^14.1.2",
     "react-jss": "^10.10.0",
-    "react-redux": "^9.1.2",
-    "react-router-dom": "^6.24.1"
+    "react-router-dom": "^6.24.1",
+    "zustand": "^4.5.4"
   },
   "browserslist": {
     "production": [
