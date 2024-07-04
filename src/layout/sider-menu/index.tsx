@@ -1,7 +1,7 @@
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
-import { useState, useMemo, useEffect } from "react";
-import { useNavigate, useMatches, Link } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { Link, useMatches, useNavigate } from "react-router-dom";
 
 import { router } from "#src/router";
 import type { AppRouteRecordRaw } from "#src/router/types";
@@ -16,19 +16,20 @@ function getMenuItems(routeList: AppRouteRecordRaw[]) {
 		const menuItem: MenuItem = {
 			key: item.id!,
 			icon: item?.handle?.icon,
-			label: externalLink ? (
-				<Link to={externalLink} target="_blank" rel="noopener noreferrer">
-					{label}
-				</Link>
-			) : (
-				label
-			),
+			label: externalLink
+				? (
+					<Link to={externalLink} target="_blank" rel="noopener noreferrer">
+						{label}
+					</Link>
+				)
+				: (
+					label
+				),
 		};
 		if (Array.isArray(item.children) && item.children.length > 0) {
-			const noIndexRoute = item.children.filter((route) => !route.index);
+			const noIndexRoute = item.children.filter(route => !route.index);
 			if (noIndexRoute.length > 0) {
-				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-				// @ts-expect-error
+				// @ts-expect-error: Property 'children' does not exist on type 'MenuItemType'
 				menuItem.children = getMenuItems(noIndexRoute);
 			}
 		}
@@ -39,10 +40,7 @@ function getMenuItems(routeList: AppRouteRecordRaw[]) {
 	}, []);
 }
 
-const getMenuById = (
-	menuItems: AppRouteRecordRaw[],
-	id: string,
-): AppRouteRecordRaw | null => {
+function getMenuById(menuItems: AppRouteRecordRaw[], id: string): AppRouteRecordRaw | null {
 	for (const menuItem of menuItems) {
 		if (menuItem.id === id) {
 			return menuItem;
@@ -55,7 +53,7 @@ const getMenuById = (
 		}
 	}
 	return null;
-};
+}
 
 function findChildrenLen(menuItems: AppRouteRecordRaw[], key: string) {
 	const subRouteChildren: string[] = [];
@@ -72,19 +70,21 @@ export default function SiderMenu() {
 	const matches = useMatches();
 	const navigate = useNavigate();
 	const [openKeys, setOpenKeys] = useState<string[]>([]);
-	const lng = useAppSelector((state) => state.user.lng);
-	const isMobile = useAppSelector((state) => state.global.isMobile);
+	const lng = useAppSelector(state => state.user.lng);
+	const isMobile = useAppSelector(state => state.global.isMobile);
 	const routeList = (router.routes[0]?.children ?? []) as AppRouteRecordRaw[];
 
 	const getSelectedKeys = useMemo(
-		() => matches.map((item) => item.id),
+		() => matches.map(item => item.id),
 		[matches, routeList],
 	);
 
 	const handleSelect: MenuProps["onSelect"] = ({ key }) => {
+		// eslint-disable-next-line regexp/no-unused-capturing-group
 		if (/http(s)?:/.test(key)) {
 			window.open(key);
-		} else {
+		}
+		else {
 			const menuItem = getMenuById(routeList, key);
 			if (menuItem && menuItem.path && !menuItem?.handle?.externalLink) {
 				navigate(menuItem.path);
@@ -94,7 +94,7 @@ export default function SiderMenu() {
 
 	const handleOpenChange: MenuProps["onOpenChange"] = (keys) => {
 		// eslint-disable-next-line unicorn/prefer-includes
-		const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+		const latestOpenKey = keys.find(key => openKeys.indexOf(key) === -1);
 		const isExistChildren = latestOpenKey
 			? findChildrenLen(routeList, latestOpenKey)
 			: false;
@@ -110,7 +110,7 @@ export default function SiderMenu() {
 	};
 
 	useEffect(() => {
-		setOpenKeys(matches.map((item) => item.id));
+		setOpenKeys(matches.map(item => item.id));
 	}, [matches, routeList]);
 
 	return (

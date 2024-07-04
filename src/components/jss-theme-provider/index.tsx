@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { ThemeProvider } from "react-jss";
 
 export interface JSSThemeProviderProps {
-	children: ReactNode;
+	children: ReactNode
 }
 
 const { useToken } = theme;

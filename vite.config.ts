@@ -14,6 +14,7 @@ const __APP_INFO__ = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+	// eslint-disable-next-line node/prefer-global/process
 	base: process.env.NODE_ENV === "development" ? "/" : "/react-antd-admin/",
 	plugins: [react(), vitePluginFakeServer({ enableProd: true })],
 	test: {

@@ -1,8 +1,8 @@
 import {
 	FileMarkdownOutlined,
+	FireOutlined,
 	HomeOutlined,
 	SlackOutlined,
-	FireOutlined,
 	TranslationOutlined,
 } from "@ant-design/icons";
 import { createElement, lazy } from "react";

@@ -2,7 +2,7 @@ import type { Options } from "ky";
 import ky from "ky";
 import { message } from "antd";
 
-import { store, globalSlice } from "#src/store";
+import { globalSlice, store } from "#src/store";
 import { rememberRoute } from "#src/utils";
 
 const defaultConfig: Options = {
@@ -10,7 +10,7 @@ const defaultConfig: Options = {
 	prefixUrl: import.meta.env.VITE_API_BASE_URL,
 	timeout: 10000,
 	headers: {
-		Accept: "application/json, text/plain, */*",
+		"Accept": "application/json, text/plain, */*",
 		"Content-Type": "application/json",
 	},
 	hooks: {
@@ -28,7 +28,8 @@ const defaultConfig: Options = {
 					if (response.status === 401 || response.status === 403) {
 						// Remember the route before exiting
 						window.location.href = `${import.meta.env.BASE_URL}login${rememberRoute()}`;
-					} else {
+					}
+					else {
 						const json = await response.json();
 						message.error(json.message || response.statusText);
 					}

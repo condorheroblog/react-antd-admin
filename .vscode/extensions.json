@@ -1,17 +1,16 @@
 {
-	"recommendations": [
-		"editorconfig.editorconfig",
-		"davidanson.vscode-markdownlint",
-		"dbaeumer.vscode-eslint",
-		"dsznajder.es7-react-js-snippets",
-		"esbenp.prettier-vscode",
-		// "vscode-icons-team.vscode-icons"
-		"file-icons.file-icons",
-		"lokalise.i18n-ally",
-		"mikestead.dotenv",
-		"naumovs.color-highlight",
-		"planbcoding.vscode-react-refactor",
-		"redhat.vscode-yaml",
-		"streetsidesoftware.code-spell-checker"
-	]
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "davidanson.vscode-markdownlint",
+    "dbaeumer.vscode-eslint",
+    "dsznajder.es7-react-js-snippets",
+    // "vscode-icons-team.vscode-icons"
+    "file-icons.file-icons",
+    "lokalise.i18n-ally",
+    "mikestead.dotenv",
+    "naumovs.color-highlight",
+    "planbcoding.vscode-react-refactor",
+    "redhat.vscode-yaml",
+    "streetsidesoftware.code-spell-checker"
+  ]
 }

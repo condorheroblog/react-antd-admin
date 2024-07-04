@@ -1,6 +1,6 @@
 import type { BreadcrumbProps } from "antd";
 import { Breadcrumb } from "antd";
-import { useMatches, NavLink } from "react-router-dom";
+import { NavLink, useMatches } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 
 import { useAppSelector } from "#src/store";
@@ -13,15 +13,17 @@ const useStyles = createUseStyles({
 
 const itemRender: BreadcrumbProps["itemRender"] = (route, params, routes) => {
 	const last = routes.indexOf(route) === routes.length - 1;
-	return last || !route.path ? (
-		<span>{route.title}</span>
-	) : (
-		<NavLink to={route.path}>{route.title}</NavLink>
-	);
+	return last || !route.path
+		? (
+			<span>{route.title}</span>
+		)
+		: (
+			<NavLink to={route.path}>{route.title}</NavLink>
+		);
 };
 
 export default function BreadcrumbViews() {
-	const lng = useAppSelector((state) => state.user.lng);
+	const lng = useAppSelector(state => state.user.lng);
 	const matches = useMatches();
 	const classes = useStyles();
 
@@ -33,7 +35,7 @@ export default function BreadcrumbViews() {
 			// https://ant.design/components/breadcrumb#use-with-browserhistory
 			itemRender={itemRender}
 			items={matches
-				.filter((match) => match.handle)
+				.filter(match => match.handle)
 				.map((match) => {
 					return {
 						title: match.handle?.title,

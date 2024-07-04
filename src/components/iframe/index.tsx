@@ -13,13 +13,16 @@ export function Iframe() {
 		isValidElement(routeTitle) ? t(routeTitle?.props.children) : routeTitle
 	) as string;
 
-	return iframeLink ? (
-		<iframe
-			src={iframeLink}
-			title={title}
-			width="100%"
-			height="100%"
-			style={{ border: "none" }}
-		/>
-	) : null;
+	return iframeLink
+		? (
+			<iframe
+				sandbox="allow-popups"
+				src={iframeLink}
+				title={title}
+				width="100%"
+				height="100%"
+				style={{ border: "none" }}
+			/>
+		)
+		: null;
 }

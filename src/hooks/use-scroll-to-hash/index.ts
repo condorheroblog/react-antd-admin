@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
 interface ScrollToHashOptions {
-	behavior?: ScrollBehavior;
-	interval?: number;
+	behavior?: ScrollBehavior
+	interval?: number
 }
 
 /**

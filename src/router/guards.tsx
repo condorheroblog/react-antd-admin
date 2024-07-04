@@ -1,11 +1,11 @@
-import { useEffect, useCallback, isValidElement } from "react";
-import { useNavigate, useMatches, useLocation } from "react-router-dom";
+import { isValidElement, useCallback, useEffect } from "react";
+import { useLocation, useMatches, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { whiteList } from "./index";
 
 import { ParentLayout } from "#src/layout";
-import { useAppSelector, useAppDispatch } from "#src/store";
+import { useAppDispatch, useAppSelector } from "#src/store";
 import { rememberRoute } from "#src/utils";
 import { userInfoThunk } from "#src/store/slices/user";
 
@@ -16,9 +16,9 @@ export function RouterGuards() {
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 	const hasFetchedUserInfo = useAppSelector(
-		(state) => state.user.hasFetchedUserInfo,
+		state => state.user.hasFetchedUserInfo,
 	);
-	const lng = useAppSelector((state) => state.user.lng);
+	const lng = useAppSelector(state => state.user.lng);
 
 	const updateDocumentTitle = useCallback(async () => {
 		const currentRoute = matches[matches.length - 1];
@@ -54,12 +54,14 @@ export function RouterGuards() {
 				navigate(`/login?redirect=${location.pathname}${location.search}`, {
 					replace: true,
 				});
-			} else {
-				navigate(`/login`, {
+			}
+			else {
+				navigate("/login", {
 					replace: true,
 				});
 			}
-		} else {
+		}
+		else {
 			// Fetch user profile
 			!hasFetchedUserInfo && (await dispatch(userInfoThunk()));
 

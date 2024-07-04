@@ -1,6 +1,7 @@
 /* Inspired by https://github.com/rafgraph/spa-github-pages */
 import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
+import process from "node:process";
 
 const templateIndex = `
 <!-- Start Single Page Apps for GitHub Pages -->
@@ -36,12 +37,13 @@ async function main() {
 
 		const originIndexContent = await readFile(indexFilePath, "utf-8");
 
-		await writeFile(indexFilePath, originIndexContent + "\n" + templateIndex);
+		await writeFile(indexFilePath, `${originIndexContent}\n${templateIndex}`);
 
 		console.log(
 			"The content has been successfully written to the index.html file",
 		);
-	} catch (error) {
+	}
+	catch (error) {
 		console.error(error);
 	}
 }

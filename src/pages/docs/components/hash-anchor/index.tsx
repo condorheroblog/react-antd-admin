@@ -3,14 +3,14 @@ import { createUseStyles } from "react-jss";
 import type { TitleProps } from "antd/es/Typography/Title";
 
 interface HashAnchorProps extends TitleProps {
-	children: string;
+	children: string
 }
 
 const { Title } = Typography;
 
 const useStyles = createUseStyles({
 	headerAnchor: {
-		position: "relative",
+		"position": "relative",
 		"& a": {
 			opacity: 0,
 			position: "absolute",

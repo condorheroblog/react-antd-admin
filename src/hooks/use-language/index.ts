@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import type { LanguageType } from "#src/locales";
 import { useAppDispatch, userSlice } from "#src/store";
 
-export const useLanguage = () => {
+export function useLanguage() {
 	const { i18n } = useTranslation();
 	const dispatch = useAppDispatch();
 
@@ -28,4 +28,4 @@ export const useLanguage = () => {
 		}),
 		[handleChangeLanguage, i18n.language],
 	);
-};
+}

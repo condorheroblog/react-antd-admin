@@ -2,7 +2,7 @@ import type { FormInitialValues } from "#src/pages/login";
 import { request } from "#src/utils";
 
 export interface LoginResponseType {
-	token: string;
+	token: string
 }
 
 export function fetchLogin(data: FormInitialValues) {
@@ -16,16 +16,16 @@ export function fetchLogout() {
 }
 
 export interface UserInfoType {
-	userId: string;
-	username: string;
-	realName: string;
-	avatar: string;
-	desc: string;
-	password: string;
+	userId: string
+	username: string
+	realName: string
+	avatar: string
+	desc: string
+	password: string
 	permissions?: {
-		label: string;
-		value: string;
-	}[];
+		label: string
+		value: string
+	}[]
 }
 
 export function fetchUserInfo() {

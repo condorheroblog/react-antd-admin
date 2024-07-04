@@ -1,10 +1,10 @@
 import type { ColProps } from "antd";
-import { Card, Row, Col } from "antd";
+import { Card, Col, Row } from "antd";
 import {
-	UserOutlined,
 	MessageOutlined,
 	MoneyCollectOutlined,
 	ShoppingCartOutlined,
+	UserOutlined,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 

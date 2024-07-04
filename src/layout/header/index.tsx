@@ -1,5 +1,5 @@
 import type { GlobalToken } from "antd";
-import { Layout, Button, theme } from "antd";
+import { Button, Layout, theme } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { createUseStyles } from "react-jss";
 
@@ -18,10 +18,10 @@ const useStyles = createUseStyles((theme: GlobalToken) => {
 		},
 		layoutHeaderLeft: {},
 		layoutHeaderRight: {
-			display: "flex",
-			justifyContent: "center",
-			marginRight: "1.8em",
-			alignItems: "center",
+			"display": "flex",
+			"justifyContent": "center",
+			"marginRight": "1.8em",
+			"alignItems": "center",
 			"&>div": {
 				cursor: "pointer",
 				padding: ["0", ".7em"],
@@ -36,8 +36,8 @@ const useStyles = createUseStyles((theme: GlobalToken) => {
 });
 
 export interface HeaderProps {
-	collapsed: boolean;
-	setCollapsed: (collapsed: boolean) => void;
+	collapsed: boolean
+	setCollapsed: (collapsed: boolean) => void
 }
 
 export default function Header({ collapsed, setCollapsed }: HeaderProps) {

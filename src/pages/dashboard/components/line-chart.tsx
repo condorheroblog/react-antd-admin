@@ -34,8 +34,7 @@ export default function LineChart() {
 		},
 		xAxis: {
 			type: "category",
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-expect-error
+			// @ts-expect-error: xxx
 			data: DATA_KEYS[value],
 		},
 		yAxis: {
@@ -64,18 +63,18 @@ export default function LineChart() {
 	return (
 		<Card
 			title={t("dashboard.sales")}
-			extra={
+			extra={(
 				<Radio.Group
 					defaultValue="week"
 					buttonStyle="solid"
 					value={value}
-					onChange={(e) => setValue(e.target.value)}
+					onChange={e => setValue(e.target.value)}
 				>
 					<Radio.Button value="week">{t("dashboard.thisWeek")}</Radio.Button>
 					<Radio.Button value="month">{t("dashboard.thisMonth")}</Radio.Button>
 					<Radio.Button value="year">{t("dashboard.thisYear")}</Radio.Button>
 				</Radio.Group>
-			}
+			)}
 		>
 			<ReactECharts option={option} />
 		</Card>

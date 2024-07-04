@@ -1,4 +1,4 @@
-import { Divider, Typography, Image } from "antd";
+import { Divider, Image, Typography } from "antd";
 import { createUseStyles } from "react-jss";
 
 import { i18nAlly, useInJSX, useInPureJS } from "./constants";
@@ -50,7 +50,8 @@ export default function I18n() {
 			</Paragraph>
 
 			<Paragraph>
-				当然不要忘记把下面的 json 代码添加到您本地{" "}
+				当然不要忘记把下面的 json 代码添加到您本地
+				{" "}
 				<Text copyable code>
 					vscode/settings.json
 				</Text>

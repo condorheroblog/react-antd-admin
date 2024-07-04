@@ -73,7 +73,7 @@ export default function PieChart() {
 	return (
 		<Card
 			title={t("dashboard.salesCategoryProportion")}
-			extra={
+			extra={(
 				<Segmented
 					options={[
 						t("dashboard.allChannels"),
@@ -81,9 +81,9 @@ export default function PieChart() {
 						t("dashboard.site"),
 					]}
 					value={value}
-					onChange={(segmentedValue) => setValue(segmentedValue)}
+					onChange={segmentedValue => setValue(segmentedValue)}
 				/>
-			}
+			)}
 		>
 			<ReactECharts option={option} />
 		</Card>

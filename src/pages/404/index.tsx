@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Button, Result } from "antd";
-import { useNavigate, Routes, Route } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 import { ContainerLayout } from "#src/layout";
 
@@ -15,7 +15,7 @@ export default function Error404() {
 			status="404"
 			title="404"
 			subTitle={t("global.common.404SubTitle")}
-			extra={
+			extra={(
 				<Button
 					type="primary"
 					onClick={() => {
@@ -24,17 +24,19 @@ export default function Error404() {
 				>
 					{t("global.common.backHome")}
 				</Button>
-			}
+			)}
 		/>
 	);
 
-	return hasTokenInLocal ? (
-		<Routes>
-			<Route element={<ContainerLayout />} path="*">
-				<Route path="*" element={Result404} />
-			</Route>
-		</Routes>
-	) : (
-		Result404
-	);
+	return hasTokenInLocal
+		? (
+			<Routes>
+				<Route element={<ContainerLayout />} path="*">
+					<Route path="*" element={Result404} />
+				</Route>
+			</Routes>
+		)
+		: (
+			Result404
+		);
 }

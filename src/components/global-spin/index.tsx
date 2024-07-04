@@ -5,12 +5,12 @@ import { createUseStyles } from "react-jss";
 import { useAppSelector } from "#src/store";
 
 export interface GlobalSpinProps {
-	children: ReactNode;
+	children: ReactNode
 }
 
 const useStyles = createUseStyles({
 	rootSpin: {
-		height: "100%",
+		"height": "100%",
 		"& .ant-spin-container": {
 			height: "100%",
 		},
@@ -23,7 +23,7 @@ const useStyles = createUseStyles({
 export function GlobalSpin({ children }: GlobalSpinProps) {
 	const classes = useStyles();
 
-	const spinning = useAppSelector((state) => state.global.globalSpin);
+	const spinning = useAppSelector(state => state.global.globalSpin);
 	return (
 		<Spin spinning={spinning} wrapperClassName={classes.rootSpin}>
 			{children}

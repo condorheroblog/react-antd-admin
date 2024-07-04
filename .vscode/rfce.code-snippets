@@ -1,17 +1,17 @@
 {
-  "React Functional Component with ES6 export": {
-    "prefix": "rfce",
-    "body": [
-      "function $1() {",
-      "  return (",
-      "    <>",
-      "      $2",
-      "    </>",
-      "  );",
-      "}",
-      "",
-      "export default $1;"
-    ],
-    "description": "React Functional Component (ES6 export)"
-  }
+	"React Functional Component with ES6 export": {
+		"prefix": "rfce",
+		"body": [
+			"function $1() {",
+			"  return (",
+			"    <>",
+			"      $2",
+			"    </>",
+			"  );",
+			"}",
+			"",
+			"export default $1;",
+		],
+		"description": "React Functional Component (ES6 export)",
+	},
 }

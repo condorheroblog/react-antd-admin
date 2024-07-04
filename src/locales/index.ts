@@ -1,7 +1,7 @@
 import zhCN from "antd/locale/zh_CN";
 import enUS from "antd/locale/en_US";
 
-import { getZhCnLang, getEnUsLang } from "./helper";
+import { getEnUsLang, getZhCnLang } from "./helper";
 
 export * from "./t";
 

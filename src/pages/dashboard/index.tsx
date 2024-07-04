@@ -1,5 +1,5 @@
 import type { ColProps } from "antd";
-import { theme, Row, Col } from "antd";
+import { Col, Row, theme } from "antd";
 
 import LineChart from "./components/line-chart";
 import BarChart from "./components/bar-chart";

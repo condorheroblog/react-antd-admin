@@ -1,4 +1,4 @@
-import { PaperClipOutlined, AntDesignOutlined } from "@ant-design/icons";
+import { AntDesignOutlined, PaperClipOutlined } from "@ant-design/icons";
 import { createElement } from "react";
 
 import type { AppRouteRecordRaw } from "../types";

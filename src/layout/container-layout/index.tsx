@@ -16,8 +16,8 @@ const { Content, Sider } = Layout;
 const useStyles = createUseStyles({
 	drawerStyles: {
 		"& .ant-drawer-body": {
-			padding: 0,
-			height: "100%",
+			"padding": 0,
+			"height": "100%",
 			"&>ul": {
 				paddingTop: "1em",
 			},
@@ -45,27 +45,29 @@ export default function ContainerLayout() {
 		token: { colorBgContainer },
 	} = theme.useToken();
 	const classes = useStyles();
-	const isMobile = useAppSelector((state) => state.global.isMobile);
+	const isMobile = useAppSelector(state => state.global.isMobile);
 
 	return (
 		<Layout style={{ height: "100%" }}>
-			{isMobile ? (
-				<Drawer
-					open={collapsed}
-					placement="left"
-					width="clamp(200px, 50vw, 210px)"
-					className={classes.drawerStyles}
-					// title={<img src={logo} alt="logo" style={{ width: "1em" }} />}
-					onClose={() => setCollapsed(false)}
-				>
-					<SiderMenu />
-				</Drawer>
-			) : (
-				<Sider trigger={null} collapsible collapsed={collapsed}>
-					<Logo collapsed={collapsed} />
-					<SiderMenu />
-				</Sider>
-			)}
+			{isMobile
+				? (
+					<Drawer
+						open={collapsed}
+						placement="left"
+						width="clamp(200px, 50vw, 210px)"
+						className={classes.drawerStyles}
+						// title={<img src={logo} alt="logo" style={{ width: "1em" }} />}
+						onClose={() => setCollapsed(false)}
+					>
+						<SiderMenu />
+					</Drawer>
+				)
+				: (
+					<Sider trigger={null} collapsible collapsed={collapsed}>
+						<Logo collapsed={collapsed} />
+						<SiderMenu />
+					</Sider>
+				)}
 
 			<Layout>
 				<Header collapsed={collapsed} setCollapsed={setCollapsed} />

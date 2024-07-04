@@ -1,14 +1,14 @@
 import { ConfigProvider, theme as antdTheme } from "antd";
 import dayjs from "dayjs";
 import { RouterProvider } from "react-router-dom";
-import { useEffect, useCallback, Suspense } from "react";
+import { Suspense, useCallback, useEffect } from "react";
 import "./index.css";
 import "dayjs/locale/zh-cn";
 import { useTranslation } from "react-i18next";
 
 import { router } from "./router";
 
-import { useAppSelector, useAppDispatch, globalSlice } from "#src/store";
+import { globalSlice, useAppDispatch, useAppSelector } from "#src/store";
 import { GlobalSpin, JSSThemeProvider } from "#src/components";
 import { ANT_DESIGN_LOCALE } from "#src/locales";
 import type { LanguageType } from "#src/locales";
@@ -16,8 +16,8 @@ import { useScrollToHash } from "#src/hooks";
 
 export default function App() {
 	const { i18n } = useTranslation();
-	const lng = useAppSelector((state) => state.user.lng) as LanguageType;
-	const theme = useAppSelector((state) => state.global.theme);
+	const lng = useAppSelector(state => state.user.lng) as LanguageType;
+	const theme = useAppSelector(state => state.global.theme);
 	const dispatch = useAppDispatch();
 
 	useScrollToHash();
@@ -37,7 +37,8 @@ export default function App() {
 	useEffect(() => {
 		if (lng === "en-US") {
 			dayjs.locale("en");
-		} else if (lng === "zh-CN") {
+		}
+		else if (lng === "zh-CN") {
 			dayjs.locale("zh-cn");
 		}
 	}, [lng]);

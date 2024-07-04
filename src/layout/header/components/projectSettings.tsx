@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { Drawer, Divider, Switch } from "antd";
+import { Divider, Drawer, Switch } from "antd";
 import { SettingOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
-import { useAppDispatch, useAppSelector, globalSlice } from "#src/store";
+import { globalSlice, useAppDispatch, useAppSelector } from "#src/store";
 
 export default function ProjectSettings() {
 	const dispatch = useAppDispatch();
 	const { t } = useTranslation();
 	const [isOpen, setIsOpen] = useState(false);
-	const theme = useAppSelector((state) => state.global.theme);
-	const isMobile = useAppSelector((state) => state.global.isMobile);
+	const theme = useAppSelector(state => state.global.theme);
+	const isMobile = useAppSelector(state => state.global.isMobile);
 
 	return (
 		<>
@@ -30,8 +30,8 @@ export default function ProjectSettings() {
 				}}
 				{...(isMobile
 					? {
-							width: "clamp(210px, 56vw, 220px)",
-					  }
+						width: "clamp(210px, 56vw, 220px)",
+					}
 					: {})}
 				open={isOpen}
 			>
@@ -53,7 +53,7 @@ export default function ProjectSettings() {
 								}),
 							);
 						}}
-						checkedChildren={
+						checkedChildren={(
 							<svg
 								data-v-5689ef45=""
 								xmlns="http://www.w3.org/2000/svg"
@@ -64,8 +64,8 @@ export default function ProjectSettings() {
 									fill="currentColor"
 								/>
 							</svg>
-						}
-						unCheckedChildren={
+						)}
+						unCheckedChildren={(
 							<svg
 								data-v-5689ef45=""
 								xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +96,7 @@ export default function ProjectSettings() {
 									fill="currentColor"
 								/>
 							</svg>
-						}
+						)}
 					/>
 				</div>
 			</Drawer>

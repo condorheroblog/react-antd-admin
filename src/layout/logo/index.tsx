@@ -5,11 +5,11 @@ import logo from "#src/assets/images/logo.svg";
 
 const useStyles = createUseStyles({
 	logoContainer: {
-		display: "flex",
-		justifyContent: "center",
-		alignItems: "center",
-		gap: "0.5em",
-		height: "4.5em",
+		"display": "flex",
+		"justifyContent": "center",
+		"alignItems": "center",
+		"gap": "0.5em",
+		"height": "4.5em",
 		"&:hover": {
 			cursor: "pointer",
 		},
@@ -25,7 +25,7 @@ const useStyles = createUseStyles({
 });
 
 export interface LogoProps {
-	collapsed: boolean;
+	collapsed: boolean
 }
 
 export default function Logo({ collapsed }: LogoProps) {
@@ -36,9 +36,11 @@ export default function Logo({ collapsed }: LogoProps) {
 		<div className={classes.logoContainer} onClick={() => navigate("/")}>
 			<img src={logo} alt="logo" className={classes.logo} />
 
-			{collapsed ? null : (
-				<h1 className={classes.logoText}>React Antd Admin</h1>
-			)}
+			{collapsed
+				? null
+				: (
+					<h1 className={classes.logoText}>React Antd Admin</h1>
+				)}
 		</div>
 	);
 }

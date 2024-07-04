@@ -1,112 +1,97 @@
 {
-	"name": "react-antd-admin",
-	"version": "0.0.0",
-	"private": true,
-	"type": "module",
-	"license": "MIT",
-	"packageManager": "pnpm@8.14.1",
-	"author": "Condor Hero",
-	"description": "React Hooks + TypeScript + Ant Design = react-antd-admin",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/condorheroblog/react-antd-admin.git"
-	},
-	"bugs": {
-		"url": "https://github.com/condorheroblog/react-antd-admin/issues"
-	},
-	"homepage": "https://github.com/condorheroblog/react-antd-admin/blob/main/README.md",
-	"imports": {
-		"#*": "./*"
-	},
-	"dependencies": {
-		"@ant-design/icons": "^5.2.6",
-		"@reduxjs/toolkit": "^2.0.1",
-		"antd": "^5.13.0",
-		"dayjs": "^1.11.10",
-		"echarts": "^5.4.3",
-		"echarts-for-react": "^3.0.2",
-		"i18next": "^23.7.16",
-		"ky": "^1.2.0",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"react-i18next": "^14.0.0",
-		"react-jss": "^10.10.0",
-		"react-redux": "^9.1.0",
-		"react-router-dom": "^6.21.2"
-	},
-	"scripts": {
-		"dev": "vite",
-		"build": "vite build",
-		"preview": "vite preview",
-		"spa-github-index-page": "node ./scripts/spa-github-index-page.mjs",
-		"spa-github-404-page": "node ./scripts/spa-github-404-page.mjs",
-		"analyzer": "vite-bundle-visualizer --output analyzer/stats.html",
-		"eslint-flat-config-viewer": "eslint-flat-config-viewer",
-		"lint": "eslint .",
-		"lint:fix": "eslint . --fix",
-		"postinstall": "simple-git-hooks",
-		"prettier": "prettier --write .",
-		"test": "vitest"
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 2 chrome version",
-			"last 2 firefox version",
-			"last 2 safari version"
-		]
-	},
-	"devDependencies": {
-		"@commitlint/cli": "^18.4.4",
-		"@commitlint/config-conventional": "^18.4.4",
-		"@eslint/js": "^8.56.0",
-		"@faker-js/faker": "^8.3.1",
-		"@testing-library/jest-dom": "^6.2.0",
-		"@testing-library/react": "^14.1.2",
-		"@testing-library/user-event": "^14.5.2",
-		"@types/node": "^20.11.0",
-		"@types/react": "^18.2.47",
-		"@types/react-dom": "^18.2.18",
-		"@typescript-eslint/eslint-plugin": "^6.18.1",
-		"@typescript-eslint/parser": "^6.18.1",
-		"@vitejs/plugin-react": "^4.2.1",
-		"eslint": "^8.56.0",
-		"eslint-config-prettier": "^9.1.0",
-		"eslint-define-config": "^2.1.0",
-		"eslint-flat-config-viewer": "^0.1.8",
-		"eslint-plugin-import": "^2.29.1",
-		"eslint-plugin-jsonc": "^2.11.2",
-		"eslint-plugin-jsx-a11y": "^6.8.0",
-		"eslint-plugin-prettier": "^5.1.3",
-		"eslint-plugin-react": "^7.33.2",
-		"eslint-plugin-react-hooks": "^4.6.0",
-		"eslint-plugin-testing-library": "^6.2.0",
-		"eslint-plugin-unicorn": "^50.0.1",
-		"eslint-plugin-vitest": "^0.3.20",
-		"globals": "^13.24.0",
-		"happy-dom": "^13.1.0",
-		"jsonc-eslint-parser": "^2.4.0",
-		"lint-staged": "^15.2.0",
-		"prettier": "^3.2.2",
-		"simple-git-hooks": "^2.9.0",
-		"typescript": "^5.3.3",
-		"vite": "^5.0.11",
-		"vite-bundle-visualizer": "^1.0.0",
-		"vite-plugin-fake-server": "^2.1.1",
-		"vitest": "^1.2.0"
-	},
-	"simple-git-hooks": {
-		"pre-commit": "npx lint-staged",
-		"commit-msg": "npx commitlint --edit"
-	},
-	"lint-staged": {
-		"*.{json,md,ts,tsx,js,jsx}": [
-			"prettier --cache --ignore-unknown  --write",
-			"eslint --cache --fix"
-		]
-	}
+  "name": "react-antd-admin",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@9.4.0",
+  "description": "React Hooks + TypeScript + Ant Design = react-antd-admin",
+  "author": "Condor Hero",
+  "license": "MIT",
+  "homepage": "https://github.com/condorheroblog/react-antd-admin/blob/main/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/condorheroblog/react-antd-admin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/condorheroblog/react-antd-admin/issues"
+  },
+  "imports": {
+    "#*": "./*"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "spa-github-index-page": "node ./scripts/spa-github-index-page.mjs",
+    "spa-github-404-page": "node ./scripts/spa-github-404-page.mjs",
+    "analyzer": "vite-bundle-visualizer --output analyzer/stats.html",
+    "eslint-config-inspector": "npx @eslint/config-inspector",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepare": "simple-git-hooks",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.3.7",
+    "@reduxjs/toolkit": "^2.2.6",
+    "antd": "^5.19.0",
+    "dayjs": "^1.11.11",
+    "echarts": "^5.5.1",
+    "echarts-for-react": "^3.0.2",
+    "i18next": "^23.11.5",
+    "ky": "^1.4.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-i18next": "^14.1.2",
+    "react-jss": "^10.10.0",
+    "react-redux": "^9.1.2",
+    "react-router-dom": "^6.24.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 2 chrome version",
+      "last 2 firefox version",
+      "last 2 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.21.2",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@eslint-react/eslint-plugin": "^1.5.21",
+    "@eslint/config-inspector": "^0.5.1",
+    "@faker-js/faker": "^8.4.1",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/node": "^20.14.9",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^9.6.0",
+    "eslint-plugin-react-refresh": "^0.4.7",
+    "globals": "^15.8.0",
+    "happy-dom": "^14.12.3",
+    "lint-staged": "^15.2.7",
+    "simple-git-hooks": "^2.11.1",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.3",
+    "vite-bundle-visualizer": "^1.2.1",
+    "vite-plugin-fake-server": "^2.1.1",
+    "vitest": "^1.6.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged",
+    "commit-msg": "npx commitlint --edit"
+  },
+  "lint-staged": {
+    "*": [
+      "eslint --fix"
+    ]
+  }
 }

@@ -1,8 +1,8 @@
 import { request } from "#src/utils";
 
 export interface PieDataType {
-	value: number;
-	code: string;
+	value: number
+	code: string
 }
 export function fetchPie(data: { by: string | number }) {
 	return request

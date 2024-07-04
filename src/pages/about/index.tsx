@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { theme, Row, Col, Card, Descriptions, Tag, Typography } from "antd";
+import { Card, Col, Descriptions, Row, Tag, Typography, theme } from "antd";
 
 import { dependenciesItems, devDependenciesItems } from "./constants";
 
@@ -30,6 +30,7 @@ export default function About() {
 			label: "Github",
 			children: (
 				<Link
+					rel="noreferrer noopener"
 					copyable
 					href="https://github.com/condorheroblog/react-antd-admin"
 					target="_blank"

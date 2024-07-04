@@ -22,8 +22,8 @@ export const globalSlice = createSlice({
 		changeSiteTheme(
 			state,
 			action: PayloadAction<{
-				theme: ThemeType;
-				isWriteLocalStorage?: boolean;
+				theme: ThemeType
+				isWriteLocalStorage?: boolean
 			}>,
 		) {
 			if (action.payload.isWriteLocalStorage) {

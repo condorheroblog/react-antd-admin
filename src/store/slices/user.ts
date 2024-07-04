@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { fetchLogin, fetchUserInfo, fetchLogout } from "#src/api/user";
+import { fetchLogin, fetchLogout, fetchUserInfo } from "#src/api/user";
 import type { FormInitialValues } from "#src/pages/login";
 import { i18nResources } from "#src/locales";
 
@@ -14,7 +14,8 @@ export const authLoginThunk = createAsyncThunk(
 		const redirect = searchParams.get("redirect");
 		if (redirect) {
 			window.location.href = `${import.meta.env.BASE_URL}${redirect.slice(1)}`;
-		} else {
+		}
+		else {
 			window.location.href = `${import.meta.env.BASE_URL}`;
 		}
 		return token;

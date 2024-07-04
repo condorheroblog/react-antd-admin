@@ -1,6 +1,7 @@
 /* Inspired by https://github.com/rafgraph/spa-github-pages */
 import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
+import process from "node:process";
 
 const template404 = `
 <!DOCTYPE html>
@@ -58,7 +59,8 @@ async function main() {
 		console.log(
 			`The content has been successfully written to the ${buildPath} file`,
 		);
-	} catch (error) {
+	}
+	catch (error) {
 		console.error(error);
 	}
 }
