@@ -16,7 +16,6 @@ export function Iframe() {
 	return iframeLink
 		? (
 			<iframe
-				sandbox="allow-popups"
 				src={iframeLink}
 				title={title}
 				width="100%"
