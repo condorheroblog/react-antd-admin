@@ -1,97 +1,97 @@
 {
-  "name": "react-antd-admin",
-  "type": "module",
-  "version": "0.0.0",
-  "private": true,
-  "packageManager": "pnpm@9.4.0",
-  "description": "React Hooks + TypeScript + Ant Design = react-antd-admin",
-  "author": "Condor Hero",
-  "license": "MIT",
-  "homepage": "https://github.com/condorheroblog/react-antd-admin/blob/main/README.md",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/condorheroblog/react-antd-admin.git"
-  },
-  "bugs": {
-    "url": "https://github.com/condorheroblog/react-antd-admin/issues"
-  },
-  "imports": {
-    "#*": "./*"
-  },
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "typecheck": "tsc --noEmit",
-    "spa-github-index-page": "node ./scripts/spa-github-index-page.mjs",
-    "spa-github-404-page": "node ./scripts/spa-github-404-page.mjs",
-    "analyzer": "vite-bundle-visualizer --output analyzer/stats.html",
-    "eslint-config-inspector": "npx @eslint/config-inspector",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "prepare": "simple-git-hooks",
-    "test": "vitest"
-  },
-  "dependencies": {
-    "@ant-design/icons": "^5.3.7",
-    "antd": "^5.19.0",
-    "dayjs": "^1.11.11",
-    "echarts": "^5.5.1",
-    "echarts-for-react": "^3.0.2",
-    "i18next": "^23.11.5",
-    "ky": "^1.4.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-i18next": "^14.1.2",
-    "react-jss": "^10.10.0",
-    "react-router-dom": "^6.24.1",
-    "zustand": "^4.5.4"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 2 chrome version",
-      "last 2 firefox version",
-      "last 2 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@antfu/eslint-config": "^2.21.2",
-    "@commitlint/cli": "^19.3.0",
-    "@commitlint/config-conventional": "^19.2.2",
-    "@eslint-react/eslint-plugin": "^1.5.21",
-    "@eslint/config-inspector": "^0.5.1",
-    "@faker-js/faker": "^8.4.1",
-    "@testing-library/jest-dom": "^6.4.6",
-    "@testing-library/react": "^16.0.0",
-    "@testing-library/user-event": "^14.5.2",
-    "@types/node": "^20.14.9",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "eslint": "^9.6.0",
-    "eslint-plugin-react-refresh": "^0.4.7",
-    "globals": "^15.8.0",
-    "happy-dom": "^14.12.3",
-    "lint-staged": "^15.2.7",
-    "simple-git-hooks": "^2.11.1",
-    "typescript": "^5.5.3",
-    "vite": "^5.3.3",
-    "vite-bundle-visualizer": "^1.2.1",
-    "vite-plugin-fake-server": "^2.1.1",
-    "vitest": "^1.6.0"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "npx lint-staged",
-    "commit-msg": "npx commitlint --edit"
-  },
-  "lint-staged": {
-    "*": [
-      "eslint --fix"
-    ]
-  }
+	"name": "react-antd-admin",
+	"type": "module",
+	"version": "0.0.0",
+	"private": true,
+	"packageManager": "pnpm@9.4.0",
+	"description": "React Hooks + TypeScript + Ant Design = react-antd-admin",
+	"author": "Condor Hero",
+	"license": "MIT",
+	"homepage": "https://github.com/condorheroblog/react-antd-admin/blob/main/README.md",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/condorheroblog/react-antd-admin.git"
+	},
+	"bugs": {
+		"url": "https://github.com/condorheroblog/react-antd-admin/issues"
+	},
+	"imports": {
+		"#*": "./*"
+	},
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"typecheck": "tsc --noEmit",
+		"spa-github-index-page": "node ./scripts/spa-github-index-page.mjs",
+		"spa-github-404-page": "node ./scripts/spa-github-404-page.mjs",
+		"analyzer": "vite-bundle-visualizer --output analyzer/stats.html",
+		"eslint-config-inspector": "npx @eslint/config-inspector",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"prepare": "simple-git-hooks",
+		"test": "vitest"
+	},
+	"dependencies": {
+		"@ant-design/icons": "^5.3.7",
+		"antd": "^5.19.0",
+		"dayjs": "^1.11.11",
+		"echarts": "^5.5.1",
+		"echarts-for-react": "^3.0.2",
+		"i18next": "^23.11.5",
+		"ky": "^1.4.0",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"react-i18next": "^14.1.2",
+		"react-jss": "^10.10.0",
+		"react-router-dom": "^6.24.1",
+		"zustand": "^4.5.4"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 2 chrome version",
+			"last 2 firefox version",
+			"last 2 safari version"
+		]
+	},
+	"devDependencies": {
+		"@antfu/eslint-config": "^2.21.2",
+		"@commitlint/cli": "^19.3.0",
+		"@commitlint/config-conventional": "^19.2.2",
+		"@eslint-react/eslint-plugin": "^1.5.21",
+		"@eslint/config-inspector": "^0.5.1",
+		"@faker-js/faker": "^8.4.1",
+		"@testing-library/jest-dom": "^6.4.6",
+		"@testing-library/react": "^16.0.0",
+		"@testing-library/user-event": "^14.5.2",
+		"@types/node": "^20.14.9",
+		"@types/react": "^18.3.3",
+		"@types/react-dom": "^18.3.0",
+		"@vitejs/plugin-react": "^4.3.1",
+		"eslint": "^9.6.0",
+		"eslint-plugin-react-refresh": "^0.4.7",
+		"globals": "^15.8.0",
+		"happy-dom": "^14.12.3",
+		"lint-staged": "^15.2.7",
+		"simple-git-hooks": "^2.11.1",
+		"typescript": "^5.5.3",
+		"vite": "^5.3.3",
+		"vite-bundle-visualizer": "^1.2.1",
+		"vite-plugin-fake-server": "^2.1.1",
+		"vitest": "^1.6.0"
+	},
+	"simple-git-hooks": {
+		"pre-commit": "npx lint-staged",
+		"commit-msg": "npx commitlint --edit"
+	},
+	"lint-staged": {
+		"*": [
+			"eslint --fix"
+		]
+	}
 }

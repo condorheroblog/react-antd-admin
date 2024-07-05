@@ -1,31 +1,31 @@
 {
-  "menus": {
-    "about": "About",
-    "nestMenus": "Nest Menus",
-    "menu1": "Menu1",
-    "menu1-1": "Menu1-1",
-    "menu1-2": "Menu1-2",
-    "menu2": "Menu2",
-    "iframe": "External Page",
-    "docs": "Docs",
-    "home": "Home",
-    "guide": "Guide",
-    "introduction": "Introduction",
-    "i18n": "I18n"
-  },
-  "common": {
-    "username": "User Name",
-    "password": "Password",
-    "login": "Log In",
-    "backHome": "Back Home",
-    "back": "Back",
-    "warning": "Warning",
-    "delete": "Delete",
-    "upload": "Upload",
-    "404SubTitle": "Sorry, the page you visited does not exist."
-  },
-  "projectSettings": {
-    "title": "Project Settings",
-    "theme": "Theme"
-  }
+	"menus": {
+		"about": "About",
+		"nestMenus": "Nest Menus",
+		"menu1": "Menu1",
+		"menu1-1": "Menu1-1",
+		"menu1-2": "Menu1-2",
+		"menu2": "Menu2",
+		"iframe": "External Page",
+		"docs": "Docs",
+		"home": "Home",
+		"guide": "Guide",
+		"introduction": "Introduction",
+		"i18n": "I18n"
+	},
+	"common": {
+		"username": "User Name",
+		"password": "Password",
+		"login": "Log In",
+		"backHome": "Back Home",
+		"back": "Back",
+		"warning": "Warning",
+		"delete": "Delete",
+		"upload": "Upload",
+		"404SubTitle": "Sorry, the page you visited does not exist."
+	},
+	"projectSettings": {
+		"title": "Project Settings",
+		"theme": "Theme"
+	}
 }
