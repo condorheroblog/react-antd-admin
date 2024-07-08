@@ -15,7 +15,7 @@ const routes: AppRouteRecordRaw[] = [
 		Component: ContainerLayout,
 		handle: {
 			icon: createElement(PaperClipOutlined),
-			title: t("global.menus.iframe"),
+			title: t("common.menu.iframe"),
 			sort: 90,
 		},
 		children: [

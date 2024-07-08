@@ -26,5 +26,5 @@ export default function About() {
 
 export const useInPureJS = `
 import { t } from "#src/locales";
-const title = t("global.menus.about");
+const title = t("common.menu.about");
 `;

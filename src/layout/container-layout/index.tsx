@@ -76,8 +76,8 @@ export default function ContainerLayout() {
 					style={{
 						scrollBehavior: "smooth",
 						overflow: "auto",
-						padding: "0 1em 1em",
-						height: "calc(100vh - 48px - 36px)",
+						padding: "0.5em 1em 1em",
+						height: "calc(100vh - 48px - 32.391px - 2px)",
 					}}
 				>
 					<main

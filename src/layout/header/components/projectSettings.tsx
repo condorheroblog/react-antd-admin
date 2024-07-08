@@ -21,7 +21,7 @@ export default function ProjectSettings() {
 				<SettingOutlined style={{ transform: "scale(1.3)" }} />
 			</div>
 			<Drawer
-				title={t("global.projectSettings.title")}
+				title={t("common.projectSettings.title")}
 				placement="right"
 				onClose={() => {
 					setIsOpen(false);
@@ -40,7 +40,7 @@ export default function ProjectSettings() {
 						alignItems: "center",
 					}}
 				>
-					<Divider>{t("global.projectSettings.theme")}</Divider>
+					<Divider>{t("common.projectSettings.theme")}</Divider>
 					<Switch
 						checked={theme === "light"}
 						onChange={(checked) => {

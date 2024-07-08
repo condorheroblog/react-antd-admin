@@ -2,7 +2,6 @@ import { ConfigProvider, theme as antdTheme } from "antd";
 import dayjs from "dayjs";
 import { RouterProvider } from "react-router-dom";
 import { Suspense, useCallback, useEffect } from "react";
-import "./index.css";
 import "dayjs/locale/zh-cn";
 import { useTranslation } from "react-i18next";
 

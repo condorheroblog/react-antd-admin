@@ -13,10 +13,10 @@ export default function BarChart() {
 		xAxis: {
 			type: "category",
 			data: [
-				t("dashboard.directAccess"),
-				t("dashboard.emailMarketing"),
-				t("dashboard.affiliateAdvertise"),
-				t("dashboard.videoAdvertise"),
+				t("home.directAccess"),
+				t("home.emailMarketing"),
+				t("home.affiliateAdvertise"),
+				t("home.videoAdvertise"),
 			],
 		},
 		yAxis: {
@@ -27,16 +27,16 @@ export default function BarChart() {
 			{
 				type: "bar",
 				data: [
-					{ value: 335, name: t("dashboard.directAccess") },
-					{ value: 310, name: t("dashboard.emailMarketing") },
-					{ value: 234, name: t("dashboard.affiliateAdvertise") },
-					{ value: 135, name: t("dashboard.videoAdvertise") },
+					{ value: 335, name: t("home.directAccess") },
+					{ value: 310, name: t("home.emailMarketing") },
+					{ value: 234, name: t("home.affiliateAdvertise") },
+					{ value: 135, name: t("home.videoAdvertise") },
 				],
 			},
 		],
 	};
 	return (
-		<Card title={t("dashboard.views")}>
+		<Card title={t("home.views")}>
 			<ReactECharts option={option} />
 		</Card>
 	);

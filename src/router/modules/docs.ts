@@ -23,7 +23,7 @@ const routes: AppRouteRecordRaw[] = [
 		handle: {
 			sort: 95,
 			publicAccess: true,
-			title: t("global.menus.docs"),
+			title: t("common.menu.docs"),
 			icon: createElement(FileMarkdownOutlined),
 		},
 		children: [
@@ -32,7 +32,7 @@ const routes: AppRouteRecordRaw[] = [
 				id: "docs_index",
 				Component: DocsIndex,
 				handle: {
-					title: t("global.menus.home"),
+					title: t("common.menu.home"),
 					icon: createElement(HomeOutlined),
 					publicAccess: true,
 				},
@@ -42,7 +42,7 @@ const routes: AppRouteRecordRaw[] = [
 				id: "docs_guide",
 				Component: ParentLayout,
 				handle: {
-					title: t("global.menus.guide"),
+					title: t("common.menu.guide"),
 					icon: createElement(SlackOutlined),
 					publicAccess: true,
 				},
@@ -52,7 +52,7 @@ const routes: AppRouteRecordRaw[] = [
 						id: "docs_guide_introduction",
 						Component: DocsIndex,
 						handle: {
-							title: t("global.menus.introduction"),
+							title: t("common.menu.introduction"),
 							icon: createElement(FireOutlined),
 							publicAccess: true,
 						},
@@ -62,7 +62,7 @@ const routes: AppRouteRecordRaw[] = [
 						id: "docs_guide_i18n",
 						Component: I18n,
 						handle: {
-							title: t("global.menus.i18n"),
+							title: t("common.menu.i18n"),
 							icon: createElement(TranslationOutlined),
 							publicAccess: true,
 						},

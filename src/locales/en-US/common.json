@@ -1,5 +1,6 @@
 {
-	"menus": {
+	"menu": {
+		"home": "Home",
 		"about": "About",
 		"nestMenus": "Nest Menus",
 		"menu1": "Menu1",
@@ -8,7 +9,6 @@
 		"menu2": "Menu2",
 		"iframe": "External Page",
 		"docs": "Docs",
-		"home": "Home",
 		"guide": "Guide",
 		"introduction": "Introduction",
 		"i18n": "I18n"

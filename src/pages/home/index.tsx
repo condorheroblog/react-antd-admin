@@ -14,7 +14,7 @@ const wrapperCol: ColProps = {
 	xl: 12,
 	xxl: 12,
 };
-export default function Dashboard() {
+export default function Home() {
 	const {
 		token: { colorBgLayout },
 	} = theme.useToken();

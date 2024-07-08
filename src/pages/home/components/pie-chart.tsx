@@ -4,22 +4,22 @@ import { Card, Segmented } from "antd";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import type { PieDataType } from "#src/api/dashboard";
-import { fetchPie } from "#src/api/dashboard";
+import type { PieDataType } from "#src/api/home";
+import { fetchPie } from "#src/api/home";
 
 export default function PieChart() {
 	const { t } = useTranslation();
 	const [data, setData] = useState<PieDataType[]>([]);
 	const [value, setValue] = useState<string | number>(
-		t("dashboard.allChannels"),
+		t("home.allChannels"),
 	);
 
 	const DATA_KEY = {
-		electronics: t("dashboard.electronics"),
-		home_goods: t("dashboard.homeGoods"),
-		apparel_accessories: t("dashboard.apparelAccessories"),
-		food_beverages: t("dashboard.foodBeverages"),
-		beauty_skincare: t("dashboard.beautySkincare"),
+		electronics: t("home.electronics"),
+		home_goods: t("home.homeGoods"),
+		apparel_accessories: t("home.apparelAccessories"),
+		food_beverages: t("home.foodBeverages"),
+		beauty_skincare: t("home.beautySkincare"),
 	};
 
 	const option: EChartsOption = {
@@ -38,7 +38,7 @@ export default function PieChart() {
 		},
 		series: [
 			{
-				name: t("dashboard.salesCategoryProportion"),
+				name: t("home.salesCategoryProportion"),
 				type: "pie",
 				radius: "55%",
 				center: ["50%", "60%"],
@@ -72,13 +72,13 @@ export default function PieChart() {
 
 	return (
 		<Card
-			title={t("dashboard.salesCategoryProportion")}
+			title={t("home.salesCategoryProportion")}
 			extra={(
 				<Segmented
 					options={[
-						t("dashboard.allChannels"),
-						t("dashboard.online"),
-						t("dashboard.site"),
+						t("home.allChannels"),
+						t("home.online"),
+						t("home.site"),
 					]}
 					value={value}
 					onChange={segmentedValue => setValue(segmentedValue)}

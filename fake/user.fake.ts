@@ -15,8 +15,8 @@ const adminInfo = {
 	password: "admin",
 	permissions: [
 		{
-			label: "控制台",
-			value: "dashboard",
+			label: "首页",
+			value: "home",
 		},
 	],
 };

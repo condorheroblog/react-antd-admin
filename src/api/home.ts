@@ -6,12 +6,12 @@ export interface PieDataType {
 }
 export function fetchPie(data: { by: string | number }) {
 	return request
-		.get("dashboard/pie", { searchParams: data })
+		.get("home/pie", { searchParams: data })
 		.json<ApiResponse<PieDataType[]>>();
 }
 
 export function fetchLine(data: { range: string }) {
 	return request
-		.post("dashboard/line", { json: data })
+		.post("home/line", { json: data })
 		.json<ApiResponse<string[]>>();
 }

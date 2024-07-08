@@ -15,7 +15,7 @@ const routes: AppRouteRecordRaw[] = [
 		Component: ContainerLayout,
 		handle: {
 			sort: 100,
-			title: t("global.menus.about"),
+			title: t("common.menu.about"),
 			icon: createElement(UserOutlined),
 		},
 		children: [
@@ -24,7 +24,7 @@ const routes: AppRouteRecordRaw[] = [
 				id: "about_index",
 				Component: About,
 				handle: {
-					title: t("global.menus.about"),
+					title: t("common.menu.about"),
 					icon: createElement(UserOutlined),
 				},
 			},

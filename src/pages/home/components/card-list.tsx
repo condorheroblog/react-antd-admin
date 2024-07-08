@@ -25,7 +25,7 @@ export default function CardList() {
 				<Card>
 					<Meta
 						avatar={<UserOutlined style={{ fontSize: 30 }} />}
-						title={t("dashboard.newVisits")}
+						title={t("home.newVisits")}
 						description="102,400"
 					/>
 				</Card>
@@ -34,7 +34,7 @@ export default function CardList() {
 				<Card>
 					<Meta
 						avatar={<MessageOutlined style={{ fontSize: 30 }} />}
-						title={t("dashboard.messages")}
+						title={t("home.messages")}
 						description="81,212"
 					/>
 				</Card>
@@ -43,7 +43,7 @@ export default function CardList() {
 				<Card>
 					<Meta
 						avatar={<MoneyCollectOutlined style={{ fontSize: 30 }} />}
-						title={t("dashboard.purchases")}
+						title={t("home.purchases")}
 						description="9,280"
 					/>
 				</Card>
@@ -52,7 +52,7 @@ export default function CardList() {
 				<Card>
 					<Meta
 						avatar={<ShoppingCartOutlined style={{ fontSize: 30 }} />}
-						title={t("dashboard.shoppings")}
+						title={t("home.shoppings")}
 						description="13,600"
 					/>
 				</Card>

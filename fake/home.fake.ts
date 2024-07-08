@@ -3,19 +3,19 @@ import { defineFakeRoute } from "vite-plugin-fake-server/client";
 
 import { resultSuccess } from "./utils";
 
-const dashboard = {
+const home = {
 	cardList: [],
 };
 
 export default defineFakeRoute([
 	{
-		url: "/api/dashboard",
+		url: "/api/home",
 		timeout: 1000,
 		method: "get",
-		response: () => resultSuccess(dashboard),
+		response: () => resultSuccess(home),
 	},
 	{
-		url: "/api/dashboard/pie",
+		url: "/api/home/pie",
 		timeout: 1000,
 		method: "get",
 		response: () => {
@@ -39,7 +39,7 @@ export default defineFakeRoute([
 		},
 	},
 	{
-		url: "/api/dashboard/line",
+		url: "/api/home/line",
 		timeout: 1000,
 		method: "post",
 		response: ({ body }) => {

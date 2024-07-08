@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 const initialState = {
-	visitedTags: new Set<string>(["/dashboard"]),
+	visitedTags: new Set<string>(["/home"]),
 };
 
 type TagsState = typeof initialState;
