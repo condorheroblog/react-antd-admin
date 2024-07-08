@@ -62,8 +62,10 @@ export default function BreadcrumbTags() {
 	};
 
 	const handleEditTabs = (key: React.MouseEvent | React.KeyboardEvent | string) => {
-		const futurePath = Array.from(visitedTags).at(-2)!;
-		navigate(futurePath);
+		if (key === activeKey) {
+			const targetPath = Array.from(visitedTags).at(-2)!;
+			navigate(targetPath);
+		}
 		deleteVisitedTags(key as string);
 	};
 
