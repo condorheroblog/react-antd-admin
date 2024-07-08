@@ -7,7 +7,7 @@ import Header from "../header";
 // import Footer from "./components/footer";
 import SiderMenu from "../sider-menu";
 import ParentLayout from "../parent-layout";
-import BreadcrumbViews from "../breadcrumb-views";
+import BreadcrumbTags from "../breadcrumb-tags";
 
 import { useGlobalStore } from "#src/store";
 
@@ -48,7 +48,7 @@ export default function ContainerLayout() {
 	const isMobile = useGlobalStore(state => state.isMobile);
 
 	return (
-		<Layout style={{ height: "100%" }}>
+		<Layout>
 			{isMobile
 				? (
 					<Drawer
@@ -71,24 +71,22 @@ export default function ContainerLayout() {
 
 			<Layout>
 				<Header collapsed={collapsed} setCollapsed={setCollapsed} />
+				<BreadcrumbTags />
 				<Content
 					style={{
 						scrollBehavior: "smooth",
 						overflow: "auto",
-						display: "flex",
-						flexDirection: "column",
 						padding: "0 1em 1em",
+						height: "calc(100vh - 48px - 36px)",
 					}}
 				>
-					<BreadcrumbViews />
-					<div
+					<main
 						style={{
-							flexGrow: 1,
 							backgroundColor: colorBgContainer,
 						}}
 					>
 						<ParentLayout />
-					</div>
+					</main>
 				</Content>
 				{/* <Footer /> */}
 			</Layout>

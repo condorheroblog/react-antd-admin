@@ -40,7 +40,7 @@ function getMenuItems(routeList: AppRouteRecordRaw[]) {
 	}, []);
 }
 
-function getMenuById(menuItems: AppRouteRecordRaw[], id: string): AppRouteRecordRaw | null {
+export function getMenuById(menuItems: AppRouteRecordRaw[], id: string): AppRouteRecordRaw | null {
 	for (const menuItem of menuItems) {
 		if (menuItem.id === id) {
 			return menuItem;
@@ -55,7 +55,7 @@ function getMenuById(menuItems: AppRouteRecordRaw[], id: string): AppRouteRecord
 	return null;
 }
 
-function findChildrenLen(menuItems: AppRouteRecordRaw[], key: string) {
+export function findChildrenLen(menuItems: AppRouteRecordRaw[], key: string) {
 	const subRouteChildren: string[] = [];
 
 	for (const { children, id } of menuItems) {

@@ -3,6 +3,7 @@ import { Button, Layout, theme } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { createUseStyles } from "react-jss";
 
+import BreadcrumbViews from "../breadcrumb-views";
 import UserMenu from "./components/userMenu";
 import LanguageMenu from "./components/languageMenu";
 import ProjectSettings from "./components/projectSettings";
@@ -14,13 +15,15 @@ const useStyles = createUseStyles((theme: GlobalToken) => {
 		layoutHeader: {
 			display: "flex",
 			justifyContent: "space-between",
-			alignItems: "stretch",
 		},
-		layoutHeaderLeft: {},
+		layoutHeaderLeft: {
+			display: "flex",
+			alignItems: "center",
+		},
 		layoutHeaderRight: {
 			"display": "flex",
 			"justifyContent": "center",
-			"marginRight": "1.8em",
+			"marginRight": "0.5em",
 			"alignItems": "center",
 			"&>div": {
 				cursor: "pointer",
@@ -47,7 +50,7 @@ export default function Header({ collapsed, setCollapsed }: HeaderProps) {
 	const classes = useStyles();
 
 	return (
-		<AntdHeader style={{ padding: 0, background: colorBgContainer }}>
+		<AntdHeader style={{ padding: 0, background: colorBgContainer, lineHeight: "48px", height: "48px" }}>
 			<div className={classes.layoutHeader}>
 				<div className={classes.layoutHeaderLeft}>
 					<Button
@@ -56,10 +59,11 @@ export default function Header({ collapsed, setCollapsed }: HeaderProps) {
 						onClick={() => setCollapsed(!collapsed)}
 						style={{
 							fontSize: "16px",
-							width: 64,
-							height: 64,
+							height: "100%",
 						}}
 					/>
+
+					<BreadcrumbViews />
 				</div>
 
 				<div className={classes.layoutHeaderRight} role="menu" tabIndex={0}>

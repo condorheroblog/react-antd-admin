@@ -7,7 +7,7 @@ import { useUserStore } from "#src/store";
 
 const useStyles = createUseStyles({
 	breadcrumbViews: {
-		margin: ["0.5em"],
+		margin: "0",
 	},
 });
 
@@ -18,7 +18,8 @@ const itemRender: BreadcrumbProps["itemRender"] = (route, params, routes) => {
 			<span>{route.title}</span>
 		)
 		: (
-			<NavLink to={route.path}>{route.title}</NavLink>
+			<span>{route.title}</span>
+			// <NavLink to={route.path}>{route.title}</NavLink>
 		);
 };
 
