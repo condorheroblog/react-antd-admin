@@ -18,7 +18,7 @@ export default defineFakeRoute([
 		url: "/api/home/pie",
 		timeout: 1000,
 		method: "get",
-		statusCode: 401,
+		// statusCode: 401,
 		response: () => {
 			const pie = [
 				{ value: faker.number.int({ min: 10, max: 100 }), code: "electronics" },

@@ -26,8 +26,9 @@ const defaultConfig: Options = {
 			async (request, options, response) => {
 				if (!response.ok) {
 					if (response.status === 401) {
+						const { refreshToken } = useUserStore.getState();
 						fetchRefreshToken({
-							refreshToken: useUserStore.getState().refreshToken,
+							refreshToken,
 						}).then(async (res) => {
 							useUserStore.setState({
 								token: res.result.token,
