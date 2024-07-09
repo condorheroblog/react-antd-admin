@@ -4,6 +4,7 @@ import { message } from "antd";
 
 import { useGlobalStore, useUserStore } from "#src/store";
 import { rememberRoute } from "#src/utils";
+import { fetchRefreshToken } from "#src/api/user";
 
 const defaultConfig: Options = {
 	// The input argument cannot start with a slash / when using prefixUrl option.
@@ -24,9 +25,18 @@ const defaultConfig: Options = {
 		afterResponse: [
 			async (request, options, response) => {
 				if (!response.ok) {
-					if (response.status === 401 || response.status === 403) {
-						// Remember the route before exiting
-						window.location.href = `${import.meta.env.BASE_URL}login${rememberRoute()}`;
+					if (response.status === 401) {
+						fetchRefreshToken({
+							refreshToken: useUserStore.getState().refreshToken,
+						}).then(async (res) => {
+							useUserStore.setState({
+								token: res.result.token,
+								refreshToken: res.result.refreshToken,
+							});
+						}).catch(() => {
+							// Remember the route before exiting
+							window.location.href = `${import.meta.env.BASE_URL}login${rememberRoute()}`;
+						});
 					}
 					else {
 						const json = await response.json();

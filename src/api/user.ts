@@ -27,19 +27,11 @@ export function fetchLogout() {
 	return request.post("logout").json();
 }
 
-export interface UserInfoType {
-	userId: string
-	username: string
-	nickname: string
-	avatar: string
-	desc: string
-	password: string
-	permissions?: {
-		label: string
-		value: string
-	}[]
+export interface RefreshTokenResult {
+	token: string
+	refreshToken: string
 }
 
-export function fetchUserInfo() {
-	return request.get("userinfo").json<ApiResponse<UserInfoType>>();
+export function fetchRefreshToken(data: { readonly refreshToken: string }) {
+	return request.post("refresh-token", { json: data }).json<ApiResponse<RefreshTokenResult>>();
 }

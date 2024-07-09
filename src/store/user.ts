@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { fetchLogin, fetchLogout, fetchUserInfo } from "#src/api/user";
+import { fetchLogin, fetchLogout } from "#src/api/user";
 import type { FormInitialValues } from "#src/pages/login";
 import { i18nResources } from "#src/locales";
 import type { LanguageType } from "#src/locales";

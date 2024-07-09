@@ -48,4 +48,10 @@ export default defineFakeRoute([
 		method: "post",
 		response: () => resultSuccess({}),
 	},
+	{
+		url: "/api/refresh-token",
+		timeout: 1000,
+		method: "post",
+		response: () => resultSuccess({ token, refreshToken }),
+	},
 ]);
