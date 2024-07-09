@@ -1,14 +1,26 @@
 import type { FormInitialValues } from "#src/pages/login";
 import { request } from "#src/utils";
 
-export interface LoginResponseType {
+export interface UserInfo {
+	userId: string
+	avatar: string
+	username: string
+	nickname: string
+	email: string
+	phone: string
+	description: string
+}
+
+export interface UserResult extends UserInfo {
+	roles: Array<string>
 	token: string
+	refreshToken: string
 }
 
 export function fetchLogin(data: FormInitialValues) {
 	return request
 		.post("login", { json: data })
-		.json<ApiResponse<LoginResponseType>>();
+		.json<ApiResponse<UserResult>>();
 }
 
 export function fetchLogout() {
@@ -18,7 +30,7 @@ export function fetchLogout() {
 export interface UserInfoType {
 	userId: string
 	username: string
-	realName: string
+	nickname: string
 	avatar: string
 	desc: string
 	password: string

@@ -3,12 +3,12 @@ import { Button, Result } from "antd";
 import { Route, Routes, useNavigate } from "react-router-dom";
 
 import { ContainerLayout } from "#src/layout";
+import { useUserStore } from "#src/store";
 
 export default function Error404() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	// Do not use redux to prevent tokens from being deleted
-	const hasTokenInLocal = !!window.localStorage.getItem("token");
+	const hasTokenInLocal = !!useUserStore(state => state.token);
 
 	const Result404 = (
 		<Result

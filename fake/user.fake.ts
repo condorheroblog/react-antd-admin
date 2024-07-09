@@ -4,22 +4,7 @@ import { defineFakeRoute } from "vite-plugin-fake-server/client";
 import { resultSuccess } from "./utils";
 
 const token = faker.string.uuid();
-
-const adminInfo = {
-	userId: "1",
-	username: "admin",
-	realName: "Admin",
-	avatar:
-		"https://p6-passport.byteacctimg.com/img/user-avatar/16981ccf6c67324125a416ddccee33cb~90x90.awebp",
-	desc: "manager",
-	password: "admin",
-	permissions: [
-		{
-			label: "首页",
-			value: "home",
-		},
-	],
-};
+const refreshToken = faker.string.uuid();
 
 export default defineFakeRoute([
 	{
@@ -30,18 +15,37 @@ export default defineFakeRoute([
 		// response: () => ({ code: 401, message: "Unauthorized" }),
 		// statusCode: 400,
 		// response: () => ({ code: 404, message: "Not found" }),
-		response: () => resultSuccess({ token }),
+		response: ({ body }) => {
+			if (body.username === "admin") {
+				return resultSuccess({
+					userId: "1",
+					avatar: "https://avatars.githubusercontent.com/u/47056890",
+					username: "Admin",
+					nickname: "Admin",
+					description: "manager",
+					roles: ["admin"],
+					token,
+					refreshToken,
+				});
+			}
+			else {
+				return resultSuccess({
+					userId: "2",
+					avatar: "https://avatars.githubusercontent.com/u/47056890",
+					username: "Tom",
+					nickname: "Tom",
+					description: "employee",
+					roles: ["common"],
+					token,
+					refreshToken,
+				});
+			}
+		},
 	},
 	{
 		url: "/api/logout",
 		timeout: 1000,
 		method: "post",
 		response: () => resultSuccess({}),
-	},
-	{
-		url: "/api/userinfo",
-		timeout: 1000,
-		method: "get",
-		response: () => resultSuccess(adminInfo),
 	},
 ]);

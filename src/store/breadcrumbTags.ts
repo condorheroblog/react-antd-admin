@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 const initialState = {
-	visitedTags: new Set<string>(["/home"]),
+	visitedTags: new Set<string>([import.meta.env.VITE_BASE_HOME_PATH]),
 };
 
 type TagsState = typeof initialState;

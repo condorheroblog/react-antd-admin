@@ -33,7 +33,7 @@ export default function Logo({ collapsed }: LogoProps) {
 	const navigate = useNavigate();
 
 	return (
-		<div className={classes.logoContainer} onClick={() => navigate("/")}>
+		<div className={classes.logoContainer} onClick={() => navigate(import.meta.env.VITE_BASE_HOME_PATH)}>
 			<img src={logo} alt="logo" className={classes.logo} />
 
 			{collapsed

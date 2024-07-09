@@ -13,11 +13,8 @@ export function RouterGuards() {
 	const matches = useMatches();
 	const navigate = useNavigate();
 	const { t } = useTranslation();
-	const hasFetchedUserInfo = useUserStore(
-		state => state.hasFetchedUserInfo,
-	);
 	const lng = useUserStore(state => state.lng);
-	const getUserInfo = useUserStore(state => state.getUserInfo);
+	const accessToken = useUserStore(state => state.token);
 
 	const updateDocumentTitle = useCallback(async () => {
 		const currentRoute = matches[matches.length - 1];
@@ -44,9 +41,7 @@ export function RouterGuards() {
 			return;
 		}
 
-		// Do not use redux to prevent tokens from being deleted
-		const hasTokenInLocal = window.localStorage.getItem("token");
-		if (!hasTokenInLocal) {
+		if (!accessToken) {
 			// Go to login page
 			// Remember the route before exiting
 			if (location.pathname.length > 1) {
@@ -61,15 +56,12 @@ export function RouterGuards() {
 			}
 		}
 		else {
-			// Fetch user profile
-			!hasFetchedUserInfo && (await getUserInfo());
-
 			// Redirect to home page
 			if (matches.length === 1 && matches[0].pathname === "/") {
 				navigate(import.meta.env.VITE_BASE_HOME_PATH, { replace: true });
 			}
 		}
-	}, [matches, hasFetchedUserInfo, rememberRoute]);
+	}, [matches, rememberRoute, accessToken]);
 
 	useEffect(() => {
 		guardLogic();

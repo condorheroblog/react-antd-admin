@@ -2,7 +2,7 @@ import type { Options } from "ky";
 import ky from "ky";
 import { message } from "antd";
 
-import { useGlobalStore } from "#src/store";
+import { useGlobalStore, useUserStore } from "#src/store";
 import { rememberRoute } from "#src/utils";
 
 const defaultConfig: Options = {
@@ -17,8 +17,7 @@ const defaultConfig: Options = {
 		beforeRequest: [
 			(request) => {
 				useGlobalStore.getState().openGlobalSpin();
-				// Do not use redux to prevent tokens from being deleted
-				const token = window.localStorage.getItem("token");
+				const { token } = useUserStore.getState();
 				request.headers.set("Authorization", `Bearer ${token}`);
 			},
 		],

@@ -10,8 +10,6 @@ export function useLanguage() {
 
 	const handleChangeLanguage = useCallback(
 		async (locale: LanguageType) => {
-			// local language
-			window.localStorage.setItem("lng", locale);
 			// store language
 			changeLanguage(locale);
 			// react-i18n language
