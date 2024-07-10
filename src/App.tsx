@@ -6,10 +6,11 @@ import "dayjs/locale/zh-cn";
 import { useTranslation } from "react-i18next";
 
 import { router } from "./router";
+import { customAntdTheme } from "./styles/antdTheme";
 import type { LanguageType } from "#src/locales";
 
 import { useGlobalStore, useUserStore } from "#src/store";
-import { GlobalSpin, JSSThemeProvider } from "#src/components";
+import { AntdApp, GlobalSpin, JSSThemeProvider } from "#src/components";
 import { ANT_DESIGN_LOCALE } from "#src/locales";
 import { useScrollToHash } from "#src/hooks";
 
@@ -112,15 +113,18 @@ export default function App() {
 					theme === "dark"
 						? antdTheme.darkAlgorithm
 						: antdTheme.defaultAlgorithm,
+				...customAntdTheme,
 			}}
 		>
-			<JSSThemeProvider>
-				<GlobalSpin>
-					<Suspense fallback={null}>
-						{isReadyLanguage ? <RouterProvider router={router} /> : null}
-					</Suspense>
-				</GlobalSpin>
-			</JSSThemeProvider>
+			<AntdApp>
+				<JSSThemeProvider>
+					<GlobalSpin>
+						<Suspense fallback={null}>
+							{isReadyLanguage ? <RouterProvider router={router} /> : null}
+						</Suspense>
+					</GlobalSpin>
+				</JSSThemeProvider>
+			</AntdApp>
 		</ConfigProvider>
 	);
 }

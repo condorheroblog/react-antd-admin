@@ -11,9 +11,6 @@ import { searchRoute } from "#src/utils";
 const useStyles = createUseStyles((theme: GlobalToken) => {
 	return {
 		tabsContainer: {
-			display: "flex",
-			justifyContent: "space-between",
-			alignItems: "center",
 			backgroundColor: theme.colorBgBase,
 			borderTop: "1px solid #e8e8e8",
 			borderBottom: "1px solid #e8e8e8",
@@ -48,10 +45,6 @@ export default function BreadcrumbTags() {
 
 	const [activeKey, setActiveKey] = useState(pathname);
 
-	const handleScroll = () => {
-
-	};
-
 	const handleReload = () => {
 		location.reload();
 	};
@@ -79,30 +72,30 @@ export default function BreadcrumbTags() {
 
 	return (
 		<div className={classes.tabsContainer}>
-			<div onWheel={handleScroll}>
-				<Tabs
-					key={lng}
-					className={classes.tab}
-					size="small"
-					hideAdd
-					animated
-					onChange={handleChangeTabs}
-					activeKey={activeKey}
-					type="editable-card"
-					onEdit={handleEditTabs}
-					items={Array.from(visitedTags).map((tagItem, tagIndex) => {
-						const currRoute = searchRoute(routeModuleList, tagItem);
-						return { key: tagItem, label: currRoute?.handle?.title, closable: !!tagIndex };
-					})}
-				/>
-			</div>
-
-			<Button
-				icon={<RedoOutlined />}
+			<Tabs
+				key={lng}
+				className={classes.tab}
 				size="small"
-				onClick={() => handleReload()}
+				hideAdd
+				animated
+				onChange={handleChangeTabs}
+				activeKey={activeKey}
+				type="editable-card"
+				onEdit={handleEditTabs}
+				items={Array.from(visitedTags).map((tagItem, tagIndex) => {
+					const currRoute = searchRoute(routeModuleList, tagItem);
+					return { key: tagItem, label: currRoute?.handle?.title, closable: !!tagIndex };
+				})}
+				tabBarExtraContent={{
+					right: (
+						<Button
+							icon={<RedoOutlined />}
+							size="small"
+							onClick={() => handleReload()}
+						/>
+					),
+				}}
 			/>
-
 		</div>
 	);
 }

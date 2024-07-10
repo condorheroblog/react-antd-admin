@@ -24,6 +24,8 @@ export default defineConfig({
 	},
 	server: {
 		port: 3333,
+		// https://vitejs.dev/config/server-options#server-proxy
+		proxy: {},
 	},
 	define: {
 		__APP_INFO__: JSON.stringify(__APP_INFO__),

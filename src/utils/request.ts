@@ -1,15 +1,17 @@
 import type { Options } from "ky";
 import ky from "ky";
-import { message } from "antd";
+import { message, rememberRoute } from "#src/utils";
 
 import { useGlobalStore, useUserStore } from "#src/store";
-import { rememberRoute } from "#src/utils";
 import { fetchRefreshToken } from "#src/api/user";
 
 const defaultConfig: Options = {
 	// The input argument cannot start with a slash / when using prefixUrl option.
 	prefixUrl: import.meta.env.VITE_API_BASE_URL,
 	timeout: 10000,
+	retry: {
+		limit: 0,
+	},
 	headers: {
 		"Accept": "application/json, text/plain, */*",
 		"Content-Type": "application/json",
