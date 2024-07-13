@@ -4,6 +4,7 @@ import { initReactI18next } from "react-i18next";
 import i18n from "i18next";
 
 import "./styles/index.css";
+import "./styles/tailwind.css";
 import App from "./App";
 
 import { i18nInitOptions } from "#src/locales";
