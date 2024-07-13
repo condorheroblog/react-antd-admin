@@ -26,6 +26,7 @@ const defaultConfig: Options = {
 		],
 		afterResponse: [
 			async (request, options, response) => {
+				useGlobalStore.getState().closeGlobalSpin();
 				if (!response.ok) {
 					if (response.status === 401) {
 						const { refreshToken } = useUserStore.getState();
@@ -42,11 +43,15 @@ const defaultConfig: Options = {
 						});
 					}
 					else {
-						const json = await response.json();
-						message.error(json.message || response.statusText);
+						try {
+							const json = await response.json();
+							message.error(json.errorMsg || json.message || response.statusText);
+						}
+						catch (e) {
+							message.error(response.statusText);
+						}
 					}
 				}
-				useGlobalStore.getState().closeGlobalSpin();
 			},
 		],
 	},

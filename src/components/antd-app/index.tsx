@@ -7,7 +7,7 @@ export interface AntdAppProps {
 }
 export function AntdApp({ children }: AntdAppProps) {
 	return (
-		<App>
+		<App style={{ height: "100%" }}>
 			<StaticAntd />
 			{children}
 		</App>
