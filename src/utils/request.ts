@@ -12,10 +12,6 @@ const defaultConfig: Options = {
 	retry: {
 		limit: 0,
 	},
-	headers: {
-		"Accept": "application/json, text/plain, */*",
-		"Content-Type": "application/json",
-	},
 	hooks: {
 		beforeRequest: [
 			(request) => {
