@@ -31,7 +31,7 @@ export default function LanguageMenu() {
 				selectable: true,
 				defaultSelectedKeys: [language],
 			}}
-			arrow
+			arrow={false}
 			placement="bottom"
 		>
 			<div role="menuitem" tabIndex={-1}>

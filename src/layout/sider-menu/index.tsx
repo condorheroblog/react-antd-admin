@@ -76,7 +76,7 @@ export default function SiderMenu() {
 
 	const getSelectedKeys = useMemo(
 		() => matches.map(item => item.id),
-		[matches, routeList],
+		[matches],
 	);
 
 	const handleSelect: MenuProps["onSelect"] = ({ key }) => {
@@ -111,7 +111,7 @@ export default function SiderMenu() {
 
 	useEffect(() => {
 		setOpenKeys(matches.map(item => item.id));
-	}, [matches, routeList]);
+	}, [matches]);
 
 	return (
 		<Menu

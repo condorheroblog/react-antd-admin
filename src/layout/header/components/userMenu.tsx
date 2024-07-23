@@ -20,7 +20,7 @@ export default function UserMenu() {
 	};
 
 	return (
-		<Dropdown menu={{ items, onClick }} arrow placement="bottom">
+		<Dropdown menu={{ items, onClick }} arrow={false} placement="bottom">
 			<div role="menuitem" tabIndex={-1}>
 				<Avatar src={avatar} />
 			</div>
