@@ -1,10 +1,9 @@
 import { isValidElement, useCallback, useEffect } from "react";
-import { useLocation, useMatches, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useMatches, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { whiteList } from "./index";
 
-import { ParentLayout } from "#src/layout";
 import { useUserStore } from "#src/store";
 import { rememberRoute } from "#src/utils";
 
@@ -71,5 +70,5 @@ export function RouterGuards() {
 		updateDocumentTitle();
 	}, [matches, lng, updateDocumentTitle]);
 
-	return <ParentLayout />;
+	return <Outlet />;
 }
