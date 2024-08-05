@@ -2,11 +2,47 @@ import { create } from "zustand";
 
 import { isMobile } from "#src/utils";
 
-export type ThemeType = "dark" | "light" | null;
+/**
+ * @zh 主题类型
+ * @en Theme type
+ */
+export type ThemeType = "dark" | "light" | "";
 
+/**
+ * @zh 从 localStorage 中获取默认主题，如果没有则默认为空字符串
+ * @en Get the default theme from localStorage, or an empty string if not found
+ */
+const defaultTheme = localStorage.getItem("theme") ?? "";
+
+/**
+ * @zh 应用的初始状态
+ * @en Initial state of the application
+ */
 const initialState = {
+	/**
+	 * @zh 全局加载动画是否显示
+	 * @en Whether the global spinning animation is shown
+	 */
 	globalSpin: false,
-	theme: localStorage.getItem("theme") as ThemeType,
+	/**
+	 * @zh 当前主题
+	 * @en Current theme
+	 */
+	theme: defaultTheme as ThemeType,
+	/**
+	 * @zh 是否为暗色主题
+	 * @en Whether it is a dark theme
+	 */
+	isDark: defaultTheme === "dark",
+	/**
+	 * @zh 是否为亮色主题
+	 * @en Whether it is a light theme
+	 */
+	isLight: defaultTheme === "light",
+	/**
+	 * @zh 是否为移动设备
+	 * @en Whether it is a mobile device
+	 */
 	isMobile: isMobile(),
 };
 
@@ -40,11 +76,14 @@ export const useGlobalStore = create<GlobalState & GlobalAction>(set => ({
 	changeSiteTheme: (
 		payload,
 	) => {
+		const theme = payload.theme ?? "";
 		if (payload.isWriteLocalStorage) {
-			window.localStorage.setItem("theme", payload.theme ?? "");
+			window.localStorage.setItem("theme", theme);
 		}
 		return set({
-			theme: payload.theme,
+			theme,
+			isDark: theme === "dark",
+			isLight: theme === "light",
 		});
 	},
 

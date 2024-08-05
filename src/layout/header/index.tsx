@@ -1,4 +1,3 @@
-import type { GlobalToken } from "antd";
 import { Button, Layout, theme } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { createUseStyles } from "react-jss";
@@ -10,7 +9,7 @@ import ProjectSettings from "./components/projectSettings";
 
 const { Header: AntdHeader } = Layout;
 
-const useStyles = createUseStyles((theme: GlobalToken) => {
+const useStyles = createUseStyles(({ token }) => {
 	return {
 		layoutHeader: {
 			display: "flex",
@@ -31,7 +30,7 @@ const useStyles = createUseStyles((theme: GlobalToken) => {
 			},
 			"&>div:hover": {
 				background: {
-					color: theme.colorBgTextHover,
+					color: token.colorBgTextHover,
 				},
 			},
 		},

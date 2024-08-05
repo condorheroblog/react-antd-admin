@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import type { GlobalToken } from "antd";
 import {
 	Button,
 	Col,
@@ -21,7 +20,7 @@ import { Footer } from "#src/layout";
 
 const { Title } = Typography;
 
-const useStyles = createUseStyles((theme: GlobalToken) => {
+const useStyles = createUseStyles(({ token }) => {
 	return {
 		loginWrapper: {
 			width: "100%",
@@ -30,17 +29,14 @@ const useStyles = createUseStyles((theme: GlobalToken) => {
 			display: "flex",
 			justifyContent: "center",
 			alignItems: "center",
-			backgroundColor: theme.colorBgContainer,
+			backgroundColor: token.colorBgContainer,
 			borderRadius: "0.8em",
-			border: `1px solid ${theme.colorBorderSecondary}`,
-			boxShadow: theme.boxShadow,
+			border: `1px solid ${token.colorBorderSecondary}`,
+			boxShadow: token.boxShadow,
 		},
 		helloText: {},
 		logo: {
 			width: "6em",
-		},
-		logoText: {
-			fontSize: "1.8em !important",
 		},
 		template: {
 			width: "30em",
@@ -55,7 +51,7 @@ const useStyles = createUseStyles((theme: GlobalToken) => {
 			display: "flex",
 			flexDirection: "column",
 			backgroundImage: () => {
-				return `radial-gradient(${theme.colorBgContainer}, ${theme.colorPrimaryBg})`;
+				return `radial-gradient(${token.colorBgContainer}, ${token.colorPrimaryBg})`;
 			},
 		},
 		footer: {
@@ -97,7 +93,7 @@ export default function Login() {
 						<Space direction="vertical">
 							<Space>
 								<img src={logo} alt="logo" className={classes.logo} />
-								<Title level={1} className={classes.logoText}>
+								<Title level={1} ellipsis={true} className="!text-sm">
 									React Antd Admin
 								</Title>
 							</Space>

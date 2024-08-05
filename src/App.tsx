@@ -6,7 +6,7 @@ import "dayjs/locale/zh-cn";
 import { useTranslation } from "react-i18next";
 
 import { router } from "./router";
-import { customAntdTheme } from "./styles/antdTheme";
+import { customAntdDarkTheme, customAntdLightTheme } from "./styles/antdTheme";
 import type { LanguageType } from "#src/locales";
 
 import { useGlobalStore, useUserStore } from "#src/store";
@@ -25,7 +25,7 @@ export default function App() {
 	 */
 	const [isReadyLanguage, setReadyLanguage] = useState(false);
 	const { lng } = useUserStore();
-	const { theme, changeWindowSize, changeSiteTheme } = useGlobalStore();
+	const { theme, isDark, changeWindowSize, changeSiteTheme } = useGlobalStore();
 
 	useScrollToHash();
 
@@ -94,7 +94,7 @@ export default function App() {
 				darkModeMediaQuery.removeEventListener("change", matchMode);
 			};
 		}
-	}, [setTheme]);
+	}, [theme, setTheme]);
 
 	// Mobile or desktop
 	useEffect(() => {
@@ -110,10 +110,10 @@ export default function App() {
 			locale={getAntdLocale()}
 			theme={{
 				algorithm:
-					theme === "dark"
+					isDark
 						? antdTheme.darkAlgorithm
 						: antdTheme.defaultAlgorithm,
-				...customAntdTheme,
+				...(isDark ? customAntdDarkTheme : customAntdLightTheme),
 			}}
 		>
 			<AntdApp>

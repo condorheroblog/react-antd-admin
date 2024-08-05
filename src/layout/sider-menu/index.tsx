@@ -119,7 +119,7 @@ export default function SiderMenu() {
 			key={lng}
 			style={{ height: isMobile ? "100%" : "initial" }}
 			mode="inline"
-			theme="dark"
+			// theme="dark"
 			items={getMenuItems(routeList)}
 			openKeys={openKeys}
 			onOpenChange={handleOpenChange}

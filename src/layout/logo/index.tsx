@@ -1,7 +1,10 @@
 import { createUseStyles } from "react-jss";
 import { useNavigate } from "react-router-dom";
+import { Typography } from "antd";
 
 import logo from "#src/assets/images/logo.svg";
+
+const { Title } = Typography;
 
 const useStyles = createUseStyles({
 	logoContainer: {
@@ -9,18 +12,13 @@ const useStyles = createUseStyles({
 		"justifyContent": "center",
 		"alignItems": "center",
 		"gap": "0.5em",
-		"height": "4.5em",
+		"height": "3.5em",
 		"&:hover": {
 			cursor: "pointer",
 		},
 	},
 	logo: {
 		width: "2.4em",
-	},
-	logoText: {
-		fontSize: "1em",
-		fontWeight: "bold",
-		color: "#FFFFFF",
 	},
 });
 
@@ -39,7 +37,7 @@ export default function Logo({ collapsed }: LogoProps) {
 			{collapsed
 				? null
 				: (
-					<h1 className={classes.logoText}>React Antd Admin</h1>
+					<Title level={1} className="!text-sm !m-0" ellipsis={true}>React Antd Admin</Title>
 				)}
 		</div>
 	);

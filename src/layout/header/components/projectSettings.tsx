@@ -8,7 +8,7 @@ import { useGlobalStore } from "#src/store";
 export default function ProjectSettings() {
 	const { t } = useTranslation();
 	const [isOpen, setIsOpen] = useState(false);
-	const { theme, isMobile, changeSiteTheme } = useGlobalStore();
+	const { isLight, isMobile, changeSiteTheme } = useGlobalStore();
 
 	return (
 		<>
@@ -42,7 +42,7 @@ export default function ProjectSettings() {
 				>
 					<Divider>{t("common.projectSettings.theme")}</Divider>
 					<Switch
-						checked={theme === "light"}
+						checked={isLight}
 						onChange={(checked) => {
 							changeSiteTheme({
 								theme: !checked ? "dark" : "light",

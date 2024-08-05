@@ -46,6 +46,7 @@ export default function ContainerLayout() {
 	} = theme.useToken();
 	const classes = useStyles();
 	const isMobile = useGlobalStore(state => state.isMobile);
+	const isDark = useGlobalStore(state => state.isDark);
 
 	return (
 		<Layout>
@@ -63,7 +64,12 @@ export default function ContainerLayout() {
 					</Drawer>
 				)
 				: (
-					<Sider trigger={null} collapsible collapsed={collapsed}>
+					<Sider
+						theme={isDark ? "dark" : "light"}
+						trigger={null}
+						collapsible
+						collapsed={collapsed}
+					>
 						<Logo collapsed={collapsed} />
 						<SiderMenu />
 					</Sider>

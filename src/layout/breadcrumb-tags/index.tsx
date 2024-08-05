@@ -1,4 +1,3 @@
-import type { GlobalToken } from "antd";
 import { RedoOutlined, RightOutlined } from "@ant-design/icons";
 import { Button, Dropdown, Tabs } from "antd";
 import { createUseStyles } from "react-jss";
@@ -8,10 +7,10 @@ import { useBreadcrumbTagsStore, useUserStore } from "#src/store";
 import { routeModuleList } from "#src/router";
 import { searchRoute } from "#src/utils";
 
-const useStyles = createUseStyles((theme: GlobalToken) => {
+const useStyles = createUseStyles(({ token }) => {
 	return {
 		tabsContainer: {
-			backgroundColor: theme.colorBgBase,
+			backgroundColor: token.colorBgBase,
 			borderTop: "1px solid #e8e8e8",
 			borderBottom: "1px solid #e8e8e8",
 			paddingRight: "1em",
@@ -28,7 +27,7 @@ const useStyles = createUseStyles((theme: GlobalToken) => {
 				},
 			},
 			"& .ant-tabs-ink-bar": {
-				backgroundColor: theme.colorPrimary,
+				backgroundColor: token.colorPrimary,
 				visibility: "visible !important",
 			},
 		},
