@@ -1,7 +1,8 @@
 import type { Options } from "ky";
 import ky from "ky";
-import { message, rememberRoute } from "#src/utils";
 
+import { isObject } from "./is";
+import { message, rememberRoute } from "#src/utils";
 import { useGlobalStore, useUserStore } from "#src/store";
 import { fetchRefreshToken } from "#src/api/user";
 
@@ -40,10 +41,17 @@ const defaultConfig: Options = {
 					}
 					else {
 						try {
-							const json = await response.json();
-							message.error(json.errorMsg || json.message || response.statusText);
+							const data = await response.json();
+							if (isObject(data)) {
+								const json = data as { errorMsg?: string, message?: string };
+								message.error(json.errorMsg || json.message || response.statusText);
+							}
+							else {
+								message.error(response.statusText);
+							}
 						}
 						catch (e) {
+							console.error("Error parsing JSON:", e);
 							message.error(response.statusText);
 						}
 					}

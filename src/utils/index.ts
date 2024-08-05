@@ -1,3 +1,4 @@
+export * from "./is";
 export * from "./progress";
 export * from "./request";
 export * from "./is-mobile";
