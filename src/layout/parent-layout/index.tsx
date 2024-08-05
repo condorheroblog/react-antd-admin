@@ -1,6 +1,6 @@
 import { Suspense, useRef } from "react";
 import { useLocation, useOutlet } from "react-router-dom";
-import { Transition, TransitionGroup } from "react-transition-group";
+import { SwitchTransition, Transition } from "react-transition-group";
 
 import { NProgress } from "#src/utils";
 
@@ -11,7 +11,7 @@ export default function ParentLayout() {
 
 	return (
 		<Suspense>
-			<TransitionGroup>
+			<SwitchTransition>
 				<Transition
 					nodeRef={nodeRef}
 					/**
@@ -32,7 +32,7 @@ export default function ParentLayout() {
 					onEntered={() => { NProgress.done(); }}
 					key={location.pathname}
 					timeout={0}
-					unmountOnExit={false}
+					unmountOnExit={true}
 				>
 					{_ => (
 						<div ref={nodeRef}>
@@ -40,7 +40,7 @@ export default function ParentLayout() {
 						</div>
 					)}
 				</Transition>
-			</TransitionGroup>
+			</SwitchTransition>
 		</Suspense>
 	);
 }
