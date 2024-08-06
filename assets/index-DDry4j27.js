@@ -1,4 +1,4 @@
-import{c,j as e}from"./index-Tg7UUzNA.js";import{K as t,N as i,f as h}from"./antd-TY7qbTk6.js";import"./faker-DJelxzwk.js";import"./react-SsG_PZ1R.js";const x=`
+import{c,j as e}from"./index-DeWCwMv-.js";import{T as t,N as i,f as h}from"./antd-qv9vHPj2.js";import"./faker-DJelxzwk.js";import"./react-DHBhVbh9.js";const x=`
 {
 	"i18n-ally.localesPaths": "src/locales",
 	// https://github.com/lokalise/i18n-ally/wiki/Path-Matcher
