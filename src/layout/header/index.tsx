@@ -3,9 +3,9 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { createUseStyles } from "react-jss";
 
 import BreadcrumbViews from "../breadcrumb-views";
-import UserMenu from "./components/userMenu";
-import LanguageMenu from "./components/languageMenu";
-import ProjectSettings from "./components/projectSettings";
+import { UserMenu } from "./components/user-menu";
+import { LanguageMenu } from "./components/language-menu";
+import { ProjectSettings } from "./components/project-settings";
 
 const { Header: AntdHeader } = Layout;
 

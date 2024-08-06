@@ -5,7 +5,7 @@ import { TranslationOutlined } from "@ant-design/icons";
 import type { LanguageType } from "#src/locales";
 import { useLanguage } from "#src/hooks";
 
-export default function LanguageMenu() {
+export function LanguageMenu() {
 	const { language, setLanguage } = useLanguage();
 
 	const items: MenuProps["items"] = [

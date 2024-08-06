@@ -3,7 +3,6 @@ import {
 	Button,
 	Col,
 	Form,
-	Grid,
 	Input,
 	Layout,
 	Row,
@@ -12,39 +11,33 @@ import {
 } from "antd";
 import { createUseStyles } from "react-jss";
 import { useTranslation } from "react-i18next";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import frameworkTemplate from "#src/assets/images/framework-template.svg";
 import logo from "#src/assets/images/logo.svg";
 import { useUserStore } from "#src/store";
 import { Footer } from "#src/layout";
 
+import { LanguageMenu } from "#src/layout/header/components/language-menu";
+import { ThemeSwitch } from "#src/layout/header/components/theme-switch";
+
 const { Title } = Typography;
 
 const useStyles = createUseStyles(({ token }) => {
 	return {
 		loginWrapper: {
-			width: "100%",
-			height: "max(50vh, 400px)",
-			// minWidth: "23vw",
 			display: "flex",
+			minWidth: "300px",
 			justifyContent: "center",
 			alignItems: "center",
+			flexDirection: "column",
 			backgroundColor: token.colorBgContainer,
 			borderRadius: "0.8em",
 			border: `1px solid ${token.colorBorderSecondary}`,
 			boxShadow: token.boxShadow,
 		},
-		helloText: {},
 		logo: {
 			width: "6em",
-		},
-		template: {
-			width: "30em",
-		},
-		content: {
-			display: "flex",
-			alignItems: "center",
-			justifyContent: "center",
 		},
 		section: {
 			height: "100%",
@@ -54,16 +47,10 @@ const useStyles = createUseStyles(({ token }) => {
 				return `radial-gradient(${token.colorBgContainer}, ${token.colorPrimaryBg})`;
 			},
 		},
-		footer: {
-			backgroundColor: "transparent",
-			display: "flex",
-			justifyContent: "center",
-		},
 	};
 });
 
 const { Content } = Layout;
-const { useBreakpoint } = Grid;
 const FORM_INITIAL_VALUES = {
 	username: "admin",
 	password: "password",
@@ -73,12 +60,21 @@ export type FormInitialValues = typeof FORM_INITIAL_VALUES;
 export default function Login() {
 	const classes = useStyles();
 	const [loginForm] = Form.useForm();
-	const screens = useBreakpoint();
 	const { t } = useTranslation();
+	const [searchParams] = useSearchParams();
+	const navigate = useNavigate();
 	const login = useUserStore(state => state.login);
 
 	const handleFinish = async (values: FormInitialValues) => {
 		await login(values);
+
+		const redirect = searchParams.get("redirect");
+		if (redirect) {
+			navigate(`${import.meta.env.BASE_URL}${redirect.slice(1)}`);
+		}
+		else {
+			navigate(`${import.meta.env.BASE_URL}`);
+		}
 	};
 
 	useEffect(() => {
@@ -87,8 +83,12 @@ export default function Login() {
 
 	return (
 		<Layout className={classes.section}>
-			<Content className={classes.content}>
-				<Row gutter={[{ xs: 0, sm: 0, lg: 120 }, 0]}>
+			<header className="flex gap-3 absolute right-3 top-3 scale-95">
+				<ThemeSwitch />
+				<LanguageMenu />
+			</header>
+			<Content className="flex justify-center items-center">
+				<Row gutter={[{ xs: 0, sm: 0, lg: 200 }, 0]}>
 					<Col xs={0} sm={0} lg={12}>
 						<Space direction="vertical">
 							<Space>
@@ -100,22 +100,18 @@ export default function Login() {
 							<img
 								src={frameworkTemplate}
 								alt="framework-template"
-								className={classes.template}
 							/>
 						</Space>
 					</Col>
 
 					<Col xs={24} sm={24} lg={12}>
-						<div
-							className={classes.loginWrapper}
-							style={{ minWidth: !screens.lg ? "70vw" : "20vw" }}
-						>
-							<Space direction="vertical" style={{ minWidth: "80%" }}>
+						<div className={classes.loginWrapper}>
+							<div className="w-4/5 my-10">
 								<Space direction="vertical">
-									<Title level={3} className={classes.helloText}>
+									<Title level={3}>
 										Hello, Welcome to
 									</Title>
-									<Title style={{ marginTop: 0 }} level={5}>
+									<Title className="mt-0" level={5}>
 										React Antd Admin
 									</Title>
 								</Space>
@@ -157,7 +153,7 @@ export default function Login() {
 										</Button>
 									</Form.Item>
 								</Form>
-							</Space>
+							</div>
 						</div>
 					</Col>
 				</Row>
