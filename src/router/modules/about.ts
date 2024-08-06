@@ -11,7 +11,6 @@ const About = lazy(() => import("#src/pages/about"));
 const routes: AppRouteRecordRaw[] = [
 	{
 		path: "/about",
-		id: "about",
 		Component: ContainerLayout,
 		handle: {
 			sort: 100,
@@ -21,7 +20,6 @@ const routes: AppRouteRecordRaw[] = [
 		children: [
 			{
 				index: true,
-				id: "about_index",
 				Component: About,
 				handle: {
 					title: t("common.menu.about"),

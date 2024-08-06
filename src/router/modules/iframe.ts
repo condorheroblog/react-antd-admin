@@ -11,7 +11,6 @@ import { t } from "#src/locales";
 const routes: AppRouteRecordRaw[] = [
 	{
 		path: "/iframe",
-		id: "iframe",
 		Component: ContainerLayout,
 		handle: {
 			icon: createElement(PaperClipOutlined),
@@ -21,7 +20,6 @@ const routes: AppRouteRecordRaw[] = [
 		children: [
 			{
 				path: "/iframe/ant-design",
-				id: "iframe_index",
 				Component: Iframe,
 				handle: {
 					icon: createElement(AntDesignOutlined),
@@ -31,7 +29,6 @@ const routes: AppRouteRecordRaw[] = [
 			},
 			{
 				path: "/iframe/react-docs",
-				id: "iframe_react_docs",
 				Component: Iframe,
 				handle: {
 					icon: createElement(ReactIcon),

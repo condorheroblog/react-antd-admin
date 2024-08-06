@@ -1,11 +1,11 @@
 import type { ReactNode } from "react";
 import type { IndexRouteObject, NonIndexRouteObject } from "react-router-dom";
 
-export interface IndexRouteMeta extends IndexRouteObject {
+export interface IndexRouteMeta extends Omit<IndexRouteObject, "id"> {
 	redirect?: string
 	handle?: RouteMeta
 }
-export interface NonIndexRouteMeta extends NonIndexRouteObject {
+export interface NonIndexRouteMeta extends Omit<NonIndexRouteObject, "id"> {
 	redirect?: string
 	handle?: RouteMeta
 	children?: AppRouteRecordRaw[]

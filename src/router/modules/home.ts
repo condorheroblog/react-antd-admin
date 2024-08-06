@@ -10,8 +10,8 @@ const Home = lazy(() => import("#src/pages/home"));
 const routes: AppRouteRecordRaw[] = [
 	{
 		path: "/home",
-		id: "home",
 		Component: ContainerLayout,
+		id: "home",
 		handle: {
 			sort: 1,
 			title: t("common.menu.home"),
@@ -20,7 +20,6 @@ const routes: AppRouteRecordRaw[] = [
 		children: [
 			{
 				index: true,
-				id: "home_index",
 				Component: Home,
 				handle: {
 					title: t("common.menu.home"),

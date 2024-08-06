@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import type { AppRouteRecordRaw } from "./types";
 import { RouterGuards } from "./guards";
+import { addIdToRoutes } from "./utils";
 
 import Error404 from "#src/pages/404";
 
@@ -13,7 +14,7 @@ export const routeModuleList = Object.keys(modules).reduce<AppRouteRecordRaw[]>(
 	(list, key) => {
 		const mod = modules[key].default ?? {};
 		const modList = Array.isArray(mod) ? [...mod] : [mod];
-		return [...list, ...modList];
+		return [...list, ...addIdToRoutes(modList)];
 	},
 	[],
 );
