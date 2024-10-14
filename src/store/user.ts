@@ -1,7 +1,7 @@
+import type { FormInitialValues } from "#src/pages/login";
+import { fetchLogin, fetchLogout } from "#src/api/user";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { fetchLogin, fetchLogout } from "#src/api/user";
-import type { FormInitialValues } from "#src/pages/login";
 
 const initialState = {
 	userId: "",

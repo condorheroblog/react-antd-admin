@@ -1,8 +1,8 @@
-import { createUseStyles } from "react-jss";
-import { useNavigate } from "react-router-dom";
-import { Typography } from "antd";
-
 import logo from "#src/assets/images/logo.svg";
+import { Typography } from "antd";
+import { createUseStyles } from "react-jss";
+
+import { useNavigate } from "react-router-dom";
 
 const { Title } = Typography;
 

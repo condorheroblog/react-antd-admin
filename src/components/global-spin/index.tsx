@@ -1,8 +1,8 @@
-import { Spin } from "antd";
 import type { ReactNode } from "react";
-import { createUseStyles } from "react-jss";
-
 import { useGlobalStore } from "#src/store";
+import { Spin } from "antd";
+
+import { createUseStyles } from "react-jss";
 
 export interface GlobalSpinProps {
 	children: ReactNode

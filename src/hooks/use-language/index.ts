@@ -1,8 +1,8 @@
-import { useCallback, useMemo } from "react";
-import { useTranslation } from "react-i18next";
-
 import type { LanguageType } from "#src/locales";
 import { useUserStore } from "#src/store";
+
+import { useCallback, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 export function useLanguage() {
 	const { i18n } = useTranslation();

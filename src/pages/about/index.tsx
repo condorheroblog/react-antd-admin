@@ -1,5 +1,5 @@
+import { Card, Col, Descriptions, Row, Tag, theme, Typography } from "antd";
 import { useTranslation } from "react-i18next";
-import { Card, Col, Descriptions, Row, Tag, Typography, theme } from "antd";
 
 import { dependenciesItems, devDependenciesItems } from "./constants";
 

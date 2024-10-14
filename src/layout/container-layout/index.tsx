@@ -1,15 +1,15 @@
+import { useGlobalStore } from "#src/store";
 import { Drawer, Layout, theme } from "antd";
 import { useState } from "react";
-import { createUseStyles } from "react-jss";
 
-import Logo from "../logo";
+import { createUseStyles } from "react-jss";
+import BreadcrumbTags from "../breadcrumb-tags";
 import Header from "../header";
+import Logo from "../logo";
+import ParentLayout from "../parent-layout";
+
 // import Footer from "./components/footer";
 import SiderMenu from "../sider-menu";
-import ParentLayout from "../parent-layout";
-import BreadcrumbTags from "../breadcrumb-tags";
-
-import { useGlobalStore } from "#src/store";
 
 const { Content, Sider } = Layout;
 

@@ -1,7 +1,7 @@
-import type { GlobalToken } from "antd";
+import type { dependencies, devDependencies } from "#package.json";
 
 import type { ThemeType } from "#src/store";
-import type { dependencies, devDependencies } from "#package.json";
+import type { GlobalToken } from "antd";
 
 declare global {
 	const __APP_INFO__: {

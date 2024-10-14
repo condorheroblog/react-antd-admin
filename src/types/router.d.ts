@@ -1,7 +1,7 @@
-import "react-router-dom";
+import type { RouteMeta } from "#src/router/types";
 import type { UIMatch } from "react-router-dom";
 
-import type { RouteMeta } from "#src/router/types";
+import "react-router-dom";
 
 /**
  * Matches the given routes to a location and returns the match data.

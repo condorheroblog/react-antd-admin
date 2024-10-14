@@ -1,9 +1,9 @@
+import type { AppRouteRecordRaw } from "../types";
+import { ContainerLayout } from "#src/layout";
+
+import { t } from "#src/locales";
 import { HomeFilled } from "@ant-design/icons";
 import { createElement, lazy } from "react";
-
-import type { AppRouteRecordRaw } from "../types";
-import { t } from "#src/locales";
-import { ContainerLayout } from "#src/layout";
 
 const Home = lazy(() => import("#src/pages/home"));
 

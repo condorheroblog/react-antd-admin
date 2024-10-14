@@ -1,11 +1,11 @@
 import type { ColProps } from "antd";
-import { Card, Col, Row } from "antd";
 import {
 	MessageOutlined,
 	MoneyCollectOutlined,
 	ShoppingCartOutlined,
 	UserOutlined,
 } from "@ant-design/icons";
+import { Card, Col, Row } from "antd";
 import { useTranslation } from "react-i18next";
 
 const { Meta } = Card;

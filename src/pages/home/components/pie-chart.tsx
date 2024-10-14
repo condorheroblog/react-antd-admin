@@ -1,11 +1,11 @@
+import type { PieDataType } from "#src/api/home";
 import type { EChartsOption } from "echarts";
-import ReactECharts from "echarts-for-react";
+import { fetchPie } from "#src/api/home";
 import { Card, Segmented } from "antd";
+import ReactECharts from "echarts-for-react";
+
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-
-import type { PieDataType } from "#src/api/home";
-import { fetchPie } from "#src/api/home";
 
 export default function PieChart() {
 	const { t } = useTranslation();

@@ -1,6 +1,6 @@
-import { Switch } from "antd";
-
 import { useGlobalStore } from "#src/store";
+
+import { Switch } from "antd";
 
 /**
  * 主题切换组件

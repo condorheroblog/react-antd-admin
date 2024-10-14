@@ -1,6 +1,6 @@
-import { App } from "antd";
 import type { ReactNode } from "react";
 import { StaticAntd } from "#src/utils";
+import { App } from "antd";
 
 export interface AntdAppProps {
 	children: ReactNode

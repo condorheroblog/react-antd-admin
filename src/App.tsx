@@ -1,18 +1,18 @@
-import { ConfigProvider, theme as antdTheme } from "antd";
+import type { LanguageType } from "#src/locales";
+import { AntdApp, GlobalSpin, JSSThemeProvider } from "#src/components";
+import { useScrollToHash } from "#src/hooks";
+import { ANT_DESIGN_LOCALE } from "#src/locales";
+import { useGlobalStore, useUserStore } from "#src/store";
+import { theme as antdTheme, ConfigProvider } from "antd";
+
 import dayjs from "dayjs";
-import { RouterProvider } from "react-router-dom";
 import { Suspense, useCallback, useEffect, useState } from "react";
-import "dayjs/locale/zh-cn";
 import { useTranslation } from "react-i18next";
 
+import { RouterProvider } from "react-router-dom";
 import { router } from "./router";
 import { customAntdDarkTheme, customAntdLightTheme } from "./styles/antdTheme";
-import type { LanguageType } from "#src/locales";
-
-import { useGlobalStore, useUserStore } from "#src/store";
-import { AntdApp, GlobalSpin, JSSThemeProvider } from "#src/components";
-import { ANT_DESIGN_LOCALE } from "#src/locales";
-import { useScrollToHash } from "#src/hooks";
+import "dayjs/locale/zh-cn";
 
 export default function App() {
 	const { i18n } = useTranslation();

@@ -1,12 +1,12 @@
+import { HashAnchor } from "#src/pages/docs/components";
+import i18nTranslation from "#src/pages/docs/images/guide/i18n-translation.png";
+
+import lokaliseI18nAlly from "#src/pages/docs/images/guide/lokalise.i18n-ally.png";
+
+import lokaliseI18nAllyPlugin from "#src/pages/docs/images/guide/lokalise.i18n-ally-plugin.png";
 import { Divider, Image, Typography } from "antd";
 import { createUseStyles } from "react-jss";
-
 import { i18nAlly, useInJSX, useInPureJS } from "./constants";
-
-import { HashAnchor } from "#src/pages/docs/components";
-import lokaliseI18nAlly from "#src/pages/docs/images/guide/lokalise.i18n-ally.png";
-import lokaliseI18nAllyPlugin from "#src/pages/docs/images/guide/lokalise.i18n-ally-plugin.png";
-import i18nTranslation from "#src/pages/docs/images/guide/i18n-translation.png";
 
 const { Paragraph, Text, Link } = Typography;
 const useStyles = createUseStyles({

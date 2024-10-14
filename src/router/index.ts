@@ -1,10 +1,10 @@
-import { createBrowserRouter } from "react-router-dom";
-
 import type { AppRouteRecordRaw } from "./types";
-import { RouterGuards } from "./guards";
-import { addIdToRoutes } from "./utils";
 
 import Error404 from "#src/pages/404";
+import { createBrowserRouter } from "react-router-dom";
+import { RouterGuards } from "./guards";
+
+import { addIdToRoutes } from "./utils";
 
 const modules = import.meta.glob<
 	Record<string, { default: AppRouteRecordRaw[] }>

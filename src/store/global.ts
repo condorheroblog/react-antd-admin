@@ -1,6 +1,6 @@
-import { create } from "zustand";
-
 import { isMobile } from "#src/utils";
+
+import { create } from "zustand";
 
 /**
  * @zh 主题类型

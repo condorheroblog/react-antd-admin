@@ -1,13 +1,13 @@
 /* eslint-disable import/no-mutable-exports */
 import type { MessageInstance } from "antd/es/message/interface";
-import type { NotificationInstance } from "antd/es/notification/interface";
 import type { ModalStaticFunctions } from "antd/es/modal/confirm";
+import type { NotificationInstance } from "antd/es/notification/interface";
 
 import {
-	App,
 	message as antdMessage,
 	Modal as antdModal,
 	notification as antdNotification,
+	App,
 } from "antd";
 
 let message: MessageInstance = antdMessage;
@@ -32,6 +32,6 @@ export function StaticAntd() {
 
 export {
 	message,
-	notification,
 	modal,
+	notification,
 };

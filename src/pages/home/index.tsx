@@ -1,10 +1,10 @@
 import type { ColProps } from "antd";
 import { Col, Row, theme } from "antd";
 
-import LineChart from "./components/line-chart";
 import BarChart from "./components/bar-chart";
-import PieChart from "./components/pie-chart";
 import CardList from "./components/card-list";
+import LineChart from "./components/line-chart";
+import PieChart from "./components/pie-chart";
 
 const wrapperCol: ColProps = {
 	xs: 24,

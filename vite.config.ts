@@ -1,9 +1,9 @@
 /// <reference types="vitest" />
 
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { vitePluginFakeServer } from "vite-plugin-fake-server";
 import dayjs from "dayjs";
+import { defineConfig } from "vite";
+import { vitePluginFakeServer } from "vite-plugin-fake-server";
 
 import { dependencies, devDependencies, name, version } from "./package.json";
 

@@ -1,8 +1,8 @@
-import { lazy } from "react";
-
 import type { AppRouteRecordRaw } from "../types";
 
 import { t } from "#src/locales";
+
+import { lazy } from "react";
 
 const Login = lazy(() => import("#src/pages/login"));
 

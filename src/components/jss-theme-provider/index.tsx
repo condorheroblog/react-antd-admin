@@ -1,8 +1,8 @@
-import { theme } from "antd";
 import type { ReactNode } from "react";
-import { ThemeProvider } from "react-jss";
-
 import { useGlobalStore } from "#src/store";
+import { theme } from "antd";
+
+import { ThemeProvider } from "react-jss";
 
 /**
  * 自定义的JSS主题提供者组件

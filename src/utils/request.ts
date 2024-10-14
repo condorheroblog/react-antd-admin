@@ -1,10 +1,10 @@
 import type { Options } from "ky";
-import ky from "ky";
-
-import { isObject } from "./is";
-import { message, rememberRoute } from "#src/utils";
-import { useGlobalStore, useUserStore } from "#src/store";
 import { fetchRefreshToken } from "#src/api/user";
+
+import { useGlobalStore, useUserStore } from "#src/store";
+import { message, rememberRoute } from "#src/utils";
+import ky from "ky";
+import { isObject } from "./is";
 
 // Requests that do not require authentication.
 const requestWhiteList = ["/login"];

@@ -1,12 +1,12 @@
-import { AntDesignOutlined, PaperClipOutlined } from "@ant-design/icons";
-import { createElement } from "react";
-
 import type { AppRouteRecordRaw } from "../types";
-import { ReactIcon } from "../icon";
+import { Iframe } from "#src/components/iframe";
 
 import { ContainerLayout } from "#src/layout";
-import { Iframe } from "#src/components/iframe";
 import { t } from "#src/locales";
+
+import { AntDesignOutlined, PaperClipOutlined } from "@ant-design/icons";
+import { createElement } from "react";
+import { ReactIcon } from "../icon";
 
 const routes: AppRouteRecordRaw[] = [
 	{

@@ -1,3 +1,8 @@
+import type { AppRouteRecordRaw } from "../types";
+import { ContainerLayout, ParentLayout } from "#src/layout";
+
+import { t } from "#src/locales";
+
 import {
 	FileMarkdownOutlined,
 	FireOutlined,
@@ -6,11 +11,6 @@ import {
 	TranslationOutlined,
 } from "@ant-design/icons";
 import { createElement, lazy } from "react";
-
-import type { AppRouteRecordRaw } from "../types";
-
-import { ContainerLayout, ParentLayout } from "#src/layout";
-import { t } from "#src/locales";
 
 const DocsIndex = lazy(() => import("#src/pages/docs/index"));
 const I18n = lazy(() => import("#src/pages/docs/guide/i18n"));

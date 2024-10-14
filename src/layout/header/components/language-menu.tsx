@@ -1,9 +1,9 @@
-import type { MenuProps } from "antd";
-import { Dropdown } from "antd";
-import { TranslationOutlined } from "@ant-design/icons";
-
 import type { LanguageType } from "#src/locales";
+import type { MenuProps } from "antd";
 import { useLanguage } from "#src/hooks";
+
+import { TranslationOutlined } from "@ant-design/icons";
+import { Dropdown } from "antd";
 
 export function LanguageMenu() {
 	const { language, setLanguage } = useLanguage();

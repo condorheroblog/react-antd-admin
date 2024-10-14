@@ -1,4 +1,10 @@
-import { useEffect } from "react";
+import frameworkTemplate from "#src/assets/images/framework-template.svg";
+import logo from "#src/assets/images/logo.svg";
+import { Footer } from "#src/layout";
+import { LanguageMenu } from "#src/layout/header/components/language-menu";
+import { ThemeSwitch } from "#src/layout/header/components/theme-switch";
+
+import { useUserStore } from "#src/store";
 import {
 	Button,
 	Col,
@@ -9,17 +15,11 @@ import {
 	Space,
 	Typography,
 } from "antd";
-import { createUseStyles } from "react-jss";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+
+import { createUseStyles } from "react-jss";
 import { useNavigate, useSearchParams } from "react-router-dom";
-
-import frameworkTemplate from "#src/assets/images/framework-template.svg";
-import logo from "#src/assets/images/logo.svg";
-import { useUserStore } from "#src/store";
-import { Footer } from "#src/layout";
-
-import { LanguageMenu } from "#src/layout/header/components/language-menu";
-import { ThemeSwitch } from "#src/layout/header/components/theme-switch";
 
 const { Title } = Typography;
 

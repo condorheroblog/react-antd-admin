@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Divider, Drawer, Switch } from "antd";
-import { SettingOutlined } from "@ant-design/icons";
-import { useTranslation } from "react-i18next";
-
-import { ThemeSwitch } from "./theme-switch";
 import { useGlobalStore } from "#src/store";
+import { SettingOutlined } from "@ant-design/icons";
+import { Divider, Drawer } from "antd";
+import { useState } from "react";
+
+import { useTranslation } from "react-i18next";
+import { ThemeSwitch } from "./theme-switch";
 
 export function ProjectSettings() {
 	const { t } = useTranslation();

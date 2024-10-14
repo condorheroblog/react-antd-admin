@@ -1,6 +1,6 @@
+import type { TitleProps } from "antd/es/Typography/Title";
 import { Typography } from "antd";
 import { createUseStyles } from "react-jss";
-import type { TitleProps } from "antd/es/Typography/Title";
 
 interface HashAnchorProps extends TitleProps {
 	children: string

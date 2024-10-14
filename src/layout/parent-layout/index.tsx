@@ -1,8 +1,8 @@
+import { NProgress } from "#src/utils";
 import { Suspense, useRef } from "react";
 import { useLocation, useOutlet } from "react-router-dom";
-import { SwitchTransition, Transition } from "react-transition-group";
 
-import { NProgress } from "#src/utils";
+import { SwitchTransition, Transition } from "react-transition-group";
 
 export default function ParentLayout() {
 	const currentOutlet = useOutlet();

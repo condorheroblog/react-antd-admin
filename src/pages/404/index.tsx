@@ -1,9 +1,9 @@
-import { useTranslation } from "react-i18next";
-import { Button, Result } from "antd";
-import { Route, Routes, useNavigate } from "react-router-dom";
-
 import { ContainerLayout } from "#src/layout";
 import { useUserStore } from "#src/store";
+import { Button, Result } from "antd";
+
+import { useTranslation } from "react-i18next";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 export default function Error404() {
 	const { t } = useTranslation();

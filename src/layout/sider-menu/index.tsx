@@ -1,11 +1,11 @@
+import type { AppRouteRecordRaw } from "#src/router/types";
 import type { MenuProps } from "antd";
+import { router } from "#src/router";
+import { useGlobalStore, useUserStore } from "#src/store";
+
 import { Menu } from "antd";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useMatches, useNavigate } from "react-router-dom";
-
-import { router } from "#src/router";
-import type { AppRouteRecordRaw } from "#src/router/types";
-import { useGlobalStore, useUserStore } from "#src/store";
 
 type MenuItem = Required<MenuProps>["items"][number];
 

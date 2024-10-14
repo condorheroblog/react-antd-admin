@@ -1,9 +1,9 @@
 import type { MenuProps } from "antd";
+import { t } from "#src/locales";
+import { useUserStore } from "#src/store";
+
 import { Avatar, Dropdown } from "antd";
 import { useNavigate } from "react-router-dom";
-
-import { useUserStore } from "#src/store";
-import { t } from "#src/locales";
 
 const items: MenuProps["items"] = [
 	{
