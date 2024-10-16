@@ -3,6 +3,7 @@ import { ContainerLayout, ParentLayout } from "#src/layout";
 
 import { t } from "#src/locales";
 
+import { docs } from "#src/router/extra-info";
 import {
 	FileMarkdownOutlined,
 	FireOutlined,
@@ -20,8 +21,8 @@ const routes: AppRouteRecordRaw[] = [
 		path: "/docs",
 		Component: ContainerLayout,
 		handle: {
-			sort: 95,
-			publicAccess: true,
+			order: docs,
+			ignoreAccess: true,
 			title: t("common.menu.docs"),
 			icon: createElement(FileMarkdownOutlined),
 		},
@@ -32,7 +33,7 @@ const routes: AppRouteRecordRaw[] = [
 				handle: {
 					title: t("common.menu.home"),
 					icon: createElement(HomeOutlined),
-					publicAccess: true,
+					ignoreAccess: true,
 				},
 			},
 			{
@@ -41,7 +42,7 @@ const routes: AppRouteRecordRaw[] = [
 				handle: {
 					title: t("common.menu.guide"),
 					icon: createElement(SlackOutlined),
-					publicAccess: true,
+					ignoreAccess: true,
 				},
 				children: [
 					{
@@ -50,7 +51,7 @@ const routes: AppRouteRecordRaw[] = [
 						handle: {
 							title: t("common.menu.introduction"),
 							icon: createElement(FireOutlined),
-							publicAccess: true,
+							ignoreAccess: true,
 						},
 					},
 					{
@@ -59,7 +60,7 @@ const routes: AppRouteRecordRaw[] = [
 						handle: {
 							title: t("common.menu.i18n"),
 							icon: createElement(TranslationOutlined),
-							publicAccess: true,
+							ignoreAccess: true,
 						},
 					},
 				],

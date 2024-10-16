@@ -107,6 +107,7 @@ export default function App() {
 
 	return (
 		<ConfigProvider
+			input={{ autoComplete: "off" }}
 			locale={getAntdLocale()}
 			theme={{
 				algorithm:

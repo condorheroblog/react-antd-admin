@@ -1,21 +1,9 @@
 import type { FormInitialValues } from "#src/pages/login";
+import type { AppRouteRecordRaw } from "#src/router/types";
+import type { UserResult } from "./types";
 import { request } from "#src/utils";
 
-export interface UserInfo {
-	userId: string
-	avatar: string
-	username: string
-	nickname: string
-	email: string
-	phone: string
-	description: string
-}
-
-export interface UserResult extends UserInfo {
-	roles: Array<string>
-	token: string
-	refreshToken: string
-}
+;
 
 export function fetchLogin(data: FormInitialValues) {
 	return request
@@ -25,6 +13,10 @@ export function fetchLogin(data: FormInitialValues) {
 
 export function fetchLogout() {
 	return request.post("logout").json();
+}
+
+export function fetchAsyncRoutes() {
+	return request.get("get-async-routes").json<ApiResponse<AppRouteRecordRaw[]>>();
 }
 
 export interface RefreshTokenResult {

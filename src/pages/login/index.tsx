@@ -4,7 +4,7 @@ import { Footer } from "#src/layout";
 import { LanguageMenu } from "#src/layout/header/components/language-menu";
 import { ThemeSwitch } from "#src/layout/header/components/theme-switch";
 
-import { useUserStore } from "#src/store";
+import { usePermissionStore, useUserStore } from "#src/store";
 import {
 	Button,
 	Col,
@@ -64,9 +64,11 @@ export default function Login() {
 	const [searchParams] = useSearchParams();
 	const navigate = useNavigate();
 	const login = useUserStore(state => state.login);
+	const handleAsyncRoutes = usePermissionStore(state => state.handleAsyncRoutes);
 
 	const handleFinish = async (values: FormInitialValues) => {
 		await login(values);
+		await handleAsyncRoutes();
 
 		const redirect = searchParams.get("redirect");
 		if (redirect) {

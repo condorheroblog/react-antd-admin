@@ -1,13 +1,13 @@
 import type { ReactNode } from "react";
-import type { IndexRouteObject, NonIndexRouteObject } from "react-router-dom";
+import type { IndexRouteObject, NonIndexRouteObject, createBrowserRouter as RemixRouter } from "react-router-dom";
 
 export interface IndexRouteMeta extends Omit<IndexRouteObject, "id"> {
 	redirect?: string
-	handle?: RouteMeta
+	handle: RouteMeta
 }
 export interface NonIndexRouteMeta extends Omit<NonIndexRouteObject, "id"> {
 	redirect?: string
-	handle?: RouteMeta
+	handle: RouteMeta
 	children?: AppRouteRecordRaw[]
 }
 
@@ -17,9 +17,15 @@ export interface RouteMeta {
 	title: ReactNode
 	hideMenu?: boolean
 	icon?: ReactNode
-	sort?: number
+	order?: number
 	permissions?: string[]
 	iframeLink?: string
 	externalLink?: string
-	publicAccess?: boolean
+	ignoreAccess?: boolean
+	roles?: string[]
+	backstage?: boolean
 }
+
+export type RouterSubscriber = Parameters<ReturnType<typeof RemixRouter>["subscribe"]>[0];
+export type RouterState = ReturnType<typeof RemixRouter>["state"];
+export type RouterNavigate = ReturnType<typeof RemixRouter>["navigate"];

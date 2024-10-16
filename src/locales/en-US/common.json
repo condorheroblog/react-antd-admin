@@ -11,7 +11,12 @@
 		"docs": "Docs",
 		"guide": "Guide",
 		"introduction": "Introduction",
-		"i18n": "I18n"
+		"i18n": "I18n",
+		"system": "System Management",
+		"system.user": "User Management",
+		"system.role": "Role Management",
+		"system.menu": "Menu Management",
+		"system.dept": "Department Management"
 	},
 	"username": "User Name",
 	"password": "Password",

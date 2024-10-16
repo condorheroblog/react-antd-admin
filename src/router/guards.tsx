@@ -1,21 +1,20 @@
 import { useUserStore } from "#src/store";
-import { rememberRoute } from "#src/utils";
-import { isValidElement, useCallback, useEffect } from "react";
 
+import { isValidElement, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { Outlet, useMatches } from "react-router-dom";
 
-import { Outlet, useLocation, useMatches, useNavigate } from "react-router-dom";
-import { whiteList } from "./index";
-
+/**
+ * RouterGuards 组件用于路由守卫，主要处理路由守卫相关的逻辑。
+ *
+ * @returns 返回 JSX.Element，用于渲染 Outlet 组件。
+ */
 export function RouterGuards() {
-	const location = useLocation();
 	const matches = useMatches();
-	const navigate = useNavigate();
 	const { t } = useTranslation();
 	const lng = useUserStore(state => state.lng);
-	const accessToken = useUserStore(state => state.token);
 
-	const updateDocumentTitle = useCallback(async () => {
+	useEffect(() => {
 		const currentRoute = matches[matches.length - 1];
 		const documentTitle = currentRoute.handle?.title;
 		const newTitle = (
@@ -24,51 +23,8 @@ export function RouterGuards() {
 				: documentTitle
 		) as string;
 		document.title = newTitle || document.title;
-	}, [matches, lng]);
-
-	// router hooks
-	const guardLogic = useCallback(async () => {
-		const currentRoute = matches[matches.length - 1];
-
-		// Route whitelist
-		if (whiteList.has(currentRoute.pathname)) {
-			return;
-		}
-
-		// Route without login verification
-		if (currentRoute?.handle?.publicAccess) {
-			return;
-		}
-
-		if (!accessToken) {
-			// Go to login page
-			// Remember the route before exiting
-			if (location.pathname.length > 1) {
-				navigate(`/login?redirect=${location.pathname}${location.search}`, {
-					replace: true,
-				});
-			}
-			else {
-				navigate("/login", {
-					replace: true,
-				});
-			}
-		}
-		else {
-			// Redirect to home page
-			if (matches.length === 1 && matches[0].pathname === "/") {
-				navigate(import.meta.env.VITE_BASE_HOME_PATH, { replace: true });
-			}
-		}
-	}, [matches, rememberRoute, accessToken]);
-
-	useEffect(() => {
-		guardLogic();
-	}, [matches, guardLogic]);
-
-	useEffect(() => {
-		updateDocumentTitle();
-	}, [matches, lng, updateDocumentTitle]);
+		/* 切换语言更新文档标题，路由变化更新文档标题的逻辑在 routerAfterEach 函数中 */
+	}, [lng]);
 
 	return <Outlet />;
 }

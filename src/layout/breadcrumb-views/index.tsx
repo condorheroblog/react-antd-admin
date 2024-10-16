@@ -1,6 +1,8 @@
 import type { BreadcrumbProps } from "antd";
 import { useUserStore } from "#src/store";
+import { isString } from "#src/utils";
 import { Breadcrumb } from "antd";
+import { useTranslation } from "react-i18next";
 import { createUseStyles } from "react-jss";
 
 import { useMatches } from "react-router-dom";
@@ -24,6 +26,7 @@ const itemRender: BreadcrumbProps["itemRender"] = (route, params, routes) => {
 };
 
 export default function BreadcrumbViews() {
+	const { t } = useTranslation();
 	const lng = useUserStore(state => state.lng);
 	const matches = useMatches();
 	const classes = useStyles();
@@ -39,7 +42,7 @@ export default function BreadcrumbViews() {
 				.filter(match => match.handle)
 				.map((match) => {
 					return {
-						title: match.handle?.title,
+						title: isString(match.handle?.title) ? t(match.handle?.title) : match.handle?.title,
 						path: match.pathname,
 					};
 				})}

@@ -1,6 +1,9 @@
 import enUS from "antd/locale/en_US";
 import zhCN from "antd/locale/zh_CN";
 
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+
 import { getEnUsLang, getZhCnLang } from "./helper";
 
 export * from "./t";
@@ -26,4 +29,12 @@ export const i18nInitOptions = {
 	resources: i18nResources,
 };
 
-export default i18nInitOptions;
+export function setupI18n() {
+	i18n.use(initReactI18next).init(i18nInitOptions);
+	/**
+	 * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang
+	 */
+	i18n.on("languageChanged", (lng) => {
+		document.documentElement.lang = lng;
+	});
+}
