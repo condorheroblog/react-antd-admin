@@ -1,4 +1,4 @@
-import { BasicBtn } from "#src/components";
+import { BasicButton } from "#src/components";
 
 import { useTabsStore } from "#src/store";
 import { FullscreenExitOutlined, FullscreenOutlined } from "@ant-design/icons";
@@ -18,7 +18,7 @@ export function TabMaximize() {
 	};
 
 	return (
-		<BasicBtn
+		<BasicButton
 			className="rounded-none"
 			type="text"
 			size="middle"

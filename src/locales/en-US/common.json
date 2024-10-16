@@ -18,6 +18,14 @@
 		"system.menu": "Menu Management",
 		"system.dept": "Department Management"
 	},
+	"tabs": {
+		"refresh": "Refresh",
+		"close": "Close",
+		"closeRight": "Close Right",
+		"closeLeft": "Close Left",
+		"closeOthers": "Close Others",
+		"closeAll": "Close All"
+	},
 	"username": "User Name",
 	"password": "Password",
 	"login": "Login",

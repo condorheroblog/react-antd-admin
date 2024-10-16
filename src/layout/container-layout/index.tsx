@@ -1,9 +1,9 @@
 import { useGlobalStore } from "#src/store";
 import { Drawer, Layout, theme } from "antd";
 import { useState } from "react";
-
 import { createUseStyles } from "react-jss";
-import BreadcrumbTags from "../breadcrumb-tags";
+
+import BasicTabs from "../basic-tabs";
 import Header from "../header";
 import Logo from "../logo";
 import ParentLayout from "../parent-layout";
@@ -77,7 +77,7 @@ export default function ContainerLayout() {
 
 			<Layout>
 				<Header collapsed={collapsed} setCollapsed={setCollapsed} />
-				<BreadcrumbTags />
+				<BasicTabs />
 				<Content
 					style={{
 						scrollBehavior: "smooth",

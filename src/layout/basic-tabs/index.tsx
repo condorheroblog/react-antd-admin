@@ -1,15 +1,17 @@
-// import type { TabItemProps } from "#src/store";
+import type { TabItemProps } from "#src/store";
 import type { TabsProps } from "antd";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 // import { CacheStatusIcon } from "#src/components";
-// import { useCurrentRoute } from "#src/hooks";
-// import { usePermissionStore, useTabsStore, useUserStore } from "#src/store";
+import { useCurrentRoute } from "#src/hooks";
+import { usePermissionStore, useTabsStore, useUserStore } from "#src/store";
+import { isString } from "#src/utils";
 import { RedoOutlined } from "@ant-design/icons";
 import { Button, Tabs, theme } from "antd";
 import { clsx } from "clsx";
-
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useTranslation } from "react-i18next";
 // import { useAliveController } from "react-activation";
 import { createUseStyles } from "react-jss";
+
 import { useLocation, useNavigate } from "react-router-dom";
 import { DraggableTabBar } from "./components/draggable-tab-bar";
 import { TabMaximize } from "./components/tab-maximize";
@@ -60,11 +62,12 @@ export default function BasicTabs() {
 	const classes = useStyles();
 	const navigate = useNavigate();
 	const location = useLocation();
-	// const currentRoute = useCurrentRoute();
+	const { t } = useTranslation();
+	const currentRoute = useCurrentRoute();
 	const prevPathRef = useRef(location.pathname);
 	// const { getCachingNodes } = useAliveController();
 
-	// const { flatRouteList, hasRequestedWholeMenus } = usePermissionStore();
+	const { flatRouteList, hasFetchedDynamicRoutes } = usePermissionStore();
 	const { lng } = useUserStore();
 	const { activeKey, isRefresh, setActiveKey, setIsRefresh, openTabs, addTab, insertBeforeTab } = useTabsStore();
 	const [items, onClickMenu] = useDropdownMenu();
@@ -75,9 +78,9 @@ export default function BasicTabs() {
 		label: (
 			<div className="relative flex items-center gap-1">
 				<span style={{ color: token.green6 }} className="absolute -left-3.5 scale-75 flex animate-pulse">
-					{cacheNodeNames.includes(item.key) ? <CacheStatusIcon /> : null}
+					{/* {cacheNodeNames.includes(item.key) ? "⭐️" : null} */}
 				</span>
-				{item.label}
+				{isString(item.label) ? t(item.label) : item.label}
 			</div>
 		),
 	}));
@@ -181,7 +184,7 @@ export default function BasicTabs() {
 	 * 用户刷新当前页面，但不是默认 Tab 页面时，需要添加默认 Tab
 	 */
 	useEffect(() => {
-		if (!Array.from(openTabs.keys()).includes(import.meta.env.VITE_BASE_HOME_PATH) && hasRequestedWholeMenus) {
+		if (!Array.from(openTabs.keys()).includes(import.meta.env.VITE_BASE_HOME_PATH) && hasFetchedDynamicRoutes) {
 			insertBeforeTab(import.meta.env.VITE_BASE_HOME_PATH, {
 				key: import.meta.env.VITE_BASE_HOME_PATH,
 				label: flatRouteList[import.meta.env.VITE_BASE_HOME_PATH]?.handle?.title,
@@ -189,7 +192,7 @@ export default function BasicTabs() {
 				draggable: false,
 			});
 		}
-	}, [openTabs, insertBeforeTab, hasRequestedWholeMenus, flatRouteList]);
+	}, [openTabs, insertBeforeTab, hasFetchedDynamicRoutes, flatRouteList]);
 
 	/**
 	 * 监听路由变化，添加标签页和激活标签页

@@ -1,5 +1,5 @@
 import type { MenuProps } from "antd";
-import { BasicBtn } from "#src/components";
+import { BasicButton } from "#src/components";
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown } from "antd";
 
@@ -50,7 +50,7 @@ export function TabOptions({ activeKey }: TabOptionsProps) {
 			open={isOpen}
 			onOpenChange={onOpenChange}
 		>
-			<BasicBtn
+			<BasicButton
 				className="rounded-none"
 				size="middle"
 				type="text"

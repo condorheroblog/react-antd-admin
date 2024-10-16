@@ -1,4 +1,4 @@
-export { default as BreadcrumbTags } from "./breadcrumb-tags";
+export { default as BasicTabs } from "./basic-tabs";
 export { default as BreadcrumbViews } from "./breadcrumb-views";
 export { default as ContainerLayout } from "./container-layout";
 export { default as Footer } from "./footer";
