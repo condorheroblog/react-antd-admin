@@ -6,3 +6,4 @@ export { default as Header } from "./header";
 export { default as Logo } from "./logo";
 export { default as ParentLayout } from "./parent-layout";
 export { default as SiderMenu } from "./sider-menu";
+export { default as SiderTrigger } from "./sider-trigger";

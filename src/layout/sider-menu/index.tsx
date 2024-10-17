@@ -1,9 +1,10 @@
 import type { MenuProps } from "antd";
 import type { ItemType } from "antd/es/menu/interface";
 
+import { LayoutContext } from "#src/layout/container-layout/layout-context";
 import { useGlobalStore, usePermissionStore, useUserStore } from "#src/store";
 import { Menu } from "antd";
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { useMatches, useNavigate } from "react-router-dom";
 
 export function findChildrenLen(menuItems: ItemType[], targetKey: string) {
@@ -21,6 +22,7 @@ export function findChildrenLen(menuItems: ItemType[], targetKey: string) {
 export default function SiderMenu() {
 	const matches = useMatches();
 	const navigate = useNavigate();
+	const { collapsed } = useContext(LayoutContext);
 	const [openKeys, setOpenKeys] = useState<string[]>([]);
 	const lng = useUserStore(state => state.lng);
 	const isMobile = useGlobalStore(state => state.isMobile);
@@ -62,6 +64,7 @@ export default function SiderMenu() {
 	return (
 		<Menu
 			className="!border-none"
+			inlineCollapsed={isMobile ? false : collapsed}
 			// menuItem key is not changed when language changes
 			key={lng}
 			style={{ height: isMobile ? "100%" : "initial" }}

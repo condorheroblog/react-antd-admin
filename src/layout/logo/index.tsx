@@ -1,44 +1,33 @@
 import logo from "#src/assets/images/logo.svg";
 import { Typography } from "antd";
-import { createUseStyles } from "react-jss";
+import { clsx } from "clsx";
 
 import { useNavigate } from "react-router-dom";
 
 const { Title } = Typography;
-
-const useStyles = createUseStyles({
-	logoContainer: {
-		"display": "flex",
-		"justifyContent": "center",
-		"alignItems": "center",
-		"gap": "0.5em",
-		"height": "3.5em",
-		"&:hover": {
-			cursor: "pointer",
-		},
-	},
-	logo: {
-		width: "2.4em",
-	},
-});
 
 export interface LogoProps {
 	collapsed: boolean
 }
 
 export default function Logo({ collapsed }: LogoProps) {
-	const classes = useStyles();
 	const navigate = useNavigate();
 
 	return (
-		<div className={classes.logoContainer} onClick={() => navigate(import.meta.env.VITE_BASE_HOME_PATH)}>
-			<img src={logo} alt="logo" className={classes.logo} />
+		<div
+			// 和 header 高度保持一致
+			className="h-12 flex items-center justify-center gap-2 cursor-pointer"
+			onClick={() => navigate(import.meta.env.VITE_BASE_HOME_PATH)}
+		>
+			<img
+				src={logo}
+				alt="logo"
+				width={32}
+				height={32}
+			/>
 
-			{collapsed
-				? null
-				: (
-					<Title level={1} className="!text-sm !m-0" ellipsis={true}>React Antd Admin</Title>
-				)}
+			<Title level={1} className={clsx("!text-sm !m-0", { hidden: collapsed })} ellipsis={true}>React Antd Admin</Title>
+
 		</div>
 	);
 }

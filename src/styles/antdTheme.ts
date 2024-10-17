@@ -10,7 +10,13 @@ import type { ThemeConfig } from "antd";
  * @see https://ant.design/theme-editor (English version)
  * @see https://ant.design/docs/react/customize-theme (English version configuration guide)
  */
-export const customAntdLightTheme: ThemeConfig = {};
+export const customAntdLightTheme: ThemeConfig = {
+	components: {
+		Menu: {
+			collapsedWidth: 56,
+		},
+	},
+};
 
 /**
  * 自定义的Ant Design深色主题配置
@@ -22,4 +28,10 @@ export const customAntdLightTheme: ThemeConfig = {};
  * @see https://ant.design/theme-editor (English version)
  * @see https://ant.design/docs/react/customize-theme (English version configuration guide)
  */
-export const customAntdDarkTheme: ThemeConfig = {};
+export const customAntdDarkTheme: ThemeConfig = {
+	components: {
+		Menu: {
+			collapsedWidth: 56,
+		},
+	},
+};

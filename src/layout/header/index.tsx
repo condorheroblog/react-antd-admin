@@ -1,9 +1,11 @@
+import { LayoutContext } from "#src/layout/container-layout/layout-context";
 import { useGlobalStore, useTabsStore } from "#src/store";
 import { cn } from "#src/utils";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button, theme } from "antd";
-
+import { useContext } from "react";
 import { createUseStyles } from "react-jss";
+
 import BreadcrumbViews from "../breadcrumb-views";
 import { FullscreenMenu } from "./components/fullscreen-menu";
 import { LanguageMenu } from "./components/language-menu";
@@ -36,15 +38,14 @@ const useStyles = createUseStyles(({ token }) => {
 
 export interface HeaderProps {
 	className?: string
-	collapsed: boolean
-	setCollapsed: (collapsed: boolean) => void
 }
 
-export default function Header({ className, collapsed, setCollapsed }: HeaderProps) {
+export default function Header({ className }: HeaderProps) {
 	const {
 		token: { colorBgContainer },
 	} = theme.useToken();
 	const classes = useStyles();
+	const { collapsed, setCollapsed } = useContext(LayoutContext);
 	const isMobile = useGlobalStore(state => state.isMobile);
 	const isMaximize = useTabsStore(state => state.isMaximize);
 
