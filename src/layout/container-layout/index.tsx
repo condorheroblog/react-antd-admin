@@ -1,8 +1,9 @@
-import { useGlobalStore } from "#src/store";
+import { useGlobalStore, useTabsStore } from "#src/store";
 import { Drawer, Layout, theme } from "antd";
+import { clsx } from "clsx";
 import { useState } from "react";
-import { createUseStyles } from "react-jss";
 
+import { createUseStyles } from "react-jss";
 import BasicTabs from "../basic-tabs";
 import Header from "../header";
 import Logo from "../logo";
@@ -47,6 +48,8 @@ export default function ContainerLayout() {
 	const classes = useStyles();
 	const isMobile = useGlobalStore(state => state.isMobile);
 	const isDark = useGlobalStore(state => state.isDark);
+	const isRefresh = useTabsStore(state => state.isRefresh);
+	const isMaximize = useTabsStore(state => state.isMaximize);
 
 	return (
 		<Layout>
@@ -69,6 +72,7 @@ export default function ContainerLayout() {
 						trigger={null}
 						collapsible
 						collapsed={collapsed}
+						className={clsx("transition", { "!max-w-0 !min-w-0 opacity-0": isMaximize })}
 					>
 						<Logo collapsed={collapsed} />
 						<SiderMenu />
@@ -76,7 +80,7 @@ export default function ContainerLayout() {
 				)}
 
 			<Layout>
-				<Header collapsed={collapsed} setCollapsed={setCollapsed} />
+				<Header collapsed={collapsed} setCollapsed={setCollapsed} className={clsx("transition-all", { "-mt-12": isMaximize })} />
 				<BasicTabs />
 				<Content
 					style={{
@@ -91,7 +95,7 @@ export default function ContainerLayout() {
 							backgroundColor: colorBgContainer,
 						}}
 					>
-						<ParentLayout />
+						{!isRefresh ? <ParentLayout /> : null}
 					</main>
 				</Content>
 				{/* <Footer /> */}

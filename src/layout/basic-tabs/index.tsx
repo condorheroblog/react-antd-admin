@@ -144,10 +144,10 @@ export default function BasicTabs() {
 			<div className="flex divide-x">
 				<p className="m-0 border-l">
 					<Button
-						icon={<RedoOutlined rotate={270} />}
+						icon={<RedoOutlined rotate={270} className={clsx({ "animate-spin": isRefresh })} />}
 						size="middle"
 						type="text"
-						className={clsx("rounded-none hover:!bg-transparent", { "pointer-events-none animate-spin": isRefresh })}
+						className={clsx("rounded-none")}
 						onClick={() => onClickMenu(TabActionKeys.REFRESH, activeKey)}
 					/>
 				</p>

@@ -5,7 +5,8 @@
 		"Popconfirm",
 		"reduxjs",
 		"sider",
-		"zustand"
+		"zustand",
+		"ahooks"
 	],
 	// Disable the default formatter, use eslint instead
 	"prettier.enable": false,

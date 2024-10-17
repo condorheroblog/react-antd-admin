@@ -43,14 +43,20 @@ const routerBeforeEach: BlockerFunction = ({ nextLocation }) => {
 		nextLocation,
 		import.meta.env.BASE_URL,
 	) ?? [];
+
+	/* 路由白名单 */
 	const isPublicRoute = checkPublicRoute(nextLocation.pathname, currentRoute[currentRoute.length - 1]?.route?.handle?.ignoreAccess);
 	if (isPublicRoute) {
 		return false;
 	}
+
+	/* 是否登录 */
 	const isRedirection = checkRouteRedirection(nextLocation, router.navigate);
 	if (isRedirection) {
 		return true;
 	}
+
+	/* --------------- 以下为已登录的处理逻辑 ------------------ */
 	// 路由权限校验
 	const hasRole = checkRouteRole(currentRoute[currentRoute.length - 1]?.route?.handle?.roles, router.navigate);
 	// 未通过权限校验
@@ -79,12 +85,22 @@ const routerAfterEach: RouterSubscriber = (routerState) => {
 };
 
 async function routerInitReady() {
+	/* 路由初始化时，开启进度条动画 */
+	NProgress.start();
+	function handleDomReady() {
+		NProgress.done();
+		document.removeEventListener("DOMContentLoaded", handleDomReady);
+	}
+	document.addEventListener("DOMContentLoaded", handleDomReady);
+
 	const { pathname, search } = router.state.location;
 	const currentRoute = router.state.matches[router.state.matches.length - 1];
+	/* 路由白名单 */
 	const isPublicRoute = checkPublicRoute(pathname, currentRoute.route.handle?.ignoreAccess);
 	if (isPublicRoute) {
 		return;
 	}
+	/* 是否登录 */
 	const isRedirection = checkRouteRedirection(router.state.location, router.navigate);
 	if (isRedirection) {
 		return;
