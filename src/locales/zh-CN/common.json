@@ -12,6 +12,10 @@
 		"guide": "指南",
 		"introduction": "介绍",
 		"i18n": "国际化",
+		"exception": "异常页面",
+		"exception_403": "403",
+		"exception_404": "404",
+		"exception_500": "500",
 		"system": "系统管理",
 		"system.user": "用户管理",
 		"system.role": "角色管理",
@@ -36,6 +40,7 @@
 	"delete": "删除",
 	"upload": "上传",
 	"404SubTitle": "抱歉，您访问的页面不存在。",
+	"403SubTitle": "抱歉，您没有权限访问这个页面。",
 	"projectSettings": {
 		"title": "项目设置",
 		"theme": "主题"

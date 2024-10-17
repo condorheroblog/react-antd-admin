@@ -10,8 +10,8 @@ export const routeNest = 20;
 export const docs = 30;
 export const iframe = 40;
 
+export const error = 90;
 export const system = 100;
 export const about = 120;
 
 export const login = 999999;
-export const error = 888888;

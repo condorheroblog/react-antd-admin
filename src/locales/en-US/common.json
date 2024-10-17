@@ -12,6 +12,10 @@
 		"guide": "Guide",
 		"introduction": "Introduction",
 		"i18n": "I18n",
+		"exception": "Exception Page",
+		"exception_403": "403",
+		"exception_404": "404",
+		"exception_500": "500",
 		"system": "System Management",
 		"system.user": "User Management",
 		"system.role": "Role Management",
@@ -36,6 +40,7 @@
 	"delete": "Delete",
 	"upload": "Upload",
 	"404SubTitle": "Sorry, the page you visited does not exist.",
+	"403SubTitle": "Sorry, you are not authorized to access this page.",
 	"projectSettings": {
 		"title": "Project Settings",
 		"theme": "Theme"
