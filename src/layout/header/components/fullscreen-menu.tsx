@@ -10,7 +10,7 @@ export function FullscreenMenu({ target }: FullscreenProps) {
 	return (
 		<FullscreenButton
 			size="large"
-			className="h-full rounded-none"
+			className="rounded-none"
 			target={target}
 			fullscreenExitIcon={<FullscreenExitIcon />}
 			fullscreenIcon={<FullscreenIcon />}

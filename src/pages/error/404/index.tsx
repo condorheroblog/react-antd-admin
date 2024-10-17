@@ -5,7 +5,10 @@ import { Button, Result } from "antd";
 import { useTranslation } from "react-i18next";
 import { Route, Routes, useNavigate } from "react-router-dom";
 
-export default function Error404() {
+interface Error404Props {
+	showLayout?: boolean
+}
+export default function Error404({ showLayout }: Error404Props) {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const hasTokenInLocal = !!useUserStore(state => state.token);
@@ -28,10 +31,14 @@ export default function Error404() {
 		/>
 	);
 
+	if (!showLayout) {
+		return Result404;
+	}
+
 	return hasTokenInLocal
 		? (
 			<Routes>
-				<Route element={<ContainerLayout />} path="*">
+				<Route element={showLayout ? <ContainerLayout /> : null} path="*">
 					<Route path="*" element={Result404} />
 				</Route>
 			</Routes>

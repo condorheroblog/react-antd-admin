@@ -1,8 +1,11 @@
-import { useUserStore } from "#src/store";
+import PageError from "#src/pages/error/page-error";
+import { useGlobalStore, useUserStore } from "#src/store";
+import { isString, toggleHtmlClass } from "#src/utils";
 
-import { isValidElement, useEffect } from "react";
+import { useEffect } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { useTranslation } from "react-i18next";
-import { Outlet, useMatches } from "react-router-dom";
+import { Outlet, useLocation, useMatches } from "react-router-dom";
 
 /**
  * RouterGuards 组件用于路由守卫，主要处理路由守卫相关的逻辑。
@@ -12,19 +15,31 @@ import { Outlet, useMatches } from "react-router-dom";
 export function RouterGuards() {
 	const matches = useMatches();
 	const { t } = useTranslation();
+	const location = useLocation();
 	const lng = useUserStore(state => state.lng);
+	const isDark = useGlobalStore(state => state.isDark);
 
+	/* document title */
 	useEffect(() => {
 		const currentRoute = matches[matches.length - 1];
-		const documentTitle = currentRoute.handle?.title;
-		const newTitle = (
-			isValidElement(documentTitle)
-				? t(documentTitle?.props.children)
-				: documentTitle
-		) as string;
-		document.title = newTitle || document.title;
-		/* 切换语言更新文档标题，路由变化更新文档标题的逻辑在 routerAfterEach 函数中 */
-	}, [lng]);
+		const documentTitle = currentRoute.handle?.title as React.ReactElement | string;
+		const newTitle = isString(documentTitle) ? documentTitle : documentTitle?.props?.children;
+		document.title = t(newTitle) || document.title;
+	}, [lng, location]);
 
-	return <Outlet />;
+	/* tailwind theme */
+	useEffect(() => {
+		if (isDark) {
+			toggleHtmlClass("dark").add();
+		}
+		else {
+			toggleHtmlClass("dark").remove();
+		}
+	}, [isDark]);
+
+	return (
+		<ErrorBoundary FallbackComponent={PageError}>
+			<Outlet />
+		</ErrorBoundary>
+	);
 }

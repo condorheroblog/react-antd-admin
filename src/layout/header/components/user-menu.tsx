@@ -3,6 +3,7 @@ import { t } from "#src/locales";
 import { useUserStore } from "#src/store";
 
 import { Avatar, Dropdown } from "antd";
+import { useKeepAliveContext } from "keepalive-for-react";
 import { useNavigate } from "react-router-dom";
 
 const items: MenuProps["items"] = [
@@ -14,19 +15,26 @@ const items: MenuProps["items"] = [
 
 export function UserMenu() {
 	const navigate = useNavigate();
+	const { destroy } = useKeepAliveContext();
 
 	const avatar = useUserStore(state => state.avatar);
 	const logout = useUserStore(state => state.logout);
 
 	const onClick: MenuProps["onClick"] = async ({ key }) => {
 		if (key === "logout") {
+			destroy();
 			await logout();
 			navigate(`${import.meta.env.BASE_URL}login`);
 		}
 	};
 
 	return (
-		<Dropdown menu={{ items, onClick }} arrow={false} placement="bottom">
+		<Dropdown
+			menu={{ items, onClick }}
+			arrow={false}
+			placement="bottom"
+			trigger={["click"]}
+		>
 			<div role="menuitem" tabIndex={-1}>
 				<Avatar src={avatar} />
 			</div>

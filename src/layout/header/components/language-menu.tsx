@@ -31,11 +31,12 @@ export function LanguageMenu() {
 				selectable: true,
 				defaultSelectedKeys: [language],
 			}}
+			trigger={["click"]}
 			arrow={false}
 			placement="bottom"
 		>
-			<div role="menuitem" tabIndex={-1}>
-				<TranslationOutlined style={{ transform: "scale(1.3)" }} />
+			<div role="menuitem" tabIndex={-1} className="text-lg">
+				<TranslationOutlined />
 			</div>
 		</Dropdown>
 	);

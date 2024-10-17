@@ -1,18 +1,17 @@
 import { useGlobalStore, useTabsStore } from "#src/store";
-import { Drawer, Layout, theme } from "antd";
-import { clsx } from "clsx";
-import { useState } from "react";
-
+import { cn } from "#src/utils";
+import { Drawer, theme } from "antd";
+import KeepAlive, { useKeepaliveRef } from "keepalive-for-react";
+import { useEffect, useMemo, useState } from "react";
 import { createUseStyles } from "react-jss";
+
+import { useLocation, useOutlet } from "react-router-dom";
+
 import BasicTabs from "../basic-tabs";
+import Footer from "../footer";
 import Header from "../header";
 import Logo from "../logo";
-import ParentLayout from "../parent-layout";
-
-// import Footer from "./components/footer";
 import SiderMenu from "../sider-menu";
-
-const { Content, Sider } = Layout;
 
 const useStyles = createUseStyles({
 	drawerStyles: {
@@ -43,16 +42,43 @@ const useStyles = createUseStyles({
 export default function ContainerLayout() {
 	const [collapsed, setCollapsed] = useState(false);
 	const {
-		token: { colorBgContainer },
+		token: { colorBgContainer, colorBgLayout },
 	} = theme.useToken();
 	const classes = useStyles();
+	const { pathname, search } = useLocation();
+	const outlet = useOutlet();
+	const aliveRef = useKeepaliveRef();
 	const isMobile = useGlobalStore(state => state.isMobile);
-	const isDark = useGlobalStore(state => state.isDark);
 	const isRefresh = useTabsStore(state => state.isRefresh);
 	const isMaximize = useTabsStore(state => state.isMaximize);
+	const openTabs = useTabsStore(state => state.openTabs);
+
+	/**
+	 * to distinguish different pages to cache
+	 */
+	const cacheKey = useMemo(() => {
+		return pathname + search;
+	}, [pathname, search]);
+
+	/**
+	 * 当使用关闭当前标签页、关闭右侧标签页、关闭左侧标签页、关闭其他标签页、关闭所有标签页功能时，需要清除这个标签页的缓存
+	 */
+	useEffect(() => {
+		const cacheNodes = aliveRef.current?.getCaches();
+		cacheNodes?.forEach((node) => {
+			if (!openTabs.has(node.name)) {
+				aliveRef.current?.removeCache(node.name);
+			}
+		});
+	}, [openTabs]);
 
 	return (
-		<Layout>
+		<section className={cn("md:pl-52 transition-all flex flex-col h-screen", { "md:pl-0": isMaximize })}>
+			<Header
+				collapsed={collapsed}
+				setCollapsed={setCollapsed}
+			/>
+			<BasicTabs />
 			{isMobile
 				? (
 					<Drawer
@@ -60,46 +86,48 @@ export default function ContainerLayout() {
 						placement="left"
 						width="clamp(200px, 50vw, 210px)"
 						className={classes.drawerStyles}
-						// title={<img src={logo} alt="logo" style={{ width: "1em" }} />}
 						onClose={() => setCollapsed(false)}
 					>
 						<SiderMenu />
 					</Drawer>
 				)
 				: (
-					<Sider
-						theme={isDark ? "dark" : "light"}
-						trigger={null}
-						collapsible
-						collapsed={collapsed}
-						className={clsx("transition", { "!max-w-0 !min-w-0 opacity-0": isMaximize })}
+					<aside
+						style={
+							{
+								backgroundColor: colorBgContainer,
+								boxShadow: "3px 0 5px 0 rgb(29, 35, 41, 0.05)",
+							}
+						}
+						className={cn("fixed left-0 top-0 bottom-0 transition-all overflow-y-auto w-52", { "w-0": isMaximize })}
 					>
 						<Logo collapsed={collapsed} />
 						<SiderMenu />
-					</Sider>
+					</aside>
 				)}
+			<main
+				className="overflow-y-auto p-4 flex-grow"
+				style={
+					{
+						backgroundColor: colorBgLayout,
+					}
+				}
+			>
+				{!isRefresh
+					? (
+						<KeepAlive
+							max={20}
+							strategy="PRE"
+							activeName={cacheKey}
+							aliveRef={aliveRef}
+						>
+							{outlet}
+						</KeepAlive>
+					)
+					: null}
+			</main>
+			<Footer />
+		</section>
 
-			<Layout>
-				<Header collapsed={collapsed} setCollapsed={setCollapsed} className={clsx("transition-all", { "-mt-12": isMaximize })} />
-				<BasicTabs />
-				<Content
-					style={{
-						scrollBehavior: "smooth",
-						overflow: "auto",
-						padding: "0.5em 1em 1em",
-						height: "calc(100vh - 48px - 32.391px - 2px)",
-					}}
-				>
-					<main
-						style={{
-							backgroundColor: colorBgContainer,
-						}}
-					>
-						{!isRefresh ? <ParentLayout /> : null}
-					</main>
-				</Content>
-				{/* <Footer /> */}
-			</Layout>
-		</Layout>
 	);
 }

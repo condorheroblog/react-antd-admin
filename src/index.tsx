@@ -5,8 +5,6 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./styles/index.css";
 
-import "./styles/tailwind.css";
-
 async function setupApp() {
 	/* setupI18n 必须放在 setupRouter 前面 */
 	setupI18n();

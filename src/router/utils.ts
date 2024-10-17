@@ -5,7 +5,7 @@ import type { AppRouteRecordRaw, RouterNavigate } from "./types";
 import { Iframe } from "#src/components/iframe";
 import { ContainerLayout } from "#src/layout";
 import { t } from "#src/locales";
-import Error404 from "#src/pages/404";
+import Error404 from "#src/pages/error/404";
 import { useUserStore } from "#src/store";
 
 import { isString } from "#src/utils";

@@ -1,0 +1,29 @@
+/* 不使用 tailwind.css 的 preflight，使用 antd 的 reset 样式，防止和 antd 的样式冲突 */
+@import "antd/dist/reset.css";
+
+#root {
+	height: 100vh;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/*
+! tailwindcss v3.4.10 | MIT License | https://tailwindcss.com
+@see https://tailwindcss.com/docs/divide-width
+如果不设置 border， tailwind 普通元素设置 divide 不生效
+*/
+*,
+:after,
+:before {
+	border: 0 solid #e5e7eb;
+}
+
+/*
+解决 antd 表格高度未超出，不显示滚动条
+*/
+.ant-table-body {
+	overflow: auto !important;
+}

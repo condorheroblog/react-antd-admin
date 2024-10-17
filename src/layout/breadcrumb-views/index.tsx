@@ -3,15 +3,8 @@ import { useUserStore } from "#src/store";
 import { isString } from "#src/utils";
 import { Breadcrumb } from "antd";
 import { useTranslation } from "react-i18next";
-import { createUseStyles } from "react-jss";
 
 import { useMatches } from "react-router-dom";
-
-const useStyles = createUseStyles({
-	breadcrumbViews: {
-		margin: "0",
-	},
-});
 
 const itemRender: BreadcrumbProps["itemRender"] = (route, params, routes) => {
 	const last = routes.indexOf(route) === routes.length - 1;
@@ -29,12 +22,11 @@ export default function BreadcrumbViews() {
 	const { t } = useTranslation();
 	const lng = useUserStore(state => state.lng);
 	const matches = useMatches();
-	const classes = useStyles();
 
 	return (
 		<Breadcrumb
 			key={lng}
-			className={classes.breadcrumbViews}
+			className="hidden md:block"
 			separator="->"
 			// https://ant.design/components/breadcrumb#use-with-browserhistory
 			itemRender={itemRender}

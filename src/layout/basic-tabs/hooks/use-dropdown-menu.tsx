@@ -8,8 +8,8 @@ import {
 	VerticalAlignMiddleOutlined,
 	VerticalAlignTopOutlined,
 } from "@ant-design/icons";
+import { useKeepAliveContext } from "keepalive-for-react";
 import { useCallback, useMemo } from "react";
-// import { useAliveController } from "react-activation";
 
 import { useTranslation } from "react-i18next";
 
@@ -52,7 +52,7 @@ export function useDropdownMenu() {
 		closeAllTabs,
 		setIsRefresh,
 	} = useTabsStore();
-	// const { refresh, drop, getCachingNodes } = useAliveController();
+	const { refresh } = useKeepAliveContext();
 	/**
 	 * 生成菜单项
 	 * @param {string} tabKey - 当前标签页的键
@@ -107,9 +107,9 @@ export function useDropdownMenu() {
 	 * 定义菜单操作与对应的处理函数
 	 */
 	const actions = useMemo(() => ({
-		[TabActionKeys.REFRESH]: () => {
+		[TabActionKeys.REFRESH]: (currentPath: string) => {
 			// 刷新 KeepAlive 缓存的页面
-			// refresh(currentPath);
+			refresh(currentPath);
 			// 重新渲染页面
 			setIsRefresh(true);
 		},
@@ -131,18 +131,6 @@ export function useDropdownMenu() {
 			action(nodeKey);
 		}
 	}, [actions]);
-
-	/**
-	 * 监听标签页变化，如果当前标签页不在缓存中，则清除这个标签页的缓存
-	 */
-	// useEffect(() => {
-	// 	const cacheNodes = getCachingNodes();
-	// 	cacheNodes.forEach((node) => {
-	// 		if (!openTabs.has(node.name!)) {
-	// 			drop(node.name!);
-	// 		}
-	// 	});
-	// }, [openTabs, getCachingNodes, drop]);
 
 	return [items, onClickMenu] as const;
 }

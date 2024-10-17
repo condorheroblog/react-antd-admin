@@ -61,6 +61,7 @@ export default function SiderMenu() {
 
 	return (
 		<Menu
+			className="!border-none"
 			// menuItem key is not changed when language changes
 			key={lng}
 			style={{ height: isMobile ? "100%" : "initial" }}

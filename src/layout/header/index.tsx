@@ -1,7 +1,7 @@
-import { useGlobalStore } from "#src/store";
+import { useGlobalStore, useTabsStore } from "#src/store";
+import { cn } from "#src/utils";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { Button, Layout, theme } from "antd";
-import { clsx } from "clsx";
+import { Button, theme } from "antd";
 
 import { createUseStyles } from "react-jss";
 import BreadcrumbViews from "../breadcrumb-views";
@@ -10,28 +10,22 @@ import { LanguageMenu } from "./components/language-menu";
 import { ProjectSettings } from "./components/project-settings";
 import { UserMenu } from "./components/user-menu";
 
-const { Header: AntdHeader } = Layout;
-
 const useStyles = createUseStyles(({ token }) => {
 	return {
-		layoutHeader: {
-			display: "flex",
-			justifyContent: "space-between",
-			marginLeft: "1em",
-		},
-		layoutHeaderLeft: {
-			display: "flex",
-			alignItems: "center",
-		},
 		layoutHeaderRight: {
 			"display": "flex",
 			"justifyContent": "center",
 			"alignItems": "center",
-			"&>div": {
+			"height": "100%",
+			"&>*": {
+				height: "100%",
 				cursor: "pointer",
 				padding: ["0", ".7em"],
+				display: "flex",
+				justifyContent: "center",
+				alignItems: "center",
 			},
-			"&>div:hover": {
+			"&>*:hover": {
 				background: {
 					color: token.colorBgTextHover,
 				},
@@ -52,40 +46,39 @@ export default function Header({ className, collapsed, setCollapsed }: HeaderPro
 	} = theme.useToken();
 	const classes = useStyles();
 	const isMobile = useGlobalStore(state => state.isMobile);
+	const isMaximize = useTabsStore(state => state.isMaximize);
 
 	return (
-		<AntdHeader
-			className={clsx(className, "p-0")}
-			style={{ background: colorBgContainer, height: 48, lineHeight: "48px" }}
+		<header
+			className={cn(className, "h-12 flex-shrink-0 flex justify-between items-center transition-all md:px-4", { "h-0 overflow-hidden": isMaximize })}
+			style={{ background: colorBgContainer }}
 		>
-			<div className={classes.layoutHeader}>
-				<div className={classes.layoutHeaderLeft}>
-					{
-						isMobile
-							? (
-								<Button
-									type="text"
-									icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-									onClick={() => setCollapsed(!collapsed)}
-									style={{
-										fontSize: "16px",
-										height: "100%",
-									}}
-								/>
-							)
-							: null
-					}
 
-					<BreadcrumbViews />
-				</div>
+			{
+				isMobile
+					? (
+						<Button
+							type="text"
+							icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+							onClick={() => setCollapsed(!collapsed)}
+							className="h-full"
+						/>
+					)
+					: null
+			}
 
-				<div className={classes.layoutHeaderRight} role="menu" tabIndex={0}>
-					<LanguageMenu />
-					<FullscreenMenu target={document.documentElement} />
-					<UserMenu />
-					<ProjectSettings />
-				</div>
+			<BreadcrumbViews />
+
+			<div
+				role="menu"
+				tabIndex={0}
+				className={classes.layoutHeaderRight}
+			>
+				<LanguageMenu />
+				<FullscreenMenu target={document.documentElement} />
+				<UserMenu />
+				<ProjectSettings />
 			</div>
-		</AntdHeader>
+		</header>
 	);
 }

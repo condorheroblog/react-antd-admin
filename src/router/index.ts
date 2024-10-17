@@ -2,9 +2,7 @@ import type { BlockerFunction } from "react-router-dom";
 import type { AppRouteRecordRaw, RouterSubscriber } from "./types";
 
 import { usePermissionStore } from "#src/store";
-
-import { isString, NProgress } from "#src/utils";
-import i18n from "i18next";
+import { NProgress } from "#src/utils";
 
 import { createBrowserRouter, matchRoutes } from "react-router-dom";
 import { addIdToRoutes, checkPublicRoute, checkRouteRedirection, checkRouteRole, getInitReactRoutes } from "./utils";
@@ -73,12 +71,7 @@ const routerBeforeEach: BlockerFunction = ({ nextLocation }) => {
  */
 const routerAfterEach: RouterSubscriber = (routerState) => {
 	if (routerState.navigation.state === "idle") {
-		/* 路由变化更新文档标题，切换语言的逻辑放到了路由守卫组件中（guard.tsx） */
-		const currentRoute = routerState.matches[routerState.matches.length - 1];
-		const documentTitle = currentRoute.route.handle?.title;
-		const newTitle = !isString(documentTitle) ? documentTitle?.props.children : documentTitle;
-		document.title = i18n.t(newTitle) || document.title;
-
+		/* 路由变化更新文档标题的逻辑放到了路由守卫组件中（guard.tsx） */
 		/* 关闭进度条动画 */
 		NProgress.done();
 	}

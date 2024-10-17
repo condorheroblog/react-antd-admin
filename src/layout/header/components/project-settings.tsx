@@ -18,8 +18,9 @@ export function ProjectSettings() {
 				tabIndex={-1}
 				onClick={() => setIsOpen(true)}
 				onKeyDown={() => { }}
+				className="text-lg"
 			>
-				<SettingOutlined style={{ transform: "scale(1.3)" }} />
+				<SettingOutlined />
 			</div>
 			<Drawer
 				title={t("common.projectSettings.title")}

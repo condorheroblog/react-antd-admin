@@ -9,7 +9,7 @@ import { RedoOutlined } from "@ant-design/icons";
 import { Button, Tabs, theme } from "antd";
 import { clsx } from "clsx";
 import { useTranslation } from "react-i18next";
-// import { useAliveController } from "react-activation";
+// import { useKeepAliveContext } from "keepalive-for-react";
 import { createUseStyles } from "react-jss";
 
 import { useLocation, useNavigate } from "react-router-dom";
@@ -65,7 +65,7 @@ export default function BasicTabs() {
 	const { t } = useTranslation();
 	const currentRoute = useCurrentRoute();
 	const prevPathRef = useRef(location.pathname);
-	// const { getCachingNodes } = useAliveController();
+	// const { getCachingNodes } = useKeepAliveContext();
 
 	const { flatRouteList, hasFetchedDynamicRoutes } = usePermissionStore();
 	const { lng } = useUserStore();
