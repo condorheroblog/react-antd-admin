@@ -1,5 +1,7 @@
 import { setupI18n } from "#src/locales";
 import { setupRouter } from "#src/router";
+
+// import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 import App from "./App";

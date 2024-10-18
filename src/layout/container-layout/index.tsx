@@ -1,6 +1,6 @@
-import { useGlobalStore, useTabsStore } from "#src/store";
+import { useTabsStore } from "#src/store";
 import { cn } from "#src/utils";
-import { Drawer, theme } from "antd";
+import { Drawer, Grid, theme } from "antd";
 import KeepAlive, { useKeepaliveRef } from "keepalive-for-react";
 import { useEffect, useMemo, useState } from "react";
 import { createUseStyles } from "react-jss";
@@ -14,11 +14,11 @@ import SiderMenu from "../sider-menu";
 import SiderTrigger from "../sider-trigger";
 import { LayoutContext } from "./layout-context";
 
+const { useBreakpoint } = Grid;
 const useStyles = createUseStyles({
 	drawerStyles: {
 		"& .ant-drawer-body": {
 			"padding": 0,
-			"height": "100%",
 			"&>ul": {
 				paddingTop: "1em",
 			},
@@ -45,10 +45,10 @@ export default function ContainerLayout() {
 		token: { colorBgContainer, colorBgLayout },
 	} = theme.useToken();
 	const classes = useStyles();
+	const screens = useBreakpoint();
 	const { pathname, search } = useLocation();
 	const outlet = useOutlet();
 	const aliveRef = useKeepaliveRef();
-	const isMobile = useGlobalStore(state => state.isMobile);
 	const isRefresh = useTabsStore(state => state.isRefresh);
 	const isMaximize = useTabsStore(state => state.isMaximize);
 	const openTabs = useTabsStore(state => state.openTabs);
@@ -72,49 +72,69 @@ export default function ContainerLayout() {
 		});
 	}, [openTabs]);
 
+	useEffect(() => {
+		/* iPad */
+		if (screens.lg && !screens.xl) {
+			setCollapsed(true);
+		}
+		/* PC */
+		else if (screens.xl) {
+			setCollapsed(false);
+		}
+		/* Mobile */
+		else if (screens.sm && !screens.md) {
+			setCollapsed(false);
+		}
+	}, [screens]);
+
 	const layoutContextValue = useMemo(() => ({ collapsed, setCollapsed }), [collapsed, setCollapsed]);
 
 	return (
 		<LayoutContext.Provider value={layoutContextValue}>
 			<section className={cn(
 				"transition-all flex flex-col h-screen",
+				/* Mobile */
+				"pl-0",
 				collapsed ? "md:pl-14" : "md:pl-52",
 				{ "md:pl-0": isMaximize },
 			)}
 			>
 				<Header />
 				<BasicTabs />
-				{isMobile
-					? (
-						<Drawer
-							open={collapsed}
-							placement="left"
-							width="clamp(200px, 50vw, 210px)"
-							className={classes.drawerStyles}
-							onClose={() => setCollapsed(false)}
-						>
-							<SiderMenu />
-						</Drawer>
-					)
-					: (
-						<aside
-							style={
-								{
-									backgroundColor: colorBgContainer,
-									boxShadow: "3px 0 5px 0 rgb(29, 35, 41, 0.05)",
-								}
-							}
-							className={cn(
-								"fixed left-0 top-0 bottom-0 transition-all overflow-y-auto",
-								collapsed ? "md:w-14" : "md:w-52",
-								{ "md:w-0": isMaximize },
-							)}
-						>
-							<Logo collapsed={collapsed} />
-							<SiderMenu />
-							<SiderTrigger />
-						</aside>
+
+				{/* Mobile */}
+				<Drawer
+					rootClassName="block md:hidden"
+					open={collapsed}
+					placement="left"
+					width="clamp(200px, 50vw, 210px)"
+					className={cn(classes.drawerStyles)}
+					onClose={() => setCollapsed(false)}
+				>
+					<SiderMenu />
+				</Drawer>
+
+				{/* PC */}
+				<aside
+					style={
+						{
+							backgroundColor: colorBgContainer,
+							boxShadow: "3px 0 5px 0 rgb(29, 35, 41, 0.05)",
+						}
+					}
+					className={cn(
+						"fixed left-0 top-0 bottom-0 transition-all overflow-y-auto",
+						collapsed ? "md:w-14" : "md:w-52",
+						{ "md:w-0": isMaximize },
+						/* hidden in mobile */
+						"hidden md:block",
 					)}
+				>
+					<Logo collapsed={collapsed} />
+					<SiderMenu />
+					<SiderTrigger />
+				</aside>
+
 				<main
 					className="overflow-y-auto p-4 flex-grow"
 					style={

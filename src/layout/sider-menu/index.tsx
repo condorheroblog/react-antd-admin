@@ -64,6 +64,7 @@ export default function SiderMenu() {
 	return (
 		<Menu
 			className="!border-none"
+			inlineIndent={16}
 			inlineCollapsed={isMobile ? false : collapsed}
 			// menuItem key is not changed when language changes
 			key={lng}
