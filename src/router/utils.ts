@@ -1,5 +1,4 @@
 import type { ItemType } from "antd/es/menu/interface";
-import type { Location } from "react-router-dom";
 
 import type { AppRouteRecordRaw, RouterNavigate } from "./types";
 import { Iframe } from "#src/components/iframe";
@@ -178,11 +177,30 @@ export function addAsyncRoutes(arrRoutes: Array<AppRouteRecordRaw>) {
 	return addIdToRoutes(arrRoutes);
 }
 
+/**
+ * 将基础路径替换为根路径
+ * 假如开启了 Vite 的 base 配置，React Router Location.pathname 获取到的路径前面有 base
+ * 开发的时候是不根据 base 开发的，所以当使用判断逻辑，或者导航到 pathname 需要将 base 去掉
+ *
+ * 开始 base:
+ * 生产：/base/about
+ * 开发：/about
+ *
+ * @param pathname 当前路径
+ * @returns 替换后的路径
+ */
+export function replaceBaseWithRoot(pathname: string) {
+	const base = import.meta.env.BASE_URL;
+
+	if (pathname.length > 1) {
+		return pathname.slice(base.length - 1);
+	}
+
+	return pathname;
+}
+
 /* 检查是否是公开路由 */
 export function checkPublicRoute(pathname: string, ignoreAccess: boolean) {
-	// const { pathname } = routerState.location;
-	// const currentRoute = routerState.matches[routerState.matches.length - 1];
-
 	// 白名单内的路由或者路由设置了 ignoreAccess，则不进行校验
 	if (WHITE_LIST.has(pathname) || ignoreAccess) {
 		return true;
@@ -191,38 +209,28 @@ export function checkPublicRoute(pathname: string, ignoreAccess: boolean) {
 }
 
 /* 检查是否登录 */
-export function checkRouteRedirection(routerStateLocation: Location, routerNavigate: RouterNavigate) {
-	const { pathname, search } = routerStateLocation;
-
+export function checkLogin(pathname: string, search: string, routerNavigate: RouterNavigate) {
 	const isLogin = Boolean(useUserStore.getState().token);
 	// 未登录，则跳转到登录页
 	if (!isLogin) {
 		// pathname 长度大于 1，则携带当前路径跳转登录页
 		if (pathname.length > 1) {
 			routerNavigate(`/login?redirect=${pathname}${search}`);
-			return true;
+			return false;
 		}
 		else {
 			routerNavigate("/login");
-			return true;
+			return false;
 		}
 	}
 
-	// 根路由的重定向
-	if (pathname === "/") {
-		routerNavigate(import.meta.env.VITE_BASE_HOME_PATH, { replace: true });
-		return true;
-	}
-
-	return false;
+	return true;
 }
 
 /* 检查路由角色 */
 export function checkRouteRole(routeRoles: string[], routerNavigate: RouterNavigate) {
-	// const currentRoute = routerState.matches[routerState.matches.length - 1];
 	// 路由权限校验
 	const userRoles = useUserStore.getState().roles;
-	// const routeRoles = currentRoute.route.handle?.roles;
 	const hasRoutePermission = userRoles.some(role => routeRoles?.includes(role));
 	// 未通过权限校验，则跳转到 403 页面，如果路由上没有设置 roles，则默认放行
 	if (routeRoles && routeRoles.length && !hasRoutePermission) {

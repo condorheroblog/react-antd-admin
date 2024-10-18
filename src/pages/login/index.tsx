@@ -72,10 +72,10 @@ export default function Login() {
 
 		const redirect = searchParams.get("redirect");
 		if (redirect) {
-			navigate(`${import.meta.env.BASE_URL}${redirect.slice(1)}`);
+			navigate(`/${redirect.slice(1)}`);
 		}
 		else {
-			navigate(`${import.meta.env.BASE_URL}`);
+			navigate("/");
 		}
 	};
 

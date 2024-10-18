@@ -5,7 +5,14 @@ import { usePermissionStore } from "#src/store";
 import { NProgress } from "#src/utils";
 
 import { createBrowserRouter, matchRoutes } from "react-router-dom";
-import { addIdToRoutes, checkPublicRoute, checkRouteRedirection, checkRouteRole, getInitReactRoutes } from "./utils";
+import {
+	addIdToRoutes,
+	checkLogin,
+	checkPublicRoute,
+	checkRouteRole,
+	getInitReactRoutes,
+	replaceBaseWithRoot,
+} from "./utils";
 
 const modules = import.meta.glob<
 	Record<string, { default: AppRouteRecordRaw[] }>
@@ -41,16 +48,24 @@ const routerBeforeEach: BlockerFunction = ({ nextLocation }) => {
 		nextLocation,
 		import.meta.env.BASE_URL,
 	) ?? [];
+	const { pathname, search } = nextLocation;
+	const pathnameWithoutBase = replaceBaseWithRoot(pathname);
 
 	/* 路由白名单 */
-	const isPublicRoute = checkPublicRoute(nextLocation.pathname, currentRoute[currentRoute.length - 1]?.route?.handle?.ignoreAccess);
+	const isPublicRoute = checkPublicRoute(pathnameWithoutBase, currentRoute[currentRoute.length - 1]?.route?.handle?.ignoreAccess);
 	if (isPublicRoute) {
 		return false;
 	}
 
 	/* 是否登录 */
-	const isRedirection = checkRouteRedirection(nextLocation, router.navigate);
-	if (isRedirection) {
+	const isLogin = checkLogin(pathnameWithoutBase, search, router.navigate);
+	if (!isLogin) {
+		return true;
+	}
+
+	/* 跳转到默认路由 */
+	if (pathname === import.meta.env.BASE_URL) {
+		router.navigate(import.meta.env.VITE_BASE_HOME_PATH, { replace: true });
 		return true;
 	}
 
@@ -87,15 +102,17 @@ async function routerInitReady() {
 	document.addEventListener("DOMContentLoaded", handleDomReady);
 
 	const { pathname, search } = router.state.location;
+	const pathnameWithoutBase = replaceBaseWithRoot(pathname);
 	const currentRoute = router.state.matches[router.state.matches.length - 1];
 	/* 路由白名单 */
-	const isPublicRoute = checkPublicRoute(pathname, currentRoute.route.handle?.ignoreAccess);
+	const isPublicRoute = checkPublicRoute(pathnameWithoutBase, currentRoute.route.handle?.ignoreAccess);
 	if (isPublicRoute) {
 		return;
 	}
+
 	/* 是否登录 */
-	const isRedirection = checkRouteRedirection(router.state.location, router.navigate);
-	if (isRedirection) {
+	const isLogin = checkLogin(pathnameWithoutBase, search, router.navigate);
+	if (!isLogin) {
 		return;
 	}
 
@@ -106,10 +123,17 @@ async function routerInitReady() {
 	if (!hasFetchedDynamicRoutes) {
 		await handleAsyncRoutes();
 		/**
-		 * https://router.vuejs.org/guide/advanced/dynamic-routing#Adding-routes
 		 * 需要替换当前路由
+		 * https://router.vuejs.org/guide/advanced/dynamic-routing#Adding-routes
+		 *
+		 * 为什么需要替换当前路由？
+		 * 1. 假如用户导航到动态路由 /system/user
+		 * 2. 浏览器匹配路由，但是没有匹配到，进入 404 路由
+		 * 3. 等待获取动态路由后，通过 router.navigate 跳转到 /system/user
+		 *
 		 */
-		return router.navigate(`${pathname}${search}`);
+
+		return router.navigate(`${pathnameWithoutBase}${search}`);
 	}
 
 	// 路由权限校验

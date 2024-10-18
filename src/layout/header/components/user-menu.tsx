@@ -24,7 +24,7 @@ export function UserMenu() {
 		if (key === "logout") {
 			destroy();
 			await logout();
-			navigate(`${import.meta.env.BASE_URL}login`);
+			navigate("/login");
 		}
 	};
 
