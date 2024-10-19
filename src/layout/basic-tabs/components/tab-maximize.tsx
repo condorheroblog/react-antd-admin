@@ -1,7 +1,8 @@
 import { BasicButton } from "#src/components";
-
 import { useTabsStore } from "#src/store";
+
 import { FullscreenExitOutlined, FullscreenOutlined } from "@ant-design/icons";
+import { useShallow } from "zustand/shallow";
 
 /**
  * 切换标签页最大化 / 最小化
@@ -9,8 +10,12 @@ import { FullscreenExitOutlined, FullscreenOutlined } from "@ant-design/icons";
  * @returns 返回标签页最大化 / 最小化的按钮组件
  */
 export function TabMaximize() {
-	const { isMaximize } = useTabsStore(state => ({ isMaximize: state.isMaximize }));
-	const { toggleMaximize } = useTabsStore(state => ({ toggleMaximize: state.toggleMaximize }));
+	/**
+	 * useShallow - it may cause infinite loops in zustand v5
+	 * https://github.com/pmndrs/zustand/blob/v5.0.0/docs/migrations/migrating-to-v5.md#requiring-stable-selector-outputs
+	 */
+	const { isMaximize } = useTabsStore(useShallow(state => ({ isMaximize: state.isMaximize })));
+	const { toggleMaximize } = useTabsStore(useShallow(state => ({ toggleMaximize: state.toggleMaximize })));
 
 	/** 切换最大化 / 最小化 */
 	const onClick = () => {
