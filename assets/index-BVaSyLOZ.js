@@ -1,4 +1,4 @@
-import{j as e,c}from"./index-BXfIvX5Y.js";import{HashAnchor as s}from"./index-oci6KsbR.js";import{T as t,a5 as i,x as o}from"./antd-B7PVp7Qz.js";import"./faker-CiQWN7dT.js";import"./react-C18HQUXm.js";const d="/react-antd-admin/assets/i18n-translation-CqIwPzQf.png",h="/react-antd-admin/assets/lokalise.i18n-ally-D2IDFQLR.png",x="/react-antd-admin/assets/lokalise.i18n-ally-plugin-cIheZAYG.png",j=`
+import{j as e,c}from"./index-BiMvSgkd.js";import{HashAnchor as s}from"./index-chna4sXG.js";import{T as t,a5 as i,x as o}from"./antd-DaecmzqH.js";import"./faker-CiQWN7dT.js";import"./react-C18HQUXm.js";const d="/react-antd-admin/assets/i18n-translation-CqIwPzQf.png",h="/react-antd-admin/assets/lokalise.i18n-ally-D2IDFQLR.png",x="/react-antd-admin/assets/lokalise.i18n-ally-plugin-cIheZAYG.png",j=`
 {
 	"i18n-ally.localesPaths": "src/locales",
 	// https://github.com/lokalise/i18n-ally/wiki/Path-Matcher

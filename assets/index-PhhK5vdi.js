@@ -1,1 +1,0 @@
-import{j as r}from"./index-BXfIvX5Y.js";import{a9 as e}from"./antd-B7PVp7Qz.js";import"./faker-CiQWN7dT.js";import"./react-C18HQUXm.js";function m(){return r.jsxs(r.Fragment,{children:[r.jsx("h1",{children:"User"}),r.jsx(e,{placeholder:"Enter your username"})]})}export{m as default};
