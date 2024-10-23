@@ -1,4 +1,5 @@
 import { LayoutContext } from "#src/layout/container-layout/layout-context";
+import { NotificationContainer } from "#src/layout/widgets/notification/notification-container";
 import { Preferences } from "#src/layout/widgets/preferences";
 import { useGlobalStore, useTabsStore } from "#src/store";
 import { cn } from "#src/utils";
@@ -75,10 +76,11 @@ export default function Header({ className }: HeaderProps) {
 				tabIndex={0}
 				className={classes.layoutHeaderRight}
 			>
+				<Preferences />
 				<LanguageMenu />
 				<FullscreenMenu target={document.documentElement} />
+				<NotificationContainer />
 				<UserMenu />
-				<Preferences />
 			</div>
 		</header>
 	);

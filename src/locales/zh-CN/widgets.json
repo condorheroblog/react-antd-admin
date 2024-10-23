@@ -1,0 +1,22 @@
+{
+	"document": "文档",
+	"qa": "问题 & 帮助",
+	"setting": "设置",
+	"logoutTip": "是否退出登录？",
+	"viewAll": "查看所有消息",
+	"notifications": "通知",
+	"markAllAsRead": "全部标记为已读",
+	"clearNotifications": "清空",
+	"checkUpdatesTitle": "新版本可用",
+	"checkUpdatesDescription": "点击刷新以获取最新版本",
+	"search": {
+		"title": "搜索",
+		"searchNavigate": "搜索导航菜单",
+		"select": "选择",
+		"navigate": "导航",
+		"close": "关闭",
+		"noResults": "未找到搜索结果",
+		"noRecent": "没有搜索历史",
+		"recent": "搜索历史"
+	}
+}

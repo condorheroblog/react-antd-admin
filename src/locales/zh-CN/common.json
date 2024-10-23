@@ -31,6 +31,7 @@
 	"warning": "警告",
 	"delete": "删除",
 	"upload": "上传",
+	"noData": "暂无数据",
 	"404SubTitle": "抱歉，您访问的页面不存在。",
 	"403SubTitle": "抱歉，您没有权限访问这个页面。",
 	"preferences": {

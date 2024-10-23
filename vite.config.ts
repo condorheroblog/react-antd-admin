@@ -4,6 +4,7 @@ import react from "@vitejs/plugin-react";
 import dayjs from "dayjs";
 import { defineConfig } from "vite";
 import { vitePluginFakeServer } from "vite-plugin-fake-server";
+import svgrPlugin from "vite-plugin-svgr";
 
 import { dependencies, devDependencies, name, version } from "./package.json";
 
@@ -16,7 +17,15 @@ const __APP_INFO__ = {
 export default defineConfig({
 	// eslint-disable-next-line node/prefer-global/process
 	base: process.env.NODE_ENV === "development" ? "/" : "/react-antd-admin/",
-	plugins: [react(), vitePluginFakeServer({ enableProd: true })],
+	plugins: [
+		react(),
+		vitePluginFakeServer({ enableProd: true }),
+		svgrPlugin({
+			// svgr options: https://react-svgr.com/docs/options/
+			svgrOptions: { exportType: "default", ref: true, svgo: false, titleProp: true },
+			include: "**/*.svg",
+		}),
+	],
 	test: {
 		globals: true,
 		environment: "happy-dom",

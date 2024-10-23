@@ -31,6 +31,7 @@
 	"warning": "Warning",
 	"delete": "Delete",
 	"upload": "Upload",
+	"noData": "No Data",
 	"404SubTitle": "Sorry, the page you visited does not exist.",
 	"403SubTitle": "Sorry, you are not authorized to access this page.",
 	"preferences": {

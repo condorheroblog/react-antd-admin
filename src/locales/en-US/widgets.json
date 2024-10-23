@@ -1,0 +1,22 @@
+{
+	"document": "Document",
+	"qa": "Q&A",
+	"setting": "Settings",
+	"logoutTip": "Do you want to logout?",
+	"viewAll": "View All Messages",
+	"notifications": "Notifications",
+	"markAllAsRead": "Make All as Read",
+	"clearNotifications": "Clear",
+	"checkUpdatesTitle": "New Version Available",
+	"checkUpdatesDescription": "Click to refresh and get the latest version",
+	"search": {
+		"title": "Search",
+		"searchNavigate": "Search Navigation",
+		"select": "Select",
+		"navigate": "Navigate",
+		"close": "Close",
+		"noResults": "No Search Results Found",
+		"noRecent": "No Search History",
+		"recent": "Search History"
+	}
+}

@@ -1,5 +1,5 @@
-import frameworkTemplate from "#src/assets/images/framework-template.svg";
-import logo from "#src/assets/images/logo.svg";
+import frameworkTemplate from "#src/assets/images/framework-template.svg?url";
+import logo from "#src/assets/images/logo.svg?url";
 import { Footer } from "#src/layout";
 import { LanguageMenu } from "#src/layout/header/components/language-menu";
 import { ThemeSwitch } from "#src/layout/header/components/theme-switch";
