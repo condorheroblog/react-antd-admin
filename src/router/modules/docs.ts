@@ -1,7 +1,7 @@
 import type { AppRouteRecordRaw } from "../types";
 import { ContainerLayout, ParentLayout } from "#src/layout";
 
-import { t } from "#src/locales";
+import { $t } from "#src/locales";
 
 import { docs } from "#src/router/extra-info";
 import {
@@ -23,7 +23,7 @@ const routes: AppRouteRecordRaw[] = [
 		handle: {
 			order: docs,
 			ignoreAccess: true,
-			title: t("common.menu.docs"),
+			title: $t("common.menu.docs"),
 			icon: createElement(FileMarkdownOutlined),
 		},
 		children: [
@@ -31,7 +31,7 @@ const routes: AppRouteRecordRaw[] = [
 				path: "/docs/index",
 				Component: DocsIndex,
 				handle: {
-					title: t("common.menu.home"),
+					title: $t("common.menu.home"),
 					icon: createElement(HomeOutlined),
 					ignoreAccess: true,
 				},
@@ -40,7 +40,7 @@ const routes: AppRouteRecordRaw[] = [
 				path: "/docs/guide",
 				Component: ParentLayout,
 				handle: {
-					title: t("common.menu.guide"),
+					title: $t("common.menu.guide"),
 					icon: createElement(SlackOutlined),
 					ignoreAccess: true,
 				},
@@ -49,7 +49,7 @@ const routes: AppRouteRecordRaw[] = [
 						path: "/docs/guide/introduction",
 						Component: DocsIndex,
 						handle: {
-							title: t("common.menu.introduction"),
+							title: $t("common.menu.introduction"),
 							icon: createElement(FireOutlined),
 							ignoreAccess: true,
 						},
@@ -58,7 +58,7 @@ const routes: AppRouteRecordRaw[] = [
 						path: "/docs/guide/i18n",
 						Component: I18n,
 						handle: {
-							title: t("common.menu.i18n"),
+							title: $t("common.menu.i18n"),
 							icon: createElement(TranslationOutlined),
 							ignoreAccess: true,
 						},

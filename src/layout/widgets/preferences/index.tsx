@@ -1,12 +1,14 @@
+import { ThemeSwitch } from "#src/layout/header/components/theme-switch";
 import { useGlobalStore } from "#src/store";
 import { SettingOutlined } from "@ant-design/icons";
 import { Divider, Drawer } from "antd";
+
 import { useState } from "react";
-
 import { useTranslation } from "react-i18next";
-import { ThemeSwitch } from "./theme-switch";
 
-export function ProjectSettings() {
+import { Tabbar } from "./blocks/tabbar";
+
+export function Preferences() {
 	const { t } = useTranslation();
 	const [isOpen, setIsOpen] = useState(false);
 	const { isMobile } = useGlobalStore();
@@ -23,7 +25,7 @@ export function ProjectSettings() {
 				<SettingOutlined />
 			</div>
 			<Drawer
-				title={t("common.projectSettings.title")}
+				title={t("common.preferences.title")}
 				placement="right"
 				onClose={() => {
 					setIsOpen(false);
@@ -42,8 +44,10 @@ export function ProjectSettings() {
 						alignItems: "center",
 					}}
 				>
-					<Divider>{t("common.projectSettings.theme")}</Divider>
+					<Divider>{t("common.preferences.theme")}</Divider>
 					<ThemeSwitch />
+					<Divider>{t("preferences.tabbar.title")}</Divider>
+					<Tabbar />
 				</div>
 			</Drawer>
 		</>

@@ -1,6 +1,6 @@
 import type { AppRouteRecordRaw } from "../types";
 
-import { t } from "#src/locales";
+import { $t } from "#src/locales";
 import { login } from "#src/router/extra-info";
 import { lazy } from "react";
 import { LOGIN } from "../constants";
@@ -13,7 +13,7 @@ const routes: AppRouteRecordRaw[] = [
 		Component: Login,
 		handle: {
 			hideMenu: true,
-			title: t("common.login"),
+			title: $t("common.login"),
 			order: login,
 		},
 	},

@@ -15,7 +15,7 @@ export default function PageError({ error, resetErrorBoundary }: FallbackProps) 
 
 	const goHome = () => {
 		resetErrorBoundary();
-		navigate(VITE_BASE_HOME_PATH); ;
+		navigate(VITE_BASE_HOME_PATH);
 	};
 
 	useEffect(() => {

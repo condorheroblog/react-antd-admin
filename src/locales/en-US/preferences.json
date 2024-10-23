@@ -1,0 +1,31 @@
+{
+	"tabbar": {
+		"title": "Tabbar",
+		"enable": "Enable Tab Bar",
+		"icon": "Show Tabbar Icon",
+		"showMore": "Show More Button",
+		"showMaximize": "Show Maximize Button",
+		"persist": "Persist Tabs",
+		"draggable": "Enable Draggable Sort",
+		"styleType": {
+			"title": "Tabs Style",
+			"chrome": "Chrome",
+			"card": "Card",
+			"plain": "Plain",
+			"brisk": "Brisk"
+		},
+		"contextMenu": {
+			"refresh": "Refresh",
+			"close": "Close",
+			"pin": "Pin",
+			"unpin": "Unpin",
+			"closeLeft": "Close Left Tabs",
+			"closeRight": "Close Right Tabs",
+			"closeOthers": "Close Other Tabs",
+			"closeAll": "Close All Tabs",
+			"openInNewWindow": "Open in New Window",
+			"maximize": "Maximize",
+			"restoreMaximize": "Restore"
+		}
+	}
+}

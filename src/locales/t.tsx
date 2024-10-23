@@ -12,6 +12,6 @@ import { Trans } from "react-i18next";
  * the content displayed by i18n.t does not automatically update because i18n.t returns a string.
  * Here, t.tsx file is used as a temporary solution to enable the usage of the t function in pure JS or TS files.
  */
-export function t(path: string) {
+export function $t(path: string) {
 	return <Trans>{path}</Trans>;
 }

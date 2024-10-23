@@ -58,7 +58,10 @@ export default function SiderMenu() {
 	};
 
 	useEffect(() => {
-		setOpenKeys(matches.map(item => item.id));
+		/* 如果菜单是收起的，则不需要自动展开，防止子路由激活，菜单自动弹出 */
+		if (!collapsed) {
+			setOpenKeys(matches.map(item => item.id));
+		}
 	}, [matches]);
 
 	return (

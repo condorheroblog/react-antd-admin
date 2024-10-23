@@ -3,55 +3,20 @@ import type { TabsProps } from "antd";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 // import { CacheStatusIcon } from "#src/components";
 import { useCurrentRoute } from "#src/hooks";
-import { usePermissionStore, useTabsStore, useUserStore } from "#src/store";
+import { usePermissionStore, usePreferencesStore, useTabsStore, useUserStore } from "#src/store";
 import { isString } from "#src/utils";
 import { RedoOutlined } from "@ant-design/icons";
 import { Button, Tabs, theme } from "antd";
 import { clsx } from "clsx";
 import { useTranslation } from "react-i18next";
 // import { useKeepAliveContext } from "keepalive-for-react";
-import { createUseStyles } from "react-jss";
 
 import { useLocation, useNavigate } from "react-router-dom";
 import { DraggableTabBar } from "./components/draggable-tab-bar";
 import { TabMaximize } from "./components/tab-maximize";
 import { TabOptions } from "./components/tab-options";
 import { TabActionKeys, useDropdownMenu } from "./hooks/use-dropdown-menu";
-
-const useStyles = createUseStyles(({ token }) => {
-	return {
-		tabsContainer: {
-			backgroundColor: token.colorBgBase,
-			borderTop: "1px solid #e8e8e8",
-			borderBottom: "1px solid #e8e8e8",
-		},
-		tab: {
-			"& .ant-tabs-nav-wrap": {
-				// overflow: "inherit !important",
-			},
-			"& .ant-tabs-nav-list": {
-				gap: "0.5em",
-			},
-			"& .ant-tabs-nav::before": {
-				// 下 border
-				display: "none",
-			},
-			"& .ant-tabs-nav": {
-				"margin": 0,
-				"& .ant-tabs-tab": {
-					paddingTop: "0.3em !important",
-					paddingBottom: "0.3em !important",
-					// antd 自带的动画和 DND 动画冲突
-					transition: "inherit",
-				},
-			},
-			"& .ant-tabs-ink-bar": {
-				backgroundColor: token.colorPrimary,
-				visibility: "visible !important",
-			},
-		},
-	};
-});
+import { useStyles } from "./style";
 
 /**
  * BasicTabs 组件
@@ -67,6 +32,7 @@ export default function BasicTabs() {
 	const prevPathRef = useRef(location.pathname);
 	// const { getCachingNodes } = useKeepAliveContext();
 
+	const { tabbarStyleType, tabbarShowMaximize, tabbarShowMore } = usePreferencesStore();
 	const { flatRouteList, hasFetchedDynamicRoutes } = usePermissionStore();
 	const { lng } = useUserStore();
 	const { activeKey, isRefresh, setActiveKey, setIsRefresh, openTabs, addTab, insertBeforeTab } = useTabsStore();
@@ -144,22 +110,35 @@ export default function BasicTabs() {
 			<div className="flex divide-x">
 				<p className="m-0 border-l">
 					<Button
-						icon={<RedoOutlined rotate={270} className={clsx({ "animate-spin": isRefresh })} />}
+						icon={(
+							<RedoOutlined
+								rotate={270}
+								className={clsx({ "animate-spin": isRefresh })}
+							/>
+						)}
 						size="middle"
 						type="text"
 						className={clsx("rounded-none")}
 						onClick={() => onClickMenu(TabActionKeys.REFRESH, activeKey)}
 					/>
 				</p>
-				<p className="m-0">
-					<TabMaximize />
-				</p>
-				<p className="m-0">
-					<TabOptions activeKey={activeKey} />
-				</p>
+				{tabbarShowMaximize
+					? (
+						<p className="m-0">
+							<TabMaximize />
+						</p>
+					)
+					: null}
+				{tabbarShowMore
+					? (
+						<p className="m-0">
+							<TabOptions activeKey={activeKey} />
+						</p>
+					)
+					: null}
 			</div>
 		),
-	}), [isRefresh, activeKey, onClickMenu]);
+	}), [isRefresh, activeKey, onClickMenu, tabbarShowMore, tabbarShowMaximize]);
 
 	/**
 	 * 监听活动标签页变化，进行导航
@@ -219,7 +198,13 @@ export default function BasicTabs() {
 		<div className={classes.tabsContainer}>
 			<Tabs
 				key={lng}
-				className={classes.tab}
+				className={clsx(
+					classes.resetTabs,
+					tabbarStyleType === "brisk" ? classes.brisk : "",
+					tabbarStyleType === "plain" ? classes.plain : "",
+					tabbarStyleType === "chrome" ? classes.chrome : "",
+					tabbarStyleType === "card" ? classes.card : "",
+				)}
 				size="small"
 				hideAdd
 				animated

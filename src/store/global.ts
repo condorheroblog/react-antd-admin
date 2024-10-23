@@ -12,7 +12,7 @@ export type ThemeType = "dark" | "light" | "";
  * @zh 从 localStorage 中获取默认主题，如果没有则默认为空字符串
  * @en Get the default theme from localStorage, or an empty string if not found
  */
-const defaultTheme = localStorage.getItem("theme") ?? "";
+export const defaultTheme = localStorage.getItem("theme") ?? "";
 
 /**
  * @zh 应用的初始状态

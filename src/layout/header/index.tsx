@@ -1,15 +1,15 @@
 import { LayoutContext } from "#src/layout/container-layout/layout-context";
+import { Preferences } from "#src/layout/widgets/preferences";
 import { useGlobalStore, useTabsStore } from "#src/store";
 import { cn } from "#src/utils";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button, theme } from "antd";
 import { useContext } from "react";
-import { createUseStyles } from "react-jss";
 
+import { createUseStyles } from "react-jss";
 import BreadcrumbViews from "../breadcrumb-views";
 import { FullscreenMenu } from "./components/fullscreen-menu";
 import { LanguageMenu } from "./components/language-menu";
-import { ProjectSettings } from "./components/project-settings";
 import { UserMenu } from "./components/user-menu";
 
 const useStyles = createUseStyles(({ token }) => {
@@ -78,7 +78,7 @@ export default function Header({ className }: HeaderProps) {
 				<LanguageMenu />
 				<FullscreenMenu target={document.documentElement} />
 				<UserMenu />
-				<ProjectSettings />
+				<Preferences />
 			</div>
 		</header>
 	);

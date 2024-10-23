@@ -22,14 +22,6 @@
 		"system.menu": "菜单管理",
 		"system.dept": "部门管理"
 	},
-	"tabs": {
-		"refresh": "重新加载",
-		"close": "关闭当前",
-		"closeRight": "关闭右侧标签页",
-		"closeLeft": "关闭左侧标签页",
-		"closeOthers": "关闭其他标签页",
-		"closeAll": "关闭全部标签页"
-	},
 	"username": "用户名",
 	"password": "密码",
 	"login": "登录",
@@ -41,8 +33,8 @@
 	"upload": "上传",
 	"404SubTitle": "抱歉，您访问的页面不存在。",
 	"403SubTitle": "抱歉，您没有权限访问这个页面。",
-	"projectSettings": {
-		"title": "项目设置",
+	"preferences": {
+		"title": "偏好设置",
 		"theme": "主题"
 	}
 }

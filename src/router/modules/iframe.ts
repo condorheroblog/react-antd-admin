@@ -2,7 +2,7 @@ import type { AppRouteRecordRaw } from "../types";
 import { Iframe } from "#src/components/iframe";
 
 import { ContainerLayout } from "#src/layout";
-import { t } from "#src/locales";
+import { $t } from "#src/locales";
 
 import { iframe } from "#src/router/extra-info";
 import { AntDesignOutlined, PaperClipOutlined } from "@ant-design/icons";
@@ -15,7 +15,7 @@ const routes: AppRouteRecordRaw[] = [
 		Component: ContainerLayout,
 		handle: {
 			icon: createElement(PaperClipOutlined),
-			title: t("common.menu.iframe"),
+			title: $t("common.menu.iframe"),
 			order: iframe,
 		},
 		children: [

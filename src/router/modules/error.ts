@@ -1,7 +1,7 @@
 import type { AppRouteRecordRaw } from "../types";
 import { ContainerLayout } from "#src/layout";
 
-import { t } from "#src/locales";
+import { $t } from "#src/locales";
 
 import { error } from "#src/router/extra-info";
 import {
@@ -20,7 +20,7 @@ const routes: AppRouteRecordRaw[] = [
 		Component: ContainerLayout,
 		handle: {
 			order: error,
-			title: t("common.menu.exception"),
+			title: $t("common.menu.exception"),
 			icon: createElement(IssuesCloseOutlined),
 		},
 		children: [
@@ -28,7 +28,7 @@ const routes: AppRouteRecordRaw[] = [
 				path: "/error/403",
 				Component: Error403,
 				handle: {
-					title: t("common.menu.exception_403"),
+					title: $t("common.menu.exception_403"),
 					icon: createElement(StopOutlined),
 				},
 			},
@@ -36,7 +36,7 @@ const routes: AppRouteRecordRaw[] = [
 				path: "/error/404",
 				Component: Error404,
 				handle: {
-					title: t("common.menu.exception_404"),
+					title: $t("common.menu.exception_404"),
 					icon: createElement(MinusSquareOutlined),
 				},
 			},

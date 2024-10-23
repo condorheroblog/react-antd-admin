@@ -3,7 +3,7 @@ import type { ItemType } from "antd/es/menu/interface";
 import type { AppRouteRecordRaw, RouterNavigate } from "./types";
 import { Iframe } from "#src/components/iframe";
 import { ContainerLayout } from "#src/layout";
-import { t } from "#src/locales";
+import { $t } from "#src/locales";
 import Error404 from "#src/pages/error/404";
 import { useUserStore } from "#src/store";
 
@@ -67,7 +67,7 @@ export function addIdToRoutes(routes: AppRouteRecordRaw[]) {
  */
 export function getMenuItems(routeList: AppRouteRecordRaw[]) {
 	return routeList.reduce<ItemType[]>((acc, item) => {
-		const label = isString(item?.handle?.title) ? t(item.handle?.title) : item.handle?.title;
+		const label = isString(item?.handle?.title) ? $t(item.handle?.title) : item.handle?.title;
 		const externalLink = item?.handle?.externalLink;
 		const iconName = item?.handle?.icon;
 

@@ -16,7 +16,7 @@ export default defineFakeRoute([
 		// statusCode: 400,
 		// response: () => ({ code: 404, message: "Not found" }),
 		response: ({ body }) => {
-			if (body.username === "admin") {
+			if (body.username !== "commom") {
 				return resultSuccess({
 					userId: "1",
 					avatar: "https://avatars.githubusercontent.com/u/47056890",

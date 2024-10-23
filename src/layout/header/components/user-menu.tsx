@@ -1,5 +1,5 @@
 import type { MenuProps } from "antd";
-import { t } from "#src/locales";
+import { $t } from "#src/locales";
 import { useUserStore } from "#src/store";
 
 import { Avatar, Dropdown } from "antd";
@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const items: MenuProps["items"] = [
 	{
-		label: t("common.logout"),
+		label: $t("common.logout"),
 		key: "logout",
 	},
 ];

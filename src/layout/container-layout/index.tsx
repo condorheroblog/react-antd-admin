@@ -1,4 +1,4 @@
-import { useTabsStore } from "#src/store";
+import { usePreferencesStore, useTabsStore } from "#src/store";
 import { cn } from "#src/utils";
 import { Drawer, Grid, theme } from "antd";
 import KeepAlive, { useKeepaliveRef } from "keepalive-for-react";
@@ -52,6 +52,7 @@ export default function ContainerLayout() {
 	const isRefresh = useTabsStore(state => state.isRefresh);
 	const isMaximize = useTabsStore(state => state.isMaximize);
 	const openTabs = useTabsStore(state => state.openTabs);
+	const tabbarEnable = usePreferencesStore(state => state.tabbarEnable);
 
 	/**
 	 * to distinguish different pages to cache
@@ -100,7 +101,7 @@ export default function ContainerLayout() {
 			)}
 			>
 				<Header />
-				<BasicTabs />
+				{tabbarEnable ? <BasicTabs /> : null}
 
 				{/* Mobile */}
 				<Drawer

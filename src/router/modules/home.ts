@@ -1,7 +1,7 @@
 import type { AppRouteRecordRaw } from "../types";
 import { ContainerLayout } from "#src/layout";
 
-import { t } from "#src/locales";
+import { $t } from "#src/locales";
 import { home } from "#src/router/extra-info";
 import { HomeFilled } from "@ant-design/icons";
 import { createElement, lazy } from "react";
@@ -14,7 +14,7 @@ const routes: AppRouteRecordRaw[] = [
 		Component: ContainerLayout,
 		handle: {
 			order: home,
-			title: t("common.menu.home"),
+			title: $t("common.menu.home"),
 			icon: createElement(HomeFilled),
 		},
 		children: [
@@ -22,7 +22,7 @@ const routes: AppRouteRecordRaw[] = [
 				index: true,
 				Component: Home,
 				handle: {
-					title: t("common.menu.home"),
+					title: $t("common.menu.home"),
 					icon: createElement(HomeFilled),
 				},
 			},

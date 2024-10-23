@@ -22,14 +22,6 @@
 		"system.menu": "Menu Management",
 		"system.dept": "Department Management"
 	},
-	"tabs": {
-		"refresh": "Refresh",
-		"close": "Close",
-		"closeRight": "Close Right",
-		"closeLeft": "Close Left",
-		"closeOthers": "Close Others",
-		"closeAll": "Close All"
-	},
 	"username": "User Name",
 	"password": "Password",
 	"login": "Login",
@@ -41,8 +33,8 @@
 	"upload": "Upload",
 	"404SubTitle": "Sorry, the page you visited does not exist.",
 	"403SubTitle": "Sorry, you are not authorized to access this page.",
-	"projectSettings": {
-		"title": "Project Settings",
+	"preferences": {
+		"title": "Preferences",
 		"theme": "Theme"
 	}
 }
