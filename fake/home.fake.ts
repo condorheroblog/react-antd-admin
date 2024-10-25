@@ -9,13 +9,13 @@ const home = {
 
 export default defineFakeRoute([
 	{
-		url: "/api/home",
+		url: "/home",
 		timeout: 1000,
 		method: "get",
 		response: () => resultSuccess(home),
 	},
 	{
-		url: "/api/home/pie",
+		url: "/home/pie",
 		timeout: 1000,
 		method: "get",
 		// statusCode: 401,
@@ -40,7 +40,7 @@ export default defineFakeRoute([
 		},
 	},
 	{
-		url: "/api/home/line",
+		url: "/home/line",
 		timeout: 1000,
 		method: "post",
 		response: ({ body }) => {

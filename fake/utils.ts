@@ -3,6 +3,6 @@ export function resultSuccess(result: unknown, { message = "ok" } = {}) {
 		code: 200,
 		result,
 		message,
-		type: "success",
+		success: true,
 	};
 }

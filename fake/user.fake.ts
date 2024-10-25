@@ -8,7 +8,7 @@ const refreshToken = faker.string.uuid();
 
 export default defineFakeRoute([
 	{
-		url: "/api/login",
+		url: "/login",
 		timeout: 1000,
 		method: "post",
 		// statusCode: 401,
@@ -43,13 +43,13 @@ export default defineFakeRoute([
 		},
 	},
 	{
-		url: "/api/logout",
+		url: "/logout",
 		timeout: 1000,
 		method: "post",
 		response: () => resultSuccess({}),
 	},
 	{
-		url: "/api/refresh-token",
+		url: "/refresh-token",
 		timeout: 1000,
 		method: "post",
 		response: () => resultSuccess({ token, refreshToken }),

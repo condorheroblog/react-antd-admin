@@ -6,10 +6,9 @@ import { useCurrentRoute } from "#src/hooks";
 import { usePermissionStore, usePreferencesStore, useTabsStore, useUserStore } from "#src/store";
 import { isString } from "#src/utils";
 import { RedoOutlined } from "@ant-design/icons";
-import { Button, Tabs, theme } from "antd";
+import { Button, Tabs } from "antd";
 import { clsx } from "clsx";
 import { useTranslation } from "react-i18next";
-// import { useKeepAliveContext } from "keepalive-for-react";
 
 import { useLocation, useNavigate } from "react-router-dom";
 import { DraggableTabBar } from "./components/draggable-tab-bar";
@@ -23,14 +22,13 @@ import { useStyles } from "./style";
  * 用于渲染和管理应用程序的标签页导航
  */
 export default function BasicTabs() {
-	const { token } = theme.useToken();
+	// const { token } = theme.useToken();
 	const classes = useStyles();
 	const navigate = useNavigate();
 	const location = useLocation();
 	const { t } = useTranslation();
 	const currentRoute = useCurrentRoute();
 	const prevPathRef = useRef(location.pathname);
-	// const { getCachingNodes } = useKeepAliveContext();
 
 	const { tabbarStyleType, tabbarShowMaximize, tabbarShowMore } = usePreferencesStore();
 	const { flatRouteList, hasFetchedDynamicRoutes } = usePermissionStore();
@@ -43,9 +41,9 @@ export default function BasicTabs() {
 		...item,
 		label: (
 			<div className="relative flex items-center gap-1">
-				<span style={{ color: token.green6 }} className="absolute -left-3.5 scale-75 flex animate-pulse">
-					{/* {cacheNodeNames.includes(item.key) ? "⭐️" : null} */}
-				</span>
+				{/* <span style={{ color: token.green6 }} className="absolute -left-3.5 scale-75 flex animate-pulse">
+					{cacheNodeNames.includes(item.key) ? "⭐️" : null}
+				</span> */}
 				{isString(item.label) ? t(item.label) : item.label}
 			</div>
 		),

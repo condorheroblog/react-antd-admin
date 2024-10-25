@@ -160,7 +160,8 @@ export function addAsyncRoutes(arrRoutes: Array<AppRouteRecordRaw>) {
 			v.Component = ContainerLayout;
 		}
 		else {
-			const index = modulesRoutesKeys.findIndex(ev => ev.includes(v.path!));
+			const routePath = v.path!;
+			const index = modulesRoutesKeys.findIndex(ev => ev === `/src/pages${routePath}/index.tsx`);
 			// https://github.com/remix-run/react-router/tree/dev/examples/lazy-loading-router-provider
 			// https://reactrouter.com/en/main/route/lazy
 			v.lazy = async () => {

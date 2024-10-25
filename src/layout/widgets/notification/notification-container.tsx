@@ -10,7 +10,9 @@ export function NotificationContainer() {
 
 	useEffect(() => {
 		fetchNotifications().then((res) => {
-			setNotifications([...res.result, ...res.result, ...res.result, ...res.result, ...res.result, ...res.result, ...res.result, ...res.result, ...res.result, ...res.result, ...res.result, ...res.result, ...res.result, ...res.result, ...res.result, ...res.result, ...res.result, ...res.result, ...res.result, ...res.result]);
+			setNotifications(
+				Array.from({ length: 20 }).flatMap(() => res.result),
+			);
 		});
 	}, []);
 

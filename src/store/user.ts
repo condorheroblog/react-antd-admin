@@ -66,6 +66,11 @@ export const useUserStore = create<UserState & UserAction>()(
 			 * 4. 清空标签页
 			 */
 			useTabsStore.getState().resetTabs();
+
+			/**
+			 * 5. 清空 keepAlive 缓存
+			 * 在 container-layout 组件中，根据 openTabs 自动刷新 keepAlive 缓存
+			 */
 		},
 
 		reset: () => {

@@ -3,8 +3,6 @@ import type { AppRouteRecordRaw } from "#src/router/types";
 import type { UserResult } from "./types";
 import { request } from "#src/utils";
 
-;
-
 export function fetchLogin(data: FormInitialValues) {
 	return request
 		.post("login", { json: data })

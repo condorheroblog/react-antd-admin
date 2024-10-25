@@ -19,7 +19,11 @@ export default defineConfig({
 	base: process.env.NODE_ENV === "development" ? "/" : "/react-antd-admin/",
 	plugins: [
 		react(),
-		vitePluginFakeServer({ enableProd: true }),
+		vitePluginFakeServer({
+			basename: "/api",
+			enableProd: true,
+			timeout: 1000,
+		}),
 		svgrPlugin({
 			// svgr options: https://react-svgr.com/docs/options/
 			svgrOptions: { exportType: "default", ref: true, svgo: false, titleProp: true },

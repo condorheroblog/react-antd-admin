@@ -65,10 +65,10 @@ export default function ContainerLayout() {
 	 * 当使用关闭当前标签页、关闭右侧标签页、关闭左侧标签页、关闭其他标签页、关闭所有标签页功能时，需要清除这个标签页的缓存
 	 */
 	useEffect(() => {
-		const cacheNodes = aliveRef.current?.getCaches();
+		const cacheNodes = aliveRef.current?.getCacheNodes?.();
 		cacheNodes?.forEach((node) => {
-			if (!openTabs.has(node.name)) {
-				aliveRef.current?.removeCache(node.name);
+			if (!openTabs.has(node.cacheKey)) {
+				aliveRef.current?.destroy(node.cacheKey);
 			}
 		});
 	}, [openTabs]);
@@ -137,7 +137,7 @@ export default function ContainerLayout() {
 				</aside>
 
 				<main
-					className="overflow-y-auto p-4 flex-grow"
+					className="overflow-y-auto overflow-x-hidden p-4 flex-grow"
 					style={
 						{
 							backgroundColor: colorBgLayout,
@@ -148,8 +148,9 @@ export default function ContainerLayout() {
 						? (
 							<KeepAlive
 								max={20}
-								strategy="PRE"
-								activeName={cacheKey}
+								transition
+								duration={300}
+								activeCacheKey={cacheKey}
 								aliveRef={aliveRef}
 							>
 								{outlet}

@@ -4,7 +4,7 @@ import { resultSuccess } from "./utils";
 
 export default defineFakeRoute([
 	{
-		url: "/api/notifications",
+		url: "/notifications",
 		timeout: 1000,
 		method: "get",
 		response: () => resultSuccess([

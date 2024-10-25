@@ -195,7 +195,7 @@ const systemManagementRouter = {
 
 export default defineFakeRoute([
 	{
-		url: "/api/get-async-routes",
+		url: "/get-async-routes",
 		method: "get",
 		response: () => resultSuccess(
 			[

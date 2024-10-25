@@ -3,3 +3,6 @@
 
 /* 第三方库样式 */
 @import './global.css';
+
+/* 路由切换动画 */
+@import './keep-alive.css';

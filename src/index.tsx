@@ -1,10 +1,11 @@
+import { TanstackQuery } from "#src/components";
 import { setupI18n } from "#src/locales";
 import { setupRouter } from "#src/router";
 
 // import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
-import App from "./App";
+import App from "./app";
 import "./styles/index.css";
 
 async function setupApp() {
@@ -23,7 +24,9 @@ async function setupApp() {
 
 	root.render(
 		// <StrictMode>
-		<App />,
+		<TanstackQuery>
+			<App />
+		</TanstackQuery>,
 		// </StrictMode>,
 	);
 }
