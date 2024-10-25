@@ -1,0 +1,1 @@
+import{u as e,j as s}from"./index-CAuxqyyI.js";import{f as a}from"./react-CdDm0hN7.js";import{Y as r,B as i}from"./antd-MPmAXGyh.js";import"./faker-CiQWN7dT.js";function p(){const{t}=e(),o=a();return s.jsx(r,{status:"403",title:"403",subTitle:t("common.403SubTitle"),extra:s.jsx(i,{type:"primary",onClick:()=>{o("/")},children:t("common.backHome")})})}export{p as default};
