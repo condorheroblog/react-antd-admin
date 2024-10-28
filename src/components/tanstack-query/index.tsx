@@ -12,6 +12,10 @@ const queryClient = new QueryClient({
 			staleTime: 5 * 60 * 1000, // 5 分钟内数据不会重新请求
 			gcTime: 5 * 60 * 1000, // 数据过期时间，超过 5 分钟后会被清理
 		},
+		mutations: {
+			retry: 3, // 重试次数
+			gcTime: 5 * 60 * 1000, // 数据过期时间，超过 5 分钟后会被清理
+		},
 	},
 });
 

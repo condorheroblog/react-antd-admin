@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# WebStorm
+.idea
+
 # production
 /build
 /dist

@@ -18,7 +18,7 @@ export default defineFakeRoute([
 		response: ({ body }) => {
 			if (body.username !== "commom") {
 				return resultSuccess({
-					userId: "1",
+					userId: 1,
 					avatar: "https://avatars.githubusercontent.com/u/47056890",
 					username: "Admin",
 					nickname: "Admin",
@@ -30,7 +30,7 @@ export default defineFakeRoute([
 			}
 			else {
 				return resultSuccess({
-					userId: "2",
+					userId: 2,
 					avatar: "https://avatars.githubusercontent.com/u/47056890",
 					username: "Tom",
 					nickname: "Tom",

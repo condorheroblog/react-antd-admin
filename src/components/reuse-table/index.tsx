@@ -7,6 +7,9 @@ export interface ReuseTableProps<D, U, V> extends ProTableProps<D, U, V> {
 
 }
 
+// 添加到 table 的 classname
+export const ROOT_CLASS_NAME = "reuse-table";
+
 export function ReuseTable<
 	DataType extends Record<string, any>,
 	Params extends ParamsType = ParamsType,
@@ -25,9 +28,16 @@ export function ReuseTable<
 	useEffect(() => {
 		if (tableWrapperRef.current && size?.height) {
 			const tableWrapperHeight = size.height;
-			const reuseTable = tableWrapperRef.current.getElementsByClassName("reuse-table")[0];
+			const reuseTable = tableWrapperRef.current.getElementsByClassName(ROOT_CLASS_NAME)[0];
+
+			if (!reuseTable)
+				return;
+
 			// const antPagination = reuseTable.getElementsByClassName("ant-pagination")[0];
-			const tableBody = reuseTable.querySelector("div.ant-table-body")!;
+			const tableBody = reuseTable.querySelector("div.ant-table-body");
+
+			if (!tableBody)
+				return;
 
 			// 获取元素的边界框
 			const tableBodyRect = tableBody.getBoundingClientRect();
@@ -47,7 +57,12 @@ export function ReuseTable<
 
 	return (
 		<div className="h-full" ref={tableWrapperRef}>
-			<ProTable {...props} rootClassName="reuse-table" scroll={{ y: "99999999999999999" }} />
+			<ProTable
+				{...props}
+				rootClassName={ROOT_CLASS_NAME}
+				// 可提供任意值，高度自适应逻辑会默认覆盖此值
+				scroll={{ y: "0" }}
+			/>
 		</div>
 	);
 }

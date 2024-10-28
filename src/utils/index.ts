@@ -7,3 +7,4 @@ export * from "./request";
 export * from "./search-route";
 export * from "./static-antd";
 export * from "./toggle-html-class";
+export * from "./tree";

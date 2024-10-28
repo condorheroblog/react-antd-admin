@@ -14,7 +14,7 @@ const defaultConfig: Options = {
 	prefixUrl: import.meta.env.VITE_API_BASE_URL,
 	timeout: 10000,
 	retry: {
-		limit: 0,
+		limit: 3,
 	},
 	hooks: {
 		beforeRequest: [

@@ -1,5 +1,6 @@
 export * from "./antd-app";
 export * from "./basic-button";
+export * from "./basic-form";
 export * from "./fullscreen-button";
 export * from "./global-spin";
 export * from "./icons";

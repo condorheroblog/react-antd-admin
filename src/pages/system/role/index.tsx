@@ -1,15 +1,18 @@
 import type { RoleItemType } from "#src/api/system";
-import type { ActionType, ProColumns } from "@ant-design/pro-components";
-import { fetchRoles } from "#src/api/system";
+import type { ActionType, ProColumns, ProCoreActionType } from "@ant-design/pro-components";
+import { fetchDeleteRoleItem, fetchRoleList, fetchRoleMenu, fetchRoleMenuIds } from "#src/api/system";
 import { BasicButton, ReuseTable } from "#src/components";
-import { PlusCircleOutlined } from "@ant-design/icons";
+import { handleTree } from "#src/utils";
 
-import { useMutation } from "@tanstack/react-query";
-import { Button, Popconfirm } from "antd";
-import { useRef } from "react";
+import { PlusCircleOutlined } from "@ant-design/icons";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { Button, message, Popconfirm, Tag } from "antd";
+import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import { Detail } from "./components/detail";
 
-const columns: ProColumns<RoleItemType>[] = [
+const constantColumns: ProColumns<RoleItemType>[] = [
 	{
 		dataIndex: "index",
 		title: "角色编号",
@@ -42,6 +45,9 @@ const columns: ProColumns<RoleItemType>[] = [
 		title: "状态",
 		dataIndex: "status",
 		valueType: "select",
+		render: (text, record) => {
+			return <Tag color={record.status === 1 ? "success" : "default"}>{text}</Tag>;
+		},
 		valueEnum: {
 			1: {
 				text: "启用",
@@ -62,35 +68,78 @@ const columns: ProColumns<RoleItemType>[] = [
 		valueType: "date",
 		search: false,
 	},
-	{
-		title: "操作",
-		valueType: "option",
-		key: "option",
-		// render: (text, record, _, action) => [
-		render: () => [
-			<Detail key="editable" title="编辑角色">
-				<BasicButton type="link" size="small">编辑</BasicButton>
-			</Detail>,
-			<Popconfirm
-				key="delete"
-				title="Delete the task"
-				description="Are you sure to delete this task?"
-				// onConfirm={confirm}
-				// onCancel={cancel}
-				okText="Yes"
-				cancelText="No"
-			>
-				<BasicButton type="link" size="small">删除</BasicButton>
-			</Popconfirm>,
-		],
-	},
 ];
 
 export default function Role() {
-	const mutation = useMutation({
-		mutationFn: fetchRoles,
+	const { t } = useTranslation();
+	const [messageApi, contextHolder] = message.useMessage();
+	const query = useQuery({ queryKey: ["role-menu"], queryFn: fetchRoleMenu });
+	const roleListMutation = useMutation({
+		mutationFn: fetchRoleList,
 	});
+	const roleMenuIdsMutation = useMutation({
+		mutationFn: fetchRoleMenuIds,
+	});
+	const deleteRoleItemMutation = useMutation({
+		mutationFn: fetchDeleteRoleItem,
+	});
+	/* Detail Data */
+	const [isOpen, setIsOpen] = useState(false);
+	const [title, setTitle] = useState("");
+	const [detailData, setDetailData] = useState<Partial<RoleItemType> & { menus?: string[] }>({});
+
 	const actionRef = useRef<ActionType>();
+
+	const handleDeleteRow = async (id: number, action?: ProCoreActionType<object>) => {
+		const responseData = await deleteRoleItemMutation.mutateAsync(id);
+		await action?.reload?.();
+		messageApi.success(`操作成功 userId = ${responseData.result}`);
+	};
+
+	const columns: ProColumns<RoleItemType>[] = [
+		...constantColumns,
+		{
+			title: t("common.action"),
+			valueType: "option",
+			key: "option",
+			render: (text, record, _, action) => {
+				return [
+					<BasicButton
+						key="editable"
+						type="link"
+						size="small"
+						onClick={async () => {
+							/* 请求角色菜单权限 */
+							const responseData = await roleMenuIdsMutation.mutateAsync({ id: record.id });
+							setIsOpen(true);
+							setTitle("编辑角色");
+							setDetailData({ ...record, menus: responseData.result });
+						}}
+					>
+						{t("common.edit")}
+					</BasicButton>,
+					<Popconfirm
+						key="delete"
+						title={t("common.confirmDelete")}
+						onConfirm={() => handleDeleteRow(record.id, action)}
+						okText={t("common.confirm")}
+						cancelText={t("common.cancel")}
+					>
+						<BasicButton type="link" size="small">{t("common.delete")}</BasicButton>
+					</Popconfirm>,
+				];
+			},
+		},
+	];
+
+	const onCloseChange = () => {
+		setIsOpen(false);
+		setDetailData({});
+	};
+
+	const refreshTable = () => {
+		actionRef.current?.reload();
+	};
 
 	return (
 		<>
@@ -100,7 +149,7 @@ export default function Role() {
 				cardBordered
 				request={async (params) => {
 					// console.log(sort, filter);
-					const responseData = await mutation.mutateAsync(params);
+					const responseData = await roleListMutation.mutateAsync(params);
 					return {
 						...responseData,
 						data: responseData.result.list,
@@ -139,17 +188,30 @@ export default function Role() {
 				dateFormatter="string"
 				headerTitle="角色管理（仅演示，操作后不生效）"
 				toolBarRender={() => [
-					<Detail title="新增角色" key="add-role">
-						<Button
-							key="button"
-							icon={<PlusCircleOutlined />}
-							type="primary"
-						>
-							新增角色
-						</Button>
-					</Detail>,
+
+					<Button
+						key="add-role"
+						icon={<PlusCircleOutlined />}
+						type="primary"
+						onClick={() => {
+							setIsOpen(true);
+							setTitle("新增角色");
+						}}
+					>
+						新增角色
+					</Button>,
+
 				]}
 			/>
+			<Detail
+				title={title}
+				open={isOpen}
+				onCloseChange={onCloseChange}
+				detailData={detailData}
+				refreshTable={refreshTable}
+				treeData={handleTree(query.data?.result || [])}
+			/>
+			{contextHolder}
 		</>
 	);
 };

@@ -1,25 +1,69 @@
+import type { RoleItemType } from "#src/api/system";
+import type { TreeDataNodeWithId } from "#src/components";
+import { fetchAddRoleItem, fetchUpdateRoleItem } from "#src/api/system";
+import { FormTreeItem } from "#src/components";
+
 import {
 	DrawerForm,
 	ProFormRadio,
 	ProFormText,
 	ProFormTextArea,
 } from "@ant-design/pro-components";
+import { useMutation } from "@tanstack/react-query";
 import { Form, message } from "antd";
+import { useEffect } from "react";
 
 interface DetailProps {
-	children: React.ReactNode
+	treeData: TreeDataNodeWithId[]
 	title: React.ReactNode
+	open: boolean
+	detailData: Partial<RoleItemType>
+	onCloseChange: () => void
+	refreshTable?: () => void
 }
 
-export function Detail({ children, title }: DetailProps) {
-	const [form] = Form.useForm<{ name: string, company: string }>();
+export function Detail({ title, open, onCloseChange, detailData, treeData, refreshTable }: DetailProps) {
+	const [messageApi, contextHolder] = message.useMessage();
+	const [form] = Form.useForm<RoleItemType>();
+
+	const addRoleItemMutation = useMutation({
+		mutationFn: fetchAddRoleItem,
+	});
+	const updateRoleItemMutation = useMutation({
+		mutationFn: fetchUpdateRoleItem,
+	});
+
+	const onFinish = async (values: RoleItemType) => {
+		// console.info(values);
+		/* 有 id 则为修改，否则为新增 */
+		if (detailData.id) {
+			await updateRoleItemMutation.mutateAsync(values);
+		}
+		else {
+			await addRoleItemMutation.mutateAsync(values);
+		}
+		/* 刷新表格 */
+		refreshTable?.();
+		messageApi.success("操作成功");
+		// 不返回不会关闭弹框
+		return true;
+	};
+
+	useEffect(() => {
+		if (open) {
+			form.setFieldsValue(detailData);
+		}
+	}, [open]);
 
 	return (
-		<DrawerForm<{
-			name: string
-			company: string
-		}>
+		<DrawerForm<RoleItemType>
 			title={title}
+			open={open}
+			onOpenChange={(visible) => {
+				if (visible === false) {
+					onCloseChange();
+				}
+			}}
 			resize={{
 				onResize() {
 					// console.log('resize!');
@@ -31,20 +75,14 @@ export function Detail({ children, title }: DetailProps) {
 			wrapperCol={{ span: 24 }}
 			layout="horizontal"
 			form={form}
-			trigger={<div className="trigger">{children}</div>}
 			autoFocusFirstInput
 			drawerProps={{
 				destroyOnClose: true,
 			}}
-			submitTimeout={2000}
-			onFinish={async () => {
-				// console.log(values.name);
-				message.success("提交成功");
-				// 不返回不会关闭弹框
-				return true;
-			}}
+			onFinish={onFinish}
 			initialValues={{
-				status: "1",
+				status: 1,
+				menus: [],
 			}}
 		>
 
@@ -84,11 +122,11 @@ export function Detail({ children, title }: DetailProps) {
 				options={[
 					{
 						label: "启用",
-						value: "1",
+						value: 1,
 					},
 					{
 						label: "停用",
-						value: "0",
+						value: 0,
 					},
 				]}
 			/>
@@ -101,6 +139,12 @@ export function Detail({ children, title }: DetailProps) {
 				placeholder="请输入备注"
 			/>
 
+			<div>
+				<Form.Item name="menus" label="菜单分配">
+					<FormTreeItem treeData={treeData} />
+				</Form.Item>
+			</div>
+			{contextHolder}
 		</DrawerForm>
 	);
 };
