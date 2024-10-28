@@ -3,8 +3,8 @@ import logo from "#src/assets/images/logo.svg?url";
 import { Footer } from "#src/layout";
 import { LanguageMenu } from "#src/layout/header/components/language-menu";
 import { ThemeSwitch } from "#src/layout/header/components/theme-switch";
-
 import { usePermissionStore, useUserStore } from "#src/store";
+
 import {
 	Button,
 	Col,
@@ -15,7 +15,7 @@ import {
 	Space,
 	Typography,
 } from "antd";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { createUseStyles } from "react-jss";
@@ -58,6 +58,7 @@ const FORM_INITIAL_VALUES = {
 export type FormInitialValues = typeof FORM_INITIAL_VALUES;
 
 export default function Login() {
+	const [loading, setLoading] = useState(false);
 	const classes = useStyles();
 	const [loginForm] = Form.useForm();
 	const { t } = useTranslation();
@@ -67,8 +68,14 @@ export default function Login() {
 	const handleAsyncRoutes = usePermissionStore(state => state.handleAsyncRoutes);
 
 	const handleFinish = async (values: FormInitialValues) => {
-		await login(values);
-		await handleAsyncRoutes();
+		setLoading(true);
+		try {
+			await login(values);
+			await handleAsyncRoutes();
+		}
+		finally {
+			setLoading(false);
+		}
 
 		const redirect = searchParams.get("redirect");
 		if (redirect) {
@@ -150,7 +157,7 @@ export default function Login() {
 									</Form.Item>
 
 									<Form.Item>
-										<Button block type="primary" htmlType="submit">
+										<Button block type="primary" htmlType="submit" loading={loading}>
 											{t("common.login")}
 										</Button>
 									</Form.Item>

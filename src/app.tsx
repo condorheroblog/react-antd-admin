@@ -1,5 +1,5 @@
 import type { LanguageType } from "#src/locales";
-import { AntdApp, GlobalSpin, JSSThemeProvider } from "#src/components";
+import { AntdApp, JSSThemeProvider } from "#src/components";
 import { useScrollToHash } from "#src/hooks";
 import { ANT_DESIGN_LOCALE } from "#src/locales";
 import { useGlobalStore, useUserStore } from "#src/store";
@@ -119,11 +119,9 @@ export default function App() {
 		>
 			<AntdApp>
 				<JSSThemeProvider>
-					<GlobalSpin>
-						<Suspense fallback={null}>
-							{isReadyLanguage ? <RouterProvider router={router} /> : null}
-						</Suspense>
-					</GlobalSpin>
+					<Suspense fallback={null}>
+						{isReadyLanguage ? <RouterProvider router={router} /> : null}
+					</Suspense>
 				</JSSThemeProvider>
 			</AntdApp>
 		</ConfigProvider>

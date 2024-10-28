@@ -30,5 +30,5 @@ export function fetchRoleMenu() {
 
 /* 角色绑定的菜单 id */
 export function fetchRoleMenuIds(data: { id: number }) {
-	return request.get<ApiResponse<string[]>>("role-menu-ids", { searchParams: data }).json();
+	return request.get<ApiResponse<string[]>>("role-menu-ids", { searchParams: data, ignoreLoading: false }).json();
 }

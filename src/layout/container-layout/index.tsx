@@ -1,3 +1,4 @@
+import { GlobalSpin } from "#src/components";
 import { usePreferencesStore, useTabsStore } from "#src/store";
 import { cn } from "#src/utils";
 import { Drawer, Grid, theme } from "antd";
@@ -144,20 +145,23 @@ export default function ContainerLayout() {
 						}
 					}
 				>
-					{!isRefresh
-						? (
-							<KeepAlive
-								max={20}
-								transition
-								duration={300}
-								activeCacheKey={cacheKey}
-								aliveRef={aliveRef}
-							>
-								{outlet}
-							</KeepAlive>
-						)
-						: null}
+					<GlobalSpin>
+						{!isRefresh
+							? (
+								<KeepAlive
+									max={20}
+									transition
+									duration={300}
+									activeCacheKey={cacheKey}
+									aliveRef={aliveRef}
+								>
+									{outlet}
+								</KeepAlive>
+							)
+							: null}
+					</GlobalSpin>
 				</main>
+
 				<Footer />
 			</section>
 		</LayoutContext.Provider>
