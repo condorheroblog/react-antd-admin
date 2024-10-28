@@ -43,6 +43,7 @@ const systemManagementRouter = {
 		{
 			path: "/system/dept",
 			handle: {
+				keepAlive: false,
 				icon: "ApartmentOutlined",
 				title: "common.menu.system.dept",
 				roles: ["admin"],

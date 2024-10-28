@@ -12,10 +12,12 @@
 - [antd](https://ant.design/index-cn/)
 - [Zustand](https://zustand-demo.pmnd.rs/)
 - [Vite](https://vitejs.dev/)
-- [国际化](https://react.i18next.com/)
+- [I18n](https://react.i18next.com/)
 - [TypeScript](https://www.typescriptlang.org/)
+- [@tanstack/react-query](https://tanstack.com/query/latest/docs/framework/react/overview)
 - [ESLint Flat Config](https://eslint.org/docs/latest/use/configure/configuration-files-new/)
-- [mock 数据](https://github.com/condorheroblog/vite-plugin-fake-server)
+- [KeepAlive](https://github.com/irychen/keepalive-for-react)
+- [Mock Data](https://github.com/condorheroblog/vite-plugin-fake-server)
 
 ## 使用
 

@@ -1,5 +1,5 @@
 import { GlobalSpin } from "#src/components";
-import { usePreferencesStore, useTabsStore } from "#src/store";
+import { usePermissionStore, usePreferencesStore, useTabsStore } from "#src/store";
 import { cn } from "#src/utils";
 import { Drawer, Grid, theme } from "antd";
 import KeepAlive, { useKeepaliveRef } from "keepalive-for-react";
@@ -54,6 +54,7 @@ export default function ContainerLayout() {
 	const isMaximize = useTabsStore(state => state.isMaximize);
 	const openTabs = useTabsStore(state => state.openTabs);
 	const tabbarEnable = usePreferencesStore(state => state.tabbarEnable);
+	const flatRouteList = usePermissionStore(state => state.flatRouteList);
 
 	/**
 	 * to distinguish different pages to cache
@@ -89,7 +90,25 @@ export default function ContainerLayout() {
 		}
 	}, [screens]);
 
+	/* KeepAlive 的刷新 */
+	useEffect(() => {
+		/* 仅在启用标签栏时生效 */
+		if (tabbarEnable && isRefresh) {
+			aliveRef.current?.refresh();
+		}
+	}, [isRefresh]);
+
 	const layoutContextValue = useMemo(() => ({ collapsed, setCollapsed }), [collapsed, setCollapsed]);
+
+	/* 路由设置 keepAlive false 则不缓存页面 */
+	const keepAliveExclude = useMemo(() => {
+		return Object.entries(flatRouteList).reduce<string[]>((acc, [key, value]) => {
+			if (value.handle.keepAlive === false) {
+				acc.push(key);
+			}
+			return acc;
+		}, []);
+	}, [flatRouteList]);
 
 	return (
 		<LayoutContext.Provider value={layoutContextValue}>
@@ -146,19 +165,22 @@ export default function ContainerLayout() {
 					}
 				>
 					<GlobalSpin>
-						{!isRefresh
-							? (
-								<KeepAlive
-									max={20}
-									transition
-									duration={300}
-									activeCacheKey={cacheKey}
-									aliveRef={aliveRef}
-								>
-									{outlet}
-								</KeepAlive>
-							)
-							: null}
+						{
+							tabbarEnable
+								? (
+									<KeepAlive
+										max={20}
+										transition
+										duration={300}
+										exclude={keepAliveExclude}
+										activeCacheKey={cacheKey}
+										aliveRef={aliveRef}
+									>
+										{outlet}
+									</KeepAlive>
+								)
+								: outlet
+						}
 					</GlobalSpin>
 				</main>
 
