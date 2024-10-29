@@ -7,8 +7,10 @@
 	"notifications": "通知",
 	"markAllAsRead": "全部标记为已读",
 	"clearNotifications": "清空",
-	"checkUpdatesTitle": "新版本可用",
-	"checkUpdatesDescription": "点击刷新以获取最新版本",
+	"versionMonitorTitle": "系统版本更新通知",
+	"versionMonitorContent": "检测到系统有新版本发布，是否立即刷新页面？",
+	"versionMonitorConfirm": "立即刷新",
+	"versionMonitorCancel": "稍后再说",
 	"search": {
 		"title": "搜索",
 		"searchNavigate": "搜索导航菜单",

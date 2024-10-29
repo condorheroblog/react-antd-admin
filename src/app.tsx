@@ -1,14 +1,15 @@
 import type { LanguageType } from "#src/locales";
 import { AntdApp, JSSThemeProvider } from "#src/components";
 import { useScrollToHash } from "#src/hooks";
+import { AppVersionMonitor } from "#src/layout/widgets/version-monitor";
 import { ANT_DESIGN_LOCALE } from "#src/locales";
 import { useGlobalStore, useUserStore } from "#src/store";
-import { theme as antdTheme, ConfigProvider } from "antd";
 
+import { theme as antdTheme, ConfigProvider } from "antd";
 import dayjs from "dayjs";
 import { Suspense, useCallback, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 
+import { useTranslation } from "react-i18next";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router";
 import { customAntdDarkTheme, customAntdLightTheme } from "./styles/antdTheme";
@@ -120,6 +121,7 @@ export default function App() {
 			<AntdApp>
 				<JSSThemeProvider>
 					<Suspense fallback={null}>
+						{import.meta.env.VITE_APP_VERSION_MONITOR === "Y" ? <AppVersionMonitor /> : null}
 						{isReadyLanguage ? <RouterProvider router={router} /> : null}
 					</Suspense>
 				</JSSThemeProvider>

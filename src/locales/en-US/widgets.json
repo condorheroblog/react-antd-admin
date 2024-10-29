@@ -7,8 +7,10 @@
 	"notifications": "Notifications",
 	"markAllAsRead": "Make All as Read",
 	"clearNotifications": "Clear",
-	"checkUpdatesTitle": "New Version Available",
-	"checkUpdatesDescription": "Click to refresh and get the latest version",
+	"versionMonitorTitle": "System Version Update Notification",
+	"versionMonitorContent": "A new version of the system has been detected, do you want to refresh the page now?",
+	"versionMonitorConfirm": "Refresh Now",
+	"versionMonitorCancel": "Later",
 	"search": {
 		"title": "Search",
 		"searchNavigate": "Search Navigation",

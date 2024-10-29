@@ -4,12 +4,11 @@ import type { AppRouteRecordRaw, RouterNavigate } from "./types";
 import { Iframe } from "#src/components/iframe";
 import { ContainerLayout } from "#src/layout";
 import { $t } from "#src/locales";
-import Error404 from "#src/pages/error/404";
 import { useUserStore } from "#src/store";
 
 import { isString } from "#src/utils";
 import * as antdIcons from "@ant-design/icons";
-import { createElement } from "react";
+import { createElement, lazy } from "react";
 import { Link } from "react-router-dom";
 
 import { ROOT_ROUTE_ID, WHITE_LIST } from "./constants";
@@ -28,7 +27,7 @@ export function getInitReactRoutes(routeModuleList: AppRouteRecordRaw[]) {
 		{
 			path: "*",
 			id: "errorBoundary-route",
-			Component: Error404,
+			Component: lazy(() => import("#src/pages/error/404")),
 		},
 	];
 }
@@ -145,7 +144,11 @@ export function flattenRoutes(routes: AppRouteRecordRaw[]) {
 // https://cn.vitejs.dev/guide/features.html#glob-import
 const modulesRoutes = import.meta.glob<
 	Record<string, React.ComponentType>
->("/src/pages/**/*.tsx");
+>([
+	"/src/pages/**/*.tsx",
+	// Fix plugin vite:reporter
+	"!/src/pages/error/page-error/*.tsx",
+]);
 
 /** 过滤后端传来的动态路由 重新生成规范路由 */
 export function addAsyncRoutes(arrRoutes: Array<AppRouteRecordRaw>) {
