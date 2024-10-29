@@ -26,7 +26,7 @@ const defaultConfig: Options = {
 	hooks: {
 		beforeRequest: [
 			(request, options) => {
-				const ignoreLoading = options.ignoreLoading ?? true;
+				const ignoreLoading = options.ignoreLoading;
 				if (!ignoreLoading) {
 					globalProgress.start();
 				}
@@ -38,7 +38,7 @@ const defaultConfig: Options = {
 		],
 		afterResponse: [
 			async (request, options, response) => {
-				const ignoreLoading = options.ignoreLoading ?? true;
+				const ignoreLoading = options.ignoreLoading;
 				if (!ignoreLoading) {
 					globalProgress.done();
 				}
