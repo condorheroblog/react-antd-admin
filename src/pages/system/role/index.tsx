@@ -6,7 +6,7 @@ import { handleTree } from "#src/utils";
 
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Button, message, Popconfirm, Tag } from "antd";
+import { Button, Popconfirm, Tag } from "antd";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -72,7 +72,6 @@ const constantColumns: ProColumns<RoleItemType>[] = [
 
 export default function Role() {
 	const { t } = useTranslation();
-	const [messageApi, contextHolder] = message.useMessage();
 	const query = useQuery({ queryKey: ["role-menu"], queryFn: fetchRoleMenu });
 	const roleListMutation = useMutation({
 		mutationFn: fetchRoleList,
@@ -93,7 +92,7 @@ export default function Role() {
 	const handleDeleteRow = async (id: number, action?: ProCoreActionType<object>) => {
 		const responseData = await deleteRoleItemMutation.mutateAsync(id);
 		await action?.reload?.();
-		messageApi.success(`操作成功 userId = ${responseData.result}`);
+		window.$message?.success(`操作成功 userId = ${responseData.result}`);
 	};
 
 	const columns: ProColumns<RoleItemType>[] = [
@@ -211,7 +210,6 @@ export default function Role() {
 				refreshTable={refreshTable}
 				treeData={handleTree(query.data?.result || [])}
 			/>
-			{contextHolder}
 		</>
 	);
 };

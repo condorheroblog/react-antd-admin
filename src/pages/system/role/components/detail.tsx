@@ -10,7 +10,7 @@ import {
 	ProFormTextArea,
 } from "@ant-design/pro-components";
 import { useMutation } from "@tanstack/react-query";
-import { Form, message } from "antd";
+import { Form } from "antd";
 import { useEffect } from "react";
 
 interface DetailProps {
@@ -23,7 +23,6 @@ interface DetailProps {
 }
 
 export function Detail({ title, open, onCloseChange, detailData, treeData, refreshTable }: DetailProps) {
-	const [messageApi, contextHolder] = message.useMessage();
 	const [form] = Form.useForm<RoleItemType>();
 
 	const addRoleItemMutation = useMutation({
@@ -44,7 +43,7 @@ export function Detail({ title, open, onCloseChange, detailData, treeData, refre
 		}
 		/* 刷新表格 */
 		refreshTable?.();
-		messageApi.success("操作成功");
+		window.$message?.success("操作成功");
 		// 不返回不会关闭弹框
 		return true;
 	};
@@ -144,7 +143,6 @@ export function Detail({ title, open, onCloseChange, detailData, treeData, refre
 					<FormTreeItem treeData={treeData} />
 				</Form.Item>
 			</div>
-			{contextHolder}
 		</DrawerForm>
 	);
 };

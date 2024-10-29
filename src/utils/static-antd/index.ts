@@ -23,9 +23,15 @@ let modal: Omit<ModalStaticFunctions, "warn"> = resetFns;
 export function StaticAntd() {
 	const staticFunctions = App.useApp();
 
+	/* Usage 1 */
 	message = staticFunctions.message;
 	notification = staticFunctions.notification;
 	modal = staticFunctions.modal;
+
+	/* Usage 2 */
+	window.$message = message;
+	window.$modal = modal;
+	window.$notification = notification;
 
 	return null;
 }

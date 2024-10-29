@@ -14,6 +14,16 @@ declare global {
 		lastBuildTime: string
 	};
 
+	/* Inspired by https://github.com/soybeanjs/soybean-admin/blob/v1.3.8/src/typings/global.d.ts */
+	interface Window {
+		/** ant design message instance */
+		$message?: import("antd/es/message/interface").MessageInstance
+		/** ant design modal instance */
+		$modal?: Omit<import("antd/es/modal/confirm").ModalStaticFunctions, "warn">
+		/** ant design notification instance */
+		$notification?: import("antd/es/notification/interface").NotificationInstance
+	}
+
 	/**
 	 * @description 增强 JSS 默认主题
 	 * @description Enhances the default theme for JSS
