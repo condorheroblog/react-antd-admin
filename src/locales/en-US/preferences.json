@@ -27,5 +27,11 @@
 			"maximize": "Maximize",
 			"restoreMaximize": "Restore"
 		}
+	},
+	"animation": {
+		"title": "Animation",
+		"loading": "Page Loading",
+		"transition": "Page Transition",
+		"progress": "Page Progress"
 	}
 }

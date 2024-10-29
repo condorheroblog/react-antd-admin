@@ -1,3 +1,4 @@
+export * from "./animation";
 export * from "./global";
 export * from "./permission";
 export * from "./preferences";

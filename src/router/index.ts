@@ -1,7 +1,7 @@
 import type { BlockerFunction } from "react-router-dom";
 import type { AppRouteRecordRaw, RouterSubscriber } from "./types";
 
-import { usePermissionStore } from "#src/store";
+import { useAnimationStore, usePermissionStore } from "#src/store";
 import { NProgress } from "#src/utils";
 
 import { createBrowserRouter, matchRoutes } from "react-router-dom";
@@ -40,8 +40,9 @@ export const router = createBrowserRouter(
  * @returns 返回 true 则取消当前导航，返回 false 则继续导航
  */
 const routerBeforeEach: BlockerFunction = ({ nextLocation }) => {
+	const { transitionProgress } = useAnimationStore.getState();
 	/* 开启进度条动画 */
-	NProgress.start();
+	transitionProgress && NProgress.start();
 
 	const currentRoute = matchRoutes(
 		router.routes,
@@ -82,21 +83,22 @@ const routerBeforeEach: BlockerFunction = ({ nextLocation }) => {
 /**
  * 路由守卫，在路由跳转完成后执行
  *
- * @returns 无返回值
  */
 const routerAfterEach: RouterSubscriber = (routerState) => {
+	const { transitionProgress } = useAnimationStore.getState();
 	if (routerState.navigation.state === "idle") {
 		/* 路由变化更新文档标题的逻辑放到了路由守卫组件中（guard.tsx） */
 		/* 关闭进度条动画 */
-		NProgress.done();
+		transitionProgress && NProgress.done();
 	}
 };
 
 async function routerInitReady() {
+	const { transitionProgress } = useAnimationStore.getState();
 	/* 路由初始化时，开启进度条动画 */
-	NProgress.start();
+	transitionProgress && NProgress.start();
 	function handleDomReady() {
-		NProgress.done();
+		transitionProgress && NProgress.done();
 		document.removeEventListener("DOMContentLoaded", handleDomReady);
 	}
 	document.addEventListener("DOMContentLoaded", handleDomReady);

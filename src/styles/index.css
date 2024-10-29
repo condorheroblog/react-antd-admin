@@ -4,5 +4,8 @@
 /* 第三方库样式 */
 @import './global.css';
 
-/* 路由切换动画 */
+/* 动画 */
+@import './animation.css';
+
+/* keepalive 组件样式 */
 @import './keep-alive.css';

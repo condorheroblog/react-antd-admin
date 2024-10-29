@@ -6,7 +6,7 @@ import { Divider, Drawer } from "antd";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Tabbar } from "./blocks/tabbar";
+import { Animation, Tabbar } from "./blocks";
 
 export function Preferences() {
 	const { t } = useTranslation();
@@ -48,6 +48,8 @@ export function Preferences() {
 					<ThemeSwitch />
 					<Divider>{t("preferences.tabbar.title")}</Divider>
 					<Tabbar />
+					<Divider>{t("preferences.animation.title")}</Divider>
+					<Animation />
 				</div>
 			</Drawer>
 		</>

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { useGlobalStore } from "#src/store";
+import { useAnimationStore, useGlobalStore } from "#src/store";
 import { Spin } from "antd";
 
 import { createUseStyles } from "react-jss";
@@ -22,8 +22,13 @@ const useStyles = createUseStyles({
 
 export function GlobalSpin({ children }: GlobalSpinProps) {
 	const classes = useStyles();
-
 	const spinning = useGlobalStore(state => state.globalSpin);
+	const transitionLoading = useAnimationStore(state => state.transitionLoading);
+
+	if (!transitionLoading) {
+		return children;
+	};
+
 	return (
 		<Spin spinning={spinning} wrapperClassName={classes.rootSpin}>
 			{children}

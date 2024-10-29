@@ -36,6 +36,7 @@ export function Tabbar() {
 		tabbarStyleType,
 		tabbarShowMore,
 		tabbarShowMaximize,
+		setPreferences,
 	} = usePreferencesStore();
 
 	return (
@@ -43,6 +44,7 @@ export function Tabbar() {
 			<SwitchItem
 				name="tabbarEnable"
 				checked={tabbarEnable}
+				onChange={(name, value) => setPreferences(name, value)}
 			>
 				{t("preferences.tabbar.enable")}
 			</SwitchItem>
@@ -50,6 +52,7 @@ export function Tabbar() {
 				name="tabbarPersist"
 				checked={tabbarPersist}
 				disabled={!tabbarEnable}
+				onChange={(name, value) => setPreferences(name, value)}
 			>
 				{t("preferences.tabbar.persist")}
 			</SwitchItem>
@@ -57,6 +60,7 @@ export function Tabbar() {
 				name="tabbarDraggable"
 				checked={tabbarDraggable}
 				disabled={!tabbarEnable}
+				onChange={(name, value) => setPreferences(name, value)}
 			>
 				{t("preferences.tabbar.draggable")}
 			</SwitchItem>
@@ -64,6 +68,7 @@ export function Tabbar() {
 				name="tabbarShowIcon"
 				checked={tabbarShowIcon}
 				disabled={!tabbarEnable}
+				onChange={(name, value) => setPreferences(name, value)}
 			>
 				{t("preferences.tabbar.icon")}
 			</SwitchItem>
@@ -71,6 +76,7 @@ export function Tabbar() {
 				name="tabbarShowMore"
 				checked={tabbarShowMore}
 				disabled={!tabbarEnable}
+				onChange={(name, value) => setPreferences(name, value)}
 			>
 				{t("preferences.tabbar.showMore")}
 			</SwitchItem>
@@ -78,6 +84,7 @@ export function Tabbar() {
 				name="tabbarShowMaximize"
 				checked={tabbarShowMaximize}
 				disabled={!tabbarEnable}
+				onChange={(name, value) => setPreferences(name, value)}
 			>
 				{t("preferences.tabbar.showMaximize")}
 			</SwitchItem>

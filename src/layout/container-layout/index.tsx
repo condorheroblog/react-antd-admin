@@ -1,5 +1,5 @@
 import { GlobalSpin } from "#src/components";
-import { usePermissionStore, usePreferencesStore, useTabsStore } from "#src/store";
+import { useAnimationStore, usePermissionStore, usePreferencesStore, useTabsStore } from "#src/store";
 import { cn } from "#src/utils";
 import { Drawer, Grid, theme } from "antd";
 import KeepAlive, { useKeepaliveRef } from "keepalive-for-react";
@@ -55,6 +55,8 @@ export default function ContainerLayout() {
 	const openTabs = useTabsStore(state => state.openTabs);
 	const tabbarEnable = usePreferencesStore(state => state.tabbarEnable);
 	const flatRouteList = usePermissionStore(state => state.flatRouteList);
+	const transitionName = useAnimationStore(state => state.transitionName);
+	const transitionEnable = useAnimationStore(state => state.transitionEnable);
 
 	/**
 	 * to distinguish different pages to cache
@@ -172,6 +174,7 @@ export default function ContainerLayout() {
 										max={20}
 										transition
 										duration={300}
+										cacheNodeClassName={transitionEnable ? `keepalive-${transitionName}` : undefined}
 										exclude={keepAliveExclude}
 										activeCacheKey={cacheKey}
 										aliveRef={aliveRef}

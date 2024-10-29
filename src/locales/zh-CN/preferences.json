@@ -27,5 +27,11 @@
 			"maximize": "最大化",
 			"restoreMaximize": "还原"
 		}
+	},
+	"animation": {
+		"title": "动画",
+		"loading": "页面切换 Loading",
+		"transition": "页面切换动画",
+		"progress": "页面切换进度条"
 	}
 }

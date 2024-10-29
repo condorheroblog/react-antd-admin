@@ -1,0 +1,186 @@
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fade-out {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes slide-in {
+	from {
+		transform: translateX(-30px);
+	}
+
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slide-out {
+	from {
+		transform: translateX(0);
+	}
+
+	to {
+		transform: translateX(30px);
+	}
+}
+
+@keyframes slide-top-in {
+	from {
+		transform: translateY(-10%);
+	}
+
+	to {
+		transform: translateY(0);
+	}
+}
+
+@keyframes slide-top-out {
+	from {
+		transform: translateY(0);
+	}
+
+	to {
+		transform: translateY(-10%);
+	}
+}
+
+@keyframes slide-bottom-in {
+	from {
+		transform: translateY(10%);
+	}
+
+	to {
+		transform: translateY(0);
+	}
+}
+
+@keyframes slide-bottom-out {
+	from {
+		transform: translateY(0);
+	}
+
+	to {
+		transform: translateY(10%);
+	}
+}
+
+@keyframes fade-slide {
+	0% {
+		opacity: 0;
+		transform: translate(-30px);
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		transform: translate(30px);
+	}
+}
+
+@keyframes fade-up {
+	0% {
+		opacity: 0;
+		transform: translateY(10%);
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateY(-10%);
+	}
+}
+
+@keyframes fade-down {
+	0% {
+		opacity: 0;
+		transform: translateY(-10%);
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateY(10%);
+	}
+}
+
+.fade-slide {
+	animation: fade-slide 3s linear infinite;
+}
+
+.fade {
+	animation: fade-in 3s linear infinite alternate;
+}
+
+.fade-up {
+	animation: fade-up 3s infinite;
+}
+
+.fade-down {
+	animation: fade-down 3s infinite;
+}
+
+@keyframes zoom-in {
+	0% {
+		transform: scale(0.8);
+	}
+
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes zoom-out {
+	0% {
+		transform: scale(1);
+	}
+
+	100% {
+		opacity: 1;
+		transform: scale(1.25);
+	}
+}
+
+@keyframes fade-zoom {
+	0% {
+		opacity: 0;
+		transform: scale(0.8);
+	}
+
+	50% {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	100% {
+		opacity: 0;
+		transform: scale(1.25);
+	}
+}
+
+.fade-zoom {
+	animation: fade-zoom 3s infinite;
+}
