@@ -1,4 +1,4 @@
-import { Card, Col, Descriptions, Row, Tag, theme, Typography } from "antd";
+import { Badge, Card, Col, Descriptions, Row, Tag, theme, Typography } from "antd";
 import { useTranslation } from "react-i18next";
 
 import { dependenciesItems, devDependenciesItems } from "./constants";
@@ -65,14 +65,18 @@ export default function About() {
 				</Card>
 			</Col>
 			<Col span={24}>
-				<Card title={t("about.dependencies")}>
-					<Descriptions bordered items={dependenciesItems} />
-				</Card>
+				<Badge.Ribbon text={dependenciesItems.length} color="green">
+					<Card title={t("about.dependencies")}>
+						<Descriptions bordered items={dependenciesItems} />
+					</Card>
+				</Badge.Ribbon>
 			</Col>
 			<Col span={24}>
-				<Card title={t("about.devDependencies")}>
-					<Descriptions bordered items={devDependenciesItems} />
-				</Card>
+				<Badge.Ribbon text={devDependenciesItems.length} color="blue">
+					<Card title={t("about.devDependencies")}>
+						<Descriptions bordered items={devDependenciesItems} />
+					</Card>
+				</Badge.Ribbon>
 			</Col>
 		</Row>
 	);
