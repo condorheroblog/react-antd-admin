@@ -3,6 +3,7 @@ import { LOGIN } from "#src/router/constants";
 
 import { useUserStore } from "#src/store";
 import ky from "ky";
+
 import { APP_NAME_HEADER, AUTH_HEADER, LANG_HEADER } from "./constants";
 import { handleErrorResponse } from "./error-response";
 import { globalProgress } from "./global-progress";

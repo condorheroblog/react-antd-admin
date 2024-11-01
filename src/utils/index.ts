@@ -1,6 +1,5 @@
 export * from "./cn";
 export * from "./is";
-export * from "./is-mobile";
 export * from "./progress";
 export * from "./remember-route";
 export * from "./request";

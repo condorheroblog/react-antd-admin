@@ -1,16 +1,18 @@
 import type { TabItemProps } from "#src/store";
 import type { TabsProps } from "antd";
+import { useCurrentRoute } from "#src/hooks";
+import { removeTrailingSlash } from "#src/router/utils";
+import { usePermissionStore, usePreferencesStore, useTabsStore, useUserStore } from "#src/store";
+
+import { isString } from "#src/utils";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 // import { CacheStatusIcon } from "#src/components";
-import { useCurrentRoute } from "#src/hooks";
-import { usePermissionStore, usePreferencesStore, useTabsStore, useUserStore } from "#src/store";
-import { isString } from "#src/utils";
 import { RedoOutlined } from "@ant-design/icons";
 import { Button, Tabs } from "antd";
 import { clsx } from "clsx";
 import { useTranslation } from "react-i18next";
-
 import { useLocation, useNavigate } from "react-router-dom";
+
 import { DraggableTabBar } from "./components/draggable-tab-bar";
 import { TabMaximize } from "./components/tab-maximize";
 import { TabOptions } from "./components/tab-options";
@@ -18,10 +20,10 @@ import { TabActionKeys, useDropdownMenu } from "./hooks/use-dropdown-menu";
 import { useStyles } from "./style";
 
 /**
- * BasicTabs 组件
+ * LayoutTabbar 组件
  * 用于渲染和管理应用程序的标签页导航
  */
-export default function BasicTabs() {
+export default function LayoutTabbar() {
 	// const { token } = theme.useToken();
 	const classes = useStyles();
 	const navigate = useNavigate();
@@ -176,7 +178,7 @@ export default function BasicTabs() {
 	 */
 	useEffect(() => {
 		const activePath = location.pathname;
-		const normalizedPath = activePath.length > 0 && activePath.endsWith("/") ? activePath.slice(0, -1) : activePath;
+		const normalizedPath = removeTrailingSlash(activePath);
 
 		setActiveKey(normalizedPath);
 
@@ -207,7 +209,7 @@ export default function BasicTabs() {
 				hideAdd
 				animated
 				onChange={handleChangeTabs}
-				activeKey={activeKey.endsWith("/") ? activeKey.slice(0, -1) : activeKey}
+				activeKey={removeTrailingSlash(activeKey)}
 				type="editable-card"
 				onEdit={handleEditTabs}
 				items={tabItems}

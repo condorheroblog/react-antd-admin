@@ -8,8 +8,8 @@ import { useContext } from "react";
 interface SiderTriggerProps {
 	className?: string
 }
-export default function SiderTrigger({ className }: SiderTriggerProps) {
-	const { collapsed, setCollapsed } = useContext(LayoutContext);
+export function SiderTrigger({ className }: SiderTriggerProps) {
+	const { sidebarCollapsed, setSidebarCollapsed } = useContext(LayoutContext);
 
 	return (
 		<BasicButton
@@ -17,8 +17,8 @@ export default function SiderTrigger({ className }: SiderTriggerProps) {
 			style={{
 				boxShadow: "0px -3px 5px 0 rgb(29, 35, 41, 0.05)",
 			}}
-			icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-			onClick={() => setCollapsed(!collapsed)}
+			icon={sidebarCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+			onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
 			className={cn(className, "absolute bottom-0 h-10 !w-full rounded-none border border-t-gray-200")}
 		/>
 	);

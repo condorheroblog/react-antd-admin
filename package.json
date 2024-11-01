@@ -28,7 +28,7 @@
 		"analyzer": "vite-bundle-visualizer --output analyzer/stats.html",
 		"eslint-config-inspector": "npx @eslint/config-inspector",
 		"lint": "eslint .",
-		"lint:fix": "eslint . --fix",
+		"lint:fix": "eslint src/layout/container-layout/index.tsx --fix",
 		"prepare": "simple-git-hooks",
 		"test": "vitest"
 	},

@@ -1,4 +1,16 @@
 {
+	"layout": {
+		"title": "布局",
+		"topNavigation": "顶部导航",
+		"topNavigationTip": "菜单在顶部位置",
+		"sideNavigation": "侧边导航",
+		"sideNavigationTip": "菜单在侧边位置",
+		"twoColumnNavigation": "双列导航",
+		"twoColumnNavigationTip": "垂直双列菜单在侧边位置",
+		"mixedNavigation": "混合导航",
+		"mixedNavigationTip": "一级导航在顶部，二级导航在侧边",
+		"sidebarWidth": "侧边栏宽度"
+	},
 	"tabbar": {
 		"title": "标签栏",
 		"enable": "启用标签栏",

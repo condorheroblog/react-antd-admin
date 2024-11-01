@@ -3,8 +3,8 @@ import { usePreferencesStore } from "#src/store";
 
 import { useTranslation } from "react-i18next";
 
-import { SelectItem } from "../select-item";
-import { SwitchItem } from "../switch-item";
+import { SelectItem } from "../../select-item";
+import { SwitchItem } from "../../switch-item";
 
 const styleItems = [
 	{

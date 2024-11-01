@@ -18,7 +18,7 @@ const itemRender: BreadcrumbProps["itemRender"] = (route, params, routes) => {
 		);
 };
 
-export default function BreadcrumbViews() {
+export function BreadcrumbViews() {
 	const { t } = useTranslation();
 	const lng = useUserStore(state => state.lng);
 	const matches = useMatches();

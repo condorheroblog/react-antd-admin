@@ -1,4 +1,16 @@
 {
+	"layout": {
+		"title": "Layout",
+		"topNavigation": "Top Navigation",
+		"topNavigationTip": "Menu at the top position",
+		"sideNavigation": "Side Navigation",
+		"sideNavigationTip": "Menu at the side position",
+		"twoColumnNavigation": "Two Column Navigation",
+		"twoColumnNavigationTip": "Vertical two-column menu at the side position",
+		"mixedNavigation": "Mixed Navigation",
+		"mixedNavigationTip": "Primary navigation at the top, secondary navigation at the side",
+		"sidebarWidth": "Sidebar Width"
+	},
 	"tabbar": {
 		"title": "Tabbar",
 		"enable": "Enable Tab Bar",

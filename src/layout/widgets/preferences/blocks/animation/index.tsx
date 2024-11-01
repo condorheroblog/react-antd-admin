@@ -2,7 +2,7 @@ import { useAnimationStore } from "#src/store";
 import { cn } from "#src/utils";
 
 import { useTranslation } from "react-i18next";
-import { SwitchItem } from "../switch-item";
+import { SwitchItem } from "../../switch-item";
 
 const transitionPreset = [
 	"fade",
@@ -47,7 +47,6 @@ export function Animation() {
 			>
 				{t("preferences.animation.transition")}
 			</SwitchItem>
-			{/* transitionEnable */}
 			<ul
 				className="flex justify-between flex-wrap gap-x-3 gap-y-5 list-none px-0"
 			>

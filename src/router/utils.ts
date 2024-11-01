@@ -1,14 +1,14 @@
-import type { ItemType } from "antd/es/menu/interface";
-
+import type { MenuItemType } from "#src/layout/layout-menu/types";
 import type { AppRouteRecordRaw, RouterNavigate } from "./types";
 import { Iframe } from "#src/components/iframe";
+
 import { ContainerLayout } from "#src/layout";
 import { $t } from "#src/locales";
 import { useUserStore } from "#src/store";
-
 import { isString } from "#src/utils";
 import * as antdIcons from "@ant-design/icons";
 import { createElement, lazy } from "react";
+
 import { Link } from "react-router-dom";
 
 import { ROOT_ROUTE_ID, WHITE_LIST } from "./constants";
@@ -62,15 +62,15 @@ export function addIdToRoutes(routes: AppRouteRecordRaw[]) {
  * 根据路由列表生成菜单项数组
  *
  * @param routeList 路由列表，类型为 AppRouteRecordRaw 数组
- * @returns 返回菜单项数组，数组元素类型为 ItemType
+ * @returns 返回菜单项数组，数组元素类型为 MenuItemType
  */
 export function getMenuItems(routeList: AppRouteRecordRaw[]) {
-	return routeList.reduce<ItemType[]>((acc, item) => {
+	return routeList.reduce<MenuItemType[]>((acc, item) => {
 		const label = isString(item?.handle?.title) ? $t(item.handle?.title) : item.handle?.title;
 		const externalLink = item?.handle?.externalLink;
 		const iconName = item?.handle?.icon;
 
-		const menuItem: ItemType = {
+		const menuItem: MenuItemType = {
 			key: item.path!,
 			icon: isString(iconName) ? createElement(allAntdIcons[iconName]) : iconName,
 			label: externalLink
@@ -86,7 +86,6 @@ export function getMenuItems(routeList: AppRouteRecordRaw[]) {
 		if (Array.isArray(item.children) && item.children.length > 0) {
 			const noIndexRoute = item.children.filter(route => !route.index);
 			if (noIndexRoute.length > 0) {
-				// @ts-expect-error: Property 'children' does not exist on type 'MenuItemType'
 				menuItem.children = getMenuItems(noIndexRoute);
 			}
 		}
@@ -245,4 +244,16 @@ export function checkRouteRole(routeRoles: string[], routerNavigate: RouterNavig
 		return false;
 	}
 	return true;
+}
+
+/**
+ * 移除路径末尾的斜杠
+ * @param {string} pathname - 需要处理的路径
+ * @returns {string} 移除末尾斜杠后的路径
+ * @example
+ * removeTrailingSlash('/about/') // 返回 '/about'
+ * removeTrailingSlash('/about')  // 返回 '/about'
+ */
+export function removeTrailingSlash(pathname: string) {
+	return pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
 }

@@ -7,16 +7,17 @@ import { useNavigate } from "react-router-dom";
 const { Title } = Typography;
 
 export interface LogoProps {
-	collapsed: boolean
+	sidebarCollapsed: boolean
+	className?: string
 }
 
-export default function Logo({ collapsed }: LogoProps) {
+export function Logo({ sidebarCollapsed, className }: LogoProps) {
 	const navigate = useNavigate();
 
 	return (
 		<div
 			// 和 header 高度保持一致
-			className="h-12 flex items-center justify-center gap-2 cursor-pointer"
+			className={clsx("h-12 flex items-center justify-center gap-2 cursor-pointer", className)}
 			onClick={() => navigate(import.meta.env.VITE_BASE_HOME_PATH)}
 		>
 			<img
@@ -26,7 +27,9 @@ export default function Logo({ collapsed }: LogoProps) {
 				height={32}
 			/>
 
-			<Title level={1} className={clsx("!text-sm !m-0", { hidden: collapsed })} ellipsis={true}>React Antd Admin</Title>
+			<Title level={1} className={clsx("!text-sm !m-0", { hidden: sidebarCollapsed })} ellipsis={true}>
+				{import.meta.env.VITE_GLOB_APP_TITLE}
+			</Title>
 
 		</div>
 	);

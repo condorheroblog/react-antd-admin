@@ -1,5 +1,3 @@
-import { isMobile } from "#src/utils";
-
 import { create } from "zustand";
 
 /**
@@ -43,7 +41,7 @@ const initialState = {
 	 * @zh 是否为移动设备
 	 * @en Whether it is a mobile device
 	 */
-	isMobile: isMobile(),
+	isMobile: false,
 };
 
 type GlobalState = typeof initialState;

@@ -1,8 +1,8 @@
 import frameworkTemplate from "#src/assets/images/framework-template.svg?url";
 import logo from "#src/assets/images/logo.svg?url";
-import { Footer } from "#src/layout";
-import { LanguageMenu } from "#src/layout/header/components/language-menu";
-import { ThemeSwitch } from "#src/layout/header/components/theme-switch";
+import { LayoutFooter } from "#src/layout";
+import { LanguageMenu } from "#src/layout/layout-header/components/language-menu.js";
+import { ThemeSwitch } from "#src/layout/layout-header/components/theme-switch.js";
 import { usePermissionStore, useUserStore } from "#src/store";
 
 import {
@@ -103,7 +103,7 @@ export default function Login() {
 							<Space>
 								<img src={logo} alt="logo" className={classes.logo} />
 								<Title level={1} ellipsis={true} className="!text-sm">
-									React Antd Admin
+									{import.meta.env.VITE_GLOB_APP_TITLE}
 								</Title>
 							</Space>
 							<img
@@ -121,7 +121,7 @@ export default function Login() {
 										Hello, Welcome to
 									</Title>
 									<Title className="mt-0" level={5}>
-										React Antd Admin
+										{import.meta.env.VITE_GLOB_APP_TITLE}
 									</Title>
 								</Space>
 
@@ -167,7 +167,7 @@ export default function Login() {
 					</Col>
 				</Row>
 			</Content>
-			<Footer />
+			<LayoutFooter />
 		</Layout>
 	);
 }

@@ -1,5 +1,5 @@
+import type { MenuItemType } from "#src/layout/layout-menu/types";
 import type { AppRouteRecordRaw } from "#src/router/types";
-import type { ItemType } from "antd/es/menu/interface";
 
 import { fetchAsyncRoutes } from "#src/api/user";
 import { routeModuleList, router } from "#src/router";
@@ -9,9 +9,9 @@ import { create } from "zustand";
 
 interface InitialStateType {
 	// 静态路由生成的菜单
-	constantMenus: ItemType[]
+	constantMenus: MenuItemType[]
 	// 静态路由（前端）和动态路由（后端）生成的菜单
-	wholeMenus: ItemType[]
+	wholeMenus: MenuItemType[]
 	// 有权限的 React Router 路由
 	routeList: AppRouteRecordRaw[]
 	// 扁平化后的路由，路由 id 作为索引 key

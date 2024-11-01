@@ -1,4 +1,4 @@
-import { ThemeSwitch } from "#src/layout/header/components/theme-switch";
+import { ThemeSwitch } from "#src/layout/layout-header/components/theme-switch.js";
 import { useGlobalStore } from "#src/store";
 import { SettingOutlined } from "@ant-design/icons";
 import { Divider, Drawer } from "antd";
@@ -6,7 +6,7 @@ import { Divider, Drawer } from "antd";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Animation, Tabbar } from "./blocks";
+import { Animation, PreferencesLayout, Tabbar } from "./blocks";
 
 export function Preferences() {
 	const { t } = useTranslation();
@@ -46,6 +46,8 @@ export function Preferences() {
 				>
 					<Divider>{t("common.preferences.theme")}</Divider>
 					<ThemeSwitch />
+					<Divider>{t("preferences.layout.title")}</Divider>
+					<PreferencesLayout />
 					<Divider>{t("preferences.tabbar.title")}</Divider>
 					<Tabbar />
 					<Divider>{t("preferences.animation.title")}</Divider>

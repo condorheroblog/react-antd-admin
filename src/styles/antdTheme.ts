@@ -1,5 +1,6 @@
 import type { ThemeConfig } from "antd";
 
+export const COLLAPSED_WIDTH = 56;
 /**
  * 自定义的Ant Design浅色主题配置
  *
@@ -13,7 +14,7 @@ import type { ThemeConfig } from "antd";
 export const customAntdLightTheme: ThemeConfig = {
 	components: {
 		Menu: {
-			collapsedWidth: 56,
+			collapsedWidth: COLLAPSED_WIDTH,
 		},
 	},
 };
@@ -31,7 +32,7 @@ export const customAntdLightTheme: ThemeConfig = {
 export const customAntdDarkTheme: ThemeConfig = {
 	components: {
 		Menu: {
-			collapsedWidth: 56,
+			collapsedWidth: COLLAPSED_WIDTH,
 		},
 	},
 };

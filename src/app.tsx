@@ -1,6 +1,6 @@
 import type { LanguageType } from "#src/locales";
 import { AntdApp, JSSThemeProvider } from "#src/components";
-import { useScrollToHash } from "#src/hooks";
+import { useDeviceType, useScrollToHash } from "#src/hooks";
 import { AppVersionMonitor } from "#src/layout/widgets/version-monitor";
 import { ANT_DESIGN_LOCALE } from "#src/locales";
 import { useGlobalStore, useUserStore } from "#src/store";
@@ -8,9 +8,9 @@ import { useGlobalStore, useUserStore } from "#src/store";
 import { theme as antdTheme, ConfigProvider } from "antd";
 import dayjs from "dayjs";
 import { Suspense, useCallback, useEffect, useState } from "react";
-
 import { useTranslation } from "react-i18next";
 import { RouterProvider } from "react-router-dom";
+
 import { router } from "./router";
 import { customAntdDarkTheme, customAntdLightTheme } from "./styles/antdTheme";
 import "dayjs/locale/zh-cn";
@@ -26,6 +26,7 @@ export default function App() {
 	 */
 	const [isReadyLanguage, setReadyLanguage] = useState(false);
 	const { lng } = useUserStore();
+	const { isMobile } = useDeviceType();
 	const { theme, isDark, changeWindowSize, changeSiteTheme } = useGlobalStore();
 
 	useScrollToHash();
@@ -72,10 +73,8 @@ export default function App() {
 	);
 
 	const resize = useCallback(() => {
-		const rect = document.body.getBoundingClientRect();
-		const isMobile = rect.width < 960;
 		changeWindowSize(isMobile);
-	}, [changeWindowSize]);
+	}, [changeWindowSize, isMobile]);
 
 	useEffect(() => {
 		// Watch system theme change
@@ -99,6 +98,8 @@ export default function App() {
 
 	// Mobile or desktop
 	useEffect(() => {
+		// 初始化，设置下设备尺寸
+		resize();
 		window.addEventListener("resize", resize);
 
 		return () => {

@@ -1,18 +1,19 @@
-import { GlobalSpin } from "#src/components";
-import { useAnimationStore, usePermissionStore, usePreferencesStore, useTabsStore } from "#src/store";
+import { useGlobalStore, usePreferencesStore, useTabsStore } from "#src/store";
 import { cn } from "#src/utils";
-import { Drawer, Grid, theme } from "antd";
-import KeepAlive, { useKeepaliveRef } from "keepalive-for-react";
+import { Drawer, Grid } from "antd";
 import { useEffect, useMemo, useState } from "react";
 import { createUseStyles } from "react-jss";
-import { useLocation, useOutlet } from "react-router-dom";
 
-import BasicTabs from "../basic-tabs";
-import Footer from "../footer";
-import Header from "../header";
-import Logo from "../logo";
-import SiderMenu from "../sider-menu";
-import SiderTrigger from "../sider-trigger";
+import { useLayout } from "../hooks";
+import LayoutContent from "../layout-content";
+import LayoutFooter from "../layout-footer";
+import LayoutHeader from "../layout-header";
+import LayoutMenu from "../layout-menu";
+import { useMenu } from "../layout-menu/use-menu";
+import LayoutMixedSidebar from "../layout-mixed-sidebar";
+import LayoutSidebar from "../layout-sidebar";
+import LayoutTabbar from "../layout-tabbar";
+import { BreadcrumbViews, Logo } from "../widgets";
 import { LayoutContext } from "./layout-context";
 
 const { useBreakpoint } = Grid;
@@ -41,153 +42,128 @@ const useStyles = createUseStyles({
  * import { ContainerLayout } from "#src/layout";
  */
 export default function ContainerLayout() {
-	const [collapsed, setCollapsed] = useState(false);
-	const {
-		token: { colorBgContainer, colorBgLayout },
-	} = theme.useToken();
+	const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 	const classes = useStyles();
 	const screens = useBreakpoint();
-	const { pathname, search } = useLocation();
-	const outlet = useOutlet();
-	const aliveRef = useKeepaliveRef();
-	const isRefresh = useTabsStore(state => state.isRefresh);
+	const { isTopNav, isTwoColumnNav, isMixedNav, sidebarWidth, sideCollapseWidth } = useLayout();
 	const isMaximize = useTabsStore(state => state.isMaximize);
-	const openTabs = useTabsStore(state => state.openTabs);
 	const tabbarEnable = usePreferencesStore(state => state.tabbarEnable);
-	const flatRouteList = usePermissionStore(state => state.flatRouteList);
-	const transitionName = useAnimationStore(state => state.transitionName);
-	const transitionEnable = useAnimationStore(state => state.transitionEnable);
-
-	/**
-	 * to distinguish different pages to cache
-	 */
-	const cacheKey = useMemo(() => {
-		return pathname + search;
-	}, [pathname, search]);
-
-	/**
-	 * 当使用关闭当前标签页、关闭右侧标签页、关闭左侧标签页、关闭其他标签页、关闭所有标签页功能时，需要清除这个标签页的缓存
-	 */
-	useEffect(() => {
-		const cacheNodes = aliveRef.current?.getCacheNodes?.();
-		cacheNodes?.forEach((node) => {
-			if (!openTabs.has(node.cacheKey)) {
-				aliveRef.current?.destroy(node.cacheKey);
-			}
-		});
-	}, [openTabs]);
+	const isMobile = useGlobalStore(state => state.isMobile);
+	const { sideNavItems, topNavItems, handleMenuSelect } = useMenu();
 
 	useEffect(() => {
 		/* iPad */
 		if (screens.lg && !screens.xl) {
-			setCollapsed(true);
+			setSidebarCollapsed(true);
 		}
 		/* PC */
 		else if (screens.xl) {
-			setCollapsed(false);
+			setSidebarCollapsed(false);
 		}
 		/* Mobile */
-		else if (screens.sm && !screens.md) {
-			setCollapsed(false);
+		else if (screens.xs || (screens.sm && !screens.md)) {
+			setSidebarCollapsed(false);
 		}
 	}, [screens]);
 
-	/* KeepAlive 的刷新 */
-	useEffect(() => {
-		/* 仅在启用标签栏时生效 */
-		if (tabbarEnable && isRefresh) {
-			aliveRef.current?.refresh();
+	const layoutContextValue = useMemo(() => ({ sidebarCollapsed, setSidebarCollapsed }), [sidebarCollapsed, setSidebarCollapsed]);
+
+	const sidebarEnableState = useMemo(() => !isTopNav, [isTopNav]);
+	const computedSidebarWidth = useMemo(() => {
+		if (isMaximize || isMobile) {
+			return 0;
 		}
-	}, [isRefresh]);
-
-	const layoutContextValue = useMemo(() => ({ collapsed, setCollapsed }), [collapsed, setCollapsed]);
-
-	/* 路由设置 keepAlive false 则不缓存页面 */
-	const keepAliveExclude = useMemo(() => {
-		return Object.entries(flatRouteList).reduce<string[]>((acc, [key, value]) => {
-			if (value.handle.keepAlive === false) {
-				acc.push(key);
-			}
-			return acc;
-		}, []);
-	}, [flatRouteList]);
+		const currentSidebarWidth = sidebarCollapsed ? sideCollapseWidth : sidebarWidth;
+		if (isTwoColumnNav) {
+			/* 双列导航，第一列默认宽度 */
+			return currentSidebarWidth + 80;
+		}
+		if (sidebarEnableState) {
+			return currentSidebarWidth;
+		}
+		return 0;
+	}, [
+		// Mobile
+		isMobile,
+		isMaximize,
+		isTwoColumnNav,
+		sidebarEnableState,
+		sidebarWidth,
+		sidebarCollapsed,
+		sideCollapseWidth,
+	]);
 
 	return (
 		<LayoutContext.Provider value={layoutContextValue}>
-			<section className={cn(
-				"transition-all flex flex-col h-screen",
-				/* Mobile */
-				"pl-0",
-				collapsed ? "md:pl-14" : "md:pl-52",
-				{ "md:pl-0": isMaximize },
-			)}
+			<section
+				style={{
+					paddingLeft: computedSidebarWidth,
+				}}
+				className={cn(
+					"transition-all flex flex-col h-screen",
+				)}
 			>
-				<Header />
-				{tabbarEnable ? <BasicTabs /> : null}
+				<LayoutHeader>
+					{isTopNav || isMixedNav
+						? (
+							<>
+								{isTopNav ? <Logo sidebarCollapsed={false} className="mr-8" /> : null}
+								<LayoutMenu mode="horizontal" menus={topNavItems} handleMenuSelect={handleMenuSelect} />
+							</>
+						)
+						: <BreadcrumbViews />}
+				</LayoutHeader>
+				{tabbarEnable ? <LayoutTabbar /> : null}
 
 				{/* Mobile */}
-				<Drawer
-					rootClassName="block md:hidden"
-					open={collapsed}
-					placement="left"
-					width="clamp(200px, 50vw, 210px)"
-					className={cn(classes.drawerStyles)}
-					onClose={() => setCollapsed(false)}
-				>
-					<SiderMenu />
-				</Drawer>
+				{
+					isMobile
+						? (
+							<Drawer
+								open={sidebarCollapsed}
+								placement="left"
+								width="clamp(200px, 50vw, 210px)"
+								className={cn(classes.drawerStyles)}
+								onClose={() => setSidebarCollapsed(false)}
+							>
+								<LayoutMenu autoOpenMenu menus={sideNavItems} handleMenuSelect={handleMenuSelect} />
+							</Drawer>
+						)
+						: null
+				}
 
 				{/* PC */}
-				<aside
-					style={
-						{
-							backgroundColor: colorBgContainer,
-							boxShadow: "3px 0 5px 0 rgb(29, 35, 41, 0.05)",
-						}
-					}
-					className={cn(
-						"fixed left-0 top-0 bottom-0 transition-all overflow-y-auto",
-						collapsed ? "md:w-14" : "md:w-52",
-						{ "md:w-0": isMaximize },
-						/* hidden in mobile */
-						"hidden md:block",
-					)}
-				>
-					<Logo collapsed={collapsed} />
-					<SiderMenu />
-					<SiderTrigger />
-				</aside>
+				{
+					sidebarEnableState && !isTwoColumnNav
+						? (
+							<LayoutSidebar
+								computedSidebarWidth={computedSidebarWidth}
+							>
+								<LayoutMenu
+									autoOpenMenu
+									menus={sideNavItems}
+									handleMenuSelect={handleMenuSelect}
+								/>
+							</LayoutSidebar>
+						)
+						: null
+				}
+				{
+					isTwoColumnNav
+						? (
+							<LayoutMixedSidebar
+								computedSidebarWidth={computedSidebarWidth}
+								sideNavItems={sideNavItems}
+								topNavItems={topNavItems}
+								handleMenuSelect={handleMenuSelect}
+							/>
+						)
+						: null
+				}
 
-				<main
-					className="overflow-y-auto overflow-x-hidden p-4 flex-grow"
-					style={
-						{
-							backgroundColor: colorBgLayout,
-						}
-					}
-				>
-					<GlobalSpin>
-						{
-							tabbarEnable
-								? (
-									<KeepAlive
-										max={20}
-										transition
-										duration={300}
-										cacheNodeClassName={transitionEnable ? `keepalive-${transitionName}` : undefined}
-										exclude={keepAliveExclude}
-										activeCacheKey={cacheKey}
-										aliveRef={aliveRef}
-									>
-										{outlet}
-									</KeepAlive>
-								)
-								: outlet
-						}
-					</GlobalSpin>
-				</main>
+				<LayoutContent />
 
-				<Footer />
+				<LayoutFooter />
 			</section>
 		</LayoutContext.Provider>
 	);

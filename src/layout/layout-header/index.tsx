@@ -8,7 +8,6 @@ import { Button, theme } from "antd";
 import { useContext } from "react";
 
 import { createUseStyles } from "react-jss";
-import BreadcrumbViews from "../breadcrumb-views";
 import { FullscreenMenu } from "./components/fullscreen-menu";
 import { LanguageMenu } from "./components/language-menu";
 import { UserMenu } from "./components/user-menu";
@@ -37,22 +36,23 @@ const useStyles = createUseStyles(({ token }) => {
 	};
 });
 
-export interface HeaderProps {
+export interface LayoutHeaderProps {
 	className?: string
+	children?: React.ReactNode
 }
 
-export default function Header({ className }: HeaderProps) {
+export default function LayoutHeader({ className, children }: LayoutHeaderProps) {
 	const {
 		token: { colorBgContainer },
 	} = theme.useToken();
 	const classes = useStyles();
-	const { collapsed, setCollapsed } = useContext(LayoutContext);
+	const { sidebarCollapsed, setSidebarCollapsed } = useContext(LayoutContext);
 	const isMobile = useGlobalStore(state => state.isMobile);
 	const isMaximize = useTabsStore(state => state.isMaximize);
 
 	return (
 		<header
-			className={cn(className, "h-12 flex-shrink-0 flex justify-between items-center transition-all md:px-4", { "h-0 overflow-hidden": isMaximize })}
+			className={cn(className, "h-12 flex-shrink-0 flex gap-5 justify-between items-center transition-all md:px-4", { "h-0 overflow-hidden": isMaximize })}
 			style={{ background: colorBgContainer }}
 		>
 
@@ -61,15 +61,17 @@ export default function Header({ className }: HeaderProps) {
 					? (
 						<Button
 							type="text"
-							icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-							onClick={() => setCollapsed(!collapsed)}
+							icon={sidebarCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+							onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
 							className="h-full"
 						/>
 					)
 					: null
 			}
 
-			<BreadcrumbViews />
+			<div className="h-full flex-grow overflow-hidden flex items-center">
+				{children}
+			</div>
 
 			<div
 				role="menu"
