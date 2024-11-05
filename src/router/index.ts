@@ -155,7 +155,6 @@ async function routerInitReady() {
 }
 
 export async function setupRouter() {
-	router.dispose();
 	// router beforeEach
 	router.getBlocker("beforeEach", routerBeforeEach);
 	// router afterEach
