@@ -1,57 +1,36 @@
-import { faker } from "@faker-js/faker/locale/zh_CN";
 import { defineFakeRoute } from "vite-plugin-fake-server/client";
 
+import { ADMIN_TOKEN } from "./constants";
 import { resultSuccess } from "./utils";
-
-const token = faker.string.uuid();
-const refreshToken = faker.string.uuid();
 
 export default defineFakeRoute([
 	{
-		url: "/login",
+		url: "/user-info",
 		timeout: 1000,
-		method: "post",
-		// statusCode: 401,
-		// response: () => ({ code: 401, message: "Unauthorized" }),
-		// statusCode: 400,
-		// response: () => ({ code: 404, message: "Not found" }),
-		response: ({ body }) => {
-			if (body.username !== "commom") {
+		method: "get",
+		response: ({ headers }) => {
+			if (headers.authorization?.split?.(" ")?.[1] === ADMIN_TOKEN) {
 				return resultSuccess({
 					userId: 1,
 					avatar: "https://avatars.githubusercontent.com/u/47056890",
 					username: "Admin",
-					nickname: "Admin",
+					email: "<EMAIL>",
+					phoneNumber: "1234567890",
 					description: "manager",
 					roles: ["admin"],
-					token,
-					refreshToken,
 				});
 			}
 			else {
 				return resultSuccess({
 					userId: 2,
-					avatar: "https://avatars.githubusercontent.com/u/47056890",
+					avatar: "https://avatar.vercel.sh/avatar.svg?text=Common",
 					username: "Tom",
-					nickname: "Tom",
+					email: "<EMAIL>",
+					phoneNumber: "9876543210",
 					description: "employee",
 					roles: ["common"],
-					token,
-					refreshToken,
 				});
 			}
 		},
-	},
-	{
-		url: "/logout",
-		timeout: 1000,
-		method: "post",
-		response: () => resultSuccess({}),
-	},
-	{
-		url: "/refresh-token",
-		timeout: 1000,
-		method: "post",
-		response: () => resultSuccess({ token, refreshToken }),
 	},
 ]);

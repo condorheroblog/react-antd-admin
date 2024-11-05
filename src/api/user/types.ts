@@ -1,16 +1,17 @@
-export interface UserInfo {
+export interface AuthType {
+	token: string
+	refreshToken: string
+}
+
+export interface UserInfoType {
 	userId: string
 	avatar: string
 	username: string
-	nickname: string
+	email: string
+	phoneNumber: string
 	description: string
 	lng: string
-}
-
-export interface UserResult extends UserInfo {
 	roles: Array<string>
-	token: string
-	refreshToken: string
 }
 
 export interface AuthListProps {

@@ -1,28 +1,53 @@
 import type { MenuProps } from "antd";
+import { UserCircleIcon } from "#src/icons";
 import { $t } from "#src/locales";
-import { useUserStore } from "#src/store";
+import { useAuthStore, useUserStore } from "#src/store";
+import { isWindowsOs } from "#src/utils";
 
+import { LogoutOutlined } from "@ant-design/icons";
+import { useKeyPress } from "ahooks";
 import { Avatar, Dropdown } from "antd";
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-
-const items: MenuProps["items"] = [
-	{
-		label: $t("common.logout"),
-		key: "logout",
-	},
-];
 
 export function UserMenu() {
 	const navigate = useNavigate();
 	const avatar = useUserStore(state => state.avatar);
-	const logout = useUserStore(state => state.logout);
+	const logout = useAuthStore(state => state.logout);
 
 	const onClick: MenuProps["onClick"] = async ({ key }) => {
 		if (key === "logout") {
 			await logout();
 			navigate("/login");
 		}
+		if (key === "personal-center") {
+			navigate("/personal-center/my-profile");
+		}
 	};
+
+	const altView = useMemo(() => isWindowsOs() ? "Alt" : "⌥", [isWindowsOs]);
+	const items: MenuProps["items"] = [
+		{
+			label: $t("common.menu.personalCenter"),
+			key: "personal-center",
+			icon: <UserCircleIcon />,
+			extra: `${altView}P`,
+		},
+		{
+			label: $t("common.logout"),
+			key: "logout",
+			icon: <LogoutOutlined />,
+			extra: `${altView}Q`,
+		},
+	];
+
+	useKeyPress(["alt.P"], () => {
+		navigate("/personal-center/my-profile");
+	});
+
+	useKeyPress(["alt.Q"], () => {
+		onClick({ key: "logout" } as any);
+	});
 
 	return (
 		<Dropdown

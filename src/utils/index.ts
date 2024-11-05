@@ -1,5 +1,7 @@
 export * from "./cn";
 export * from "./is";
+export * from "./is-mac-os";
+export * from "./is-windows-os";
 export * from "./progress";
 export * from "./remember-route";
 export * from "./request";

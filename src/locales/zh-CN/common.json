@@ -20,7 +20,10 @@
 		"system.user": "用户管理",
 		"system.role": "角色管理",
 		"system.menu": "菜单管理",
-		"system.dept": "部门管理"
+		"system.dept": "部门管理",
+		"personalCenter": "个人中心",
+		"personalCenter.profile": "我的资料",
+		"personalCenter.settings": "设置"
 	},
 	"username": "用户名",
 	"password": "密码",

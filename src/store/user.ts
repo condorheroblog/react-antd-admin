@@ -1,35 +1,30 @@
-import type { UserResult } from "#src/api/user/types";
-import type { FormInitialValues } from "#src/pages/login";
-import { fetchLogin, fetchLogout } from "#src/api/user";
-import { usePermissionStore, useTabsStore } from "#src/store";
+import type { UserInfoType } from "#src/api/user/types";
+import { fetchUserInfo } from "#src/api/user";
 
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
 
 const initialState = {
 	userId: "",
-	token: "",
-	refreshToken: "",
 	avatar: "",
 	username: "",
-	nickname: "",
+	email: "",
+	phoneNumber: "",
 	description: "",
 	lng: "zh-CN",
 	roles: [],
 };
 
-type UserState = UserResult;
+type UserState = UserInfoType;
 
 interface UserAction {
 	changeLanguage: (firstName: UserState["lng"]) => void
-	login: (loginPayload: FormInitialValues) => Promise<void>
-	logout: () => Promise<void>
+	getUserInfo: () => Promise<UserInfoType>
 	reset: () => void
 };
 
 export const useUserStore = create<UserState & UserAction>()(
 
-	persist((set, get) => ({
+	set => ({
 		...initialState,
 
 		changeLanguage: (payload) => {
@@ -37,40 +32,13 @@ export const useUserStore = create<UserState & UserAction>()(
 				lng: payload,
 			});
 		},
-		login: async (loginPayload) => {
-			const response = await fetchLogin(loginPayload);
-			return set({
+
+		getUserInfo: async () => {
+			const response = await fetchUserInfo();
+			set({
 				...response.result,
 			});
-		},
-
-		logout: async () => {
-			/**
-			 * 1. 退出登录
-			 */
-
-			await fetchLogout();
-			/**
-			 * 2. 退出登录后，清空用户信息
-			 * @see {@link https://github.com/pmndrs/zustand?tab=readme-ov-file#read-from-state-in-actions | Read from state in actions}
-			 */
-
-			get().reset();
-			/**
-			 * 3. 清空权限信息
-			 * @see https://github.com/pmndrs/zustand?tab=readme-ov-file#readingwriting-state-and-reacting-to-changes-outside-of-components
-			 */
-			usePermissionStore.getState().reset();
-
-			/**
-			 * 4. 清空标签页
-			 */
-			useTabsStore.getState().resetTabs();
-
-			/**
-			 * 5. 清空 keepAlive 缓存
-			 * 在 container-layout 组件中，根据 openTabs 自动刷新 keepAlive 缓存
-			 */
+			return response.result;
 		},
 
 		reset: () => {
@@ -79,6 +47,6 @@ export const useUserStore = create<UserState & UserAction>()(
 			});
 		},
 
-	}), { name: "user-info" }),
+	}),
 
 );

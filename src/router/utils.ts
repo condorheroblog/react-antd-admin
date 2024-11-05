@@ -4,7 +4,7 @@ import { Iframe } from "#src/components/iframe";
 
 import { ContainerLayout } from "#src/layout";
 import { $t } from "#src/locales";
-import { useUserStore } from "#src/store";
+import { useAuthStore, useUserStore } from "#src/store";
 import { isString } from "#src/utils";
 import * as antdIcons from "@ant-design/icons";
 import { createElement, lazy } from "react";
@@ -216,7 +216,7 @@ export function checkPublicRoute(pathname: string, ignoreAccess: boolean) {
 
 /* 检查是否登录 */
 export function checkLogin(pathname: string, search: string, routerNavigate: RouterNavigate) {
-	const isLogin = Boolean(useUserStore.getState().token);
+	const isLogin = Boolean(useAuthStore.getState().token);
 	// 未登录，则跳转到登录页
 	if (!isLogin) {
 		// pathname 长度大于 1，则携带当前路径跳转登录页
@@ -234,9 +234,9 @@ export function checkLogin(pathname: string, search: string, routerNavigate: Rou
 }
 
 /* 检查路由角色 */
-export function checkRouteRole(routeRoles: string[], routerNavigate: RouterNavigate) {
+export function checkRouteRole(routeRoles: string[], userRoles: string[] | undefined, routerNavigate: RouterNavigate) {
+	userRoles ??= useUserStore.getState().roles;
 	// 路由权限校验
-	const userRoles = useUserStore.getState().roles;
 	const hasRoutePermission = userRoles.some(role => routeRoles?.includes(role));
 	// 未通过权限校验，则跳转到 403 页面，如果路由上没有设置 roles，则默认放行
 	if (routeRoles && routeRoles.length && !hasRoutePermission) {

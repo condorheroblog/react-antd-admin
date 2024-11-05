@@ -1,7 +1,7 @@
 import type { BlockerFunction } from "react-router-dom";
 import type { AppRouteRecordRaw, RouterSubscriber } from "./types";
 
-import { useAnimationStore, usePermissionStore } from "#src/store";
+import { useAnimationStore, usePermissionStore, useUserStore } from "#src/store";
 import { NProgress } from "#src/utils";
 
 import { createBrowserRouter, matchRoutes } from "react-router-dom";
@@ -72,7 +72,7 @@ const routerBeforeEach: BlockerFunction = ({ nextLocation }) => {
 
 	/* --------------- 以下为已登录的处理逻辑 ------------------ */
 	// 路由权限校验
-	const hasRole = checkRouteRole(currentRoute[currentRoute.length - 1]?.route?.handle?.roles, router.navigate);
+	const hasRole = checkRouteRole(currentRoute[currentRoute.length - 1]?.route?.handle?.roles, undefined, router.navigate);
 	// 未通过权限校验
 	if (!hasRole) {
 		return true;
@@ -93,6 +93,9 @@ const routerAfterEach: RouterSubscriber = (routerState) => {
 	}
 };
 
+/**
+ * 浏览器刷新并不会触发 routerBeforeEach ，所以需要在 routerInitReady 来进行一些初始化操作
+ */
 async function routerInitReady() {
 	const { transitionProgress } = useAnimationStore.getState();
 	/* 路由初始化时，开启进度条动画 */
@@ -123,7 +126,10 @@ async function routerInitReady() {
 	// 已登录但未获取动态路由，则获取动态路由
 	const { hasFetchedDynamicRoutes, handleAsyncRoutes } = usePermissionStore.getState();
 	if (!hasFetchedDynamicRoutes) {
-		await handleAsyncRoutes();
+		/**
+		 * 用户信息包含了用户角色，需要在获取菜单权限前面获取，用于权限校验
+		 */
+		await Promise.all([handleAsyncRoutes(), useUserStore.getState().getUserInfo()]);
 		/**
 		 * 需要替换当前路由
 		 * https://router.vuejs.org/guide/advanced/dynamic-routing#Adding-routes
@@ -133,17 +139,19 @@ async function routerInitReady() {
 		 * 2. 浏览器匹配路由，但是没有匹配到，进入 404 路由
 		 * 3. 等待获取动态路由后，通过 router.navigate 跳转到 /system/user
 		 *
+		 * 注意：navigate 方法调用之后会触发 routerBeforeEach 钩子
 		 */
 
 		return router.navigate(`${pathnameWithoutBase}${search}`);
 	}
 
-	// 路由权限校验
-	const hasRole = checkRouteRole(currentRoute.route.handle?.roles, router.navigate);
-	// 未通过权限校验
-	if (!hasRole) {
-		return false;
-	}
+	/**
+	 * 路由权限校验逻辑
+	 *
+	 * 因为 routerInitReady 被触发 hasFetchedDynamicRoutes 一定是 false
+	 * 所以 获取动态路由之后 直接 return router.navigate
+	 * 权限校验的校验会在 routerBeforeEach 中执行
+	 */
 }
 
 export async function setupRouter() {

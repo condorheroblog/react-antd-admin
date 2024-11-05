@@ -1,5 +1,5 @@
 import { ContainerLayout } from "#src/layout";
-import { useUserStore } from "#src/store";
+import { useAuthStore } from "#src/store";
 import { Button, Result } from "antd";
 
 import { useTranslation } from "react-i18next";
@@ -11,7 +11,7 @@ interface Error404Props {
 export default function Error404({ showLayout }: Error404Props) {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	const hasTokenInLocal = !!useUserStore(state => state.token);
+	const hasTokenInLocal = !!useAuthStore(state => state.token);
 
 	const Result404 = (
 		<Result

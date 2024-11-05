@@ -33,7 +33,7 @@ export default function LayoutMixedSidebar({
 	} = theme.useToken();
 
 	return (
-		<aside className="fixed left-0 top-0 bottom-0 flex" style={{ backgroundColor: colorBgContainer }}>
+		<aside className="fixed left-0 top-0 bottom-0 flex" style={{ backgroundColor: colorBgContainer, boxShadow: "3px 0 5px 0 rgb(29, 35, 41, 0.05)" }}>
 			<FirstColumnMenu menus={topNavItems} handleMenuSelect={handleMenuSelect} />
 			<div style={{ width: computedSidebarWidth - 80 }} className="relative transition-all">
 				{

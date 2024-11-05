@@ -20,7 +20,10 @@
 		"system.user": "User Management",
 		"system.role": "Role Management",
 		"system.menu": "Menu Management",
-		"system.dept": "Department Management"
+		"system.dept": "Department Management",
+		"personalCenter": "Personal Center",
+		"personalCenter.profile": "My Profile",
+		"personalCenter.settings": "Settings"
 	},
 	"username": "Username",
 	"password": "Password",

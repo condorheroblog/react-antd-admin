@@ -32,7 +32,7 @@ export function Preferences() {
 				}}
 				{...(isMobile
 					? {
-						width: "clamp(210px, 56vw, 220px)",
+						width: "100vw",
 					}
 					: {})}
 				open={isOpen}

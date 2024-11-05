@@ -1,5 +1,6 @@
 /// <reference types="vitest" />
 
+import process from "node:process";
 import react from "@vitejs/plugin-react";
 import dayjs from "dayjs";
 import { defineConfig } from "vite";
@@ -13,10 +14,12 @@ const __APP_INFO__ = {
 	lastBuildTime: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"),
 };
 
+const isDev = process.env.NODE_ENV === "development";
+
 // https://vitejs.dev/config/
 export default defineConfig({
-	// eslint-disable-next-line node/prefer-global/process
-	base: process.env.NODE_ENV === "development" ? "/" : "/react-antd-admin/",
+
+	base: isDev ? "/" : "/react-antd-admin/",
 	plugins: [
 		react(),
 		vitePluginFakeServer({
@@ -38,7 +41,13 @@ export default defineConfig({
 	server: {
 		port: 3333,
 		// https://vitejs.dev/config/server-options#server-proxy
-		proxy: {},
+		proxy: {
+			// "/api": {
+			// 	target: "http://191.255.255.123:8888",
+			// 	changeOrigin: true,
+			// 	rewrite: path => isDev ? path.replace(/^\/api/, "") : path,
+			// },
+		},
 	},
 	define: {
 		__APP_INFO__: JSON.stringify(__APP_INFO__),

@@ -1,7 +1,7 @@
 import type { Options } from "ky";
 import { LOGIN } from "#src/router/constants";
 
-import { useUserStore } from "#src/store";
+import { useAuthStore, useUserStore } from "#src/store";
 import ky from "ky";
 
 import { APP_NAME_HEADER, AUTH_HEADER, LANG_HEADER } from "./constants";
@@ -31,7 +31,7 @@ const defaultConfig: Options = {
 				if (!ignoreLoading) {
 					globalProgress.start();
 				}
-				const { token } = useUserStore.getState();
+				const { token } = useAuthStore.getState();
 				request.headers.set(AUTH_HEADER, `Bearer ${token}`);
 				request.headers.set(LANG_HEADER, useUserStore.getState().lng);
 				request.headers.set(APP_NAME_HEADER, "BoCarbonScope");
@@ -52,7 +52,7 @@ const defaultConfig: Options = {
 							return response;
 						}
 						// If the token is expired, refresh it and try again.
-						const { refreshToken } = useUserStore.getState();
+						const { refreshToken } = useAuthStore.getState();
 						// If there is no refresh token, it means that the user has not logged in.
 						if (!refreshToken) {
 							// 如果页面的路由已经重定向到登录页，则不用调转直接返回结果

@@ -3,7 +3,7 @@ import logo from "#src/assets/images/logo.svg?url";
 import { LayoutFooter } from "#src/layout";
 import { LanguageMenu } from "#src/layout/layout-header/components/language-menu.js";
 import { ThemeSwitch } from "#src/layout/layout-header/components/theme-switch.js";
-import { usePermissionStore, useUserStore } from "#src/store";
+import { useAuthStore, usePermissionStore, useUserStore } from "#src/store";
 
 import {
 	Button,
@@ -64,18 +64,25 @@ export default function Login() {
 	const { t } = useTranslation();
 	const [searchParams] = useSearchParams();
 	const navigate = useNavigate();
-	const login = useUserStore(state => state.login);
+	const login = useAuthStore(state => state.login);
 	const handleAsyncRoutes = usePermissionStore(state => state.handleAsyncRoutes);
+	const getUserInfo = useUserStore(state => state.getUserInfo);
 
 	const handleFinish = async (values: FormInitialValues) => {
 		setLoading(true);
-		try {
-			await login(values);
-			await handleAsyncRoutes();
-		}
-		finally {
-			setLoading(false);
-		}
+		/* 先登录 */
+		await login(values);
+
+		/* ================= 分割线 ================= */
+		await Promise.all([
+			/**
+			 * getUserInfo 和 handleAsyncRoutes 逻辑应该出现在 routerBeforeEach 中
+			 * 但是因为 routerBeforeEach 不支持 异步调用 所以临时放在登录逻辑中
+			 */
+			getUserInfo(),
+			handleAsyncRoutes(),
+		]).finally(() => setLoading(false));
+		/* ================= 分割线 ================= */
 
 		const redirect = searchParams.get("redirect");
 		if (redirect) {
