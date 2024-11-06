@@ -80,9 +80,10 @@ export default function Profile() {
 						},
 					]}
 				>
-					<Input type="tel" />
+					<Input type="tel" allowClear />
 				</ProFormDigit>
 				<ProFormTextArea
+					allowClear
 					name="description"
 					label="个人简介"
 					placeholder="个人简介"

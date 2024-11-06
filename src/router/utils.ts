@@ -1,17 +1,16 @@
 import type { MenuItemType } from "#src/layout/layout-menu/types";
-import type { AppRouteRecordRaw, RouterNavigate } from "./types";
+import type { AppRouteRecordRaw } from "./types";
 import { Iframe } from "#src/components/iframe";
 
 import { ContainerLayout } from "#src/layout";
 import { $t } from "#src/locales";
-import { useAuthStore, useUserStore } from "#src/store";
 import { isString } from "#src/utils";
 import * as antdIcons from "@ant-design/icons";
 import { createElement, lazy } from "react";
 
 import { Link } from "react-router-dom";
 
-import { ROOT_ROUTE_ID, WHITE_LIST } from "./constants";
+import { ROOT_ROUTE_ID } from "./constants";
 import { RouterGuards } from "./guards";
 
 const allAntdIcons: { [key: string]: any } = antdIcons;
@@ -203,47 +202,6 @@ export function replaceBaseWithRoot(pathname: string) {
 	}
 
 	return pathname;
-}
-
-/* 检查是否是公开路由 */
-export function checkPublicRoute(pathname: string, ignoreAccess: boolean) {
-	// 白名单内的路由或者路由设置了 ignoreAccess，则不进行校验
-	if (WHITE_LIST.has(pathname) || ignoreAccess) {
-		return true;
-	}
-	return false;
-}
-
-/* 检查是否登录 */
-export function checkLogin(pathname: string, search: string, routerNavigate: RouterNavigate) {
-	const isLogin = Boolean(useAuthStore.getState().token);
-	// 未登录，则跳转到登录页
-	if (!isLogin) {
-		// pathname 长度大于 1，则携带当前路径跳转登录页
-		if (pathname.length > 1) {
-			routerNavigate(`/login?redirect=${pathname}${search}`);
-			return false;
-		}
-		else {
-			routerNavigate("/login");
-			return false;
-		}
-	}
-
-	return true;
-}
-
-/* 检查路由角色 */
-export function checkRouteRole(routeRoles: string[], userRoles: string[] | undefined, routerNavigate: RouterNavigate) {
-	userRoles ??= useUserStore.getState().roles;
-	// 路由权限校验
-	const hasRoutePermission = userRoles.some(role => routeRoles?.includes(role));
-	// 未通过权限校验，则跳转到 403 页面，如果路由上没有设置 roles，则默认放行
-	if (routeRoles && routeRoles.length && !hasRoutePermission) {
-		routerNavigate("/error/403");
-		return false;
-	}
-	return true;
 }
 
 /**

@@ -83,6 +83,7 @@ export interface RouteMeta {
 	backstage?: boolean
 }
 
-export type RouterSubscriber = Parameters<ReturnType<typeof RemixRouter>["subscribe"]>[0];
-export type RouterState = ReturnType<typeof RemixRouter>["state"];
-export type RouterNavigate = ReturnType<typeof RemixRouter>["navigate"];
+export type ReactRouterType = ReturnType<typeof RemixRouter>;
+export type RouterSubscriber = Parameters<ReactRouterType["subscribe"]>[0];
+export type RouterState = ReactRouterType["state"];
+export type RouterNavigate = ReactRouterType["navigate"];

@@ -184,7 +184,7 @@ export default function LayoutTabbar() {
 
 		addTab(normalizedPath, {
 			key: normalizedPath,
-			label: currentRoute.handle.title,
+			label: currentRoute.handle?.title,
 			historyState: { search: location.search, hash: location.hash },
 			/* 登录之后跳转的默认路由，不可以关闭和拖拽 */
 			closable: normalizedPath !== import.meta.env.VITE_BASE_HOME_PATH,

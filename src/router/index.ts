@@ -1,18 +1,27 @@
-import type { BlockerFunction } from "react-router-dom";
-import type { AppRouteRecordRaw, RouterSubscriber } from "./types";
+/**
+ *
+ * 当 getBlocker 支持异步请求路由匹配逻辑（注意现在 getBlocker 不支持异步所以无法使用）：
+ * https://mermaid.live/edit#pako:eNp1VF1PE0EU_SuTefCpRQs-VUMiwSgJEgIaE3d5GLrT7cTuTrM7VQghQY2xWKFFPmITEZDQEmNSxJDGSPHPMNvtv3B2Z7dMsW6yycy959577rkzswQz1MAwDbN5-jKTQw4Dj8d1G4hvloldSuPnK7xRngPJ5CgYowspTYepoRv2vFu4wz-f8N0Vb7_iX2zyt0ed9obYgrvzDrg5OhxhvLOK3yjx2rHfOPS-VKVzJE5QesdXT_2DD53jcnfzwls_0uGcrB6UCmvO0CLDzoRN2AxGxqLm9O8j-DWUEjlDKdO8_V9-q9nZ-tEHD1wCCbxPzTDgIbXwNDLxIAyv1kPMhDtJTWJrIkaYOrXfvL0dJVVkG-6TTVDKMJlunFpCQCcwJGUnSYNaUpXUEJhCL4iJGI41BJPEft7TpD-P0uMYzlIH30eZXCTPlUGEquxC8kGPWj5YgYJYBiSB7MQrVfn7vTDzA8yeuIGkWTqs-estXtnpbB17pdblnwPvVTOipKKCNH6jzisbvHnul74NJKhqe2W9Ni-VcSS4OqfQEKKjLvpme-VVY3rD1fzWT7_9nZdOuvWd7sFZFBW7gUQPpt2fOj4SigaDhfqnkTjyaY4wPElcpskOOrU2r67xtW05_8uLMq-_BrJHQbW7-zVi2wsEao9TeIEN8sflesNX9VXYR1PI42nsWMR1CRXn_HDF2zvyGx_91VNv9023Vu1dIRWnlgkq3L41oolfnq__Bai8YQJawomIIR6jpSBChyyHLazDtFgaOIuKeabDhHRZ2HVF6nt5YtoS4RAzJ_y6vSxSoSKjs4t2BqaZU8QJKG6FmYPpLMq7YlcsGOKOjRNkOsjqWbFBGHUeyecwfBUTsIDsZ5TGmOW_NfsFew
+ *
+ * 当前路由匹配逻辑：
+ * https://mermaid.live/edit#pako:eNqFVF1PE0EU_SuTefCpRQs-VUMiwSgJElI0Ju7yMHSn24ndnWZ3qhBCghpjEaFFPmITEZDQEmNSxJDGSPHPMNvtv3B2Z9tOscQmTWbuPffcc-7OzCJMUwPDJMzk6Mt0FjkMPB7XbSB-M0zsEho_X-a11VkQj4-CMTqf0HSYGLphz7n5O_zzCd9d9vZL_sUmf3vUam6ILbg754Cbo8MRxjsr-bUirxz7tUPvS1kmRzoExXd85dQ_-NA6Xm1vXnjrRzqcld2DVmHPFC0w7EzYhKUwMhY0p38fwa-gwsoJd5KaxNa8T3VerrYqv3lzO4IrDof7HIrqNJNk49QSXp0gEJdN4wa1pIHEEJhCL4iJGO7YBZPEft6V38-jGBnDGerg-yidjZz0AqJUVReKn0Ym1nLBCuTFMhAJpBOvWObv90LmB5g9cQP3GTqs-esNXtppbR17xcblnwPvVT2SpKICGr9W5aUNXj_3i98GClQn24uqo1XlRqGAWQz8qq7rZYVVYRO1FDykFg7N-42ffvM7L560qzvtg7OoqpMGEj1Y-n_6K6ZTlDLN2__lN-qtrR99ZypIDVQ2CCTOWQjqmYo-Xpf4n2F1Sp5mCcOTxGWaxLYqTV5e42vb8oBdXqzy6msg2cQc2rtfI5ndQqDKnMLzbFC-T2HPxqBv0YGmaA5PY8cirkuouE6Hy97ekV_76K-certv2pVyd14qTmUI-ty-NaKJvzzG1xWo6mEMWiKJiCGep8WgQocsiy2sw6RYGjiDCjmmw5hMWdh1BfW9HDFtiXCImRV53V4SVKjA6MyCnYZJ5hRwDIrLZ2ZhMoNyrtgV8oa4yuMEmQ6yulFsEEadR_KBDN_JGMwj-xmlHczSXxu_Ebw
+ *
+ * 1. 初次进入应用触发 routerInitReady 函数
+ * 2. routerInitReady 函数的跳转逻辑一定在请求完用户信息后执行，防止异步逻辑进入 getBlocker
+ * 3. 为了让异步路由生效 routerInitReady 中会执行路由替换，所以 getBlocker 中不需要进行 nextLocation.pathname  === currentLocation.pathname 的判断，否则替换会失效
+ * 4. 执行路由替换之后，权限验证逻辑只需要在 getBlocker 维护一份即可
+ *
+ *
+ * 用户点击登录获取用户信息，可以防止在 getBlocker 中执行异步路由匹配逻辑
+ *
+ *
+ */
 
-import { useAnimationStore, usePermissionStore, useUserStore } from "#src/store";
-import { NProgress } from "#src/utils";
+import type { AppRouteRecordRaw } from "./types";
 
-import { createBrowserRouter, matchRoutes } from "react-router-dom";
-import {
-	addIdToRoutes,
-	checkLogin,
-	checkPublicRoute,
-	checkRouteRole,
-	getInitReactRoutes,
-	replaceBaseWithRoot,
-} from "./utils";
+import { createBrowserRouter } from "react-router-dom";
+import { routerAfterEach, routerBeforeEach, routerInitReady } from "./router-global-hooks";
+import { addIdToRoutes, getInitReactRoutes } from "./utils";
 
 const modules = import.meta.glob<
 	Record<string, { default: AppRouteRecordRaw[] }>
@@ -34,133 +43,13 @@ export const router = createBrowserRouter(
 	},
 );
 
-/**
- * 全局前置守卫，用于在路由跳转前执行一些操作
- *
- * @returns 返回 true 则取消当前导航，返回 false 则继续导航
- */
-const routerBeforeEach: BlockerFunction = ({ nextLocation }) => {
-	const { transitionProgress } = useAnimationStore.getState();
-	/* 开启进度条动画 */
-	transitionProgress && NProgress.start();
-
-	const currentRoute = matchRoutes(
-		router.routes,
-		nextLocation,
-		import.meta.env.BASE_URL,
-	) ?? [];
-	const { pathname, search } = nextLocation;
-	const pathnameWithoutBase = replaceBaseWithRoot(pathname);
-
-	/* 路由白名单 */
-	const isPublicRoute = checkPublicRoute(pathnameWithoutBase, currentRoute[currentRoute.length - 1]?.route?.handle?.ignoreAccess);
-	if (isPublicRoute) {
-		return false;
-	}
-
-	/* 是否登录 */
-	const isLogin = checkLogin(pathnameWithoutBase, search, router.navigate);
-	if (!isLogin) {
-		return true;
-	}
-
-	/* 跳转到默认路由 */
-	if (pathname === import.meta.env.BASE_URL) {
-		router.navigate(import.meta.env.VITE_BASE_HOME_PATH, { replace: true });
-		return true;
-	}
-
-	/* --------------- 以下为已登录的处理逻辑 ------------------ */
-	// 路由权限校验
-	const hasRole = checkRouteRole(currentRoute[currentRoute.length - 1]?.route?.handle?.roles, undefined, router.navigate);
-	// 未通过权限校验
-	if (!hasRole) {
-		return true;
-	}
-	return false;
-};
-
-/**
- * 路由守卫，在路由跳转完成后执行
- *
- */
-const routerAfterEach: RouterSubscriber = (routerState) => {
-	const { transitionProgress } = useAnimationStore.getState();
-	if (routerState.navigation.state === "idle") {
-		/* 路由变化更新文档标题的逻辑放到了路由守卫组件中（guard.tsx） */
-		/* 关闭进度条动画 */
-		transitionProgress && NProgress.done();
-	}
-};
-
-/**
- * 浏览器刷新并不会触发 routerBeforeEach ，所以需要在 routerInitReady 来进行一些初始化操作
- */
-async function routerInitReady() {
-	const { transitionProgress } = useAnimationStore.getState();
-	/* 路由初始化时，开启进度条动画 */
-	transitionProgress && NProgress.start();
-	function handleDomReady() {
-		transitionProgress && NProgress.done();
-		document.removeEventListener("DOMContentLoaded", handleDomReady);
-	}
-	document.addEventListener("DOMContentLoaded", handleDomReady);
-
-	const { pathname, search } = router.state.location;
-	const pathnameWithoutBase = replaceBaseWithRoot(pathname);
-	const currentRoute = router.state.matches[router.state.matches.length - 1];
-	/* 路由白名单 */
-	const isPublicRoute = checkPublicRoute(pathnameWithoutBase, currentRoute.route.handle?.ignoreAccess);
-	if (isPublicRoute) {
-		return;
-	}
-
-	/* 是否登录 */
-	const isLogin = checkLogin(pathnameWithoutBase, search, router.navigate);
-	if (!isLogin) {
-		return;
-	}
-
-	/* --------------- 以下为已登录的处理逻辑 ------------------ */
-
-	// 已登录但未获取动态路由，则获取动态路由
-	const { hasFetchedDynamicRoutes, handleAsyncRoutes } = usePermissionStore.getState();
-	if (!hasFetchedDynamicRoutes) {
-		/**
-		 * 用户信息包含了用户角色，需要在获取菜单权限前面获取，用于权限校验
-		 */
-		await Promise.all([handleAsyncRoutes(), useUserStore.getState().getUserInfo()]);
-		/**
-		 * 需要替换当前路由
-		 * https://router.vuejs.org/guide/advanced/dynamic-routing#Adding-routes
-		 *
-		 * 为什么需要替换当前路由？
-		 * 1. 假如用户导航到动态路由 /system/user
-		 * 2. 浏览器匹配路由，但是没有匹配到，进入 404 路由
-		 * 3. 等待获取动态路由后，通过 router.navigate 跳转到 /system/user
-		 *
-		 * 注意：navigate 方法调用之后会触发 routerBeforeEach 钩子
-		 */
-
-		return router.navigate(`${pathnameWithoutBase}${search}`);
-	}
-
-	/**
-	 * 路由权限校验逻辑
-	 *
-	 * 因为 routerInitReady 被触发 hasFetchedDynamicRoutes 一定是 false
-	 * 所以 获取动态路由之后 直接 return router.navigate
-	 * 权限校验的校验会在 routerBeforeEach 中执行
-	 */
-}
-
 export async function setupRouter() {
 	// router beforeEach
-	router.getBlocker("beforeEach", routerBeforeEach);
+	router.getBlocker("beforeEach", routerBeforeEach(router));
 	// router afterEach
 	router.subscribe(routerAfterEach);
 
-	await routerInitReady();
+	await routerInitReady(router);
 }
 
 export default router;

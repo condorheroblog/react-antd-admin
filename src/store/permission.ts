@@ -30,7 +30,7 @@ const initialState: InitialStateType = {
 type TagsState = typeof initialState;
 
 interface TagsAction {
-	handleAsyncRoutes: () => Promise<void>
+	handleAsyncRoutes: () => Promise<InitialStateType>
 	reset: () => void
 };
 
@@ -43,20 +43,23 @@ export const usePermissionStore = create<TagsState & TagsAction>(set => ({
 		const dynamicRouteList = addAsyncRoutes(result);
 		const newRoutes = ascending([...routeModuleList, ...dynamicRouteList]);
 
+		const constantMenus = getMenuItems((router.routes[0].children || []) as AppRouteRecordRaw[]);
+
 		/* 添加动态路由到前端根路由 */
 		router.patchRoutes(ROOT_ROUTE_ID, dynamicRouteList);
 
 		const flatRouteList = flattenRoutes(newRoutes);
 
-		return set(() => {
-			const wholeMenus = getMenuItems(newRoutes);
-			return {
-				wholeMenus,
-				routeList: newRoutes,
-				flatRouteList,
-				hasFetchedDynamicRoutes: true,
-			};
-		});
+		const wholeMenus = getMenuItems(newRoutes);
+		const newState = {
+			constantMenus,
+			wholeMenus,
+			routeList: newRoutes,
+			flatRouteList,
+			hasFetchedDynamicRoutes: true,
+		};
+		set(() => newState);
+		return newState;
 	},
 
 	reset: () => {
