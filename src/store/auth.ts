@@ -1,5 +1,5 @@
 import type { AuthType } from "#src/api/user/types";
-import type { FormInitialValues } from "#src/pages/login";
+import type { PasswordLoginFormType } from "#src/pages/login/components/password-login";
 import { fetchLogin, fetchLogout } from "#src/api/user";
 import { usePermissionStore, useTabsStore, useUserStore } from "#src/store";
 
@@ -14,7 +14,7 @@ const initialState = {
 type AuthState = AuthType;
 
 interface AuthAction {
-	login: (loginPayload: FormInitialValues) => Promise<void>
+	login: (loginPayload: PasswordLoginFormType) => Promise<void>
 	logout: () => Promise<void>
 	reset: () => void
 };

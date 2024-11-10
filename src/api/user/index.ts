@@ -1,9 +1,9 @@
-import type { FormInitialValues } from "#src/pages/login";
+import type { PasswordLoginFormType } from "#src/pages/login/components/password-login";
 import type { AppRouteRecordRaw } from "#src/router/types";
 import type { AuthType, UserInfoType } from "./types";
 import { request } from "#src/utils";
 
-export function fetchLogin(data: FormInitialValues) {
+export function fetchLogin(data: PasswordLoginFormType) {
 	return request
 		.post("login", { json: data })
 		.json<ApiResponse<AuthType>>();

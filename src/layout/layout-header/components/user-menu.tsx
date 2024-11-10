@@ -34,7 +34,7 @@ export function UserMenu() {
 			extra: `${altView}P`,
 		},
 		{
-			label: $t("common.logout"),
+			label: $t("authority.logout"),
 			key: "logout",
 			icon: <LogoutOutlined />,
 			extra: `${altView}Q`,

@@ -1,4 +1,4 @@
-import { ThemeSwitch } from "#src/layout/layout-header/components/theme-switch.js";
+import { ThemeSwitch } from "#src/layout/layout-header/components/theme-switch";
 import { useGlobalStore } from "#src/store";
 import { SettingOutlined } from "@ant-design/icons";
 import { Divider, Drawer } from "antd";

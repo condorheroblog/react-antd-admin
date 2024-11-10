@@ -1,25 +1,19 @@
+import type { FormComponentMapType } from "./form-mode-context";
 import frameworkTemplate from "#src/assets/images/framework-template.svg?url";
 import logo from "#src/assets/images/logo.svg?url";
 import { LayoutFooter } from "#src/layout";
-import { LanguageMenu } from "#src/layout/layout-header/components/language-menu.js";
-import { ThemeSwitch } from "#src/layout/layout-header/components/theme-switch.js";
-import { useAuthStore, usePermissionStore, useUserStore } from "#src/store";
-
+import { LanguageMenu } from "#src/layout/layout-header/components/language-menu";
+import { ThemeSwitch } from "#src/layout/layout-header/components/theme-switch";
 import {
-	Button,
 	Col,
-	Form,
-	Input,
 	Layout,
 	Row,
 	Space,
 	Typography,
 } from "antd";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-
+import { useMemo, useState } from "react";
 import { createUseStyles } from "react-jss";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { FORM_COMPONENT_MAP, FormModeContext } from "./form-mode-context";
 
 const { Title } = Typography;
 
@@ -51,52 +45,11 @@ const useStyles = createUseStyles(({ token }) => {
 });
 
 const { Content } = Layout;
-const FORM_INITIAL_VALUES = {
-	username: "admin",
-	password: "password",
-};
-export type FormInitialValues = typeof FORM_INITIAL_VALUES;
-
 export default function Login() {
-	const [loading, setLoading] = useState(false);
 	const classes = useStyles();
-	const [loginForm] = Form.useForm();
-	const { t } = useTranslation();
-	const [searchParams] = useSearchParams();
-	const navigate = useNavigate();
-	const login = useAuthStore(state => state.login);
-	const handleAsyncRoutes = usePermissionStore(state => state.handleAsyncRoutes);
-	const getUserInfo = useUserStore(state => state.getUserInfo);
+	const [formMode, setFormMode] = useState<FormComponentMapType>("login");
 
-	const handleFinish = async (values: FormInitialValues) => {
-		setLoading(true);
-		/* 先登录 */
-		await login(values);
-
-		/* ================= 分割线 ================= */
-		await Promise.all([
-			/**
-			 * getUserInfo 和 handleAsyncRoutes 逻辑应该出现在 routerBeforeEach 中
-			 * 但是因为 routerBeforeEach 不支持 异步调用 所以临时放在登录逻辑中
-			 */
-			getUserInfo(),
-			handleAsyncRoutes(),
-		]).finally(() => setLoading(false));
-		/* ================= 分割线 ================= */
-
-		const redirect = searchParams.get("redirect");
-		if (redirect) {
-			navigate(`/${redirect.slice(1)}`);
-		}
-		else {
-			navigate("/");
-		}
-	};
-
-	useEffect(() => {
-		document.title = t("common.login");
-	}, []);
-
+	const providedValue = useMemo(() => ({ formMode, setFormMode }), [formMode, setFormMode]);
 	return (
 		<Layout className={classes.section}>
 			<header className="flex gap-3 absolute right-3 top-3 scale-95">
@@ -123,52 +76,9 @@ export default function Login() {
 					<Col xs={24} sm={24} lg={12}>
 						<div className={classes.loginWrapper}>
 							<div className="w-4/5 my-10">
-								<Space direction="vertical">
-									<Title level={3}>
-										Hello, Welcome to
-									</Title>
-									<Title className="mt-0" level={5}>
-										{import.meta.env.VITE_GLOB_APP_TITLE}
-									</Title>
-								</Space>
-
-								<Form
-									name="loginForm"
-									form={loginForm}
-									layout="vertical"
-									initialValues={FORM_INITIAL_VALUES}
-									onFinish={handleFinish}
-								>
-									<Form.Item
-										label={t("common.username")}
-										name="username"
-										rules={[
-											{
-												required: true,
-											},
-										]}
-									>
-										<Input />
-									</Form.Item>
-
-									<Form.Item
-										label={t("common.password")}
-										name="password"
-										rules={[
-											{
-												required: true,
-											},
-										]}
-									>
-										<Input.Password />
-									</Form.Item>
-
-									<Form.Item>
-										<Button block type="primary" htmlType="submit" loading={loading}>
-											{t("common.login")}
-										</Button>
-									</Form.Item>
-								</Form>
+								<FormModeContext.Provider value={providedValue}>
+									{FORM_COMPONENT_MAP[formMode]}
+								</FormModeContext.Provider>
 							</div>
 						</div>
 					</Col>

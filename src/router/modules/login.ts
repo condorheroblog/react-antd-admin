@@ -13,7 +13,7 @@ const routes: AppRouteRecordRaw[] = [
 		Component: Login,
 		handle: {
 			hideInMenu: true,
-			title: $t("common.login"),
+			title: $t("authority.login"),
 			order: login,
 		},
 	},

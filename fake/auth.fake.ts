@@ -1,6 +1,6 @@
 import { defineFakeRoute } from "vite-plugin-fake-server/client";
 
-import { ADMIN_REFRESH_TOKEN, ADMIN_TOKEN, COMMON_REFRESH_TOKEN, COMMON_TOKEN } from "./constants";
+import { ADMIN_REFRESH_TOKEN, ADMIN_TOKEN, COMMON_REFRESH_TOKEN, COMMON_TOKEN, COUNTRIES_CODE } from "./constants";
 import { resultSuccess } from "./utils";
 
 export default defineFakeRoute([
@@ -42,6 +42,14 @@ export default defineFakeRoute([
 				return resultSuccess({ token: ADMIN_TOKEN, refreshToken: ADMIN_REFRESH_TOKEN });
 			}
 			return resultSuccess({ token: COMMON_TOKEN, refreshToken: COMMON_REFRESH_TOKEN });
+		},
+	},
+	{
+		url: "/country-calling-codes",
+		timeout: 1000,
+		method: "get",
+		response: () => {
+			return resultSuccess(COUNTRIES_CODE);
 		},
 	},
 ]);
