@@ -2,5 +2,7 @@
 // allows you to do things like:
 // expect(element).toHaveTextContent(/react/i)
 
-// https://github.com/testing-library/jest-dom/issues/515#issuecomment-1758934011
+/**
+ * @see https://github.com/testing-library/jest-dom?tab=readme-ov-file#with-vitest
+ */
 import "@testing-library/jest-dom/vitest";

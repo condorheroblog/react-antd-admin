@@ -5,10 +5,15 @@
 		"module": "ESNext",
 		"moduleResolution": "bundler",
 		"paths": {
-			"#*": ["./*"]
+			"#*": [
+				"./*"
+			]
 		},
 		"resolveJsonModule": true,
-		"types": ["vitest/globals"],
+		"types": [
+			"vitest/globals",
+			"@testing-library/jest-dom"
+		],
 		"allowJs": true,
 		"strict": true,
 		"noFallthroughCasesInSwitch": true,
@@ -19,5 +24,11 @@
 		"isolatedModules": true,
 		"skipLibCheck": true
 	},
-	"include": ["src", "fake", "tests", "vite.config.ts", "commitlint.config.ts"]
+	"include": [
+		"src",
+		"fake",
+		"tests",
+		"vite.config.ts",
+		"commitlint.config.ts"
+	]
 }

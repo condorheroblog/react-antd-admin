@@ -1,4 +1,4 @@
-/// <reference types="vitest" />
+/// <reference types="vitest/config" />
 
 import process from "node:process";
 import react from "@vitejs/plugin-react";
