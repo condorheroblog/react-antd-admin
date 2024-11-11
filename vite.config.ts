@@ -5,6 +5,7 @@ import react from "@vitejs/plugin-react";
 import { codeInspectorPlugin } from "code-inspector-plugin";
 import dayjs from "dayjs";
 import { defineConfig } from "vite";
+import { checker } from "vite-plugin-checker";
 import { vitePluginFakeServer } from "vite-plugin-fake-server";
 import svgrPlugin from "vite-plugin-svgr";
 
@@ -32,6 +33,11 @@ export default defineConfig({
 			// svgr options: https://react-svgr.com/docs/options/
 			svgrOptions: { exportType: "default", ref: true, svgo: false, titleProp: true },
 			include: "**/*.svg",
+		}),
+		checker({
+			typescript: true,
+			terminal: false,
+			enableBuild: false,
 		}),
 		/**
 		 * 点击页面 DOM 打开 IDE 并将光标自动定位到源代码位置
