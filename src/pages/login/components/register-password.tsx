@@ -3,6 +3,7 @@ import { PASSWORD_RULE, USERNAME_RULE } from "#src/constants";
 
 import {
 	Button,
+	Checkbox,
 	Form,
 	Input,
 	Space,
@@ -100,17 +101,31 @@ export function RegisterPassword() {
 					<Input.Password placeholder={t("authority.passwordTip")} />
 				</Form.Item>
 
-				<Form.Item>
-					<div className="mb-5 -mt-1 flex flex-wrap text-sm">
-						<Trans
-							i18nKey="authority.agree"
-							components={[
-								<Link key={0} to="/terms-of-service" target="_blank" />,
-								<Link key={1} to="/privacy-policy" target="_blank" />,
-							]}
-						/>
+				<Form.Item
+					rules={[
+						() => ({
+							validator(_, value) {
+								return value !== true ? Promise.reject(new Error(t("authority.agreeTip"))) : Promise.resolve();
+							},
+						}),
+					]}
+					name="termsAgreement"
+					valuePropName="checked"
+				>
+					<Checkbox>
+						<div className="flex flex-wrap text-xs">
+							<Trans
+								i18nKey="authority.agree"
+								components={[
+									<Link key={0} to="/terms-of-service" target="_blank" />,
+									<Link key={1} to="/privacy-policy" target="_blank" />,
+								]}
+							/>
+						</div>
+					</Checkbox>
+				</Form.Item>
 
-					</div>
+				<Form.Item>
 					<Button block type="primary" htmlType="submit" loading={loading}>
 						{t("authority.register")}
 					</Button>

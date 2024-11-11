@@ -32,6 +32,7 @@
 	"confirmPasswordTip": "两次输入的密码不一致",
 	"logoutConfirm": "确认退出登录吗？",
 	"agree": "我已阅读并同意《<0>隐私政策</0>》和《<1>服务条款</1>》",
+	"agreeTip": "请同意隐私政策和条款",
 	"privacyPolicy": "隐私政策",
 	"termsOfService": "服务条款"
 }

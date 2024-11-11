@@ -32,6 +32,7 @@
 	"confirmPasswordTip": "The passwords do not match",
 	"logoutConfirm": "Are you sure to logout?",
 	"agree": "I have read and agree to <0>Privacy Policy</0> and <1>Terms of Service</1>",
+	"agreeTip": "Please agree to the Privacy Policy and Terms of Service",
 	"privacyPolicy": "Privacy Policy",
 	"termsOfService": "Terms of Service"
 }
