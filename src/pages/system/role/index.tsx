@@ -1,7 +1,7 @@
 import type { RoleItemType } from "#src/api/system";
 import type { ActionType, ProColumns, ProCoreActionType } from "@ant-design/pro-components";
 import { fetchDeleteRoleItem, fetchRoleList, fetchRoleMenu, fetchRoleMenuIds } from "#src/api/system";
-import { BasicButton, ReuseTable } from "#src/components";
+import { BasicButton, BasicContent, ReuseTable } from "#src/components";
 import { handleTree } from "#src/utils";
 
 import { PlusCircleOutlined } from "@ant-design/icons";
@@ -141,7 +141,7 @@ export default function Role() {
 	};
 
 	return (
-		<>
+		<BasicContent className="h-full">
 			<ReuseTable<RoleItemType>
 				columns={columns}
 				actionRef={actionRef}
@@ -210,6 +210,6 @@ export default function Role() {
 				refreshTable={refreshTable}
 				treeData={handleTree(query.data?.result || [])}
 			/>
-		</>
+		</BasicContent>
 	);
 };

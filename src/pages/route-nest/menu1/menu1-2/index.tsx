@@ -1,3 +1,5 @@
+import { BasicContent } from "#src/components";
+
 export default function Menu1And2() {
-	return <h1>menu1-2</h1>;
+	return <BasicContent>menu1-2</BasicContent>;
 }

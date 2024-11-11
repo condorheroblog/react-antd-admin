@@ -1,4 +1,4 @@
-import { FormAvatarItem } from "#src/components";
+import { BasicContent, FormAvatarItem } from "#src/components";
 import { useUserStore } from "#src/store";
 
 import {
@@ -27,7 +27,7 @@ export default function Profile() {
 	};
 
 	return (
-		<div className="max-w-md ml-10">
+		<BasicContent className="max-w-md ml-10">
 			<h3>我的资料</h3>
 			<ProForm
 				layout="vertical"
@@ -89,6 +89,6 @@ export default function Profile() {
 					placeholder="个人简介"
 				/>
 			</ProForm>
-		</div>
+		</BasicContent>
 	);
 };

@@ -82,7 +82,7 @@ export default function LayoutContent() {
 
 	return (
 		<main
-			className="overflow-y-auto overflow-x-hidden p-4 flex-grow"
+			className="overflow-y-auto overflow-x-hidden flex-grow"
 			style={
 				{
 					backgroundColor: colorBgLayout,

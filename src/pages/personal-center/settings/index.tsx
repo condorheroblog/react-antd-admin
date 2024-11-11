@@ -1,3 +1,5 @@
+import { BasicContent } from "#src/components";
+
 export default function Settings() {
-	return <div>Settings</div>;
+	return <BasicContent>Settings</BasicContent>;
 }

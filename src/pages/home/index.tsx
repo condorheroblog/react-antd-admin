@@ -1,9 +1,12 @@
 import type { ColProps } from "antd";
-import { Col, Row, theme } from "antd";
+
+import { BasicContent } from "#src/components";
+import { Col, Row } from "antd";
 
 import BarChart from "./components/bar-chart";
 import CardList from "./components/card-list";
 import LineChart from "./components/line-chart";
+
 import PieChart from "./components/pie-chart";
 
 const wrapperCol: ColProps = {
@@ -15,12 +18,8 @@ const wrapperCol: ColProps = {
 	xxl: 12,
 };
 export default function Home() {
-	const {
-		token: { colorBgLayout },
-	} = theme.useToken();
-
 	return (
-		<div style={{ height: "100%", backgroundColor: colorBgLayout }}>
+		<BasicContent>
 			<Row gutter={[20, 20]}>
 				<Col span={24}>
 					<CardList />
@@ -39,6 +38,6 @@ export default function Home() {
 					</Row>
 				</Col>
 			</Row>
-		</div>
+		</BasicContent>
 	);
 }

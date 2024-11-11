@@ -1,3 +1,5 @@
+import { BasicContent } from "#src/components";
+
 import { Badge, Card, Col, Descriptions, Row, Tag, theme, Typography } from "antd";
 import { useTranslation } from "react-i18next";
 
@@ -42,42 +44,44 @@ export default function About() {
 	];
 
 	return (
-		<Row gutter={[0, 20]} style={{ backgroundColor: colorBgLayout }}>
-			<Col span={24}>
-				<Row>
-					<Col>
-						<Card title={t("about.aboutProject")}>
-							<Descriptions
-								items={[
-									{
-										key: 1,
-										children: t("about.descriptions"),
-									},
-								]}
-							/>
+		<BasicContent>
+			<Row gutter={[0, 20]} style={{ backgroundColor: colorBgLayout }}>
+				<Col span={24}>
+					<Row>
+						<Col>
+							<Card title={t("about.aboutProject")}>
+								<Descriptions
+									items={[
+										{
+											key: 1,
+											children: t("about.descriptions"),
+										},
+									]}
+								/>
+							</Card>
+						</Col>
+					</Row>
+				</Col>
+				<Col span={24}>
+					<Card title={t("about.projectMessage")}>
+						<Descriptions bordered items={projectMessageItems} />
+					</Card>
+				</Col>
+				<Col span={24}>
+					<Badge.Ribbon text={dependenciesItems.length} color="green">
+						<Card title={t("about.dependencies")}>
+							<Descriptions bordered items={dependenciesItems} />
 						</Card>
-					</Col>
-				</Row>
-			</Col>
-			<Col span={24}>
-				<Card title={t("about.projectMessage")}>
-					<Descriptions bordered items={projectMessageItems} />
-				</Card>
-			</Col>
-			<Col span={24}>
-				<Badge.Ribbon text={dependenciesItems.length} color="green">
-					<Card title={t("about.dependencies")}>
-						<Descriptions bordered items={dependenciesItems} />
-					</Card>
-				</Badge.Ribbon>
-			</Col>
-			<Col span={24}>
-				<Badge.Ribbon text={devDependenciesItems.length} color="blue">
-					<Card title={t("about.devDependencies")}>
-						<Descriptions bordered items={devDependenciesItems} />
-					</Card>
-				</Badge.Ribbon>
-			</Col>
-		</Row>
+					</Badge.Ribbon>
+				</Col>
+				<Col span={24}>
+					<Badge.Ribbon text={devDependenciesItems.length} color="blue">
+						<Card title={t("about.devDependencies")}>
+							<Descriptions bordered items={devDependenciesItems} />
+						</Card>
+					</Badge.Ribbon>
+				</Col>
+			</Row>
+		</BasicContent>
 	);
 }

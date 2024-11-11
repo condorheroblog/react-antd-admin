@@ -1,10 +1,13 @@
 import type { ReactNode } from "react";
 import { useAnimationStore, useGlobalStore } from "#src/store";
+
+import { cn } from "#src/utils";
 import { Spin } from "antd";
 
 import { createUseStyles } from "react-jss";
 
 export interface GlobalSpinProps {
+	className?: string
 	children: ReactNode
 }
 
@@ -20,7 +23,7 @@ const useStyles = createUseStyles({
 	},
 });
 
-export function GlobalSpin({ children }: GlobalSpinProps) {
+export function GlobalSpin({ children, className }: GlobalSpinProps) {
 	const classes = useStyles();
 	const spinning = useGlobalStore(state => state.globalSpin);
 	const transitionLoading = useAnimationStore(state => state.transitionLoading);
@@ -30,7 +33,7 @@ export function GlobalSpin({ children }: GlobalSpinProps) {
 	};
 
 	return (
-		<Spin spinning={spinning} wrapperClassName={classes.rootSpin}>
+		<Spin spinning={spinning} wrapperClassName={cn(classes.rootSpin, className)}>
 			{children}
 		</Spin>
 	);
