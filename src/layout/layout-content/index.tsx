@@ -40,6 +40,21 @@ export default function LayoutContent() {
 		});
 	}, [openTabs]);
 
+	/**
+	 * 关闭多 tab 功能，清空所有的缓存页面
+	 */
+	useEffect(() => {
+		if (!tabbarEnable) {
+			const cacheNodes = aliveRef.current?.getCacheNodes?.();
+			cacheNodes?.forEach((node) => {
+				/* 不包含当前页面 */
+				if (node.cacheKey !== cacheKey) {
+					aliveRef.current?.destroy(node.cacheKey);
+				}
+			});
+		}
+	}, [tabbarEnable]);
+
 	/* KeepAlive 的刷新 */
 	useEffect(() => {
 		/* 仅在启用标签栏时生效 */
@@ -48,15 +63,22 @@ export default function LayoutContent() {
 		}
 	}, [isRefresh]);
 
-	/* 路由设置 keepAlive false 则不缓存页面 */
+	/* 路由设置 keepAlive = false 则不缓存页面 */
 	const keepAliveExclude = useMemo(() => {
+		/**
+		 * 如果不开启多 tab 功能，则不需要 KeepAlive 功能
+		 * 为了保留页面的切换动画，只需要把所有的路由放到 exclude 数组中
+		 */
+		if (!tabbarEnable) {
+			return Object.keys(flatRouteList);
+		}
 		return Object.entries(flatRouteList).reduce<string[]>((acc, [key, value]) => {
 			if (value.handle.keepAlive === false) {
 				acc.push(key);
 			}
 			return acc;
 		}, []);
-	}, [flatRouteList]);
+	}, [flatRouteList, tabbarEnable]);
 
 	return (
 		<main
@@ -68,23 +90,17 @@ export default function LayoutContent() {
 			}
 		>
 			<GlobalSpin>
-				{
-					tabbarEnable
-						? (
-							<KeepAlive
-								max={20}
-								transition
-								duration={300}
-								cacheNodeClassName={transitionEnable ? `keepalive-${transitionName}` : undefined}
-								exclude={keepAliveExclude}
-								activeCacheKey={cacheKey}
-								aliveRef={aliveRef}
-							>
-								{outlet}
-							</KeepAlive>
-						)
-						: outlet
-				}
+				<KeepAlive
+					max={20}
+					transition
+					duration={300}
+					cacheNodeClassName={transitionEnable ? `keepalive-${transitionName}` : undefined}
+					exclude={keepAliveExclude}
+					activeCacheKey={cacheKey}
+					aliveRef={aliveRef}
+				>
+					{outlet}
+				</KeepAlive>
 			</GlobalSpin>
 		</main>
 	);

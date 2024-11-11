@@ -53,7 +53,7 @@ export function UserMenu() {
 		<Dropdown
 			menu={{ items, onClick }}
 			arrow={false}
-			placement="bottom"
+			placement="bottomRight"
 			trigger={["click"]}
 		>
 			<div role="menuitem" tabIndex={-1}>

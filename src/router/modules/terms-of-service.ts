@@ -10,6 +10,7 @@ const routes: AppRouteRecordRaw[] = [
 		path: "/terms-of-service",
 		Component: Outlet,
 		handle: {
+			hideInMenu: true,
 			title: $t("authority.termsOfService"),
 			icon: createElement(UserOutlined),
 		},

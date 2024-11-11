@@ -10,6 +10,7 @@ const routes: AppRouteRecordRaw[] = [
 		path: "/privacy-policy",
 		Component: Outlet,
 		handle: {
+			hideInMenu: true,
 			title: $t("authority.privacyPolicy"),
 			icon: createElement(UserOutlined),
 		},
