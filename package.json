@@ -45,6 +45,7 @@
 		"dayjs": "^1.11.13",
 		"echarts": "^5.5.1",
 		"echarts-for-react": "^3.0.2",
+		"framer-motion": "^11.11.11",
 		"i18next": "^23.16.2",
 		"keepalive-for-react": "^3.0.1",
 		"ky": "^1.7.2",

@@ -4,6 +4,7 @@ import logo from "#src/assets/images/logo.svg?url";
 import { LayoutFooter } from "#src/layout";
 import { LanguageMenu } from "#src/layout/layout-header/components/language-menu";
 import { ThemeSwitch } from "#src/layout/layout-header/components/theme-switch";
+
 import {
 	Col,
 	Layout,
@@ -11,6 +12,7 @@ import {
 	Space,
 	Typography,
 } from "antd";
+import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import { createUseStyles } from "react-jss";
 import { FORM_COMPONENT_MAP, FormModeContext } from "./form-mode-context";
@@ -77,7 +79,17 @@ export default function Login() {
 						<div className={classes.loginWrapper}>
 							<div className="w-4/5 my-10">
 								<FormModeContext.Provider value={providedValue}>
-									{FORM_COMPONENT_MAP[formMode]}
+									<AnimatePresence mode="wait" initial={false}>
+										<motion.div
+											key={formMode}
+											initial={{ x: 30, opacity: 0 }}
+											animate={{ x: 0, opacity: 1 }}
+											exit={{ x: 0, opacity: 0 }}
+											transition={{ duration: 0.3 }}
+										>
+											{FORM_COMPONENT_MAP[formMode]}
+										</motion.div>
+									</AnimatePresence>
 								</FormModeContext.Provider>
 							</div>
 						</div>
