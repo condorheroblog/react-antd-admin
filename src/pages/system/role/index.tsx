@@ -2,6 +2,7 @@ import type { RoleItemType } from "#src/api/system";
 import type { ActionType, ProColumns, ProCoreActionType } from "@ant-design/pro-components";
 import { fetchDeleteRoleItem, fetchRoleList, fetchRoleMenu, fetchRoleMenuIds } from "#src/api/system";
 import { BasicButton, BasicContent, ReuseTable } from "#src/components";
+import { useAuth } from "#src/hooks";
 import { handleTree } from "#src/utils";
 
 import { PlusCircleOutlined } from "@ant-design/icons";
@@ -72,6 +73,7 @@ const constantColumns: ProColumns<RoleItemType>[] = [
 
 export default function Role() {
 	const { t } = useTranslation();
+	const hasAuth = useAuth();
 	const query = useQuery({ queryKey: ["role-menu"], queryFn: fetchRoleMenu });
 	const roleListMutation = useMutation({
 		mutationFn: fetchRoleList,
@@ -107,6 +109,7 @@ export default function Role() {
 						key="editable"
 						type="link"
 						size="small"
+						disabled={!hasAuth("update")}
 						onClick={async () => {
 							/* 请求角色菜单权限 */
 							const responseData = await roleMenuIdsMutation.mutateAsync({ id: record.id });
@@ -124,7 +127,7 @@ export default function Role() {
 						okText={t("common.confirm")}
 						cancelText={t("common.cancel")}
 					>
-						<BasicButton type="link" size="small">{t("common.delete")}</BasicButton>
+						<BasicButton type="link" size="small" disabled={!hasAuth("delete")}>{t("common.delete")}</BasicButton>
 					</Popconfirm>,
 				];
 			},
@@ -192,6 +195,7 @@ export default function Role() {
 						key="add-role"
 						icon={<PlusCircleOutlined />}
 						type="primary"
+						disabled={!hasAuth("add")}
 						onClick={() => {
 							setIsOpen(true);
 							setTitle("新增角色");

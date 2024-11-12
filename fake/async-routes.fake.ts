@@ -22,6 +22,11 @@ const systemManagementRouter = {
 				icon: "UserOutlined",
 				title: "common.menu.system.user",
 				roles: ["admin"],
+				permissions: [
+					"permission:button:add",
+					"permission:button:update",
+					"permission:button:delete",
+				],
 			},
 		},
 		{
@@ -30,6 +35,11 @@ const systemManagementRouter = {
 				icon: "TeamOutlined",
 				title: "common.menu.system.role",
 				roles: ["admin"],
+				permissions: [
+					"permission:button:add",
+					"permission:button:update",
+					"permission:button:delete",
+				],
 			},
 		},
 		{
@@ -38,6 +48,11 @@ const systemManagementRouter = {
 				icon: "MenuOutlined",
 				title: "common.menu.system.menu",
 				roles: ["admin"],
+				permissions: [
+					"permission:button:add",
+					"permission:button:update",
+					"permission:button:delete",
+				],
 			},
 		},
 		{
@@ -47,6 +62,11 @@ const systemManagementRouter = {
 				icon: "ApartmentOutlined",
 				title: "common.menu.system.dept",
 				roles: ["admin"],
+				permissions: [
+					"permission:button:add",
+					"permission:button:update",
+					"permission:button:delete",
+				],
 			},
 		},
 	],

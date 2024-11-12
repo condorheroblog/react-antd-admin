@@ -41,18 +41,12 @@ export interface RouteMeta {
 	order?: number
 
 	/**
-	 * 角色限制，建议根据实际需求调整类型，如使用 string[]
-	 * 例如，可以是一个字符串数组，指定哪些角色可以访问
+	 * 用于配置页面的权限，只有拥有对应权限的用户才能访问页面，不配置则不需要权限。
 	 */
 	roles?: string[]
 
 	/**
-	 * 权限字符串数组，用于控制访问权限
-	 */
-	auth?: string[]
-
-	/**
-	 * 权限字符串数组（备选），与auth类似，但用于区分不同的权限控制逻辑或场景
+	 * 页面内按钮级别的权限，用于控制页面内按钮的显示和隐藏
 	 */
 	permissions?: string[]
 
@@ -72,8 +66,8 @@ export interface RouteMeta {
 	ignoreAccess?: boolean
 
 	/**
-	 * @description 手动选择，当前激活菜单，例如动态路由情景下需要激活父菜单
-	 * 例如，从 '/user/info' 导航到 '/user/info/1' 时，可能需要手动设置以高亮显示父菜单 '/user/info'
+	 * @description 指定当前激活的菜单，适用于动态路由情景下激活父菜单
+	 * @example 从父路由 '/user/info' 导航到子路由 '/user/info/1' 时，可以手动手动指定以高亮显示父菜单 '/user/info'
 	 */
 	currentActiveMenu?: string
 
