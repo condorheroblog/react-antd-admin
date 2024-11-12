@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="0.63em" viewBox="0 0 104 66" fill="none">
+	<rect width="104" height="66" fill="currentColor" fill-opacity=".02" rx="4" />
+	<path fill="#1677ff"
+		d="M-3.378 3.62A4.492 4.025 0 0 1 1.114-.406h26.358V66H1.114a4.492 4.025 0 0 1-4.492-4.025V3.62z" />
+	<rect width="17.66" height="2.789" x="4.906" y="23.884" fill="#e5e5e5" rx="1.395" />
+	<rect width="9.811" height="9.706" x="8.83" y="5.881" fill="#fff" rx="2" />
+	<path fill="#fff"
+		d="M4.906 35.833c0-.758.637-1.395 1.395-1.395h14.87c.758 0 1.395.637 1.395 1.395v-.001c0 .758-.637 1.395-1.395 1.395H6.301a1.411 1.411 0 0 1-1.395-1.395v.001z" />
+	<rect width="17.66" height="2.789" x="4.906" y="44.992" fill="#fff" rx="1.395" />
+	<rect width="17.66" height="2.789" x="4.906" y="55.546" fill="#fff" rx="1.395" />
+	<rect width="73.539" height="9.07" x="28.98" y="1.429" fill="currentColor" fill-opacity=".08" rx="2" />
+	<rect width="3.925" height="4.4" x="32.039" y="3.899" fill="#b2b2b2" rx="1" />
+	<rect width="3.925" height="4.4" x="80.751" y="3.629" fill="#b2b2b2" rx="1" />
+	<rect width="3.925" height="4.4" x="87.582" y="3.494" fill="#b2b2b2" rx="1" />
+	<rect width="3.925" height="4.4" x="94.685" y="3.629" fill="#b2b2b2" rx="1" />
+	<rect width="45.631" height="21.519" x="56.052" y="14.613" fill="currentColor" fill-opacity=".08" rx="2" />
+	<rect width="22.83" height="20.978" x="29.385" y="14.613" fill="currentColor" fill-opacity=".08" rx="2" />
+	<rect width="72.458" height="21.654" x="28.98" y="39.482" fill="currentColor" fill-opacity=".08" rx="2" />
+</svg>

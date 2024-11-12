@@ -1,4 +1,11 @@
-# React-antd-admin
+<div align="center">
+	<a href="https://github.com/condorheroblog/react-antd-admin/">
+		<img alt="React-antd-admin Logo" width="192" src="https://github.com/user-attachments/assets/1de76309-4cf5-4e34-a32f-92c361bace2a">
+	</a>
+	<br />
+	<h1>React Antd Admin</h1>
+	<br />
+</div>
 
 [Live Demo](https://condorheroblog.github.io/react-antd-admin/)
 
@@ -42,7 +49,8 @@ pnpm i # 如果你没装过 pnpm, 可以先运行: npm install -g pnpm
 
 - 在 LICENSE 中改变作者名
 - 在 index.html 中改变标题和描述
-- 在 public 目录下改变favicon
+- 在 public 目录下改变 favicon.ico
+- ……
 
 ## 开发
 
@@ -69,3 +77,7 @@ pnpm build
 ```bash
 pnpm preview
 ```
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=condorheroblog/react-antd-admin&type=Date)](https://star-history.com/#condorheroblog/react-antd-admin&Date)

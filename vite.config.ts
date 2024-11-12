@@ -29,10 +29,15 @@ export default defineConfig({
 			enableProd: true,
 			timeout: 1000,
 		}),
+		// https://github.com/pd4d10/vite-plugin-svgr#options
 		svgrPlugin({
-			// svgr options: https://react-svgr.com/docs/options/
-			svgrOptions: { exportType: "default", ref: true, svgo: false, titleProp: true },
-			include: "**/*.svg",
+			// https://react-svgr.com/docs/options/
+			svgrOptions: {
+				plugins: ["@svgr/plugin-svgo", "@svgr/plugin-jsx"],
+				svgoConfig: {
+					floatPrecision: 2,
+				},
+			},
 		}),
 		checker({
 			typescript: true,
