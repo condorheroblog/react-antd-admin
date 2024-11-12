@@ -61,7 +61,7 @@ export default function Login() {
 			<Content className="flex justify-center items-center">
 				<Row gutter={[{ xs: 0, sm: 0, lg: 200 }, 0]}>
 					<Col xs={0} sm={0} lg={12}>
-						<Space direction="vertical">
+						<div className="flex flex-col gap-3 justify-center h-full">
 							<Space>
 								<img src={logo} alt="logo" className={classes.logo} />
 								<Title level={1} ellipsis={true} className="!text-sm">
@@ -69,10 +69,11 @@ export default function Login() {
 								</Title>
 							</Space>
 							<img
+								width={500}
 								src={frameworkTemplate}
 								alt="framework-template"
 							/>
-						</Space>
+						</div>
 					</Col>
 
 					<Col xs={24} sm={24} lg={12}>
