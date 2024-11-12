@@ -1,11 +1,12 @@
 import type { TabItemProps } from "#src/store";
 import type { TabsProps } from "antd";
+
 import { useCurrentRoute } from "#src/hooks";
 import { removeTrailingSlash } from "#src/router/utils";
 import { usePermissionStore, usePreferencesStore, useTabsStore, useUserStore } from "#src/store";
-
 import { isString } from "#src/utils";
-import { useCallback, useEffect, useMemo, useRef } from "react";
+
+import { isValidElement, useCallback, useEffect, useMemo, useRef } from "react";
 // import { CacheStatusIcon } from "#src/components";
 import { RedoOutlined } from "@ant-design/icons";
 import { Button, Tabs } from "antd";
@@ -164,9 +165,10 @@ export default function LayoutTabbar() {
 	 */
 	useEffect(() => {
 		if (!Array.from(openTabs.keys()).includes(import.meta.env.VITE_BASE_HOME_PATH) && hasFetchedDynamicRoutes) {
+			const routeTitle = flatRouteList[import.meta.env.VITE_BASE_HOME_PATH]?.handle?.title;
 			insertBeforeTab(import.meta.env.VITE_BASE_HOME_PATH, {
 				key: import.meta.env.VITE_BASE_HOME_PATH,
-				label: flatRouteList[import.meta.env.VITE_BASE_HOME_PATH]?.handle?.title,
+				label: isValidElement(routeTitle) ? routeTitle?.props?.children : routeTitle,
 				closable: false,
 				draggable: false,
 			});
@@ -182,9 +184,12 @@ export default function LayoutTabbar() {
 
 		setActiveKey(normalizedPath);
 
+		const routeTitle = currentRoute.handle?.title;
+
 		addTab(normalizedPath, {
 			key: normalizedPath,
-			label: currentRoute.handle?.title,
+			// 保证 label 为 string 类型，存储到 sessionStorage。
+			label: isValidElement(routeTitle) ? routeTitle?.props?.children : routeTitle,
 			historyState: { search: location.search, hash: location.hash },
 			/* 登录之后跳转的默认路由，不可以关闭和拖拽 */
 			closable: normalizedPath !== import.meta.env.VITE_BASE_HOME_PATH,

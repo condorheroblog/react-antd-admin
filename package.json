@@ -19,7 +19,7 @@
 		"#*": "./*"
 	},
 	"scripts": {
-		"dev": "vite --host --force",
+		"dev": "vite --host",
 		"build": "vite build",
 		"preview": "vite preview",
 		"typecheck": "tsc --noEmit",

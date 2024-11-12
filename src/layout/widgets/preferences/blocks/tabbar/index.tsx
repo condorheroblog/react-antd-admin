@@ -59,7 +59,7 @@ export function Tabbar() {
 			<SwitchItem
 				name="tabbarDraggable"
 				checked={tabbarDraggable}
-				disabled={!tabbarEnable}
+				disabled={true || !tabbarEnable}
 				onChange={(name, value) => setPreferences(name, value)}
 			>
 				{t("preferences.tabbar.draggable")}
@@ -67,7 +67,7 @@ export function Tabbar() {
 			<SwitchItem
 				name="tabbarShowIcon"
 				checked={tabbarShowIcon}
-				disabled={!tabbarEnable}
+				disabled={true || !tabbarEnable}
 				onChange={(name, value) => setPreferences(name, value)}
 			>
 				{t("preferences.tabbar.icon")}

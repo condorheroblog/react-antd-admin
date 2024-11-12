@@ -3,6 +3,7 @@
 		"antd",
 		"ahooks",
 		"Cascader",
+		"clsx",
 		"Popconfirm",
 		"reduxjs",
 		"sider",
