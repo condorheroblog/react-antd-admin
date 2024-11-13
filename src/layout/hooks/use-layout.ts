@@ -1,13 +1,11 @@
+import { useDeviceType } from "#src/hooks";
 import {
 	MIXED_NAVIGATION,
 	SIDE_NAVIGATION,
 	TOP_NAVIGATION,
 	TWO_COLUMN_NAVIGATION,
 } from "#src/layout/widgets/preferences/blocks/layout/constants";
-import {
-	useGlobalStore,
-	useLayoutStore,
-} from "#src/store";
+import { useLayoutStore } from "#src/store";
 
 import { useMemo } from "react";
 
@@ -22,7 +20,7 @@ import { useMemo } from "react";
  * - isTwoColumnNav: 是否为双列导航
  */
 export function useLayout() {
-	const isMobile = useGlobalStore(state => state.isMobile);
+	const { isMobile } = useDeviceType();
 	// LayoutType
 	const navigationStyle = useLayoutStore(state => state.navigationStyle);
 	const sidebarWidth = useLayoutStore(state => state.sidebarWidth);

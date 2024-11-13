@@ -3,10 +3,13 @@ import { cn } from "#src/utils";
 
 import Icon from "@ant-design/icons";
 
+import FollowSystem from "./follow-system.svg?react";
 import MailCheck from "./mail-check.svg?react";
 import MixedNavigation from "./mixed-navigation.svg?react";
+import Moon from "./moon.svg?react";
 import ProfileCard from "./profile-card.svg?react";
 import SideNavigation from "./side-navigation.svg?react";
+import Sun from "./sun.svg?react";
 import TopNavigation from "./top-navigation.svg?react";
 import TwoColumnNavigation from "./two-column-navigation.svg?react";
 import UserCircle from "./user-circle.svg?react";
@@ -48,4 +51,16 @@ export function UserCircleIcon(props: Partial<CustomIconComponentProps>) {
 
 export function UserSettingsIcon(props: Partial<CustomIconComponentProps>) {
 	return <Icon component={UserSettings} {...props} />;
+}
+
+export function MoonIcon(props: Partial<CustomIconComponentProps>) {
+	return <Icon component={Moon} {...props} />;
+}
+
+export function SunIcon(props: Partial<CustomIconComponentProps>) {
+	return <Icon component={Sun} {...props} />;
+}
+
+export function FollowSystemIcon(props: Partial<CustomIconComponentProps>) {
+	return <Icon component={FollowSystem} {...props} />;
 }

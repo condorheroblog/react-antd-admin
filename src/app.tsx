@@ -1,9 +1,8 @@
-import type { LanguageType } from "#src/locales";
 import { AntdApp, JSSThemeProvider } from "#src/components";
-import { useDeviceType, useScrollToHash } from "#src/hooks";
+import { useScrollToHash } from "#src/hooks";
 import { AppVersionMonitor } from "#src/layout/widgets/version-monitor";
 import { ANT_DESIGN_LOCALE } from "#src/locales";
-import { useGlobalStore, useUserStore } from "#src/store";
+import { usePreferencesStore } from "#src/store";
 
 import { theme as antdTheme, ConfigProvider } from "antd";
 import dayjs from "dayjs";
@@ -25,9 +24,7 @@ export default function App() {
 	 * 这是因为 t.tsx 会先执行，而 i18n 初始化需要时间。
 	 */
 	const [isReadyLanguage, setReadyLanguage] = useState(false);
-	const { lng } = useUserStore();
-	const { isMobile } = useDeviceType();
-	const { theme, isDark, changeWindowSize, changeSiteTheme } = useGlobalStore();
+	const { language, isDark, theme, changeSiteTheme } = usePreferencesStore();
 
 	useScrollToHash();
 
@@ -36,7 +33,7 @@ export default function App() {
 	 * @link https://ant.design/docs/react/i18n
 	 */
 	const getAntdLocale = () => {
-		return ANT_DESIGN_LOCALE[lng as LanguageType];
+		return ANT_DESIGN_LOCALE[language];
 	};
 
 	/**
@@ -44,68 +41,56 @@ export default function App() {
 	 * @link https://day.js.org/docs/en/installation/installation
 	 */
 	useEffect(() => {
-		if (lng === "en-US") {
+		if (language === "en-US") {
 			dayjs.locale("en");
 		}
-		else if (lng === "zh-CN") {
+		else if (language === "zh-CN") {
 			dayjs.locale("zh-cn");
 		}
-	}, [lng]);
+	}, [language]);
 
 	/**
 	 * react-i18next internationalization
 	 * @link https://www.i18next.com/overview/api#changelanguage
 	 */
 	useEffect(() => {
-		i18n.changeLanguage(lng).then(() => {
+		i18n.changeLanguage(language).then(() => {
 			setReadyLanguage(true);
 		});
-	}, [lng, i18n.changeLanguage, setReadyLanguage]);
+	}, [language, i18n.changeLanguage, setReadyLanguage]);
 
-	const setTheme = useCallback(
-		(dark = true, isWriteLocalStorage = false) => {
-			changeSiteTheme({
-				theme: dark ? "dark" : "light",
-				isWriteLocalStorage,
-			});
+	/**
+	 * Change theme when the system theme changes
+	 */
+	const setEmulateTheme = useCallback(
+		// eslint-disable-next-line unused-imports/no-unused-vars
+		(dark?: boolean) => {
+			changeSiteTheme("auto");
 		},
 		[changeSiteTheme],
 	);
 
-	const resize = useCallback(() => {
-		changeWindowSize(isMobile);
-	}, [changeWindowSize, isMobile]);
-
+	/**
+	 * Watch system theme change
+	 */
 	useEffect(() => {
-		// Watch system theme change
-		if (!theme) {
+		if (theme === "auto") {
 			// https://developer.chrome.com/docs/devtools/rendering/emulate-css/
 			const darkModeMediaQuery = window.matchMedia(
 				"(prefers-color-scheme: dark)",
 			);
 
 			function matchMode(e: MediaQueryListEvent) {
-				setTheme(e.matches);
+				setEmulateTheme(e.matches);
 			}
 
-			setTheme(darkModeMediaQuery.matches);
+			setEmulateTheme(darkModeMediaQuery.matches);
 			darkModeMediaQuery.addEventListener("change", matchMode);
 			return () => {
 				darkModeMediaQuery.removeEventListener("change", matchMode);
 			};
 		}
-	}, [theme, setTheme]);
-
-	// Mobile or desktop
-	useEffect(() => {
-		// 初始化，设置下设备尺寸
-		resize();
-		window.addEventListener("resize", resize);
-
-		return () => {
-			window.removeEventListener("resize", resize);
-		};
-	}, [window, resize]);
+	}, [theme, setEmulateTheme]);
 
 	return (
 		<ConfigProvider

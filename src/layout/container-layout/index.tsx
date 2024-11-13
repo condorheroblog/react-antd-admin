@@ -1,5 +1,7 @@
-import { useGlobalStore, usePreferencesStore, useTabsStore } from "#src/store";
+import { useDeviceType } from "#src/hooks";
+import { usePreferencesStore, useTabsStore } from "#src/store";
 import { cn } from "#src/utils";
+
 import { Drawer, Grid } from "antd";
 import { useEffect, useMemo, useState } from "react";
 import { createUseStyles } from "react-jss";
@@ -48,7 +50,7 @@ export default function ContainerLayout() {
 	const { isTopNav, isTwoColumnNav, isMixedNav, sidebarWidth, sideCollapseWidth } = useLayout();
 	const isMaximize = useTabsStore(state => state.isMaximize);
 	const tabbarEnable = usePreferencesStore(state => state.tabbarEnable);
-	const isMobile = useGlobalStore(state => state.isMobile);
+	const { isMobile } = useDeviceType();
 	const { sideNavItems, topNavItems, handleMenuSelect } = useMenu();
 
 	useEffect(() => {

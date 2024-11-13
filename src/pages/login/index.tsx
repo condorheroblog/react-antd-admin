@@ -2,8 +2,8 @@ import type { FormComponentMapType } from "./form-mode-context";
 import frameworkTemplate from "#src/assets/images/framework-template.svg?url";
 import logo from "#src/assets/images/logo.svg?url";
 import { LayoutFooter } from "#src/layout";
-import { LanguageMenu } from "#src/layout/layout-header/components/language-menu";
-import { ThemeSwitch } from "#src/layout/layout-header/components/theme-switch";
+import { LanguageButton } from "#src/layout/layout-header/components/language-button";
+import { ThemeButton } from "#src/layout/layout-header/components/theme-button";
 
 import {
 	Col,
@@ -54,14 +54,14 @@ export default function Login() {
 	const providedValue = useMemo(() => ({ formMode, setFormMode }), [formMode, setFormMode]);
 	return (
 		<Layout className={classes.section}>
-			<header className="flex gap-3 absolute right-3 top-3 scale-95">
-				<ThemeSwitch />
-				<LanguageMenu />
+			<header className="absolute flex gap-3 scale-95 right-3 top-3">
+				<ThemeButton />
+				<LanguageButton />
 			</header>
-			<Content className="flex justify-center items-center">
+			<Content className="flex items-center justify-center">
 				<Row gutter={[{ xs: 0, sm: 0, lg: 200 }, 0]}>
 					<Col xs={0} sm={0} lg={12}>
-						<div className="flex flex-col gap-3 justify-center h-full">
+						<div className="flex flex-col justify-center h-full gap-3">
 							<Space>
 								<img src={logo} alt="logo" className={classes.logo} />
 								<Title level={1} ellipsis={true} className="!text-sm">

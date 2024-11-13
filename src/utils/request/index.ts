@@ -1,7 +1,7 @@
 import type { Options } from "ky";
 import { LOGIN } from "#src/router/constants";
 
-import { useAuthStore, useUserStore } from "#src/store";
+import { useAuthStore, usePreferencesStore } from "#src/store";
 import ky from "ky";
 
 import { APP_NAME_HEADER, AUTH_HEADER, LANG_HEADER } from "./constants";
@@ -33,7 +33,7 @@ const defaultConfig: Options = {
 				}
 				const { token } = useAuthStore.getState();
 				request.headers.set(AUTH_HEADER, `Bearer ${token}`);
-				request.headers.set(LANG_HEADER, useUserStore.getState().lng);
+				request.headers.set(LANG_HEADER, usePreferencesStore.getState().language);
 				request.headers.set(APP_NAME_HEADER, "BoCarbonScope");
 			},
 		],

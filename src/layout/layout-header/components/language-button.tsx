@@ -5,7 +5,7 @@ import { useLanguage } from "#src/hooks";
 import { TranslationOutlined } from "@ant-design/icons";
 import { Dropdown } from "antd";
 
-export function LanguageMenu() {
+export function LanguageButton() {
 	const { language, setLanguage } = useLanguage();
 
 	const items: MenuProps["items"] = [

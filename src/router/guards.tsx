@@ -1,5 +1,5 @@
 import PageError from "#src/pages/error/page-error";
-import { useGlobalStore, useUserStore } from "#src/store";
+import { usePreferencesStore } from "#src/store";
 import { isString, toggleHtmlClass } from "#src/utils";
 
 import { useEffect } from "react";
@@ -16,8 +16,8 @@ export function RouterGuards() {
 	const matches = useMatches();
 	const { t } = useTranslation();
 	const location = useLocation();
-	const lng = useUserStore(state => state.lng);
-	const isDark = useGlobalStore(state => state.isDark);
+	const language = usePreferencesStore(state => state.language);
+	const isDark = usePreferencesStore(state => state.isDark);
 
 	/* document title */
 	useEffect(() => {
@@ -25,7 +25,7 @@ export function RouterGuards() {
 		const documentTitle = currentRoute.handle?.title as React.ReactElement | string;
 		const newTitle = isString(documentTitle) ? documentTitle : documentTitle?.props?.children;
 		document.title = t(newTitle) || document.title;
-	}, [lng, location]);
+	}, [language, location]);
 
 	/* tailwind theme */
 	useEffect(() => {

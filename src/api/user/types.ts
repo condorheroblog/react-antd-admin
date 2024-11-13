@@ -10,7 +10,6 @@ export interface UserInfoType {
 	email: string
 	phoneNumber: string
 	description: string
-	lng: string
 	roles: Array<string>
 }
 

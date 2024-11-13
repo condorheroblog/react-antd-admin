@@ -1,14 +1,14 @@
 import type { MutableRefObject } from "react";
 
-import { FullscreenButton, FullscreenExitIcon, FullscreenIcon } from "#src/components";
+import { FullscreenButton as FullscreenButtonComponent, FullscreenExitIcon, FullscreenIcon } from "#src/components";
 
 interface FullscreenProps {
 	target: HTMLElement | (() => Element) | MutableRefObject<Element>
 }
 
-export function FullscreenMenu({ target }: FullscreenProps) {
+export function FullscreenButton({ target }: FullscreenProps) {
 	return (
-		<FullscreenButton
+		<FullscreenButtonComponent
 			size="large"
 			className="rounded-none"
 			target={target}

@@ -1,17 +1,16 @@
-import { ThemeSwitch } from "#src/layout/layout-header/components/theme-switch";
-import { useGlobalStore } from "#src/store";
+import { useDeviceType } from "#src/hooks";
 import { SettingOutlined } from "@ant-design/icons";
 import { Divider, Drawer } from "antd";
 
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Animation, PreferencesLayout, Tabbar } from "./blocks";
+import { Animation, PreferencesLayout, SiteTheme, Tabbar } from "./blocks";
 
 export function Preferences() {
 	const { t } = useTranslation();
 	const [isOpen, setIsOpen] = useState(false);
-	const { isMobile } = useGlobalStore();
+	const { isMobile } = useDeviceType();
 
 	return (
 		<>
@@ -45,7 +44,7 @@ export function Preferences() {
 					}}
 				>
 					<Divider>{t("common.preferences.theme")}</Divider>
-					<ThemeSwitch />
+					<SiteTheme />
 					<Divider>{t("preferences.layout.title")}</Divider>
 					<PreferencesLayout />
 					<Divider>{t("preferences.tabbar.title")}</Divider>

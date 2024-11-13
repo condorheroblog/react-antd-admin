@@ -1,15 +1,18 @@
+import { useDeviceType } from "#src/hooks";
 import { LayoutContext } from "#src/layout/container-layout/layout-context";
 import { NotificationContainer } from "#src/layout/widgets/notification/notification-container";
 import { Preferences } from "#src/layout/widgets/preferences";
-import { useGlobalStore, useTabsStore } from "#src/store";
+import { useTabsStore } from "#src/store";
 import { cn } from "#src/utils";
+
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button, theme } from "antd";
 import { useContext } from "react";
-
 import { createUseStyles } from "react-jss";
-import { FullscreenMenu } from "./components/fullscreen-menu";
-import { LanguageMenu } from "./components/language-menu";
+
+import { FullscreenButton } from "./components/fullscreen-button";
+import { LanguageButton } from "./components/language-button";
+import { ThemeButton } from "./components/theme-button";
 import { UserMenu } from "./components/user-menu";
 
 const useStyles = createUseStyles(({ token }) => {
@@ -47,7 +50,7 @@ export default function LayoutHeader({ className, children }: LayoutHeaderProps)
 	} = theme.useToken();
 	const classes = useStyles();
 	const { sidebarCollapsed, setSidebarCollapsed } = useContext(LayoutContext);
-	const isMobile = useGlobalStore(state => state.isMobile);
+	const { isMobile } = useDeviceType();
 	const isMaximize = useTabsStore(state => state.isMaximize);
 
 	return (
@@ -69,7 +72,7 @@ export default function LayoutHeader({ className, children }: LayoutHeaderProps)
 					: null
 			}
 
-			<div className="h-full flex-grow overflow-hidden flex items-center">
+			<div className="flex items-center flex-grow h-full overflow-hidden">
 				{children}
 			</div>
 
@@ -79,8 +82,9 @@ export default function LayoutHeader({ className, children }: LayoutHeaderProps)
 				className={classes.layoutHeaderRight}
 			>
 				<Preferences />
-				<LanguageMenu />
-				<FullscreenMenu target={document.documentElement} />
+				<ThemeButton />
+				<LanguageButton />
+				<FullscreenButton target={document.documentElement} />
 				<NotificationContainer />
 				<UserMenu />
 			</div>

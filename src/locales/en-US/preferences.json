@@ -1,4 +1,10 @@
 {
+	"theme": {
+		"title": "Theme",
+		"followSystem": "Follow System",
+		"light": "Light",
+		"dark": "Dark"
+	},
 	"layout": {
 		"title": "Layout",
 		"topNavigation": "Top Navigation",

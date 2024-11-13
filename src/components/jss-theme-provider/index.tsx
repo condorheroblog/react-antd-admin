@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
-import { useGlobalStore } from "#src/store";
-import { theme } from "antd";
+import { usePreferencesStore } from "#src/store";
 
+import { theme } from "antd";
 import { ThemeProvider } from "react-jss";
 
 /**
@@ -33,7 +33,7 @@ const { useToken } = theme;
  */
 export function JSSThemeProvider({ children }: JSSThemeProviderProps) {
 	const { token } = useToken();
-	const { theme, isDark, isLight } = useGlobalStore();
+	const { theme, isDark, isLight } = usePreferencesStore();
 
 	return (
 		<ThemeProvider theme={{ token, theme, isDark, isLight }}>

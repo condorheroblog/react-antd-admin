@@ -3,7 +3,7 @@ import type { TabsProps } from "antd";
 
 import { useCurrentRoute } from "#src/hooks";
 import { removeTrailingSlash } from "#src/router/utils";
-import { usePermissionStore, usePreferencesStore, useTabsStore, useUserStore } from "#src/store";
+import { usePermissionStore, usePreferencesStore, useTabsStore } from "#src/store";
 import { isString } from "#src/utils";
 
 import { isValidElement, useCallback, useEffect, useMemo, useRef } from "react";
@@ -33,9 +33,8 @@ export default function LayoutTabbar() {
 	const currentRoute = useCurrentRoute();
 	const prevPathRef = useRef(location.pathname);
 
-	const { tabbarStyleType, tabbarShowMaximize, tabbarShowMore } = usePreferencesStore();
+	const { language, tabbarStyleType, tabbarShowMaximize, tabbarShowMore } = usePreferencesStore();
 	const { flatRouteList, hasFetchedDynamicRoutes } = usePermissionStore();
-	const { lng } = useUserStore();
 	const { activeKey, isRefresh, setActiveKey, setIsRefresh, openTabs, addTab, insertBeforeTab } = useTabsStore();
 	const [items, onClickMenu] = useDropdownMenu();
 
@@ -202,7 +201,7 @@ export default function LayoutTabbar() {
 	return (
 		<div className={classes.tabsContainer}>
 			<Tabs
-				key={lng}
+				key={language}
 				className={clsx(
 					classes.resetTabs,
 					tabbarStyleType === "brisk" ? classes.brisk : "",

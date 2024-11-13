@@ -1,11 +1,14 @@
 import type { MenuProps } from "antd";
 import type { MenuItemType } from "./types";
+
+import { useDeviceType } from "#src/hooks";
 import { LayoutContext } from "#src/layout/container-layout/layout-context";
-import { useGlobalStore, useUserStore } from "#src/store";
+import { usePreferencesStore } from "#src/store";
 
 import { Menu } from "antd";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { useMatches } from "react-router-dom";
+
 import { findChildrenLen } from "./utils";
 
 interface LayoutMenuProps {
@@ -28,8 +31,8 @@ export default function LayoutMenu({
 	const matches = useMatches();
 	const { sidebarCollapsed } = useContext(LayoutContext);
 	const [openKeys, setOpenKeys] = useState<string[]>([]);
-	const lng = useUserStore(state => state.lng);
-	const isMobile = useGlobalStore(state => state.isMobile);
+	const language = usePreferencesStore(state => state.language);
+	const { isMobile } = useDeviceType();
 
 	const getSelectedKeys = useMemo(
 		() => matches.map(item => item.id),
@@ -92,7 +95,7 @@ export default function LayoutMenu({
 			inlineIndent={16}
 			{...menuInlineCollapsedProp}
 			// menuItem key is not changed when language changes
-			key={lng}
+			key={language}
 			style={{ height: isMobile ? "100%" : "initial" }}
 			mode={mode}
 			// theme="dark"

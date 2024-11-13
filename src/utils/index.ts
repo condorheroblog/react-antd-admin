@@ -1,5 +1,7 @@
 export * from "./cn";
 export * from "./is";
+export * from "./is-dark-theme";
+export * from "./is-light-theme";
 export * from "./is-mac-os";
 export * from "./is-windows-os";
 export * from "./progress";
