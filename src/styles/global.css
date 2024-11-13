@@ -18,3 +18,11 @@
 		background-color: #909399;
 	}
 } */
+
+html.color-blind-mode {
+	@apply invert;
+}
+
+html.gray-mode {
+	@apply grayscale;
+}

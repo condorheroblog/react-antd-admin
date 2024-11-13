@@ -1,6 +1,6 @@
 import type { BlockerFunction } from "react-router-dom";
 import type { ReactRouterType, RouterSubscriber } from "./types";
-import { useAnimationStore, useAuthStore, usePermissionStore, useUserStore } from "#src/store";
+import { useAuthStore, usePermissionStore, usePreferencesStore, useUserStore } from "#src/store";
 
 import { NProgress } from "#src/utils";
 import { matchRoutes } from "react-router-dom";
@@ -15,7 +15,7 @@ import { replaceBaseWithRoot } from "./utils";
  * @returns 返回 true 则取消当前导航，返回 false 则继续导航
  */
 export const routerBeforeEach: (reactRouter: ReactRouterType) => BlockerFunction = reactRouter => ({ nextLocation }) => {
-	const { transitionProgress } = useAnimationStore.getState();
+	const { transitionProgress } = usePreferencesStore.getState();
 	/* 开启进度条动画 */
 	transitionProgress && NProgress.start();
 
@@ -95,7 +95,7 @@ export const routerBeforeEach: (reactRouter: ReactRouterType) => BlockerFunction
  * 路由守卫，在路由跳转完成后执行
  */
 export const routerAfterEach: RouterSubscriber = (routerState) => {
-	const { transitionProgress } = useAnimationStore.getState();
+	const { transitionProgress } = usePreferencesStore.getState();
 	if (routerState.navigation.state === "idle") {
 		/* 路由变化更新文档标题的逻辑放到了路由守卫组件中（guard.tsx） */
 		/* 关闭进度条动画 */
@@ -111,7 +111,7 @@ export const routerAfterEach: RouterSubscriber = (routerState) => {
  */
 export async function routerInitReady(reactRouter: ReactRouterType) {
 	/* 顶部进度条 */
-	const { transitionProgress } = useAnimationStore.getState();
+	const { transitionProgress } = usePreferencesStore.getState();
 	// 是否开启进度条动画
 	if (transitionProgress) {
 		NProgress.start();

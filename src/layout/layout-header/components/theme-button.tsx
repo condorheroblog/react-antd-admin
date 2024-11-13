@@ -1,6 +1,6 @@
 import { BasicButton } from "#src/components";
+import { usePreferences } from "#src/hooks";
 import { MoonIcon, SunIcon } from "#src/icons";
-import { usePreferencesStore } from "#src/store";
 
 /**
  * 主题切换组件
@@ -10,13 +10,13 @@ import { usePreferencesStore } from "#src/store";
  * Allows users to toggle between light and dark themes of the website via a button
  */
 export function ThemeButton() {
-	const { isLight, changeSiteTheme } = usePreferencesStore();
+	const { isLight, changeSiteTheme } = usePreferences();
 
 	return (
 		<BasicButton
 			type="text"
 			size="large"
-			className="rounded-none transition-colors"
+			className="transition-colors rounded-none"
 			icon={isLight ? <MoonIcon /> : <SunIcon />}
 			onPointerDown={() => {
 				changeSiteTheme(isLight ? "dark" : "light");

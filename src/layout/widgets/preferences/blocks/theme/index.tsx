@@ -1,9 +1,15 @@
 import type { ThemeType } from "#src/store";
+import type { InputNumberProps } from "antd";
 
 import { FollowSystemIcon, MoonIcon, SunIcon } from "#src/icons";
 import { $t } from "#src/locales";
 import { usePreferencesStore } from "#src/store";
+
 import { cn } from "#src/utils";
+import { InputNumber, Slider } from "antd";
+import { useTranslation } from "react-i18next";
+
+import { SwitchItem } from "../../switch-item";
 
 const themePresets = [
 	{
@@ -24,20 +30,27 @@ const themePresets = [
 ] as const;
 
 export function SiteTheme() {
+	const { t } = useTranslation();
 	const {
 		theme,
+		colorBlindMode,
+		colorGrayMode,
+		themeRadius,
 		changeSiteTheme,
+		setPreferences,
 	} = usePreferencesStore();
 
 	function handleClick(value: ThemeType) {
 		changeSiteTheme(value);
 	}
 
+	const handleChange: InputNumberProps["onChange"] = (newValue) => {
+		setPreferences("themeRadius", newValue!);
+	};
+
 	return (
 		<>
-			<ul
-				className="flex justify-between w-full gap-3 p-0 m-0 list-none"
-			>
+			<ul className="flex justify-between w-full gap-3 p-0 m-0 list-none">
 				{
 					themePresets.map(item => (
 						<li
@@ -66,6 +79,44 @@ export function SiteTheme() {
 					))
 				}
 			</ul>
+
+			<SwitchItem
+				name="colorBlindMode"
+				checked={colorBlindMode}
+				onChange={(name, value) => setPreferences(name, value)}
+			>
+				{t("preferences.theme.colorBlindMode")}
+			</SwitchItem>
+			<SwitchItem
+				name="colorGrayMode"
+				checked={colorGrayMode}
+				onChange={(name, value) => setPreferences(name, value)}
+			>
+				{t("preferences.theme.grayMode")}
+			</SwitchItem>
+			<div className="w-full px-2 flex justify-between">
+				<span className="flex items-center text-sm">
+					{t("preferences.theme.radius")}
+				</span>
+				<div className="w-1/3">
+					<Slider
+						rootClassName="w-full"
+						min={0}
+						max={16}
+						onChange={handleChange}
+						value={themeRadius}
+					/>
+				</div>
+				<div>
+					<InputNumber
+						className="ml-4"
+						min={0}
+						max={16}
+						value={themeRadius}
+						onChange={handleChange}
+					/>
+				</div>
+			</div>
 
 		</>
 	);

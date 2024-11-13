@@ -5,7 +5,7 @@ import {
 	TOP_NAVIGATION,
 	TWO_COLUMN_NAVIGATION,
 } from "#src/layout/widgets/preferences/blocks/layout/constants";
-import { useLayoutStore } from "#src/store";
+import { usePreferencesStore } from "#src/store";
 
 import { useMemo } from "react";
 
@@ -22,9 +22,9 @@ import { useMemo } from "react";
 export function useLayout() {
 	const { isMobile } = useDeviceType();
 	// LayoutType
-	const navigationStyle = useLayoutStore(state => state.navigationStyle);
-	const sidebarWidth = useLayoutStore(state => state.sidebarWidth);
-	const sideCollapseWidth = useLayoutStore(state => state.sideCollapseWidth);
+	const navigationStyle = usePreferencesStore(state => state.navigationStyle);
+	const sidebarWidth = usePreferencesStore(state => state.sidebarWidth);
+	const sideCollapseWidth = usePreferencesStore(state => state.sideCollapseWidth);
 
 	/**
 	 * 当前导航类型

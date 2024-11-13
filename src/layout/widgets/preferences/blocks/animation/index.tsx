@@ -1,4 +1,4 @@
-import { useAnimationStore } from "#src/store";
+import { usePreferencesStore } from "#src/store";
 import { cn } from "#src/utils";
 
 import { useTranslation } from "react-i18next";
@@ -13,15 +13,15 @@ const transitionPreset = [
 ];
 
 export function Animation() {
-	const transitionEnable = useAnimationStore(state => state.transitionEnable);
-	const transitionLoading = useAnimationStore(state => state.transitionLoading);
-	const transitionProgress = useAnimationStore(state => state.transitionProgress);
-	const transitionName = useAnimationStore(state => state.transitionName);
-	const setAnimation = useAnimationStore(state => state.setAnimation);
+	const transitionEnable = usePreferencesStore(state => state.transitionEnable);
+	const transitionLoading = usePreferencesStore(state => state.transitionLoading);
+	const transitionProgress = usePreferencesStore(state => state.transitionProgress);
+	const transitionName = usePreferencesStore(state => state.transitionName);
+	const setPreferences = usePreferencesStore(state => state.setPreferences);
 	const { t } = useTranslation();
 
 	function handleClick(value: string) {
-		setAnimation("transitionName", value);
+		setPreferences("transitionName", value);
 	}
 
 	return (
@@ -29,21 +29,21 @@ export function Animation() {
 			<SwitchItem
 				name="transitionProgress"
 				checked={transitionProgress}
-				onChange={(name, value) => setAnimation(name, value)}
+				onChange={(name, value) => setPreferences(name, value)}
 			>
 				{t("preferences.animation.progress")}
 			</SwitchItem>
 			<SwitchItem
 				name="transitionLoading"
 				checked={transitionLoading}
-				onChange={(name, value) => setAnimation(name, value)}
+				onChange={(name, value) => setPreferences(name, value)}
 			>
 				{t("preferences.animation.loading")}
 			</SwitchItem>
 			<SwitchItem
 				name="transitionEnable"
 				checked={transitionEnable}
-				onChange={(name, value) => setAnimation(name, value)}
+				onChange={(name, value) => setPreferences(name, value)}
 			>
 				{t("preferences.animation.transition")}
 			</SwitchItem>
@@ -65,6 +65,7 @@ export function Animation() {
 						>
 							<div
 								className={cn(
+									"dark:bg-gray-700",
 									"bg-gray-100 h-10 w-12 rounded-md text-xs flex items-center justify-center text-center",
 									{
 										"fade-slide": item === "fade-slide",

@@ -1,5 +1,5 @@
+import { usePreferences } from "#src/hooks";
 import PageError from "#src/pages/error/page-error";
-import { usePreferencesStore } from "#src/store";
 import { isString, toggleHtmlClass } from "#src/utils";
 
 import { useEffect } from "react";
@@ -16,8 +16,7 @@ export function RouterGuards() {
 	const matches = useMatches();
 	const { t } = useTranslation();
 	const location = useLocation();
-	const language = usePreferencesStore(state => state.language);
-	const isDark = usePreferencesStore(state => state.isDark);
+	const { language, isDark } = usePreferences();
 
 	/* document title */
 	useEffect(() => {

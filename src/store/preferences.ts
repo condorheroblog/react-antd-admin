@@ -1,16 +1,19 @@
+import type {
+	MIXED_NAVIGATION,
+	TOP_NAVIGATION,
+	TWO_COLUMN_NAVIGATION,
+} from "#src/layout/widgets/preferences/blocks/layout/constants";
 import type { LanguageType } from "#src/locales";
 
-import { isDarkTheme, isLightTheme } from "#src/utils";
-import { create } from "zustand";
+import { SIDE_NAVIGATION } from "#src/layout/widgets/preferences/blocks/layout/constants";
+import { COLLAPSED_WIDTH } from "#src/styles/antdTheme";
 
+import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 /**
- * 标签栏风格
- * brisk 轻快
- * card 卡片
- * chrome 谷歌
- * plain 朴素
+ * @zh 标签栏风格
+ * @en Tabbar style
  */
 export type TabsStyleType = "brisk" | "card" | "chrome" | "plain";
 
@@ -20,50 +23,161 @@ export type TabsStyleType = "brisk" | "card" | "chrome" | "plain";
  */
 export type ThemeType = "dark" | "light" | "auto";
 
-interface PreferencesState {
+/**
+ * @zh 动画类型
+ * @en Animation type
+ */
+interface AnimationState {
+	/**
+	 * @zh 是否启用过渡动画
+	 * @en Whether to enable transition animation
+	 * @default true
+	 */
+	transitionProgress: boolean
+	/**
+	 * @zh 是否启用加载动画
+	 * @en Whether to enable loading animation
+	 * @default true
+	 */
+	transitionLoading: boolean
+	/**
+	 * @zh 是否启用动画
+	 * @en Whether to enable animation
+	 * @default true
+	 */
+	transitionEnable: boolean
+	/**
+	 * @zh 过渡动画名称
+	 * @en Transition animation name
+	 * @default "fade-slide"
+	 */
+	transitionName: string
+}
+
+export type NavigationType = typeof SIDE_NAVIGATION | typeof TOP_NAVIGATION | typeof TWO_COLUMN_NAVIGATION | typeof MIXED_NAVIGATION;
+
+interface LayoutState {
+	navigationStyle: NavigationType
+	/**
+	 * 侧边菜单宽度
+	 * @default 210
+	 */
+	sidebarWidth: number
+	/**
+	 * 侧边菜单折叠宽度
+	 * @default 56
+	 */
+	sideCollapseWidth: number
+}
+
+interface PreferencesState extends AnimationState, LayoutState {
+	/**
+		* @zh 当前语言
+		* @en Current language
+		*/
 	language: LanguageType
+
+	/* ================== Theme ================== */
 	/**
 	 * @zh 当前主题
 	 * @en Current theme
+	 * @default "auto"
 	 */
 	theme: ThemeType
 	/**
-	 * @zh 是否为暗色主题
-	 * @en Whether it is a dark theme
+	 * @zh 是否开启色弱模式
+	 * @en Whether to enable color-blind mode
+	 * @default false
 	 */
-	isDark: boolean
+	colorBlindMode: boolean
 	/**
-	 * @zh 是否为亮色主题
-	 * @en Whether it is a light theme
+	 * @zh 是否开启灰色模式
+	 * @en Whether to enable gray mode
+	 * @default false
 	 */
-	isLight: boolean
+	colorGrayMode: boolean
+	/**
+	 * @zh 主题圆角值
+	 * @en Theme radius value
+	 * @default 6
+	 */
+	themeRadius: number
+	/* ================== Theme ================== */
 
+	/* ================== Tabbar ================== */
+	/**
+	 * @zh 标签栏风格
+	 * @en Tabbar style
+	 * @default "chrome"
+	 */
 	tabbarStyleType: TabsStyleType
+	/**
+	 * @zh 是否启用标签栏
+	 * @en Whether to enable tabbar
+	 * @default true
+	 */
 	tabbarEnable: boolean
+	/**
+	 * @zh 是否显示标签栏图标
+	 * @en Whether to show tabbar icon
+	 * @default true
+	 * @todo 待实现
+	 */
 	tabbarShowIcon: boolean
+	/**
+	 * @zh 是否持久化标签栏
+	 * @en Whether to persist tabbar
+	 * @default true
+	 */
 	tabbarPersist: boolean
+	/**
+	 * @zh 是否可拖拽标签栏
+	 * @en Whether to drag tabbar
+	 * @default true
+	 * @todo 待实现
+	 */
 	tabbarDraggable: boolean
+	/**
+	 * @zh 是否显示更多
+	 * @en Whether to show more
+	 * @default true
+	 */
 	tabbarShowMore: boolean
+	/**
+	 * @zh 是否显示最大化
+	 * @en Whether to show maximize
+	 * @default true
+	 */
 	tabbarShowMaximize: boolean
+	/* ================== Tabbar ================== */
 }
 
 /**
- * @zh 从 localStorage 中获取默认主题，如果没有则默认为空字符串
- * @en Get the default theme from localStorage, or an empty string if not found
+ * 默认偏好设置
  */
-export const preferencesFromLocalStorage = localStorage.getItem("preferences") ?? JSON.stringify({ state: { theme: "auto" } });
-const defaultTheme = JSON.parse(preferencesFromLocalStorage)?.state?.theme ?? "auto";
-
-/**
- * 初始状态
- */
-const initialState = {
+export const DEFAULT_PREFERENCES = {
 	language: "zh-CN",
+	/* ================== Theme ================== */
 	theme: "auto",
-	isDark: isDarkTheme(defaultTheme),
-	isLight: isLightTheme(defaultTheme),
+	colorBlindMode: false,
+	colorGrayMode: false,
+	themeRadius: 6,
+	/* ================== Theme ================== */
 
-	// tabbar 相关配置
+	/* ================== Animation ================== */
+	transitionProgress: true,
+	transitionLoading: true,
+	transitionEnable: true,
+	transitionName: "fade-slide",
+	/* ================== Animation ================== */
+
+	/* ================== Layout ================== */
+	navigationStyle: SIDE_NAVIGATION,
+	sidebarWidth: 210,
+	sideCollapseWidth: COLLAPSED_WIDTH,
+	/* ================== Layout ================== */
+
+	/* ================== Tabbar ================== */
 	tabbarEnable: true,
 	tabbarShowIcon: true,
 	tabbarPersist: true,
@@ -71,6 +185,7 @@ const initialState = {
 	tabbarStyleType: "chrome",
 	tabbarShowMore: true,
 	tabbarShowMaximize: true,
+	/* ================== Tabbar ================== */
 } satisfies PreferencesState;
 
 /**
@@ -89,7 +204,7 @@ interface PreferencesAction {
 export const usePreferencesStore = create<PreferencesState & PreferencesAction>()(
 	persist(
 		set => ({
-			...initialState,
+			...DEFAULT_PREFERENCES,
 
 			/**
 			 * 更新偏好设置
@@ -105,7 +220,7 @@ export const usePreferencesStore = create<PreferencesState & PreferencesAction>(
 			 */
 			changeSiteTheme: (theme) => {
 				set(() => {
-					return { theme, isDark: isDarkTheme(theme), isLight: isLightTheme(theme) };
+					return { theme };
 				});
 			},
 
@@ -123,7 +238,7 @@ export const usePreferencesStore = create<PreferencesState & PreferencesAction>(
 			 */
 			reset: () => {
 				set(() => {
-					return { ...initialState };
+					return { ...DEFAULT_PREFERENCES };
 				});
 			},
 

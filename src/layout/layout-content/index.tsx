@@ -1,5 +1,5 @@
 import { GlobalSpin } from "#src/components";
-import { useAnimationStore, usePermissionStore, usePreferencesStore, useTabsStore } from "#src/store";
+import { usePermissionStore, usePreferencesStore, useTabsStore } from "#src/store";
 import { theme } from "antd";
 import KeepAlive, { useKeepaliveRef } from "keepalive-for-react";
 import { useEffect, useMemo } from "react";
@@ -18,8 +18,8 @@ export default function LayoutContent() {
 	const openTabs = useTabsStore(state => state.openTabs);
 	const tabbarEnable = usePreferencesStore(state => state.tabbarEnable);
 	const flatRouteList = usePermissionStore(state => state.flatRouteList);
-	const transitionName = useAnimationStore(state => state.transitionName);
-	const transitionEnable = useAnimationStore(state => state.transitionEnable);
+	const transitionName = usePreferencesStore(state => state.transitionName);
+	const transitionEnable = usePreferencesStore(state => state.transitionEnable);
 
 	/**
 	 * to distinguish different pages to cache

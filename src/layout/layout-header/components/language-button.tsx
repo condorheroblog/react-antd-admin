@@ -1,11 +1,16 @@
 import type { LanguageType } from "#src/locales";
 import type { MenuProps } from "antd";
 import { useLanguage } from "#src/hooks";
+import { cn } from "#src/utils";
 
 import { TranslationOutlined } from "@ant-design/icons";
 import { Dropdown } from "antd";
 
-export function LanguageButton() {
+interface LanguageButtonProps {
+	className?: string
+}
+
+export function LanguageButton({ className }: LanguageButtonProps) {
 	const { language, setLanguage } = useLanguage();
 
 	const items: MenuProps["items"] = [
@@ -35,7 +40,7 @@ export function LanguageButton() {
 			arrow={false}
 			placement="bottom"
 		>
-			<div role="menuitem" tabIndex={-1} className="text-lg">
+			<div role="menuitem" tabIndex={-1} className={cn("text-lg", className)}>
 				<TranslationOutlined />
 			</div>
 		</Dropdown>

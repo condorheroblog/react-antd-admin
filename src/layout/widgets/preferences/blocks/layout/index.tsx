@@ -8,9 +8,7 @@ import {
 } from "#src/layout/widgets/preferences/blocks/layout/constants";
 import { NumberInputSpinner } from "#src/layout/widgets/preferences/number-input-spinner";
 import { $t } from "#src/locales";
-import {
-	useLayoutStore,
-} from "#src/store";
+import { usePreferencesStore } from "#src/store";
 import { cn } from "#src/utils";
 
 import { QuestionCircleOutlined } from "@ant-design/icons";
@@ -45,13 +43,13 @@ const navigationPreset = [
 ] as const;
 
 export function PreferencesLayout() {
-	const navigationStyle = useLayoutStore(state => state.navigationStyle);
-	const sidebarWidth = useLayoutStore(state => state.sidebarWidth);
-	const setLayout = useLayoutStore(state => state.setLayout);
+	const navigationStyle = usePreferencesStore(state => state.navigationStyle);
+	const sidebarWidth = usePreferencesStore(state => state.sidebarWidth);
+	const setPreferences = usePreferencesStore(state => state.setPreferences);
 	const { t } = useTranslation();
 
 	function handleClick(value: NavigationType) {
-		setLayout("navigationStyle", value);
+		setPreferences("navigationStyle", value);
 	}
 
 	return (
@@ -95,7 +93,7 @@ export function PreferencesLayout() {
 				max={320}
 				name="sidebarWidth"
 				value={sidebarWidth}
-				onChange={(name, value) => setLayout(name, value)}
+				onChange={(name, value) => setPreferences(name, value)}
 			>
 				{t("preferences.layout.sidebarWidth")}
 			</NumberInputSpinner>

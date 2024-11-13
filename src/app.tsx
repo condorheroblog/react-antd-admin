@@ -1,8 +1,7 @@
 import { AntdApp, JSSThemeProvider } from "#src/components";
-import { useScrollToHash } from "#src/hooks";
+import { usePreferences, useScrollToHash } from "#src/hooks";
 import { AppVersionMonitor } from "#src/layout/widgets/version-monitor";
 import { ANT_DESIGN_LOCALE } from "#src/locales";
-import { usePreferencesStore } from "#src/store";
 
 import { theme as antdTheme, ConfigProvider } from "antd";
 import dayjs from "dayjs";
@@ -24,7 +23,7 @@ export default function App() {
 	 * 这是因为 t.tsx 会先执行，而 i18n 初始化需要时间。
 	 */
 	const [isReadyLanguage, setReadyLanguage] = useState(false);
-	const { language, isDark, theme, changeSiteTheme } = usePreferencesStore();
+	const { language, isDark, theme, colorBlindMode, colorGrayMode, themeRadius, changeSiteTheme } = usePreferences();
 
 	useScrollToHash();
 
@@ -92,6 +91,25 @@ export default function App() {
 		}
 	}, [theme, setEmulateTheme]);
 
+	/**
+	 * 更新页面颜色模式（灰色、色弱）
+	 */
+	const updateColorMode = () => {
+		const dom = document.documentElement;
+		const COLOR_BLIND = "color-blind-mode";
+		const COLOR_GRAY = "gray-mode";
+		colorBlindMode
+			? dom.classList.add(COLOR_BLIND)
+			: dom.classList.remove(COLOR_BLIND);
+		colorGrayMode
+			? dom.classList.add(COLOR_GRAY)
+			: dom.classList.remove(COLOR_GRAY);
+	};
+
+	useEffect(() => {
+		updateColorMode();
+	}, [colorBlindMode, colorGrayMode]);
+
 	return (
 		<ConfigProvider
 			input={{ autoComplete: "off" }}
@@ -102,6 +120,10 @@ export default function App() {
 						? antdTheme.darkAlgorithm
 						: antdTheme.defaultAlgorithm,
 				...(isDark ? customAntdDarkTheme : customAntdLightTheme),
+				token: {
+					...(isDark ? customAntdDarkTheme.token : customAntdLightTheme.token),
+					borderRadius: themeRadius,
+				},
 			}}
 		>
 			<AntdApp>

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { usePreferencesStore } from "#src/store";
+import { usePreferences } from "#src/hooks";
 
 import { theme } from "antd";
 import { ThemeProvider } from "react-jss";
@@ -33,7 +33,7 @@ const { useToken } = theme;
  */
 export function JSSThemeProvider({ children }: JSSThemeProviderProps) {
 	const { token } = useToken();
-	const { theme, isDark, isLight } = usePreferencesStore();
+	const { theme, isDark, isLight } = usePreferences();
 
 	return (
 		<ThemeProvider theme={{ token, theme, isDark, isLight }}>

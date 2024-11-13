@@ -1,9 +1,16 @@
 {
+	"copyPreferences": "Copy Preferences",
+	"copyPreferencesSuccessTitle": "Copy successful",
+	"copyPreferencesSuccess": "Copy successful, please override in `src/store/preferences.ts`",
+	"clearAndLogout": "Clear Cache & Logout",
 	"theme": {
 		"title": "Theme",
 		"followSystem": "Follow System",
 		"light": "Light",
-		"dark": "Dark"
+		"dark": "Dark",
+		"colorBlindMode": "Color Blind Mode",
+		"grayMode": "Gray Mode",
+		"radius": "Radius"
 	},
 	"layout": {
 		"title": "Layout",
