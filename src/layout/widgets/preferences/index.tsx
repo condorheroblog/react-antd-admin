@@ -1,3 +1,5 @@
+import type { ButtonProps } from "antd";
+
 import { BasicButton } from "#src/components";
 import { useDeviceType, usePreferences } from "#src/hooks";
 import { useAuthStore, usePreferencesStore } from "#src/store";
@@ -10,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Animation, PreferencesLayout, SiteTheme, Tabbar } from "./blocks";
 
-export function Preferences() {
+export function Preferences({ ...restProps }: ButtonProps) {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const [isOpen, setIsOpen] = useState(false);
@@ -36,15 +38,16 @@ export function Preferences() {
 
 	return (
 		<>
-			<div
-				role="menuitem"
-				tabIndex={-1}
-				onClick={() => setIsOpen(true)}
-				onKeyDown={() => { }}
-				className="text-lg"
+			<BasicButton
+				type="text"
+				{...restProps}
+				onClick={(e) => {
+					restProps?.onClick?.(e);
+					setIsOpen(true);
+				}}
 			>
 				<SettingOutlined />
-			</div>
+			</BasicButton>
 			<Drawer
 				title={t("common.preferences.title")}
 				placement="right"

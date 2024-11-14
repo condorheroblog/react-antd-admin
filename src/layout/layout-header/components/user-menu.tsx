@@ -1,8 +1,10 @@
-import type { MenuProps } from "antd";
+import type { ButtonProps, MenuProps } from "antd";
+
+import { BasicButton } from "#src/components";
 import { UserCircleIcon } from "#src/icons";
 import { $t } from "#src/locales";
 import { useAuthStore, useUserStore } from "#src/store";
-import { isWindowsOs } from "#src/utils";
+import { cn, isWindowsOs } from "#src/utils";
 
 import { LogoutOutlined } from "@ant-design/icons";
 import { useKeyPress } from "ahooks";
@@ -10,7 +12,7 @@ import { Avatar, Dropdown } from "antd";
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function UserMenu() {
+export function UserMenu({ ...restProps }: ButtonProps) {
 	const navigate = useNavigate();
 	const avatar = useUserStore(state => state.avatar);
 	const logout = useAuthStore(state => state.logout);
@@ -56,9 +58,13 @@ export function UserMenu() {
 			placement="bottomRight"
 			trigger={["click"]}
 		>
-			<div role="menuitem" tabIndex={-1}>
+			<BasicButton
+				type="text"
+				{...restProps}
+				className={cn(restProps.className, "rounded-full px-1")}
+			>
 				<Avatar src={avatar} />
-			</div>
+			</BasicButton>
 		</Dropdown>
 	);
 }

@@ -1,7 +1,9 @@
+import type { ButtonProps } from "antd";
 import type { NotificationItem } from "./types";
 
 import { BasicButton } from "#src/components";
 import { MailCheckIcon } from "#src/icons";
+import { cn } from "#src/utils";
 
 import { BellOutlined } from "@ant-design/icons";
 import { useToggle } from "ahooks";
@@ -30,7 +32,7 @@ const useStyles = createUseStyles(({ token }) => (
 
 type NotificationEventType = "viewAll" | "makeAll" | "clear" | "read";
 
-interface Props {
+interface Props extends ButtonProps {
 	/**
 	 * 显示圆点
 	 */
@@ -45,7 +47,7 @@ interface Props {
 	notifications?: NotificationItem[]
 }
 
-export const NotificationPopup: React.FC<Props> = ({ dot, notifications, onEventChange }) => {
+export const NotificationPopup: React.FC<Props> = ({ dot, notifications, onEventChange, ...restProps }) => {
 	const [open, action] = useToggle();
 	const classes = useStyles();
 	const { t } = useTranslation();
@@ -136,11 +138,12 @@ export const NotificationPopup: React.FC<Props> = ({ dot, notifications, onEvent
 
 			<BasicButton
 				size="large"
-				className="relative rounded-none group"
 				type="text"
+				{...restProps}
+				className={cn("relative group", restProps.className)}
 				icon={<BellOutlined className="group-hover:animate-wiggle" />}
 			>
-				{dot && <span className="bg-blue-600 absolute right-1 top-2 h-2 w-2 rounded"></span>}
+				{dot && <span className="bg-blue-600 absolute right-2 top-1.5 h-2 w-2 rounded"></span>}
 			</BasicButton>
 
 		</Popover>

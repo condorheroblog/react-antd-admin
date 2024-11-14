@@ -1,9 +1,12 @@
 import type { MenuProps } from "antd";
+
 import { BasicButton } from "#src/components";
+import { cn } from "#src/utils";
+
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown } from "antd";
-
 import { useState } from "react";
+
 import { useDropdownMenu } from "../hooks/use-dropdown-menu";
 
 /**
@@ -13,6 +16,7 @@ import { useDropdownMenu } from "../hooks/use-dropdown-menu";
  */
 interface TabOptionsProps {
 	activeKey: string
+	className?: string
 }
 
 /**
@@ -21,7 +25,7 @@ interface TabOptionsProps {
  * @param {TabOptionsProps} props - 组件属性
  * @returns {JSX.Element} TabOptions组件
  */
-export function TabOptions({ activeKey }: TabOptionsProps) {
+export function TabOptions({ activeKey, className }: TabOptionsProps) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [items, onClickMenu] = useDropdownMenu();
 
@@ -51,7 +55,7 @@ export function TabOptions({ activeKey }: TabOptionsProps) {
 			onOpenChange={onOpenChange}
 		>
 			<BasicButton
-				className="rounded-none"
+				className={cn(className)}
 				size="middle"
 				type="text"
 				icon={<DownOutlined />}

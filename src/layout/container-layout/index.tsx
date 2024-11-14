@@ -165,7 +165,7 @@ export default function ContainerLayout() {
 
 				<LayoutContent />
 
-				<LayoutFooter />
+				<LayoutFooter className="bg-colorBgContainer" />
 			</section>
 		</LayoutContext.Provider>
 	);

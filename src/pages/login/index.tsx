@@ -55,8 +55,8 @@ export default function Login() {
 	return (
 		<Layout className={classes.section}>
 			<header className="absolute flex items-center scale-95 right-3 top-3">
-				<ThemeButton />
-				<LanguageButton className="px-2 cursor-pointer" />
+				<ThemeButton size="large" />
+				<LanguageButton size="large" className="px-[11px]" />
 			</header>
 			<Content className="flex items-center justify-center">
 				<Row gutter={[{ xs: 0, sm: 0, lg: 200 }, 0]}>

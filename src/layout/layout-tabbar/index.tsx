@@ -107,35 +107,21 @@ export default function LayoutTabbar() {
 	 */
 	const tabBarExtraContent = useMemo(() => ({
 		right: (
-			<div className="flex divide-x">
-				<p className="m-0 border-l">
-					<Button
-						icon={(
-							<RedoOutlined
-								rotate={270}
-								className={clsx({ "animate-spin": isRefresh })}
-							/>
-						)}
-						size="middle"
-						type="text"
-						className={clsx("rounded-none")}
-						onClick={() => onClickMenu(TabActionKeys.REFRESH, activeKey)}
-					/>
-				</p>
-				{tabbarShowMaximize
-					? (
-						<p className="m-0">
-							<TabMaximize />
-						</p>
-					)
-					: null}
-				{tabbarShowMore
-					? (
-						<p className="m-0">
-							<TabOptions activeKey={activeKey} />
-						</p>
-					)
-					: null}
+			<div className="flex items-center" style={{ height: 35 }}>
+				<Button
+					icon={(
+						<RedoOutlined
+							rotate={270}
+							className={clsx({ "animate-spin": isRefresh })}
+						/>
+					)}
+					size="middle"
+					type="text"
+					className={clsx("rounded-none h-full border-l border-l-colorBorderSecondary")}
+					onClick={() => onClickMenu(TabActionKeys.REFRESH, activeKey)}
+				/>
+				{tabbarShowMaximize ? (<TabMaximize className="h-full rounded-none border-l border-l-colorBorderSecondary" />) : null}
+				{tabbarShowMore ? (<TabOptions activeKey={activeKey} className="h-full rounded-none border-l border-l-colorBorderSecondary" />) : null}
 			</div>
 		),
 	}), [isRefresh, activeKey, onClickMenu, tabbarShowMore, tabbarShowMaximize]);

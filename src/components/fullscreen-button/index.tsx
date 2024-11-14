@@ -5,7 +5,7 @@ import { FullscreenExitOutlined, FullscreenOutlined } from "@ant-design/icons";
 
 import { useFullscreen } from "ahooks";
 
-interface FullscreenButtonProps extends Omit<ButtonProps, "target"> {
+export interface FullscreenButtonProps extends Omit<ButtonProps, "target"> {
 	target: HTMLElement | (() => Element) | RefObject<Element>
 	fullscreenIcon?: React.ReactNode
 	fullscreenExitIcon?: React.ReactNode

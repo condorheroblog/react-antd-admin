@@ -1,3 +1,4 @@
+import type { ButtonProps } from "antd";
 import type { NotificationItem } from "./types";
 
 import { fetchNotifications } from "#src/api/notifications";
@@ -5,7 +6,7 @@ import { fetchNotifications } from "#src/api/notifications";
 import { useEffect, useState } from "react";
 import { NotificationPopup } from "./index";
 
-export function NotificationContainer() {
+export function NotificationContainer({ ...restProps }: ButtonProps) {
 	const [notifications, setNotifications] = useState<NotificationItem[]>([]);
 
 	useEffect(() => {
@@ -17,6 +18,9 @@ export function NotificationContainer() {
 	}, []);
 
 	return (
-		<NotificationPopup notifications={notifications} />
+		<NotificationPopup
+			notifications={notifications}
+			{...restProps}
+		/>
 	);
 }

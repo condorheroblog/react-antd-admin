@@ -3,9 +3,9 @@ import { createUseStyles } from "react-jss";
 export const useStyles = createUseStyles(({ token }) => {
 	return {
 		tabsContainer: {
-			backgroundColor: token.colorBgBase,
-			borderTop: "1px solid #e8e8e8",
-			borderBottom: "1px solid #e8e8e8",
+			backgroundColor: token.colorBgContainer,
+			borderTop: `1px solid ${token.colorBorderSecondary}`,
+			borderBottom: `1px solid ${token.colorBorderSecondary}`,
 		},
 		resetTabs: {
 			"& .ant-tabs-nav::before": {
@@ -25,7 +25,7 @@ export const useStyles = createUseStyles(({ token }) => {
 		brisk: {
 			"& .ant-tabs-nav": {
 				"& .ant-tabs-tab": {
-					borderRight: "1px solid #e8e8e8 !important",
+					borderRight: `1px solid ${token.colorBorder} !important`,
 					// antd 自带的动画和 DND 动画冲突
 					transition: "inherit",
 				},
@@ -38,7 +38,7 @@ export const useStyles = createUseStyles(({ token }) => {
 		plain: {
 			"& .ant-tabs-nav": {
 				"& .ant-tabs-tab": {
-					borderRight: "1px solid #e8e8e8 !important",
+					borderRight: `1px solid ${token.colorBorder} !important`,
 				},
 			},
 		},
@@ -48,7 +48,7 @@ export const useStyles = createUseStyles(({ token }) => {
 					gap: "5px",
 				},
 				"& .ant-tabs-tab:not(.ant-tabs-tab-active)": {
-					"backgroundColor": token.colorBgBase,
+					"backgroundColor": token.colorBgContainer,
 					"position": "relative",
 					"borderRadius": "7px !important",
 					"padding": "0px 12px !important",
@@ -62,7 +62,7 @@ export const useStyles = createUseStyles(({ token }) => {
 						content: "' '",
 						height: "100%",
 						width: "1px",
-						backgroundColor: token.colorBgBase,
+						backgroundColor: token.colorBgContainer,
 						left: "-3px",
 						position: "absolute",
 					},
@@ -102,7 +102,7 @@ export const useStyles = createUseStyles(({ token }) => {
 						content: "' '",
 						height: "100%",
 						width: "1px",
-						backgroundColor: token.colorBgBase,
+						backgroundColor: token.colorBgContainer,
 						left: "-3px",
 						position: "absolute",
 					},
@@ -126,8 +126,8 @@ export const useStyles = createUseStyles(({ token }) => {
 			},
 			"& .ant-tabs-nav": {
 				"& .ant-tabs-tab": {
-					"backgroundColor": token.colorBgBase,
-					"border": "1px solid #e8e8e8 !important",
+					"backgroundColor": token.colorBgContainer,
+					"border": `1px solid ${token.colorBorder} !important`,
 					"position": "relative",
 					"borderRadius": "7px !important",
 					"padding": "0px 12px !important",
