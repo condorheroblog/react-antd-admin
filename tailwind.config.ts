@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 
-import { colorPaletteVars } from "./src/styles/css-variables";
+import { getColorPalettes } from "./src/styles/css-variables";
 
 export default {
 	darkMode: "class",
@@ -13,14 +13,12 @@ export default {
 		 * @see https://tailwindcss.com/docs/customizing-colors#using-css-variables
 		 */
 		colors: {
-			transparent: "transparent",
-			inherit: "inherit",
-			current: "currentColor",
 			/**
 			 * 使用 antd 的颜色覆盖 tailwind 的颜色
 			 * 注意：在亮色模式和黑模式下新的颜色是自适应的，不需要手动配置（EX：dark:bg-cyan-100）
+			 * @see https://ant.design/docs/spec/colors
 			 */
-			...colorPaletteVars,
+			...getColorPalettes,
 		},
 		/**
 		 * Use ant design breakpoints

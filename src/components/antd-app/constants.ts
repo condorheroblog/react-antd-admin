@@ -119,6 +119,20 @@ export const colorPaletteNumbers = [50, 100, 200, 300, 400, 500, 600, 700, 800, 
 export const colorVariantsCount = 10;
 
 // ['blue', 'blue-1', 'blue-2', ……, 'blue-10', 'purple',……]
-export const colorPalettes = colors.flatMap(color =>
+export const baseColorPalettes = colors.flatMap(color =>
 	[color, ...Array.from({ length: colorVariantsCount }, (_, i) => `${color}-${i + 1}`)],
 );
+
+/**
+ * antd 的 token 中未提供关于 gray 系列的颜色
+ *
+ * 相关问题：
+ * @see https://github.com/ant-design/ant-design/pull/31129
+ * @see https://github.com/ant-design/ant-design/discussions/45411
+ * @see https://github.com/ant-design/ant-design/issues/44247
+ *
+ *
+ * 颜色来源：
+ * @see https://ant.design/docs/spec/colors#neutral-color-palette
+ */
+export const neutralColorPalettes = ["#fafafa", "#f5f5f5", "#f0f0f0", "#d9d9d9", "#bfbfbf", "#8c8c8c", "#595959", "#434343", "#262626", "#1f1f1f", "#141414"];
