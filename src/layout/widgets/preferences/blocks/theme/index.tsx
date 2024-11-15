@@ -54,18 +54,17 @@ export function SiteTheme() {
 				{
 					themePresets.map(item => (
 						<li
-							className="cursor-pointer"
 							key={item.type}
 							onClick={() => handleClick(item.type)}
 						>
 							<dl className="mb-0">
 								<dd
 									className={cn(
-										"relative py-4 px-10 outline outline-1 outline-gray-300 rounded-md",
+										"relative py-4 px-10 outline outline-1 outline-gray-300 dark:outline-gray-700 rounded-md cursor-pointer",
 										"before:content-[''] before:absolute before:left-1/2 before:top-1/2 before:h-0 before:w-0 before:rounded-sm before:opacity-0 before:outline before:outline-2 before:outline-transparent",
 										item.type === theme ? "" : "before:transition-all before:duration-300",
-										item.type === theme ? "" : "before:hover:outline-blue-600 before:hover:left-0 before:hover:top-0 before:hover:h-full before:hover:w-full before:hover:p-1 before:hover:opacity-100",
-										{ "outline-2 outline-blue-600": item.type === theme },
+										item.type === theme ? "" : "before:hover:outline-blue-600 dark:before:hover:outline-blue-700 before:hover:left-0 before:hover:top-0 before:hover:h-full before:hover:w-full before:hover:p-1 before:hover:opacity-100",
+										{ "outline-2 outline-blue-600 dark:outline-blue-700": item.type === theme },
 									)}
 								>
 									{item.icon}

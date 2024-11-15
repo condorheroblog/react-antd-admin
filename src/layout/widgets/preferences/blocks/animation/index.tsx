@@ -56,11 +56,11 @@ export function Animation() {
 							key={item}
 							onClick={() => handleClick(item)}
 							className={cn(
-								"relative p-2 outline outline-1 outline-gray-300 cursor-pointer rounded-md",
+								"relative p-2 outline outline-1 outline-gray-300 dark:outline-gray-700 cursor-pointer rounded-md",
 								"before:content-[''] before:absolute before:left-1/2 before:top-1/2 before:h-0 before:w-0 before:rounded-sm before:opacity-0 before:outline before:outline-2 before:outline-transparent",
 								item === transitionName ? "" : "before:transition-all before:duration-300",
-								item === transitionName ? "" : "before:hover:outline-blue-600 before:hover:left-0 before:hover:top-0 before:hover:h-full before:hover:w-full before:hover:p-1 before:hover:opacity-100",
-								{ "outline-2 outline-blue-600": item === transitionName },
+								item === transitionName ? "" : "before:hover:outline-blue-600 dark:before:hover:outline-blue-700 before:hover:left-0 before:hover:top-0 before:hover:h-full before:hover:w-full before:hover:p-1 before:hover:opacity-100",
+								{ "outline-2 outline-blue-600 dark:outline-blue-700": item === transitionName },
 							)}
 						>
 							<div
