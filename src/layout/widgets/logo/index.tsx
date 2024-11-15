@@ -11,6 +11,10 @@ export interface LogoProps {
 	className?: string
 }
 
+/**
+ * @zh 高度 48px
+ * @en The height is 48px
+ */
 export function Logo({ sidebarCollapsed, className }: LogoProps) {
 	const navigate = useNavigate();
 

@@ -8,6 +8,10 @@ import { useContext } from "react";
 interface SiderTriggerProps {
 	className?: string
 }
+/**
+ * @zh 高度 40px
+ * @en The height is 40px
+ */
 export function SiderTrigger({ className }: SiderTriggerProps) {
 	const { sidebarCollapsed, setSidebarCollapsed } = useContext(LayoutContext);
 
@@ -19,7 +23,7 @@ export function SiderTrigger({ className }: SiderTriggerProps) {
 			}}
 			icon={sidebarCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
 			onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-			className={cn(className, "absolute bottom-0 h-10 !w-full rounded-none border-t border-t-colorBorderSecondary")}
+			className={cn(className, "h-10 !w-full rounded-none border-t border-t-colorBorderSecondary")}
 		/>
 	);
 }

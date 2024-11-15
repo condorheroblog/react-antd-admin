@@ -1,10 +1,12 @@
 import type { MenuProps } from "antd";
 import type { MenuItemType } from "../layout-menu/types";
+
+import { Scrollbar } from "#src/components";
 import { LayoutContext } from "#src/layout/container-layout/layout-context";
 
 import { theme } from "antd";
-
 import { useContext } from "react";
+
 import LayoutMenu from "../layout-menu";
 import { SiderTrigger } from "../widgets";
 import FirstColumnMenu from "./first-column-menu";
@@ -45,11 +47,15 @@ export default function LayoutMixedSidebar({
 						)
 						: null
 				}
-				<LayoutMenu
-					autoOpenMenu
-					menus={sideNavItems}
-					handleMenuSelect={handleMenuSelect}
-				/>
+				<div className="overflow-hidden" style={{ height: "calc(100% - 52px - 40px)" }}>
+					<Scrollbar>
+						<LayoutMenu
+							autoOpenMenu
+							menus={sideNavItems}
+							handleMenuSelect={handleMenuSelect}
+						/>
+					</Scrollbar>
+				</div>
 				<SiderTrigger />
 			</div>
 		</aside>

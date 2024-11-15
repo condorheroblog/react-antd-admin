@@ -83,7 +83,8 @@ export function getMenuItems(routeList: AppRouteRecordRaw[]) {
 				),
 		};
 		if (Array.isArray(item.children) && item.children.length > 0) {
-			const noIndexRoute = item.children.filter(route => !route.index);
+			// 过滤掉非首页，且不显示在菜单中的路由
+			const noIndexRoute = item.children.filter(route => !route.index && !route?.handle?.hideInMenu);
 			if (noIndexRoute.length > 0) {
 				menuItem.children = getMenuItems(noIndexRoute);
 			}

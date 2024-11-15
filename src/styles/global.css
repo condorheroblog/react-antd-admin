@@ -1,7 +1,7 @@
 /* @layer antd, editor; */
 
 /* simplebar */
-/* @import url(simplebar-react/dist/simplebar.min.css) layer(simplebar); */
+@import url(simplebar-react/dist/simplebar.min.css) layer(simplebar);
 
 /* 将 Tailwind CSS 的基础样式（也称为 "base" 样式）导入到当前文件中，包括一些基本的 HTML 元素样式、重置元素默认样式等。 */
 @import 'tailwindcss/base';
@@ -13,11 +13,15 @@
 @import 'tailwindcss/utilities';
 
 /* simplebar */
-/* @layer simplebar {
+@layer simplebar {
 	.simplebar-scrollbar::before {
 		background-color: #909399;
 	}
-} */
+
+	.simplebar-content {
+		height: 100%;
+	}
+}
 
 html.color-blind-mode {
 	@apply invert;

@@ -1,4 +1,4 @@
-import { GlobalSpin } from "#src/components";
+import { GlobalSpin, Scrollbar } from "#src/components";
 import { usePermissionStore, usePreferencesStore, useTabsStore } from "#src/store";
 import { theme } from "antd";
 import KeepAlive, { useKeepaliveRef } from "keepalive-for-react";
@@ -89,19 +89,21 @@ export default function LayoutContent() {
 				}
 			}
 		>
-			<GlobalSpin>
-				<KeepAlive
-					max={20}
-					transition
-					duration={300}
-					cacheNodeClassName={transitionEnable ? `keepalive-${transitionName}` : undefined}
-					exclude={keepAliveExclude}
-					activeCacheKey={cacheKey}
-					aliveRef={aliveRef}
-				>
-					{outlet}
-				</KeepAlive>
-			</GlobalSpin>
+			<Scrollbar>
+				<GlobalSpin>
+					<KeepAlive
+						max={20}
+						transition
+						duration={300}
+						cacheNodeClassName={transitionEnable ? `keepalive-${transitionName}` : undefined}
+						exclude={keepAliveExclude}
+						activeCacheKey={cacheKey}
+						aliveRef={aliveRef}
+					>
+						{outlet}
+					</KeepAlive>
+				</GlobalSpin>
+			</Scrollbar>
 		</main>
 	);
 }

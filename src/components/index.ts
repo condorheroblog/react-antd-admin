@@ -9,4 +9,5 @@ export * from "./icons";
 export * from "./iframe";
 export * from "./jss-theme-provider";
 export * from "./reuse-table";
+export * from "./scrollbar";
 export * from "./tanstack-query";

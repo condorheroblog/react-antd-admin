@@ -28,7 +28,7 @@
 		"analyzer": "vite-bundle-visualizer --output analyzer/stats.html",
 		"eslint-config-inspector": "npx @eslint/config-inspector",
 		"lint": "eslint .",
-		"lint:fix": "eslint src/layout/container-layout/index.tsx --fix",
+		"lint:fix": "eslint . --fix",
 		"prepare": "simple-git-hooks",
 		"test": "vitest"
 	},
@@ -56,6 +56,7 @@
 		"react-i18next": "^15.1.0",
 		"react-jss": "^10.10.0",
 		"react-router-dom": "^6.27.0",
+		"simplebar-react": "^3.2.6",
 		"tailwind-merge": "^2.5.4",
 		"vite-plugin-svgr": "^4.3.0",
 		"zustand": "^5.0.0"
