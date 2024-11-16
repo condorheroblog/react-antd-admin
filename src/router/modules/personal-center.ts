@@ -6,6 +6,9 @@ import { personalCenter } from "#src/router/extra-info";
 
 import { createElement, lazy } from "react";
 
+const MyProfile = lazy(() => import("#src/pages/personal-center/profile"));
+const Settings = lazy(() => import("#src/pages/personal-center/settings"));
+
 const routes: AppRouteRecordRaw[] = [
 	{
 		path: "/personal-center",
@@ -18,7 +21,7 @@ const routes: AppRouteRecordRaw[] = [
 		children: [
 			{
 				path: "/personal-center/my-profile",
-				Component: lazy(() => import("#src/pages/personal-center/profile")),
+				Component: MyProfile,
 				handle: {
 					title: $t("common.menu.personalCenter.profile"),
 					icon: createElement(ProfileIcon),
@@ -26,7 +29,7 @@ const routes: AppRouteRecordRaw[] = [
 			},
 			{
 				path: "/personal-center/settings",
-				Component: lazy(() => import("#src/pages/personal-center/settings")),
+				Component: Settings,
 				handle: {
 					title: $t("common.menu.personalCenter.settings"),
 					icon: createElement(UserSettingsIcon),

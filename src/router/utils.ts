@@ -14,6 +14,7 @@ import { ROOT_ROUTE_ID } from "./constants";
 import { RouterGuards } from "./guards";
 
 const allAntdIcons: { [key: string]: any } = antdIcons;
+const ErrorBoundaryComponent = lazy(() => import("#src/pages/error/404"));
 
 export function getInitReactRoutes(routeModuleList: AppRouteRecordRaw[]) {
 	return [
@@ -26,7 +27,7 @@ export function getInitReactRoutes(routeModuleList: AppRouteRecordRaw[]) {
 		{
 			path: "*",
 			id: "errorBoundary-route",
-			Component: lazy(() => import("#src/pages/error/404")),
+			Component: ErrorBoundaryComponent,
 		},
 	];
 }

@@ -6,6 +6,8 @@ import { about } from "#src/router/extra-info";
 import { UserOutlined } from "@ant-design/icons";
 import { createElement, lazy } from "react";
 
+const About = lazy(() => import("#src/pages/about"));
+
 const routes: AppRouteRecordRaw[] = [
 	{
 		path: "/about",
@@ -18,7 +20,7 @@ const routes: AppRouteRecordRaw[] = [
 		children: [
 			{
 				index: true,
-				Component: lazy(() => import("#src/pages/about")),
+				Component: About,
 				// lazy: async () => {
 				// 	const About = await import("#src/pages/about");
 				// 	return { Component: About.default };
