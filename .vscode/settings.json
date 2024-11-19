@@ -8,6 +8,7 @@
 		"reduxjs",
 		"sider",
 		"svgr",
+		"vitepress",
 		"zustand"
 	],
 	// Disable the default formatter, use eslint instead

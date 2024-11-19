@@ -7,7 +7,6 @@
 export const home = 1;
 export const routeNest = 20;
 
-export const docs = 30;
 export const iframe = 40;
 
 export const error = 90;

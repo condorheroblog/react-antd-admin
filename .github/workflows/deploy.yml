@@ -30,8 +30,8 @@ jobs:
 
       - name: Install and Build 🔧
         run: |
-          pnpm i
-          pnpm run build
+          pnpm install -r
+          pnpm run build && pnpm --filter docs run docs:build
 
       - name: spa-github-404-page 🔷
         run: pnpm run spa-github-404-page
@@ -40,3 +40,8 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build
+
+      - name: Deploy Docs 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: docs/.vitepress/dist

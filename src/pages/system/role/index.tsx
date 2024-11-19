@@ -1,7 +1,7 @@
 import type { RoleItemType } from "#src/api/system";
 import type { ActionType, ProColumns, ProCoreActionType } from "@ant-design/pro-components";
 import { fetchDeleteRoleItem, fetchRoleList, fetchRoleMenu, fetchRoleMenuIds } from "#src/api/system";
-import { BasicButton, BasicContent, ReuseTable } from "#src/components";
+import { BasicButton, BasicContent, BasicTable } from "#src/components";
 import { useAuth } from "#src/hooks";
 import { handleTree } from "#src/utils";
 
@@ -145,7 +145,7 @@ export default function Role() {
 
 	return (
 		<BasicContent className="h-full">
-			<ReuseTable<RoleItemType>
+			<BasicTable<RoleItemType>
 				columns={columns}
 				actionRef={actionRef}
 				cardBordered

@@ -3,19 +3,19 @@ import { ProTable } from "@ant-design/pro-components";
 import { useSize } from "ahooks";
 import { useEffect, useRef } from "react";
 
-export interface ReuseTableProps<D, U, V> extends ProTableProps<D, U, V> {
+export interface BasicTableProps<D, U, V> extends ProTableProps<D, U, V> {
 
 }
 
 // 添加到 table 的 classname
-export const ROOT_CLASS_NAME = "reuse-table";
+export const ROOT_CLASS_NAME = "basic-table";
 
-export function ReuseTable<
+export function BasicTable<
 	DataType extends Record<string, any>,
 	Params extends ParamsType = ParamsType,
 	ValueType = "text",
 >(
-	props: ReuseTableProps<DataType, Params, ValueType>,
+	props: BasicTableProps<DataType, Params, ValueType>,
 ) {
 	const tableWrapperRef = useRef<HTMLDivElement>(null);
 	const size = useSize(tableWrapperRef);
@@ -28,13 +28,13 @@ export function ReuseTable<
 	useEffect(() => {
 		if (tableWrapperRef.current && size?.height) {
 			const tableWrapperHeight = size.height;
-			const reuseTable = tableWrapperRef.current.getElementsByClassName(ROOT_CLASS_NAME)[0];
+			const basicTable = tableWrapperRef.current.getElementsByClassName(ROOT_CLASS_NAME)[0];
 
-			if (!reuseTable)
+			if (!basicTable)
 				return;
 
-			// const antPagination = reuseTable.getElementsByClassName("ant-pagination")[0];
-			const tableBody = reuseTable.querySelector("div.ant-table-body");
+			// const antPagination = basicTable.getElementsByClassName("ant-pagination")[0];
+			const tableBody = basicTable.querySelector("div.ant-table-body");
 
 			if (!tableBody)
 				return;

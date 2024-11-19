@@ -3,17 +3,20 @@ import { cn } from "#src/utils";
 
 import Icon from "@ant-design/icons";
 
-import FollowSystem from "./follow-system.svg?react";
-import MailCheck from "./mail-check.svg?react";
-import MixedNavigation from "./mixed-navigation.svg?react";
-import Moon from "./moon.svg?react";
-import ProfileCard from "./profile-card.svg?react";
-import SideNavigation from "./side-navigation.svg?react";
-import Sun from "./sun.svg?react";
-import TopNavigation from "./top-navigation.svg?react";
-import TwoColumnNavigation from "./two-column-navigation.svg?react";
-import UserCircle from "./user-circle.svg?react";
-import UserSettings from "./user-settings.svg?react";
+import FollowSystem from "./svg/follow-system.svg?react";
+import Fullscreen from "./svg/fullscreen.svg?react";
+import FullscreenExit from "./svg/fullscreen-exit.svg?react";
+import MailCheck from "./svg/mail-check.svg?react";
+import MixedNavigation from "./svg/mixed-navigation.svg?react";
+import Moon from "./svg/moon.svg?react";
+import ProfileCard from "./svg/profile-card.svg?react";
+import ReactLogo from "./svg/react-logo.svg?react";
+import SideNavigation from "./svg/side-navigation.svg?react";
+import Sun from "./svg/sun.svg?react";
+import TopNavigation from "./svg/top-navigation.svg?react";
+import TwoColumnNavigation from "./svg/two-column-navigation.svg?react";
+import UserCircle from "./svg/user-circle.svg?react";
+import UserSettings from "./svg/user-settings.svg?react";
 
 type CustomIconComponentProps = GetProps<typeof Icon>;
 
@@ -63,4 +66,16 @@ export function SunIcon(props: Partial<CustomIconComponentProps>) {
 
 export function FollowSystemIcon(props: Partial<CustomIconComponentProps>) {
 	return <Icon component={FollowSystem} {...props} />;
+}
+
+export function ReactLogoIcon(props: Partial<CustomIconComponentProps>) {
+	return <Icon component={ReactLogo} {...props} />;
+}
+
+export function FullscreenIcon(props: Partial<CustomIconComponentProps>) {
+	return <Icon component={Fullscreen} {...props} />;
+}
+
+export function FullscreenExitIcon(props: Partial<CustomIconComponentProps>) {
+	return <Icon component={FullscreenExit} {...props} />;
 }

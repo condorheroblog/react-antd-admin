@@ -1,6 +1,6 @@
 import type { FormComponentMapType } from "./form-mode-context";
-import frameworkTemplate from "#src/assets/images/framework-template.svg?url";
-import logo from "#src/assets/images/logo.svg?url";
+import hero from "#src/assets/svg/hero.svg?url";
+import logo from "#src/assets/svg/logo.svg?url";
 import { LayoutFooter } from "#src/layout";
 import { LanguageButton } from "#src/layout/layout-header/components/language-button";
 import { ThemeButton } from "#src/layout/layout-header/components/theme-button";
@@ -70,8 +70,8 @@ export default function Login() {
 							</Space>
 							<img
 								width={500}
-								src={frameworkTemplate}
-								alt="framework-template"
+								src={hero}
+								alt="hero"
 							/>
 						</div>
 					</Col>

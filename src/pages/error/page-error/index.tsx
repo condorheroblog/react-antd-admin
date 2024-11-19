@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 // https://undraw.co/search
-import BugFixing from "./undraw-bug-fixing.svg?react";
+import BugFixing from "#src/assets/svg/undraw-bug-fixing.svg?react";
 
 const { VITE_BASE_HOME_PATH } = import.meta.env;
 
