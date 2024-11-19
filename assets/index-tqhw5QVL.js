@@ -1,1 +1,0 @@
-import{u as e,j as r}from"./index-BAtG6BLb.js";import"./faker-CiQWN7dT.js";import"./react-BBS6oWoz.js";import"./antd-1y0TrYnh.js";function n(){const{t}=e();return r.jsx(r.Fragment,{children:t("authority.termsOfService")})}export{n as default};

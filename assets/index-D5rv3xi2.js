@@ -1,1 +1,0 @@
-import{j as o}from"./index-BAtG6BLb.js";import"./react-BBS6oWoz.js";import{B as t}from"./index-D8LXHOAD.js";import"./faker-CiQWN7dT.js";import"./antd-1y0TrYnh.js";function s(){return o.jsx(t,{children:"Hello"})}export{s as default};
