@@ -40,8 +40,11 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build
+          clean: true
 
       - name: Deploy Docs 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
+          clean: true
           folder: docs/.vitepress/dist
+          target-folder: docs
