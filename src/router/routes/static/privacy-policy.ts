@@ -1,4 +1,4 @@
-import type { AppRouteRecordRaw } from "../types";
+import type { AppRouteRecordRaw } from "#src/router/types";
 import { $t } from "#src/locales";
 import { UserOutlined } from "@ant-design/icons";
 

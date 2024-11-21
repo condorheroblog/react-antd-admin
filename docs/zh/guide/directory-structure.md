@@ -93,8 +93,10 @@ react-antd-admin
 │   │   ├── extra-info                     # 路由配置信息，比如路由的顺序
 │   │   ├── guards.tsx                     # 路由守卫
 │   │   ├── index.ts                       # 路由入口文件
-│   │   ├── modules                        # 路由模块
-│   │   │   ├── about.ts                   # 关于页面的路由，一个菜单对应一个路由文件
+│   │   ├── routes                         # 路由模块
+│   │   │   ├── core                       # 核心路由
+│   │   │   ├── static                     # 静态路由
+│   │   │   ├── modules                    # 动态路由
 │   │   │   └── ...
 │   │   ├── router-global-hooks.ts         # 路由全局钩子
 │   │   ├── types.ts                       # 路由类型定义

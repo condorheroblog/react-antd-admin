@@ -1,35 +1,34 @@
 import type { MenuItemType } from "#src/layout/layout-menu/types";
-import type { AppRouteRecordRaw } from "./types";
-import { Iframe } from "#src/components/iframe";
+import type { AppRouteRecordRaw, RouteFileModule } from "./types";
 
+import { Iframe } from "#src/components/iframe";
 import { ContainerLayout } from "#src/layout";
 import { $t } from "#src/locales";
 import { isString } from "#src/utils";
-import * as antdIcons from "@ant-design/icons";
-import { createElement, lazy } from "react";
 
+import * as antdIcons from "@ant-design/icons";
+import { createElement } from "react";
 import { Link } from "react-router-dom";
 
-import { ROOT_ROUTE_ID } from "./constants";
-import { RouterGuards } from "./guards";
-
 const allAntdIcons: { [key: string]: any } = antdIcons;
-const ErrorBoundaryComponent = lazy(() => import("#src/pages/error/404"));
 
-export function getInitReactRoutes(routeModuleList: AppRouteRecordRaw[]) {
-	return [
-		{
-			path: "/",
-			id: ROOT_ROUTE_ID,
-			Component: RouterGuards,
-			children: routeModuleList,
-		},
-		{
-			path: "*",
-			id: "errorBoundary-route",
-			Component: ErrorBoundaryComponent,
-		},
-	];
+/**
+ * 合并路由模块
+ *
+ * @param routes 路由模块数组
+ * @returns 合并后的路由记录数组
+ */
+export function mergeRouteModules(...routes: RouteFileModule[]) {
+	return routes.flatMap((modules) => {
+		return Object.keys(modules).reduce<AppRouteRecordRaw[]>(
+			(list, key) => {
+				const mod = modules[key].default ?? {};
+				const modList = Array.isArray(mod) ? [...mod] : [mod];
+				return [...list, ...addIdToRoutes(modList)];
+			},
+			[],
+		);
+	});
 }
 
 /**

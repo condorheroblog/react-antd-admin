@@ -6,7 +6,7 @@ import type {
 import type { LanguageType } from "#src/locales";
 
 import { SIDE_NAVIGATION } from "#src/layout/widgets/preferences/blocks/layout/constants";
-import { COLLAPSED_WIDTH } from "#src/styles/antdTheme";
+import { COLLAPSED_WIDTH } from "#src/styles/antd-theme";
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";

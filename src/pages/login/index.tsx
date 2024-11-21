@@ -58,7 +58,7 @@ export default function Login() {
 				<ThemeButton size="large" />
 				<LanguageButton size="large" className="px-[11px]" />
 			</header>
-			<Content className="flex items-center justify-center">
+			<Content className="flex items-center justify-center overflow-hidden">
 				<Row gutter={[{ xs: 0, sm: 0, lg: 200 }, 0]}>
 					<Col xs={0} sm={0} lg={12}>
 						<div className="flex flex-col justify-center h-full gap-3">

@@ -1,5 +1,6 @@
 import { BasicButton } from "#src/components";
 import { PASSWORD_RULE, USERNAME_RULE } from "#src/constants";
+import { isDynamicRoutingEnabled } from "#src/router/routes/config";
 import { useAuthStore, usePermissionStore, useUserStore } from "#src/store";
 
 import {
@@ -40,14 +41,23 @@ export function PasswordLogin() {
 		await login(values);
 
 		/* ================= 分割线 ================= */
-		await Promise.all([
+		// 初始化一个空数组来存放 Promise 对象
+		const promises = [];
+
+		// 总是添加获取用户信息的 Promise
+		promises.push(getUserInfo());
+
+		// 如果启用了动态路由，则添加处理动态路由的 Promise
+		if (isDynamicRoutingEnabled) {
+			promises.push(handleAsyncRoutes());
+		}
+		await Promise.all(
 			/**
 			 * getUserInfo 和 handleAsyncRoutes 逻辑应该出现在 routerBeforeEach 中
 			 * 但是因为 routerBeforeEach 不支持 异步调用 所以临时放在登录逻辑中
 			 */
-			getUserInfo(),
-			handleAsyncRoutes(),
-		]).finally(() => setLoading(false));
+			promises,
+		).finally(() => setLoading(false));
 		/* ================= 分割线 ================= */
 
 		const redirect = searchParams.get("redirect");
@@ -104,7 +114,7 @@ export function PasswordLogin() {
 				</Form.Item>
 
 				<Form.Item>
-					<div className="mb-5 -mt-1 flex justify-between text-sm">
+					<div className="flex justify-between mb-5 -mt-1 text-sm">
 						<BasicButton
 							type="link"
 							className="p-0"
@@ -129,7 +139,7 @@ export function PasswordLogin() {
 					</Button>
 				</Form.Item>
 
-				<div className="text-center text-sm">
+				<div className="text-sm text-center">
 					{t("authority.noAccountYet")}
 					<BasicButton
 						type="link"

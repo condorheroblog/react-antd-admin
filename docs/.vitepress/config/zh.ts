@@ -70,6 +70,8 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
 			text: "基础",
 			items: [
 				{ text: "目录结构", link: "directory-structure" },
+				{ text: "路由和菜单", link: "routing" },
+				{ text: "配置", link: "settings" },
 			],
 		},
 		{
@@ -77,6 +79,8 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
 			items: [
 				{ text: "国际化", link: "locale" },
 				{ text: "图标", link: "icon" },
+				{ text: "权限", link: "access" },
+				{ text: "主题", link: "theme" },
 			],
 		},
 	];

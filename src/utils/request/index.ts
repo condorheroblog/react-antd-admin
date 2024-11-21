@@ -1,6 +1,7 @@
 import type { Options } from "ky";
-import { LOGIN } from "#src/router/constants";
+import { refreshTokenPath } from "#src/api/user";
 
+import { LOGIN } from "#src/router/constants";
 import { useAuthStore, usePreferencesStore } from "#src/store";
 import ky from "ky";
 
@@ -10,7 +11,7 @@ import { globalProgress } from "./global-progress";
 import { goLogin } from "./go-login";
 import { refreshTokenAndRetry } from "./refresh";
 
-// 请求白名单
+// 请求白名单, 请求白名单内的接口不需要携带 token
 const requestWhiteList = ["/login"];
 
 // 请求超时时间
@@ -31,10 +32,13 @@ const defaultConfig: Options = {
 				if (!ignoreLoading) {
 					globalProgress.start();
 				}
-				const { token } = useAuthStore.getState();
-				request.headers.set(AUTH_HEADER, `Bearer ${token}`);
-				request.headers.set(LANG_HEADER, usePreferencesStore.getState().language);
-				request.headers.set(APP_NAME_HEADER, "BoCarbonScope");
+				// 不需要携带 token 的请求
+				const isWhiteRequest = requestWhiteList.some(url => request.url.endsWith(url));
+				if (!isWhiteRequest) {
+					const { token } = useAuthStore.getState();
+					request.headers.set(AUTH_HEADER, `Bearer ${token}`);
+					request.headers.set(LANG_HEADER, usePreferencesStore.getState().language);
+				}
 			},
 		],
 		afterResponse: [
@@ -43,11 +47,11 @@ const defaultConfig: Options = {
 				if (!ignoreLoading) {
 					globalProgress.done();
 				}
-				// 状态码 200-299 是成功的，其他都是失败的
+				// request error
 				if (!response.ok) {
-					if (!requestWhiteList.some(url => request.url.endsWith(url)) && response.status === 401) {
+					if (response.status === 401) {
 						// 防止刷新 refresh-token 继续接收到的 401 错误，出现死循环
-						if (["/refresh-token"].some(url => request.url.endsWith(url))) {
+						if ([`/${refreshTokenPath}`].some(url => request.url.endsWith(url))) {
 							goLogin();
 							return response;
 						}
@@ -71,6 +75,8 @@ const defaultConfig: Options = {
 						return handleErrorResponse(response);
 					}
 				}
+				// request success
+				return response;
 			},
 		],
 	},

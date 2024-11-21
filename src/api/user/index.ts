@@ -26,6 +26,7 @@ export interface RefreshTokenResult {
 	refreshToken: string
 }
 
+export const refreshTokenPath = "refresh-token";
 export function fetchRefreshToken(data: { readonly refreshToken: string }) {
-	return request.post("refresh-token", { json: data }).json<ApiResponse<RefreshTokenResult>>();
+	return request.post(refreshTokenPath, { json: data }).json<ApiResponse<RefreshTokenResult>>();
 }

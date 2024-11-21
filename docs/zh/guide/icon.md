@@ -10,7 +10,28 @@
 - 矢量可无限缩放。
 - 无兼容性问题。
 - 轻量级，文件小。
-- 支持像字体那样，通过 font-size, color 来调整样式。
+- 支持像字体那样，通过 font-size，color 来调整样式。
+
+## ant design 图标
+
+想要使用 [Ant Design Icons](https://github.com/ant-design/ant-design-icons) 提供的图标，在项目中可以直接使用：
+
+```tsx
+import {
+	HomeOutlined,
+	SettingFilled,
+	SmileOutlined,
+} from "@ant-design/icons";
+// <HomeOutlined />
+// <SettingFilled />
+// <SmileOutlined />
+```
+
+更多图标请查看 [Ant Design Icons](https://ant.design/components/icon-cn) 官网。
+
+## SVG 插件
+
+推荐安装 VSCode 插件 —— [jock.svg](https://marketplace.visualstudio.com/items?itemName=jock.svg)，可以方便的本地预览和编辑 SVG 文件。
 
 ## SVG 作为图标？
 

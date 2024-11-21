@@ -28,7 +28,7 @@ features:
   - icon: ⚙️
     title: 丰富的配置
     details: 企业级中后台前端解决方案，提供丰富的组件和模板以及 N 种偏好设置组合方案。
-    link: /zh/guide/essentials/settings
+    link: /zh/guide/settings
     linkText: 配置文档
   - icon: 🎨
     title: 主题定制

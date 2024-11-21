@@ -13,5 +13,3 @@ export const error = 90;
 export const system = 100;
 export const personalCenter = 110;
 export const about = 120;
-
-export const login = 999999;

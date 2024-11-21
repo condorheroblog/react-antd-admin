@@ -1,9 +1,9 @@
-import type { AppRouteRecordRaw } from "../types";
+import type { AppRouteRecordRaw } from "#src/router/types";
 
 import { $t } from "#src/locales";
-import { login } from "#src/router/extra-info";
+import { LOGIN } from "#src/router/constants";
+
 import { lazy } from "react";
-import { LOGIN } from "../constants";
 
 const Login = lazy(() => import("#src/pages/login"));
 
@@ -14,7 +14,6 @@ const routes: AppRouteRecordRaw[] = [
 		handle: {
 			hideInMenu: true,
 			title: $t("authority.login"),
-			order: login,
 		},
 	},
 ];

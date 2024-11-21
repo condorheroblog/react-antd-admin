@@ -23,7 +23,7 @@ export function SiderTrigger({ className }: SiderTriggerProps) {
 			}}
 			icon={sidebarCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
 			onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-			className={cn(className, "h-10 !w-full rounded-none border-t border-t-colorBorderSecondary")}
+			className={cn("h-10 !w-full rounded-none border-t border-t-colorBorderSecondary", className)}
 		/>
 	);
 }

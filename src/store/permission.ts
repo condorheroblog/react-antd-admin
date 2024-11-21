@@ -2,9 +2,10 @@ import type { MenuItemType } from "#src/layout/layout-menu/types";
 import type { AppRouteRecordRaw } from "#src/router/types";
 
 import { fetchAsyncRoutes } from "#src/api/user";
-import { routeModuleList, router } from "#src/router";
+import { router } from "#src/router";
 import { ROOT_ROUTE_ID } from "#src/router/constants";
-import { addAsyncRoutes, ascending, flattenRoutes, getInitReactRoutes, getMenuItems } from "#src/router/utils";
+import { rootChildRoutes, routes } from "#src/router/routes";
+import { addAsyncRoutes, ascending, flattenRoutes, getMenuItems } from "#src/router/utils";
 import { create } from "zustand";
 
 interface InitialStateType {
@@ -20,8 +21,8 @@ interface InitialStateType {
 	hasFetchedDynamicRoutes: boolean
 }
 const initialState: InitialStateType = {
-	constantMenus: [],
-	wholeMenus: [],
+	constantMenus: getMenuItems(rootChildRoutes),
+	wholeMenus: getMenuItems(rootChildRoutes),
 	routeList: [],
 	flatRouteList: {},
 	hasFetchedDynamicRoutes: false,
@@ -40,13 +41,13 @@ export const usePermissionStore = create<TagsState & TagsAction>(set => ({
 	handleAsyncRoutes: async () => {
 		const { result } = await fetchAsyncRoutes();
 		// 为动态路由添加前端组件
-		const dynamicRouteList = addAsyncRoutes(result);
-		const newRoutes = ascending([...routeModuleList, ...dynamicRouteList]);
+		const dynamicRoutes = addAsyncRoutes(result);
+		const newRoutes = ascending([...rootChildRoutes, ...dynamicRoutes]);
 
 		const constantMenus = getMenuItems((router.routes[0].children || []) as AppRouteRecordRaw[]);
 
 		/* 添加动态路由到前端根路由 */
-		router.patchRoutes(ROOT_ROUTE_ID, dynamicRouteList);
+		router.patchRoutes(ROOT_ROUTE_ID, dynamicRoutes);
 
 		const flatRouteList = flattenRoutes(newRoutes);
 
@@ -64,7 +65,7 @@ export const usePermissionStore = create<TagsState & TagsAction>(set => ({
 
 	reset: () => {
 		/* 移除动态路由 */
-		router._internalSetRoutes(getInitReactRoutes(routeModuleList));
+		router._internalSetRoutes(routes);
 		set(initialState);
 	},
 }));

@@ -1,10 +1,13 @@
 import type { BlockerFunction } from "react-router-dom";
 import type { ReactRouterType, RouterSubscriber } from "./types";
-import { useAuthStore, usePermissionStore, usePreferencesStore, useUserStore } from "#src/store";
 
+import { useAuthStore, usePermissionStore, usePreferencesStore, useUserStore } from "#src/store";
 import { NProgress } from "#src/utils";
+
 import { matchRoutes } from "react-router-dom";
-import { WHITE_LIST } from "./constants";
+
+import { ROUTE_WHITE_LIST } from "./constants";
+import { isDynamicRoutingEnabled } from "./routes/config";
 import { replaceBaseWithRoot } from "./utils";
 
 /**
@@ -29,14 +32,14 @@ export const routerBeforeEach: (reactRouter: ReactRouterType) => BlockerFunction
 	const { pathname, search } = nextLocation;
 	const pathnameWithoutBase = replaceBaseWithRoot(pathname);
 
+	/* 路由白名单 */
+	if (ROUTE_WHITE_LIST.has(pathnameWithoutBase)) {
+		return false;
+	}
 	/* 是否登录 */
 	const isLogin = Boolean(useAuthStore.getState().token);
 	// 未登录
 	if (!isLogin) {
-		/* 路由白名单 */
-		if (WHITE_LIST.has(pathnameWithoutBase)) {
-			return false;
-		}
 		// pathnameWithoutBase 长度大于 1，则携带当前路径跳转登录页
 		if (pathnameWithoutBase.length > 1) {
 			reactRouter.navigate(`/login?redirect=${pathnameWithoutBase}${search}`);
@@ -122,17 +125,18 @@ export async function routerInitReady(reactRouter: ReactRouterType) {
 		document.addEventListener("DOMContentLoaded", handleDomReady);
 	}
 
+	const currentRoute = reactRouter.state.matches[reactRouter.state.matches.length - 1];
 	const { pathname, search } = reactRouter.state.location;
 	const pathnameWithoutBase = replaceBaseWithRoot(pathname);
 
+	/* 路由白名单 */
+	if (ROUTE_WHITE_LIST.has(pathnameWithoutBase)) {
+		return;
+	}
 	/* 是否登录 */
 	const isLogin = Boolean(useAuthStore.getState().token);
 	// 未登录
 	if (!isLogin) {
-		/* 路由白名单 */
-		if (WHITE_LIST.has(pathnameWithoutBase)) {
-			return;
-		}
 		// pathnameWithoutBase 长度大于 1，则携带当前路径跳转登录页
 		if (pathnameWithoutBase.length > 1) {
 			reactRouter.navigate(`/login?redirect=${pathnameWithoutBase}${search}`);
@@ -149,10 +153,20 @@ export async function routerInitReady(reactRouter: ReactRouterType) {
 	// 已登录，获取动态路由
 	const { handleAsyncRoutes } = usePermissionStore.getState();
 
+	// 初始化一个空数组来存放 Promise 对象
+	const promises = [];
+
+	// 总是添加获取用户信息的 Promise
+	promises.push(useUserStore.getState().getUserInfo());
+
+	// 如果启用了动态路由，则添加处理动态路由的 Promise
+	if (isDynamicRoutingEnabled) {
+		promises.push(handleAsyncRoutes());
+	}
 	/**
 	 * 用户信息包含了用户角色，需要在获取菜单权限前面获取，用于权限校验
 	 */
-	await Promise.all([useUserStore.getState().getUserInfo(), handleAsyncRoutes()]);
+	await Promise.all(promises);
 
 	/* --------------- Start ------------------ */
 	// 判断路由跳转逻辑，需要在获取动态路由之后，防止路由跳转直接进入 getBlocker 中然后发送请求，但是 getBlocker 不支持异步
@@ -179,11 +193,34 @@ export async function routerInitReady(reactRouter: ReactRouterType) {
 	 * 注意：navigate 方法调用之后会触发 routerBeforeEach 钩子
 	 */
 
-	return reactRouter.navigate(`${pathnameWithoutBase}${search}`, { replace: true });
-	/* --------------- End ------------------ */
+	if (isDynamicRoutingEnabled) {
+		/**
+		 * 替换当前路由后，会触发 routerBeforeEach 钩子
+		 */
+		return reactRouter.navigate(`${pathnameWithoutBase}${search}`, { replace: true });
+	}
 
 	/**
+	 * 纯静态路由，则会支持下面的代码
 	 * 路由权限校验逻辑
-	 * 替换当前路由后，会触发 routerBeforeEach 钩子
 	 */
+	const userRoles = useUserStore.getState().roles;
+	const routeRoles = currentRoute?.route?.handle?.roles;
+	const ignoreAccess = currentRoute?.route?.handle?.ignoreAccess;
+	const hasChildren = currentRoute?.route?.children?.filter(item => !item.index)?.length;
+	// 忽略权限校验
+	if (ignoreAccess === true) {
+		return;
+	}
+	// 如果当前路由有子路由，则跳转到 404 页面
+	if (hasChildren && hasChildren > 0) {
+		return reactRouter.navigate("/error/404");
+	}
+
+	// 路由权限校验
+	const hasRoutePermission = userRoles.some(role => routeRoles?.includes(role));
+	// 未通过权限校验，则跳转到 403 页面，如果路由上没有设置 roles，则默认放行
+	if (routeRoles && routeRoles.length && !hasRoutePermission) {
+		return reactRouter.navigate("/error/403");
+	}
 }

@@ -1,4 +1,4 @@
-import type { AppRouteRecordRaw } from "../types";
+import type { AppRouteRecordRaw } from "#src/router/types";
 import { Iframe } from "#src/components/iframe";
 
 import { ReactLogoIcon } from "#src/icons";

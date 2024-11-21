@@ -20,17 +20,6 @@ export interface RouteMeta {
 	title: ReactNode
 
 	/**
-	 * 设置页面是否开启缓存，开启后页面会缓存，不会重新加载，仅在标签页启用时有效。
-	 * @default true
-	 */
-	keepAlive?: boolean
-
-	/**
-	 * 是否隐藏菜单，用于控制某些路由不在侧边栏菜单中显示
-	 */
-	hideInMenu?: boolean
-
-	/**
 	 * 菜单图标，用于侧边栏菜单项的图标显示
 	 */
 	icon?: ReactNode
@@ -49,6 +38,17 @@ export interface RouteMeta {
 	 * 页面内按钮级别的权限，用于控制页面内按钮的显示和隐藏
 	 */
 	permissions?: string[]
+
+	/**
+	 * 设置页面是否开启缓存，开启后页面会缓存，不会重新加载，仅在标签页启用时有效。
+	 * @default true
+	 */
+	keepAlive?: boolean
+
+	/**
+	 * 是否隐藏菜单，用于控制某些路由不在侧边栏菜单中显示
+	 */
+	hideInMenu?: boolean
 
 	/**
 	 * iframe链接，如果路由需要在iframe中加载外部页面时使用
@@ -81,3 +81,6 @@ export type ReactRouterType = ReturnType<typeof RemixRouter>;
 export type RouterSubscriber = Parameters<ReactRouterType["subscribe"]>[0];
 export type RouterState = ReactRouterType["state"];
 export type RouterNavigate = ReactRouterType["navigate"];
+
+// 使用类型别名提取公共类型
+export type RouteFileModule = Record<string, { default: AppRouteRecordRaw[] }>;

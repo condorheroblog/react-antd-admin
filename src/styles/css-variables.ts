@@ -10,8 +10,8 @@ function createColorPalettes() {
 		transparent: "transparent",
 		inherit: "inherit",
 		current: "currentColor",
-		white: "rgb(0 0 0)",
-		black: "rgb(255 255 255)",
+		white: "rgb(255 255 255)",
+		black: "rgb(0 0 0)",
 	};
 
 	/**
