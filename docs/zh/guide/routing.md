@@ -19,11 +19,11 @@ src/router
 ├── extra-info
 │   ├── order                  # 路由顺序决定菜单排序
 │   └── index.ts               # 聚合导出
-├── routes
-│   ├── core                   # 核心路由
-│   ├── modules                # 动态路由
-│   └── static                 # 静态路由
-│   └── index.ts               # 聚合路由
+└── routes
+    ├── core                   # 核心路由
+    ├── modules                # 动态路由
+    └── static                 # 静态路由
+    └── index.ts               # 聚合路由
 ```
 
 ## 路由类型

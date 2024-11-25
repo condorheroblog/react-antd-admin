@@ -23,7 +23,7 @@ export default function App() {
 	 * 这是因为 t.tsx 会先执行，而 i18n 初始化需要时间。
 	 */
 	const [isReadyLanguage, setReadyLanguage] = useState(false);
-	const { language, isDark, theme, colorBlindMode, colorGrayMode, themeRadius, changeSiteTheme } = usePreferences();
+	const { language, isDark, theme, themeColorPrimary, colorBlindMode, colorGrayMode, themeRadius, changeSiteTheme } = usePreferences();
 
 	useScrollToHash();
 
@@ -125,6 +125,7 @@ export default function App() {
 				token: {
 					...(isDark ? customAntdDarkTheme.token : customAntdLightTheme.token),
 					borderRadius: themeRadius,
+					colorPrimary: themeColorPrimary,
 				},
 			}}
 		>

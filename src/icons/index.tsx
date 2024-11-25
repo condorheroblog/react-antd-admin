@@ -69,7 +69,7 @@ export function FollowSystemIcon(props: Partial<CustomIconComponentProps>) {
 }
 
 export function ReactLogoIcon(props: Partial<CustomIconComponentProps>) {
-	return <Icon component={ReactLogo} {...props} />;
+	return <Icon component={({ ...rest }) => <ReactLogo {...rest} fill="none" />} {...props} />;
 }
 
 export function FullscreenIcon(props: Partial<CustomIconComponentProps>) {

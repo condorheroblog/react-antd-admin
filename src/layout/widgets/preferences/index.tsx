@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-import { Animation, PreferencesLayout, SiteTheme, Tabbar } from "./blocks";
+import { Animation, BuiltinTheme, PreferencesLayout, SiteTheme, Tabbar } from "./blocks";
 
 export function Preferences({ ...restProps }: ButtonProps) {
 	const { t } = useTranslation();
@@ -100,6 +100,8 @@ export function Preferences({ ...restProps }: ButtonProps) {
 				>
 					<Divider>{t("common.preferences.theme")}</Divider>
 					<SiteTheme />
+					<Divider>{t("preferences.theme.builtin.title")}</Divider>
+					<BuiltinTheme />
 					<Divider>{t("preferences.layout.title")}</Divider>
 					<PreferencesLayout />
 					<Divider>{t("preferences.tabbar.title")}</Divider>

@@ -55,6 +55,7 @@ interface AnimationState {
 }
 
 export type NavigationType = typeof SIDE_NAVIGATION | typeof TOP_NAVIGATION | typeof TWO_COLUMN_NAVIGATION | typeof MIXED_NAVIGATION;
+export type BuiltinThemeType = "red" | "volcano" | "orange" | "gold" | "yellow" | "lime" | "green" | "cyan" | "blue" | "geekblue" | "purple" | "magenta" | "gray" | "custom";
 
 interface LayoutState {
 	navigationStyle: NavigationType
@@ -102,6 +103,18 @@ interface PreferencesState extends AnimationState, LayoutState {
 	 * @default 6
 	 */
 	themeRadius: number
+	/**
+	 * @zh 主题色
+	 * @en Theme color
+	 * @default "#1677ff" - blue
+	 */
+	themeColorPrimary: string
+	/**
+	 * @zh 内置主题
+	 * @en Builtin theme
+	 * @default "blue"
+	 */
+	builtinTheme: BuiltinThemeType
 	/* ================== Theme ================== */
 
 	/* ================== Tabbar ================== */
@@ -162,6 +175,8 @@ export const DEFAULT_PREFERENCES = {
 	colorBlindMode: false,
 	colorGrayMode: false,
 	themeRadius: 6,
+	builtinTheme: "blue",
+	themeColorPrimary: "#1677ff",
 	/* ================== Theme ================== */
 
 	/* ================== Animation ================== */
@@ -195,7 +210,12 @@ interface PreferencesAction {
 	reset: () => void
 	changeSiteTheme: (theme: ThemeType) => void
 	changeLanguage: (language: LanguageType) => void
-	setPreferences: <T>(key: string, value: T) => void
+	setPreferences: {
+		// 单个 key-value 更新
+		<T>(key: string, value: T): void
+		// 对象形式批量更新
+		<T extends Partial<PreferencesState>>(preferences: T): void
+	}
 };
 
 /**
@@ -209,10 +229,19 @@ export const usePreferencesStore = create<PreferencesState & PreferencesAction>(
 			/**
 			 * 更新偏好设置
 			 */
-			setPreferences: (key, value) => {
-				set(() => {
-					return { [key]: value };
-				});
+			setPreferences: (...args: any[]) => {
+				if (args.length === 1) {
+					const preferences = args[0];
+					set(() => {
+						return { ...preferences };
+					});
+				}
+				else if (args.length === 2) {
+					const [key, value] = args;
+					set(() => {
+						return { [key]: value };
+					});
+				}
 			},
 
 			/**

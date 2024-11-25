@@ -10,7 +10,24 @@
 		"dark": "深色",
 		"colorBlindMode": "色弱模式",
 		"grayMode": "灰色模式",
-		"radius": "圆角"
+		"radius": "圆角",
+		"builtin": {
+			"title": "内置主题",
+			"red": "薄暮",
+			"volcano": "火山",
+			"orange": "日暮",
+			"gold": "金盏花",
+			"yellow": "日出",
+			"lime": "青柠",
+			"green": "极光绿",
+			"cyan": "明青",
+			"blue": "拂晓蓝",
+			"geekblue": "极客蓝",
+			"purple": "酱紫",
+			"magenta": "法式洋红",
+			"gray": "中性灰",
+			"custom": "自定义"
+		}
 	},
 	"layout": {
 		"title": "布局",

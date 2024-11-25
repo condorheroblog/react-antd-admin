@@ -6,7 +6,7 @@ import { ContainerLayout } from "#src/layout";
 
 import { $t } from "#src/locales";
 import { iframe } from "#src/router/extra-info";
-import { AntDesignOutlined, PaperClipOutlined } from "@ant-design/icons";
+import { AntDesignOutlined, ContainerOutlined, PaperClipOutlined } from "@ant-design/icons";
 import { createElement } from "react";
 
 const routes: AppRouteRecordRaw[] = [
@@ -24,8 +24,17 @@ const routes: AppRouteRecordRaw[] = [
 				Component: Iframe,
 				handle: {
 					icon: createElement(AntDesignOutlined),
-					title: "Ant Design(Inbound Link)",
+					title: "Ant Design(Internal link)",
 					iframeLink: "https://ant.design/",
+				},
+			},
+			{
+				path: "/iframe/project-docs",
+				Component: Iframe,
+				handle: {
+					icon: createElement(ContainerOutlined),
+					title: "Project Docs(Internal link)",
+					iframeLink: "https://condorheroblog.github.io/react-antd-admin/docs/",
 				},
 			},
 			{
@@ -33,7 +42,7 @@ const routes: AppRouteRecordRaw[] = [
 				Component: Iframe,
 				handle: {
 					icon: createElement(ReactLogoIcon),
-					title: "React Docs(Outbound Link)",
+					title: "React Docs(External link)",
 					externalLink: "https://react.dev/",
 				},
 			},

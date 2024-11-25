@@ -10,7 +10,24 @@
 		"dark": "Dark",
 		"colorBlindMode": "Color Blind Mode",
 		"grayMode": "Gray Mode",
-		"radius": "Radius"
+		"radius": "Radius",
+		"builtin": {
+			"title": "Built-in",
+			"red": "Dust Red",
+			"volcano": "Volcano",
+			"orange": "Sunset Orange",
+			"gold": "Calendula Gold",
+			"yellow": "Sunrise Yellow",
+			"lime": "Lime",
+			"green": "Polar Green",
+			"cyan": "Cyan",
+			"blue": "DayBreak Blue",
+			"geekblue": "Geek Blue",
+			"purple": "Golden Purple",
+			"magenta": "Magenta",
+			"gray": "Gray",
+			"custom": "Custom"
+		}
 	},
 	"layout": {
 		"title": "Layout",

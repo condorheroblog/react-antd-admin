@@ -15,12 +15,16 @@ export function Iframe() {
 
 	return iframeLink
 		? (
+			/**
+			 * use this tool https://iframegenerator.top/ to generate the iframe code
+			 */
 			<iframe
 				src={iframeLink}
 				title={title}
 				width="100%"
 				height="100%"
-				className="border-none"
+				loading="lazy"
+				className="p-4 rounded-sm"
 			/>
 		)
 		: null;
