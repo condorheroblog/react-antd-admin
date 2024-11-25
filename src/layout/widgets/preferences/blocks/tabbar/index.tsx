@@ -1,30 +1,9 @@
-import { $t } from "#src/locales";
 import { usePreferencesStore } from "#src/store";
 
 import { useTranslation } from "react-i18next";
 
 import { SelectItem } from "../../select-item";
 import { SwitchItem } from "../../switch-item";
-
-const styleItems = [
-	{
-		label: $t("preferences.tabbar.styleType.chrome"),
-		value: "chrome",
-	},
-	{
-		label: $t("preferences.tabbar.styleType.plain"),
-		value: "plain",
-	},
-	{
-		label: $t("preferences.tabbar.styleType.card"),
-		value: "card",
-	},
-
-	{
-		label: $t("preferences.tabbar.styleType.brisk"),
-		value: "brisk",
-	},
-];
 
 export function Tabbar() {
 	const { t, i18n } = useTranslation();
@@ -38,6 +17,26 @@ export function Tabbar() {
 		tabbarShowMaximize,
 		setPreferences,
 	} = usePreferencesStore();
+
+	const styleItems = [
+		{
+			label: t("preferences.tabbar.styleType.chrome"),
+			value: "chrome",
+		},
+		{
+			label: t("preferences.tabbar.styleType.plain"),
+			value: "plain",
+		},
+		{
+			label: t("preferences.tabbar.styleType.card"),
+			value: "card",
+		},
+
+		{
+			label: t("preferences.tabbar.styleType.brisk"),
+			value: "brisk",
+		},
+	];
 
 	return (
 		<>
@@ -95,7 +94,7 @@ export function Tabbar() {
 				disabled={!tabbarEnable}
 				items={styleItems}
 			>
-				{$t("preferences.tabbar.styleType.title")}
+				{t("preferences.tabbar.styleType.title")}
 			</SelectItem>
 
 		</>

@@ -33,7 +33,7 @@ export default function LayoutTabbar() {
 	const currentRoute = useCurrentRoute();
 	const prevPathRef = useRef(location.pathname);
 
-	const { language, tabbarStyleType, tabbarShowMaximize, tabbarShowMore } = usePreferencesStore();
+	const { tabbarStyleType, tabbarShowMaximize, tabbarShowMore } = usePreferencesStore();
 	const { flatRouteList, hasFetchedDynamicRoutes } = usePermissionStore();
 	const { activeKey, isRefresh, setActiveKey, setIsRefresh, openTabs, addTab, insertBeforeTab } = useTabsStore();
 	const [items, onClickMenu] = useDropdownMenu();
@@ -120,8 +120,8 @@ export default function LayoutTabbar() {
 					className={clsx("rounded-none h-full border-l border-l-colorBorderSecondary")}
 					onClick={() => onClickMenu(TabActionKeys.REFRESH, activeKey)}
 				/>
-				{tabbarShowMaximize ? (<TabMaximize className="h-full rounded-none border-l border-l-colorBorderSecondary" />) : null}
-				{tabbarShowMore ? (<TabOptions activeKey={activeKey} className="h-full rounded-none border-l border-l-colorBorderSecondary" />) : null}
+				{tabbarShowMaximize ? (<TabMaximize className="h-full border-l rounded-none border-l-colorBorderSecondary" />) : null}
+				{tabbarShowMore ? (<TabOptions activeKey={activeKey} className="h-full border-l rounded-none border-l-colorBorderSecondary" />) : null}
 			</div>
 		),
 	}), [isRefresh, activeKey, onClickMenu, tabbarShowMore, tabbarShowMaximize]);
@@ -187,7 +187,6 @@ export default function LayoutTabbar() {
 	return (
 		<div className={classes.tabsContainer}>
 			<Tabs
-				key={language}
 				className={clsx(
 					classes.resetTabs,
 					tabbarStyleType === "brisk" ? classes.brisk : "",

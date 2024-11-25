@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 import { getColorPalettes } from "./src/styles/css-variables";
 
@@ -50,4 +51,21 @@ export default {
 			},
 		},
 	},
+	plugins: [
+		plugin(({ addVariant }) => {
+			const languages = ["en-US", "zh-CN"];
+			/**
+			 * 添加 lang 伪类选择器
+			 *
+			 * @example
+			 * ```
+			 * en-US:text-white
+			 * ```
+			 */
+
+			for (const lang of languages) {
+				addVariant(`${lang}`, `&:lang(${lang})`);
+			}
+		}),
+	],
 } satisfies Config;

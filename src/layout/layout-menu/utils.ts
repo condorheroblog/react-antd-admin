@@ -1,5 +1,28 @@
 import type { MenuItemType } from "./types";
 
+import { isString } from "#src/utils";
+
+/**
+ * 将菜单树中的所有 label 转换为国际化文本
+ * @param menus 原始菜单数组
+ * @param t Translation 函数
+ * @returns 转换后的菜单数组
+ */
+export function translateMenus(menus: MenuItemType[], t: (key: string) => string): MenuItemType[] {
+	return menus.map((menu) => {
+		const translatedMenu = {
+			...menu,
+			label: isString(menu.label) ? t(menu.label) : menu.label,
+		};
+
+		if (menu.children && menu.children.length > 0) {
+			translatedMenu.children = translateMenus(menu.children, t);
+		}
+
+		return translatedMenu;
+	});
+}
+
 /**
  * 通过路径查找菜单
  *

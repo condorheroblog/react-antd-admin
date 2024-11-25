@@ -31,7 +31,7 @@ export function LanguageButton({ ...restProps }: ButtonProps) {
 				items,
 				onClick,
 				selectable: true,
-				defaultSelectedKeys: [language],
+				selectedKeys: [language],
 			}}
 			trigger={["click"]}
 			arrow={false}

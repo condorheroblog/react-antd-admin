@@ -2,7 +2,6 @@ import type { ThemeType } from "#src/store";
 import type { InputNumberProps } from "antd";
 
 import { FollowSystemIcon, MoonIcon, SunIcon } from "#src/icons";
-import { $t } from "#src/locales";
 import { usePreferencesStore } from "#src/store";
 
 import { cn } from "#src/utils";
@@ -10,24 +9,6 @@ import { InputNumber, Slider } from "antd";
 import { useTranslation } from "react-i18next";
 
 import { SwitchItem } from "../../switch-item";
-
-const themePresets = [
-	{
-		name: $t("preferences.theme.light"),
-		icon: <SunIcon className="text-xl" />,
-		type: "light",
-	},
-	{
-		name: $t("preferences.theme.dark"),
-		icon: <MoonIcon className="text-xl" />,
-		type: "dark",
-	},
-	{
-		name: $t("preferences.theme.followSystem"),
-		icon: <FollowSystemIcon className="text-xl" />,
-		type: "auto",
-	},
-] as const;
 
 export function SiteTheme() {
 	const { t } = useTranslation();
@@ -40,6 +21,24 @@ export function SiteTheme() {
 		setPreferences,
 	} = usePreferencesStore();
 
+	const themePresets = [
+		{
+			name: t("preferences.theme.light"),
+			icon: <SunIcon className="text-xl" />,
+			type: "light",
+		},
+		{
+			name: t("preferences.theme.dark"),
+			icon: <MoonIcon className="text-xl" />,
+			type: "dark",
+		},
+		{
+			name: t("preferences.theme.followSystem"),
+			icon: <FollowSystemIcon className="text-xl" />,
+			type: "auto",
+		},
+	] as const;
+
 	function handleClick(value: ThemeType) {
 		changeSiteTheme(value);
 	}
@@ -50,7 +49,7 @@ export function SiteTheme() {
 
 	return (
 		<>
-			<ul className="flex justify-between w-full gap-3 p-0 m-0 list-none">
+			<ul className="flex w-full gap-3 p-0 m-0 list-none">
 				{
 					themePresets.map(item => (
 						<li
@@ -60,7 +59,7 @@ export function SiteTheme() {
 							<dl className="mb-0">
 								<dd
 									className={cn(
-										"relative py-4 px-9 outline outline-1 outline-gray-300 dark:outline-gray-700 rounded-md cursor-pointer",
+										"relative py-4 px-10 outline outline-1 outline-gray-300 dark:outline-gray-700 rounded-md cursor-pointer",
 										"before:content-[''] before:absolute before:left-1/2 before:top-1/2 before:h-0 before:w-0 before:rounded-sm before:opacity-0 before:outline before:outline-2 before:outline-transparent",
 										item.type === theme ? "" : "before:transition-all before:duration-300",
 										item.type === theme ? "" : "before:hover:outline-blue-600 dark:before:hover:outline-blue-700 before:hover:left-0 before:hover:top-0 before:hover:h-full before:hover:w-full before:hover:p-1 before:hover:opacity-100",

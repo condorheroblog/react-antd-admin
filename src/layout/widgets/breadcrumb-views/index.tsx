@@ -1,9 +1,9 @@
 import type { BreadcrumbProps } from "antd";
-import { usePreferencesStore } from "#src/store";
+
 import { isString } from "#src/utils";
+
 import { Breadcrumb } from "antd";
 import { useTranslation } from "react-i18next";
-
 import { useMatches } from "react-router-dom";
 
 const itemRender: BreadcrumbProps["itemRender"] = (route, params, routes) => {
@@ -20,12 +20,10 @@ const itemRender: BreadcrumbProps["itemRender"] = (route, params, routes) => {
 
 export function BreadcrumbViews() {
 	const { t } = useTranslation();
-	const language = usePreferencesStore(state => state.language);
 	const matches = useMatches();
 
 	return (
 		<Breadcrumb
-			key={language}
 			className="hidden md:block"
 			separator="->"
 			// https://ant.design/components/breadcrumb#use-with-browserhistory

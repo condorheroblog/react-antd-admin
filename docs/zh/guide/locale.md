@@ -60,7 +60,46 @@ export default function About() {
 
 ### 在纯 JS 或 TS 文件中使用
 
+不推荐在纯 JS 或 TS 文件中使用 react-i18next，因为切换语言之后，不会自动改变语言，无论是使用 `i18n.t` 还是 `Trans`。
+
+> It does ONLY interpolation. It does not rerender on language change or load any translations needed. Check useTranslation hook or withTranslation HOC for those cases.—— [Trans Component](https://react.i18next.com/latest/trans-component)
+
+如果需要使用，请使用下面的方式：
+
+### 直接传递一个 t 函数
+
+```tsx
+import type { TFunction } from "react-i18next";
+import { useTranslation } from "react-i18next";
+
+function getMessage(t: TFunction<"translation", undefined>): string {
+	return t("about.aboutProject");
+}
+
+function About() {
+	const { t } = useTranslation();
+	return <div>{getMessage(t)}</div>;
+}
+```
+
+## `$t` 是干什么的？
+
+```ts
+/**
+ * 获取路径字符串
+ *
+ * @param path 路径字符串
+ * @returns 返回传入的路径字符串
+ */
+export function $t(path: string) {
+	return path;
+}
+```
+
+可以看到 `$t` 就是简单的返回传入的路径字符串，本函数主要用于 `lokalise.i18n-ally` 插件提供类型提示。
+
 ```js
 import { $t } from "#src/locales";
 const title = $t("common.menu.about");
+// 在 VSCode 中，`$t("common.menu.about")` 渲染为 $t(关于),
 ```
