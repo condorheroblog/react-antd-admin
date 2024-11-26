@@ -1,5 +1,5 @@
 import { BasicButton } from "#src/components";
-import { PASSWORD_RULE, USERNAME_RULE } from "#src/constants";
+import { PASSWORD_RULES, USERNAME_RULES } from "#src/constants";
 import { isDynamicRoutingEnabled } from "#src/router/routes/config";
 import { useAuthStore, usePermissionStore, useUserStore } from "#src/store";
 
@@ -90,27 +90,17 @@ export function PasswordLogin() {
 				<Form.Item
 					label={t("authority.username")}
 					name="username"
-					rules={[
-						{
-							required: true,
-						},
-						USERNAME_RULE,
-					]}
+					rules={USERNAME_RULES(t)}
 				>
-					<Input placeholder={t("authority.usernameTip")} />
+					<Input placeholder={t("form.username.required")} />
 				</Form.Item>
 
 				<Form.Item
 					label={t("authority.password")}
 					name="password"
-					rules={[
-						{
-							required: true,
-						},
-						PASSWORD_RULE,
-					]}
+					rules={PASSWORD_RULES(t)}
 				>
-					<Input.Password placeholder={t("authority.passwordTip")} />
+					<Input.Password placeholder={t("form.password.required")} />
 				</Form.Item>
 
 				<Form.Item>

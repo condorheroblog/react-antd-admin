@@ -1,0 +1,40 @@
+{
+	"username": {
+		"required": "Please enter your username",
+		"invalid": "Please enter a username of 4 to 16 characters, supporting letters, numbers, underscores, and hyphens"
+	},
+	"password": {
+		"required": "Please enter your password",
+		"invalid": "The password is 8-16 characters and must contain letters and numbers"
+	},
+	"code": {
+		"required": "Please enter the security code"
+	},
+	"mobile": {
+		"required": "Please enter your mobile number",
+		"invalid": "The phone number format is incorrect"
+	},
+	"telephone": {
+		"required": "Please enter your telephone number",
+		"invalid": "The telephone number format is incorrect"
+	},
+	"email": {
+		"required": "Please enter your email",
+		"invalid": "The email format is incorrect"
+	},
+	"confirmPassword": {
+		"required": "Please enter the password again",
+		"invalid": "The password does not match"
+	},
+	"agree": {
+		"required": "Please agree to the privacy policy and terms of service"
+	},
+	"alphanumeric": {
+		"required": "Please enter letters or numbers",
+		"invalid": "Please enter only letters or numbers"
+	},
+	"unifiedSocialCreditCode": {
+		"required": "Please enter the Unified Social Credit Code",
+		"invalid": "Please enter a valid Unified Social Credit Code"
+	}
+}

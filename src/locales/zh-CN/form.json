@@ -1,0 +1,40 @@
+{
+	"username": {
+		"required": "请输入用户名",
+		"invalid": "4 到 16 位，支持字母、数字、下划线和减号"
+	},
+	"password": {
+		"required": "请输入密码",
+		"invalid": "8-16 位必须包含字母和数字"
+	},
+	"code": {
+		"required": "请输入验证码"
+	},
+	"mobile": {
+		"required": "请输入手机号码",
+		"invalid": "手机号码格式错误"
+	},
+	"telephone": {
+		"required": "请输入座机号码",
+		"invalid": "座机号码格式错误"
+	},
+	"email": {
+		"required": "请输入邮箱",
+		"invalid": "邮箱格式错误"
+	},
+	"confirmPassword": {
+		"required": "请再次输入密码",
+		"invalid": "两次输入的密码不一致"
+	},
+	"agree": {
+		"required": "请同意隐私政策和条款"
+	},
+	"alphanumeric": {
+		"required": "请输入字母或数字",
+		"invalid": "请输入字母或数字"
+	},
+	"unifiedSocialCreditCode": {
+		"required": "请输入统一社会信用代码",
+		"invalid": "请输入正确的统一社会信用代码"
+	}
+}

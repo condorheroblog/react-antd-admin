@@ -1,4 +1,5 @@
 {
+	"title": "Preferences",
 	"copyPreferences": "Copy Preferences",
 	"copyPreferencesSuccessTitle": "Copy successful",
 	"copyPreferencesSuccess": "Copy successful, please override in `src/store/preferences.ts`",

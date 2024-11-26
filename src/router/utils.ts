@@ -3,7 +3,6 @@ import type { AppRouteRecordRaw, RouteFileModule } from "./types";
 
 import { Iframe } from "#src/components/iframe";
 import { ContainerLayout } from "#src/layout";
-import { $t } from "#src/locales";
 import { isString } from "#src/utils";
 
 import * as antdIcons from "@ant-design/icons";
@@ -65,7 +64,7 @@ export function addIdToRoutes(routes: AppRouteRecordRaw[]) {
  */
 export function getMenuItems(routeList: AppRouteRecordRaw[]) {
 	return routeList.reduce<MenuItemType[]>((acc, item) => {
-		const label = isString(item?.handle?.title) ? $t(item.handle?.title) : item.handle?.title;
+		const label = item.handle?.title;
 		const externalLink = item?.handle?.externalLink;
 		const iconName = item?.handle?.icon;
 

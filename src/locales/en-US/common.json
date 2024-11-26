@@ -62,9 +62,5 @@
 	"yes": "Yes",
 	"no": "No",
 	"404SubTitle": "Sorry, the page you visited does not exist.",
-	"403SubTitle": "Sorry, you are not authorized to access this page.",
-	"preferences": {
-		"title": "Preferences",
-		"theme": "Theme"
-	}
+	"403SubTitle": "Sorry, you are not authorized to access this page."
 }

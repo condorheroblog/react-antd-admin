@@ -49,7 +49,7 @@ export function Preferences({ ...restProps }: ButtonProps) {
 				<SettingOutlined />
 			</BasicButton>
 			<Drawer
-				title={t("common.preferences.title")}
+				title={t("preferences.title")}
 				placement="right"
 				onClose={() => {
 					setIsOpen(false);
@@ -98,7 +98,7 @@ export function Preferences({ ...restProps }: ButtonProps) {
 						alignItems: "center",
 					}}
 				>
-					<Divider>{t("common.preferences.theme")}</Divider>
+					<Divider>{t("preferences.theme.title")}</Divider>
 					<SiteTheme />
 					<Divider>{t("preferences.theme.builtin.title")}</Divider>
 					<BuiltinTheme />

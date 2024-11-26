@@ -70,11 +70,11 @@ export function ForgotPassword() {
 						},
 						{
 							type: "email",
-							message: t("authority.emailValidErrorTip"),
+							message: t("form.email.invalid"),
 						},
 					]}
 				>
-					<Input placeholder={t("authority.emailTip")} />
+					<Input placeholder={t("form.email.required")} />
 				</Form.Item>
 
 				<Form.Item>
@@ -91,7 +91,7 @@ export function ForgotPassword() {
 					</Button>
 				</Form.Item>
 
-				<div className="text-center text-sm">
+				<div className="text-sm text-center">
 					<BasicButton
 						type="link"
 						icon={<LeftOutlined />}

@@ -1,5 +1,5 @@
 import { BasicButton } from "#src/components";
-import { MOBILE_PHONE_RULE } from "#src/constants";
+import { MOBILE_PHONE_RULES } from "#src/constants";
 
 import { LeftOutlined } from "@ant-design/icons";
 import { ProFormCaptcha } from "@ant-design/pro-components";
@@ -56,19 +56,14 @@ export function CodeLogin() {
 				<Form.Item
 					label={t("authority.mobile")}
 					name="phoneNumber"
-					rules={[
-						{
-							required: true,
-						},
-						MOBILE_PHONE_RULE,
-					]}
+					rules={MOBILE_PHONE_RULES(t)}
 				>
-					<InputNumber controls={false} className="w-full" placeholder={t("authority.mobileTip")} />
+					<InputNumber controls={false} className="w-full" placeholder={t("form.mobile.required")} />
 				</Form.Item>
 
 				<ProFormCaptcha
 					label={t("authority.code")}
-					placeholder={t("authority.codeTip")}
+					placeholder={t("form.code.required")}
 					captchaTextRender={(timing, count) => {
 						return timing ? t("authority.sendText", { second: count }) : t("authority.sendCode");
 					}}
@@ -101,7 +96,7 @@ export function CodeLogin() {
 					</Button>
 				</Form.Item>
 
-				<div className="text-center text-sm">
+				<div className="text-sm text-center">
 					<BasicButton
 						type="link"
 						icon={<LeftOutlined />}

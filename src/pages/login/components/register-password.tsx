@@ -1,5 +1,5 @@
 import { BasicButton } from "#src/components";
-import { PASSWORD_RULE, USERNAME_RULE } from "#src/constants";
+import { PASSWORD_RULES, USERNAME_RULES } from "#src/constants";
 
 import {
 	Button,
@@ -55,27 +55,17 @@ export function RegisterPassword() {
 				<Form.Item
 					label={t("authority.username")}
 					name="username"
-					rules={[
-						{
-							required: true,
-						},
-						USERNAME_RULE,
-					]}
+					rules={USERNAME_RULES(t)}
 				>
-					<Input placeholder={t("authority.usernameTip")} />
+					<Input placeholder={t("form.username.required")} />
 				</Form.Item>
 
 				<Form.Item
 					label={t("authority.password")}
 					name="password"
-					rules={[
-						{
-							required: true,
-						},
-						PASSWORD_RULE,
-					]}
+					rules={PASSWORD_RULES(t)}
 				>
-					<Input.Password placeholder={t("authority.passwordTip")} />
+					<Input.Password placeholder={t("form.password.required")} />
 				</Form.Item>
 
 				<Form.Item
@@ -86,26 +76,26 @@ export function RegisterPassword() {
 					rules={[
 						{
 							required: true,
-							message: t("authority.passwordTip"),
+							message: t("form.confirmPassword.required"),
 						},
 						({ getFieldValue }) => ({
 							validator(_, value) {
 								if (!value || getFieldValue("password") === value) {
 									return Promise.resolve();
 								}
-								return Promise.reject(new Error(t("authority.confirmPasswordTip")));
+								return Promise.reject(new Error(t("form.confirmPassword.invalid")));
 							},
 						}),
 					]}
 				>
-					<Input.Password placeholder={t("authority.passwordTip")} />
+					<Input.Password placeholder={t("form.confirmPassword.required")} />
 				</Form.Item>
 
 				<Form.Item
 					rules={[
 						() => ({
 							validator(_, value) {
-								return value !== true ? Promise.reject(new Error(t("authority.agreeTip"))) : Promise.resolve();
+								return value !== true ? Promise.reject(new Error(t("form.agree.required"))) : Promise.resolve();
 							},
 						}),
 					]}
@@ -131,7 +121,7 @@ export function RegisterPassword() {
 					</Button>
 				</Form.Item>
 
-				<div className="text-center text-sm">
+				<div className="text-sm text-center">
 					{t("authority.alreadyHaveAnAccount")}
 					<BasicButton
 						type="link"

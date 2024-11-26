@@ -1,6 +1,6 @@
-import { $t } from "#src/locales";
 import { Button, Space } from "antd";
 import { createElement, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 interface AppVersionMonitorProps {
 	// 轮训时间，单位：分钟，默认 1 分钟
@@ -11,6 +11,7 @@ interface AppVersionMonitorProps {
 
 export function AppVersionMonitor({ checkUpdatesInterval = 1, checkUpdateUrl = import.meta.env.BASE_URL ?? "/" }: AppVersionMonitorProps) {
 	let isCheckingUpdates = false;
+	const { t } = useTranslation();
 	const currentVersionTag = useRef("");
 	const lastVersionTag = useRef("");
 	const timer = useRef<ReturnType<typeof setInterval>>();
@@ -18,8 +19,8 @@ export function AppVersionMonitor({ checkUpdatesInterval = 1, checkUpdateUrl = i
 	function handleNotice(versionTag: string) {
 		currentVersionTag.current = versionTag;
 		window.$notification?.open({
-			message: $t("widgets.versionMonitorTitle"),
-			description: $t("widgets.versionMonitorContent"),
+			message: t("widgets.versionMonitorTitle"),
+			description: t("widgets.versionMonitorContent"),
 			duration: 0,
 			btn: (() => {
 				return createElement(
@@ -35,7 +36,7 @@ export function AppVersionMonitor({ checkUpdatesInterval = 1, checkUpdateUrl = i
 								},
 								key: "cancel",
 							},
-							$t("widgets.versionMonitorCancel"),
+							t("widgets.versionMonitorCancel"),
 						),
 						createElement(
 							Button,
@@ -47,7 +48,7 @@ export function AppVersionMonitor({ checkUpdatesInterval = 1, checkUpdateUrl = i
 								},
 								key: "ok",
 							},
-							$t("widgets.versionMonitorConfirm"),
+							t("widgets.versionMonitorConfirm"),
 						),
 					],
 				);

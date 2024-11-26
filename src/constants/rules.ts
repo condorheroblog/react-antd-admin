@@ -1,6 +1,5 @@
-/* TODO: common 开头的国际化需要移除 */
+import type { TFunction } from "i18next";
 
-import { $t } from "#src/locales";
 import {
 	ALPHA_NUMERIC_ONLY_REGEXP,
 	MOBILE_PHONE_REGEXP,
@@ -14,71 +13,101 @@ export const FORM_REQUIRED = [{ required: true }]; // 表单必填校验
 /**
  * 用户名规则验证函数
  */
-export function USERNAME_RULE() {
-	return {
-		pattern: USERNAME_REGEXP,
-		message: $t("authority.usernameErrorTip"),
-	};
+export function USERNAME_RULES(t: TFunction<"translation", undefined>) {
+	return [
+		{
+			required: true,
+			message: t("form.username.required"),
+		},
+		{
+			pattern: USERNAME_REGEXP,
+			message: t("form.username.invalid"),
+		},
+	];
 }
 
 /**
  * 密码规则验证函数
  *
- * @returns 返回密码规则验证对象，包含 pattern（正则表达式）和 message（提示信息）
  */
-export function PASSWORD_RULE() {
-	return {
-		pattern: /^(?=.*\d)(?=.*[a-z])[\w~!@#$%^&*+.\-]{8,16}$/i,
-		message: $t("authority.passwordStrength"),
-	};
+export function PASSWORD_RULES(t: TFunction<"translation", undefined>) {
+	return [
+		{
+			required: true,
+			message: t("form.password.required"),
+		},
+		{
+			pattern: /^(?=.*\d)(?=.*[a-z])[\w~!@#$%^&*+.\-]{8,16}$/i,
+			message: t("form.password.invalid"),
+		},
+	];
 }
 
 /**
  * 仅允许字母和数字的规则函数
  *
- * @returns 包含正则模式和错误消息的验证规则对象
  */
-export function ALPHA_NUMERIC_ONLY_RULE() {
-	return {
-		pattern: ALPHA_NUMERIC_ONLY_REGEXP,
-		message: $t("common.alphaNumericOnlyRuleMessage"),
-	};
+export function ALPHA_NUMERIC_ONLY_RULES(t: TFunction<"translation", undefined>) {
+	return [
+		{
+			required: true,
+			message: t("form.alphanumeric.required"),
+		},
+		{
+			pattern: ALPHA_NUMERIC_ONLY_REGEXP,
+			message: t("form.alphanumeric.invalid"),
+		},
+	];
 }
 
 /**
  * 获取统一社会信用代码校验规则
  *
- * @returns 返回一个包含正则表达式和错误提示信息的对象
- * 其中的 `pattern` 属性表示统一社会信用代码的正则表达式校验规则
- * `message` 属性表示当校验不通过时显示的错误提示信息，通过国际化函数 `t` 获取
  */
-export function UNIFIED_SOCIAL_CREDIT_CODE_RULE() {
-	return {
-		pattern: UNIFIED_SOCIAL_CREDIT_CODE_REGEXP,
-		message: $t("common.unifiedSocialCreditCodeRuleMessage"),
-	};
+export function UNIFIED_SOCIAL_CREDIT_CODE_RULES(t: TFunction<"translation", undefined>) {
+	return [
+		{
+			required: true,
+			message: t("form.unifiedSocialCreditCode.required"),
+		},
+		{
+			pattern: UNIFIED_SOCIAL_CREDIT_CODE_REGEXP,
+			message: t("form.unifiedSocialCreditCode.invalid"),
+		},
+	];
 }
 
 /**
  * 返回手机验证规则对象
  *
- * @returns 包含验证规则的对象
  */
-export function MOBILE_PHONE_RULE() {
-	return {
-		pattern: MOBILE_PHONE_REGEXP,
-		message: $t("authority.mobileErrortip"),
-	};
+export function MOBILE_PHONE_RULES(t: TFunction<"translation", undefined>) {
+	return [
+		{
+			required: true,
+			message: t("form.mobile.required"),
+		},
+		{
+			pattern: MOBILE_PHONE_REGEXP,
+			message: t("form.mobile.invalid"),
+		},
+	];
 }
 
-export function TELEPHONE_RULE() {
-	return {
-		pattern: TELEPHONE_REGEXP,
-		message: $t("common.mobileErrortip"),
-	};
+export function TELEPHONE_RULES(t: TFunction<"translation", undefined>) {
+	return [
+		{
+			required: true,
+			message: t("form.telephone.required"),
+		},
+		{
+			pattern: TELEPHONE_REGEXP,
+			message: t("form.telephone.invalid"),
+		},
+	];
 }
 
-export function PHONE_RULE() {
+export function PHONE_RULE(t: TFunction<"translation", undefined>) {
 	return {
 		validator: (_: unknown, value: string) => {
 			// 空值不校验
@@ -90,7 +119,7 @@ export function PHONE_RULE() {
 				return Promise.resolve();
 			}
 			else {
-				return Promise.reject($t("common.phoneRuleMessage"));
+				return Promise.reject(t("form.mobile.invalid"));
 			}
 		},
 	};
