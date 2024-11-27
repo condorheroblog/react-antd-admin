@@ -163,10 +163,18 @@ export async function routerInitReady(reactRouter: ReactRouterType) {
 	if (isDynamicRoutingEnabled) {
 		promises.push(handleAsyncRoutes());
 	}
+
 	/**
 	 * 用户信息包含了用户角色，需要在获取菜单权限前面获取，用于权限校验
 	 */
-	await Promise.all(promises);
+	const results = await Promise.allSettled(promises);
+	const hasError = results.some(result => result.status === "rejected");
+
+	// 网络请求失败，跳转到 500 页面
+	if (hasError) {
+		reactRouter.navigate("/error/500");
+		return;
+	}
 
 	/* --------------- Start ------------------ */
 	// 判断路由跳转逻辑，需要在获取动态路由之后，防止路由跳转直接进入 getBlocker 中然后发送请求，但是 getBlocker 不支持异步

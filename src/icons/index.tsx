@@ -11,6 +11,7 @@ import MixedNavigation from "./svg/mixed-navigation.svg?react";
 import Moon from "./svg/moon.svg?react";
 import ProfileCard from "./svg/profile-card.svg?react";
 import ReactLogo from "./svg/react-logo.svg?react";
+import ServerError from "./svg/server-error.svg?react";
 import SideNavigation from "./svg/side-navigation.svg?react";
 import Sun from "./svg/sun.svg?react";
 import TopNavigation from "./svg/top-navigation.svg?react";
@@ -78,4 +79,8 @@ export function FullscreenIcon(props: Partial<CustomIconComponentProps>) {
 
 export function FullscreenExitIcon(props: Partial<CustomIconComponentProps>) {
 	return <Icon component={FullscreenExit} {...props} />;
+}
+
+export function ServerErrorIcon(props: Partial<CustomIconComponentProps>) {
+	return <Icon component={ServerError} {...props} />;
 }

@@ -37,35 +37,48 @@ export function PasswordLogin() {
 
 	const handleFinish = async (values: PasswordLoginFormType) => {
 		setLoading(true);
-		/* 先登录 */
-		await login(values);
 
-		/* ================= 分割线 ================= */
-		// 初始化一个空数组来存放 Promise 对象
-		const promises = [];
+		try {
+			/* 先登录 */
+			await login(values);
 
-		// 总是添加获取用户信息的 Promise
-		promises.push(getUserInfo());
+			/* ================= 分割线 ================= */
+			// 初始化一个空数组来存放 Promise 对象
+			const promises = [];
 
-		// 如果启用了动态路由，则添加处理动态路由的 Promise
-		if (isDynamicRoutingEnabled) {
-			promises.push(handleAsyncRoutes());
+			// 总是添加获取用户信息的 Promise
+			promises.push(getUserInfo());
+
+			// 如果启用了动态路由，则添加处理动态路由的 Promise
+			if (isDynamicRoutingEnabled) {
+				promises.push(handleAsyncRoutes());
+			}
+			const results = await Promise.allSettled(
+				/**
+				 * getUserInfo 和 handleAsyncRoutes 逻辑应该出现在 routerBeforeEach 中
+				 * 但是因为 routerBeforeEach 不支持 异步调用 所以临时放在登录逻辑中
+				 */
+				promises,
+			);
+			/* ================= 分割线 ================= */
+
+			const hasError = results.some(result => result.status === "rejected");
+			// 网络请求失败，跳转到 500 页面
+			if (hasError) {
+				navigate("/error/500");
+			}
+			else {
+				const redirect = searchParams.get("redirect");
+				if (redirect) {
+					navigate(`/${redirect.slice(1)}`);
+				}
+				else {
+					navigate("/");
+				}
+			}
 		}
-		await Promise.all(
-			/**
-			 * getUserInfo 和 handleAsyncRoutes 逻辑应该出现在 routerBeforeEach 中
-			 * 但是因为 routerBeforeEach 不支持 异步调用 所以临时放在登录逻辑中
-			 */
-			promises,
-		).finally(() => setLoading(false));
-		/* ================= 分割线 ================= */
-
-		const redirect = searchParams.get("redirect");
-		if (redirect) {
-			navigate(`/${redirect.slice(1)}`);
-		}
-		else {
-			navigate("/");
+		finally {
+			setLoading(false);
 		}
 	};
 

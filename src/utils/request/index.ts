@@ -5,7 +5,7 @@ import { LOGIN } from "#src/router/constants";
 import { useAuthStore, usePreferencesStore } from "#src/store";
 import ky from "ky";
 
-import { APP_NAME_HEADER, AUTH_HEADER, LANG_HEADER } from "./constants";
+import { AUTH_HEADER, LANG_HEADER } from "./constants";
 import { handleErrorResponse } from "./error-response";
 import { globalProgress } from "./global-progress";
 import { goLogin } from "./go-login";
@@ -37,8 +37,9 @@ const defaultConfig: Options = {
 				if (!isWhiteRequest) {
 					const { token } = useAuthStore.getState();
 					request.headers.set(AUTH_HEADER, `Bearer ${token}`);
-					request.headers.set(LANG_HEADER, usePreferencesStore.getState().language);
 				}
+				// 语言等所有的接口都需要携带
+				request.headers.set(LANG_HEADER, usePreferencesStore.getState().language);
 			},
 		],
 		afterResponse: [
