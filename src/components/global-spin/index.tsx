@@ -5,6 +5,7 @@ import { cn } from "#src/utils";
 import { Spin } from "antd";
 
 import { createUseStyles } from "react-jss";
+import { useSpinDelay } from "spin-delay";
 
 export interface GlobalSpinProps {
 	className?: string
@@ -26,6 +27,12 @@ const useStyles = createUseStyles({
 export function GlobalSpin({ children, className }: GlobalSpinProps) {
 	const classes = useStyles();
 	const spinning = useGlobalStore(state => state.globalSpin);
+	/**
+	 * 接口返回结果时间过短，页面可能会出现闪烁，使用 useSpinDelay 优化 Spin
+	 *
+	 * @see https://github.com/ant-design/ant-design/issues/51828
+	 */
+	const loading = useSpinDelay(spinning, { delay: 500, minDuration: 200 });
 	const transitionLoading = usePreferencesStore(state => state.transitionLoading);
 
 	if (!transitionLoading) {
@@ -34,13 +41,8 @@ export function GlobalSpin({ children, className }: GlobalSpinProps) {
 
 	return (
 		<Spin
-			/**
-			 * 延迟 300ms 后开始渲染，否则可能会出现闪烁
-			 *
-			 * @see https://github.com/ant-design/ant-design/issues/51828
-			 */
 			delay={300}
-			spinning={spinning}
+			spinning={loading}
 			wrapperClassName={cn(classes.rootSpin, className)}
 		>
 			{children}
