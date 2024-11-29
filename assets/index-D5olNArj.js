@@ -1,1 +1,0 @@
-import{u as i,j as t}from"./index-nmBK9a8B.js";import"./faker-CiQWN7dT.js";import"./react-BBS6oWoz.js";import"./antd-C28nsxeG.js";function c(){const{t:r}=i();return t.jsx(t.Fragment,{children:r("authority.privacyPolicy")})}export{c as default};
