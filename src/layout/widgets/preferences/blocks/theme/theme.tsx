@@ -49,7 +49,7 @@ export function SiteTheme() {
 
 	return (
 		<>
-			<ul className="flex w-full gap-3 p-0 m-0 list-none">
+			<ul className="flex justify-between w-full gap-3 p-0 m-0 list-none">
 				{
 					themePresets.map(item => (
 						<li

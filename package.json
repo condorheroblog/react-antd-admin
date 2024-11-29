@@ -20,7 +20,7 @@
 	},
 	"scripts": {
 		"dev": "vite --host",
-		"build": "vite build",
+		"build": "NODE_OPTIONS=--max-old-space-size=8192 vite build",
 		"preview": "vite preview",
 		"typecheck": "tsc --noEmit",
 		"spa-github-index-page": "node ./scripts/spa-github-index-page.mjs",

@@ -48,7 +48,7 @@ export function Animation() {
 				{t("preferences.animation.transition")}
 			</SwitchItem>
 			<ul
-				className="flex justify-between flex-wrap gap-x-3 gap-y-5 list-none px-0"
+				className="w-full flex flex-wrap justify-between gap-x-3 gap-y-5 list-none px-0"
 			>
 				{
 					transitionPreset.map(item => (

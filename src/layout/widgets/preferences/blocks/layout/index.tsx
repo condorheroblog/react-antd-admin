@@ -54,7 +54,7 @@ export function PreferencesLayout() {
 	return (
 		<>
 			<ul
-				className="flex gap-3 px-0 list-none en-US:flex-wrap en-US:justify-between"
+				className="w-full flex flex-wrap justify-between gap-1 en-US:gap-y-3 px-0 list-none"
 			>
 				{
 					navigationPreset.map(item => (
