@@ -1,5 +1,6 @@
 import { TanstackQuery } from "#src/components";
 import { setupI18n } from "#src/locales";
+import { setupLoading } from "#src/plugins";
 import { setupRouter } from "#src/router";
 
 // import { StrictMode } from "react";
@@ -9,6 +10,9 @@ import App from "./app";
 import "./styles/index.css";
 
 async function setupApp() {
+	// App Loading
+	setupLoading();
+
 	/* setupI18n 必须放在 setupRouter 前面 */
 	setupI18n();
 

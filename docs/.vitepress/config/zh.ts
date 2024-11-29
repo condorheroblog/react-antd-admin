@@ -63,24 +63,25 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
 			text: "简介",
 			items: [
 				{ text: "介绍", link: "introduction" },
-				{ text: "快速开始", link: "quick-start" },
+				{ text: "快速开始", link: "introduction/quick-start" },
 			],
 		},
 		{
 			text: "基础",
 			items: [
-				{ text: "目录结构", link: "directory-structure" },
-				{ text: "路由和菜单", link: "routing" },
-				{ text: "配置", link: "settings" },
+				{ text: "目录结构", link: "fundamentals/directory-structure" },
+				{ text: "路由和菜单", link: "fundamentals/routing" },
+				{ text: "配置", link: "fundamentals/settings" },
 			],
 		},
 		{
 			text: "进阶",
 			items: [
-				{ text: "国际化", link: "locale" },
-				{ text: "图标", link: "icon" },
-				{ text: "权限", link: "access" },
-				{ text: "主题", link: "theme" },
+				{ text: "国际化", link: "advanced/locale" },
+				{ text: "图标", link: "advanced/icon" },
+				{ text: "权限", link: "advanced/access" },
+				{ text: "主题", link: "advanced/theme" },
+				{ text: "App Loading", link: "advanced/loading" },
 			],
 		},
 	];

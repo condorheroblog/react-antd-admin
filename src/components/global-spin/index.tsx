@@ -33,7 +33,16 @@ export function GlobalSpin({ children, className }: GlobalSpinProps) {
 	};
 
 	return (
-		<Spin spinning={spinning} wrapperClassName={cn(classes.rootSpin, className)}>
+		<Spin
+			/**
+			 * 延迟 300ms 后开始渲染，否则可能会出现闪烁
+			 *
+			 * @see https://github.com/ant-design/ant-design/issues/51828
+			 */
+			delay={300}
+			spinning={spinning}
+			wrapperClassName={cn(classes.rootSpin, className)}
+		>
 			{children}
 		</Spin>
 	);

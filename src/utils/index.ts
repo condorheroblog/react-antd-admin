@@ -9,5 +9,6 @@ export * from "./remember-route";
 export * from "./request";
 export * from "./search-route";
 export * from "./static-antd";
+export * from "./to-capitalize-case";
 export * from "./toggle-html-class";
 export * from "./tree";
