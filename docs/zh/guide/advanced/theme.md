@@ -2,10 +2,6 @@
 
 如果想要自定义主题请先阅读 antd 的 [色彩](https://ant.design/docs/spec/colors-cn) 和 [定制主题](https://ant.design/docs/react/customize-theme-cn) 章节。
 
-除了，antd 本身自带的，为了方便开发，项目还使用了 [react-jss](https://cssinjs.org/react-jss/) 和 [Tailwind CSS](https://tailwindcss.com/) 。
-
-一般来讲，我们推荐使用 Tailwind CSS 来书写 CSS，使用 [react-jss](https://cssinjs.org/react-jss/) 这种 CSS  In CSS 方案来覆盖 antd 组件的样式。
-
 ## 品牌色
 
 > 品牌色是体现产品特性和传播理念最直观的视觉元素之一。

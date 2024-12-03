@@ -71,6 +71,11 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
 			items: [
 				{ text: "目录结构", link: "fundamentals/directory-structure" },
 				{ text: "路由和菜单", link: "fundamentals/routing" },
+				{ text: "图标", link: "fundamentals/icon" },
+				{ text: "样式", link: "fundamentals/style" },
+				{ text: "请求", link: "fundamentals/request" },
+				{ text: "Mock", link: "fundamentals/mock" },
+				{ text: "构建和部署", link: "fundamentals/build" },
 				{ text: "配置", link: "fundamentals/settings" },
 			],
 		},
@@ -78,7 +83,6 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
 			text: "进阶",
 			items: [
 				{ text: "国际化", link: "advanced/locale" },
-				{ text: "图标", link: "advanced/icon" },
 				{ text: "权限", link: "advanced/access" },
 				{ text: "主题", link: "advanced/theme" },
 				{ text: "App Loading", link: "advanced/loading" },

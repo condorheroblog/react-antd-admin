@@ -10,6 +10,7 @@
 		"sider",
 		"svgr",
 		"vitepress",
+		"vite",
 		"zustand"
 	],
 	// Disable the default formatter, use eslint instead

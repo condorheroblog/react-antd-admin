@@ -88,6 +88,9 @@ react-antd-admin
 │   │   ├── system                         # 系统设置页面
 │   │   ├── privacy-policy                 # 隐私政策页面
 │   │   └── terms-of-service               # 服务条款页面
+│   ├── plugins	                           # App 插件
+│   │   ├── index.ts                       # 聚合导出所有的插件
+│   │   └── loading.ts                     # 应用加载动画
 │   ├── router                             # 路由
 │   │   ├── constants.ts                   # 路由配置一些常量
 │   │   ├── extra-info                     # 路由配置信息，比如路由的顺序
