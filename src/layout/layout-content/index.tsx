@@ -3,7 +3,7 @@ import { usePermissionStore, usePreferencesStore, useTabsStore } from "#src/stor
 import { theme } from "antd";
 import KeepAlive, { useKeepaliveRef } from "keepalive-for-react";
 import { useEffect, useMemo } from "react";
-import { useLocation, useOutlet } from "react-router-dom";
+import { useLocation, useOutlet } from "react-router";
 
 export interface LayoutContentProps { }
 

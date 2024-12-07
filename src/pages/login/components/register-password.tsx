@@ -12,7 +12,7 @@ import {
 import { useContext, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { FormModeContext } from "../form-mode-context";
 
 const { Title } = Typography;

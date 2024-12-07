@@ -2,7 +2,7 @@ import type { FallbackProps } from "react-error-boundary";
 import { Button, Typography } from "antd";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 // https://undraw.co/search
 import BugFixing from "#src/assets/svg/undraw-bug-fixing.svg?react";

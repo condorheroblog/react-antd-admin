@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { useOutlet } from "react-router-dom";
+import { useOutlet } from "react-router";
 
 export default function ParentLayout() {
 	const currentOutlet = useOutlet();

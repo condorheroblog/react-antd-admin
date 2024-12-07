@@ -7,7 +7,7 @@ import { isString } from "#src/utils";
 
 import * as antdIcons from "@ant-design/icons";
 import { createElement } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 const allAntdIcons: { [key: string]: any } = antdIcons;
 

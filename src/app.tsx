@@ -7,7 +7,7 @@ import { theme as antdTheme, ConfigProvider } from "antd";
 import dayjs from "dayjs";
 import { Suspense, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { RouterProvider } from "react-router-dom";
+import { RouterProvider } from "react-router/dom";
 
 import { router } from "./router";
 import { customAntdDarkTheme, customAntdLightTheme } from "./styles/antd-theme";

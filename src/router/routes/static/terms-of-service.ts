@@ -3,7 +3,7 @@ import { $t } from "#src/locales";
 import { UserOutlined } from "@ant-design/icons";
 
 import { createElement, lazy } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router";
 
 const TermsOfService = lazy(() => import("#src/pages/terms-of-service"));
 

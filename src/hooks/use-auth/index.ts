@@ -1,6 +1,6 @@
 import { isString } from "#src/utils";
 
-import { useMatches } from "react-router-dom";
+import { useMatches } from "react-router";
 
 /**
  * 用于权限认证的自定义 Hook。

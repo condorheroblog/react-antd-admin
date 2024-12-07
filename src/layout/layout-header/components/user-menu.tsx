@@ -10,7 +10,7 @@ import { useKeyPress } from "ahooks";
 import { Avatar, Dropdown } from "antd";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export function UserMenu({ ...restProps }: ButtonProps) {
 	const navigate = useNavigate();

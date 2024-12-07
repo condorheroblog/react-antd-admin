@@ -4,7 +4,7 @@ import { isString } from "#src/utils";
 
 import { Breadcrumb } from "antd";
 import { useTranslation } from "react-i18next";
-import { useMatches } from "react-router-dom";
+import { useMatches } from "react-router";
 
 const itemRender: BreadcrumbProps["itemRender"] = (route, params, routes) => {
 	const last = routes.indexOf(route) === routes.length - 1;

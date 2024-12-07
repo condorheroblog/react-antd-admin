@@ -8,7 +8,7 @@ import { CopyOutlined, RedoOutlined, SettingOutlined } from "@ant-design/icons";
 import { Badge, Divider, Drawer } from "antd";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 import { Animation, BuiltinTheme, PreferencesLayout, SiteTheme, Tabbar } from "./blocks";
 

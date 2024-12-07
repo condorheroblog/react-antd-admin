@@ -12,7 +12,7 @@ import {
 } from "antd";
 import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router";
 
 import { FormModeContext } from "../form-mode-context";
 

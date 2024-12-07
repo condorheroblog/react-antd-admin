@@ -1,10 +1,10 @@
-import type { BlockerFunction } from "react-router-dom";
+import type { BlockerFunction } from "react-router";
 import type { ReactRouterType, RouterSubscriber } from "./types";
 
 import { useAuthStore, usePermissionStore, usePreferencesStore, useUserStore } from "#src/store";
 import { NProgress } from "#src/utils";
 
-import { matchRoutes } from "react-router-dom";
+import { matchRoutes } from "react-router";
 
 import { ROUTE_WHITE_LIST } from "./constants";
 import { isDynamicRoutingEnabled } from "./routes/config";
@@ -13,7 +13,7 @@ import { replaceBaseWithRoot } from "./utils";
 /**
  * 全局前置守卫，用于在路由跳转前执行一些操作
  *
- * 触发条件：使用 react-router-dom 中的 navigate、Link 等方法跳转路由时触发
+ * 触发条件：使用 react-router 中的 navigate、Link 等方法跳转路由时触发
  *
  * @returns 返回 true 则取消当前导航，返回 false 则继续导航
  */

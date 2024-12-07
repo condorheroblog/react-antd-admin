@@ -11,7 +11,7 @@ import { Button, Tabs } from "antd";
 import { clsx } from "clsx";
 import { isValidElement, useCallback, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router";
 
 import { DraggableTabBar } from "./components/draggable-tab-bar";
 import { TabMaximize } from "./components/tab-maximize";

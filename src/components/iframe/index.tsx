@@ -1,6 +1,6 @@
 import { isValidElement } from "react";
 import { useTranslation } from "react-i18next";
-import { useMatches } from "react-router-dom";
+import { useMatches } from "react-router";
 
 export function Iframe() {
 	const matches = useMatches();

@@ -16,7 +16,7 @@
  *
  */
 
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router";
 
 import { routerAfterEach, routerBeforeEach, routerInitReady } from "./router-global-hooks";
 import { routes } from "./routes";

@@ -5,7 +5,7 @@ import { isString, toggleHtmlClass } from "#src/utils";
 import { useEffect } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useTranslation } from "react-i18next";
-import { Outlet, useLocation, useMatches } from "react-router-dom";
+import { Outlet, useLocation, useMatches } from "react-router";
 
 /**
  * RouterGuards 组件用于路由守卫，主要处理路由守卫相关的逻辑。
