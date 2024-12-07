@@ -298,6 +298,20 @@ export const useTabsStore = create<TabsState & TabsAction>()(
 		{
 			name: "tabbar",
 			/**
+			 * activeKey 不需要持久化存储
+			 *
+			 * 假如页面路由为 /home
+			 * 手动在地址栏输入 /about
+			 * activeKey 仍为 /home 导致 src/layout/layout-tabbar/index.tsx 的自动导航功能失效
+			 * @see https://github.com/condorheroblog/react-antd-admin/issues/1
+			 */
+			partialize: (state) => {
+				return Object.fromEntries(
+					Object.entries(state).filter(([key]) => !["activeKey"].includes(key)),
+				);
+			},
+			/**
+			 * openTabs 是一个 Map，持久化存储需要手动管理
 			 * How do I use it with Map and Set
 			 * @see https://github.com/pmndrs/zustand/blob/v5.0.1/docs/integrations/persisting-store-data.md#how-do-i-use-it-with-map-and-set
 			 */

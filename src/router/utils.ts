@@ -44,12 +44,12 @@ export function mergeRouteModules(...routes: RouteFileModule[]) {
  * @param routes The original array of routes
  * @returns The array of routes with IDs
  */
-export function addIdToRoutes(routes: AppRouteRecordRaw[]) {
+export function addIdToRoutes(routes: AppRouteRecordRaw[], parentId = "") {
 	return routes.map((route) => {
-		const newRoute = { ...route, id: route.path };
+		const newRoute = { ...route, id: route.index ? `${parentId}/` : route.path };
 
 		if (newRoute.children && newRoute.children.length > 0) {
-			newRoute.children = addIdToRoutes(newRoute.children);
+			newRoute.children = addIdToRoutes(newRoute.children, route.path);
 		}
 
 		return newRoute;

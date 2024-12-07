@@ -5,7 +5,7 @@ import { ANT_DESIGN_LOCALE } from "#src/locales";
 
 import { theme as antdTheme, ConfigProvider } from "antd";
 import dayjs from "dayjs";
-import { Suspense, useCallback, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { RouterProvider } from "react-router-dom";
 
@@ -15,14 +15,6 @@ import "dayjs/locale/zh-cn";
 
 export default function App() {
 	const { i18n } = useTranslation();
-	/**
-	 * When the language set on initial system entry is not the default language,
-	 * it is necessary to wait for the i18n initialization to complete. Otherwise, the route titles will display the default language.
-	 * This is because t.tsx will execute first, while the i18n initialization takes time.
-	 * 初次进入系统的语言不是默认语言时，需要等待 i18n 初始化完成，否则路由标题会显示默认语言。
-	 * 这是因为 t.tsx 会先执行，而 i18n 初始化需要时间。
-	 */
-	const [isReadyLanguage, setReadyLanguage] = useState(false);
 	const { language, isDark, theme, themeColorPrimary, colorBlindMode, colorGrayMode, themeRadius, changeSiteTheme } = usePreferences();
 
 	useScrollToHash();
@@ -53,10 +45,8 @@ export default function App() {
 	 * @link https://www.i18next.com/overview/api#changelanguage
 	 */
 	useEffect(() => {
-		i18n.changeLanguage(language).then(() => {
-			setReadyLanguage(true);
-		});
-	}, [language, i18n.changeLanguage, setReadyLanguage]);
+		i18n.changeLanguage(language);
+	}, [language, i18n.changeLanguage]);
 
 	/**
 	 * Change theme when the system theme changes
@@ -133,7 +123,7 @@ export default function App() {
 				<JSSThemeProvider>
 					<Suspense fallback={null}>
 						{import.meta.env.VITE_APP_VERSION_MONITOR === "Y" ? <AppVersionMonitor /> : null}
-						{isReadyLanguage ? <RouterProvider router={router} /> : null}
+						<RouterProvider router={router} />
 					</Suspense>
 				</JSSThemeProvider>
 			</AntdApp>

@@ -6,11 +6,10 @@ import { removeTrailingSlash } from "#src/router/utils";
 import { usePermissionStore, usePreferencesStore, useTabsStore } from "#src/store";
 import { isString } from "#src/utils";
 
-import { isValidElement, useCallback, useEffect, useMemo, useRef } from "react";
-// import { CacheStatusIcon } from "#src/components";
 import { RedoOutlined } from "@ant-design/icons";
 import { Button, Tabs } from "antd";
 import { clsx } from "clsx";
+import { isValidElement, useCallback, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -31,21 +30,16 @@ export default function LayoutTabbar() {
 	const location = useLocation();
 	const { t } = useTranslation();
 	const currentRoute = useCurrentRoute();
-	const prevPathRef = useRef(location.pathname);
 
 	const { tabbarStyleType, tabbarShowMaximize, tabbarShowMore } = usePreferencesStore();
 	const { flatRouteList, hasFetchedDynamicRoutes } = usePermissionStore();
 	const { activeKey, isRefresh, setActiveKey, setIsRefresh, openTabs, addTab, insertBeforeTab } = useTabsStore();
 	const [items, onClickMenu] = useDropdownMenu();
 
-	// const cacheNodeNames = getCachingNodes().map(item => item.name);
 	const tabItems: TabItemProps[] = Array.from(openTabs.values()).map(item => ({
 		...item,
 		label: (
 			<div className="relative flex items-center gap-1">
-				{/* <span style={{ color: token.green6 }} className="absolute -left-3.5 scale-75 flex animate-pulse">
-					{cacheNodeNames.includes(item.key) ? "⭐️" : null}
-				</span> */}
 				{isString(item.label) ? t(item.label) : item.label}
 			</div>
 		),
@@ -71,7 +65,7 @@ export default function LayoutTabbar() {
 	const handleChangeTabs = useCallback((key: string) => {
 		const historyState = openTabs.get(key)?.historyState || { search: "", hash: "" };
 		navigate(key + historyState.search + historyState.hash);
-	}, [navigate, openTabs]);
+	}, [openTabs]);
 
 	/**
 	 * 处理标签页编辑（关闭）
@@ -127,20 +121,17 @@ export default function LayoutTabbar() {
 	}), [isRefresh, activeKey, onClickMenu, tabbarShowMore, tabbarShowMaximize]);
 
 	/**
-	 * 监听活动标签页变化，进行导航
+	 * 活动标签页被关闭，自动导航到合适路由
 	 */
 	useEffect(() => {
 		/**
-		 * 此 hook 只有在改变 tab 导致的 activeKey 变化时才会触发，比如：
+		 * 以下动作会触发活动标签页被关闭：
 		 * 1. 关闭当前标签页
-		 * 2. 关闭左边/右边/其他/所有标签页功能，激活的标签页被关闭
+		 * 2. 当使用 关闭左边/右边/其他/所有标签页 功能，激活的标签页被关闭
 		 *
-		 * activeKey 有可能为空所以判断 length > 0
-		 * 使用 useRef(prevPathRef) 是为了避免路由变化重复导航，代码进入死循环
-		 *
-		 * 注意：navigate 函数会触发路由变化，不要添加到依赖中
+		 * 初次进入应用，activeKey 值为空，不触发自动导航
 		 */
-		if (activeKey.length > 0 && activeKey !== prevPathRef.current) {
+		if (activeKey.length > 0 && activeKey !== location.pathname + location.search + location.hash) {
 			navigate(activeKey);
 		}
 	}, [activeKey]);
@@ -180,8 +171,6 @@ export default function LayoutTabbar() {
 			closable: normalizedPath !== import.meta.env.VITE_BASE_HOME_PATH,
 			draggable: normalizedPath !== import.meta.env.VITE_BASE_HOME_PATH,
 		});
-
-		prevPathRef.current = normalizedPath;
 	}, [location, currentRoute, setActiveKey, addTab]);
 
 	return (

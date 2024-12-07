@@ -28,14 +28,14 @@ const initialState: InitialStateType = {
 	hasFetchedDynamicRoutes: false,
 };
 
-type TagsState = typeof initialState;
+type PermissionState = typeof initialState;
 
-interface TagsAction {
+interface PermissionAction {
 	handleAsyncRoutes: () => Promise<InitialStateType>
 	reset: () => void
 };
 
-export const usePermissionStore = create<TagsState & TagsAction>(set => ({
+export const usePermissionStore = create<PermissionState & PermissionAction>(set => ({
 	...initialState,
 
 	handleAsyncRoutes: async () => {

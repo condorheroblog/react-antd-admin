@@ -194,14 +194,22 @@ export async function routerInitReady(reactRouter: ReactRouterType) {
 	 * https://router.vuejs.org/guide/advanced/dynamic-routing#Adding-routes
 	 *
 	 * 为什么需要替换当前路由？
-	 * 1. 假如用户导航到动态路由 /system/user
-	 * 2. 浏览器匹配路由，但是没有匹配到，会进入 404 路由
-	 * 3. 等待获取动态路由后，通过 router.navigate 跳转到 /system/user
+	 * 1. 初始化路由
+	 * 2. 导航进入动态路由地址，例如 /system/user
+	 * 3. 动态路由未添加到路由，所以地址栏中依然是 /system/user 但匹配到的路由是 error/404 路由
+	 * 4. 添加完动态路由后，使用 replace 触发地址栏的路径匹配对应的路由
 	 *
 	 * 注意：navigate 方法调用之后会触发 routerBeforeEach 钩子
 	 */
 
-	if (isDynamicRoutingEnabled) {
+	if (
+		isDynamicRoutingEnabled
+		/**
+		 * 初次导航到动态路由，页面会匹配 404 路由
+		 * 表现为：页面路径 currentRoute.pathname 和匹配的路由（currentRoute.route.id）不同，则替换当前路由
+		 * 如果是初次导航到静态路由，则不需要触发替换
+		 */
+		&& currentRoute.pathname !== currentRoute.route.id) {
 		/**
 		 * 替换当前路由后，会触发 routerBeforeEach 钩子
 		 */
