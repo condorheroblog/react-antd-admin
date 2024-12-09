@@ -6,9 +6,12 @@ import { NProgress } from "#src/utils";
 
 import { matchRoutes } from "react-router";
 
-import { ROUTE_WHITE_LIST } from "./constants";
+import { LOGIN, ROUTE_WHITE_LIST } from "./constants";
 import { isDynamicRoutingEnabled } from "./routes/config";
 import { replaceBaseWithRoot } from "./utils";
+
+// 不需要登录路由的路由白名单
+const noLoginWhiteList = Array.from(ROUTE_WHITE_LIST).filter(item => item !== LOGIN);
 
 /**
  * 全局前置守卫，用于在路由跳转前执行一些操作
@@ -33,21 +36,28 @@ export const routerBeforeEach: (reactRouter: ReactRouterType) => BlockerFunction
 	const pathnameWithoutBase = replaceBaseWithRoot(pathname);
 
 	/* 路由白名单 */
-	if (ROUTE_WHITE_LIST.has(pathnameWithoutBase)) {
+	if (noLoginWhiteList.includes(pathnameWithoutBase)) {
 		return false;
 	}
 	/* 是否登录 */
 	const isLogin = Boolean(useAuthStore.getState().token);
 	// 未登录
 	if (!isLogin) {
-		// pathnameWithoutBase 长度大于 1，则携带当前路径跳转登录页
-		if (pathnameWithoutBase.length > 1) {
-			reactRouter.navigate(`/login?redirect=${pathnameWithoutBase}${search}`);
-			return true;
+		// 未登录且目标页不是登录页，则跳转到登录页
+		if (pathnameWithoutBase !== LOGIN) {
+			// pathnameWithoutBase 长度大于 1，则携带当前路径跳转登录页
+			if (pathnameWithoutBase.length > 1) {
+				reactRouter.navigate(`/login?redirect=${pathnameWithoutBase}${search}`);
+				return true;
+			}
+			else {
+				reactRouter.navigate("/login");
+				return true;
+			}
 		}
+		// 未登录且目标页是登录页，放行
 		else {
-			reactRouter.navigate("/login");
-			return true;
+			return false;
 		}
 	}
 
@@ -130,20 +140,27 @@ export async function routerInitReady(reactRouter: ReactRouterType) {
 	const pathnameWithoutBase = replaceBaseWithRoot(pathname);
 
 	/* 路由白名单 */
-	if (ROUTE_WHITE_LIST.has(pathnameWithoutBase)) {
+	if (noLoginWhiteList.includes(pathnameWithoutBase)) {
 		return;
 	}
 	/* 是否登录 */
 	const isLogin = Boolean(useAuthStore.getState().token);
 	// 未登录
 	if (!isLogin) {
-		// pathnameWithoutBase 长度大于 1，则携带当前路径跳转登录页
-		if (pathnameWithoutBase.length > 1) {
-			reactRouter.navigate(`/login?redirect=${pathnameWithoutBase}${search}`);
-			return;
+		// 未登录且目标页不是登录页，则跳转到登录页
+		if (pathnameWithoutBase !== LOGIN) {
+			// pathnameWithoutBase 长度大于 1，则携带当前路径跳转登录页
+			if (pathnameWithoutBase.length > 1) {
+				reactRouter.navigate(`/login?redirect=${pathnameWithoutBase}${search}`);
+				return;
+			}
+			else {
+				reactRouter.navigate("/login");
+				return;
+			}
 		}
+		// 未登录且目标页是登录页，放行
 		else {
-			reactRouter.navigate("/login");
 			return;
 		}
 	}
@@ -183,6 +200,7 @@ export async function routerInitReady(reactRouter: ReactRouterType) {
 		reactRouter.navigate(import.meta.env.VITE_BASE_HOME_PATH, { replace: true });
 		return;
 	}
+
 	/* 已登录时匹配 login 路由，跳转到首页 */
 	if (pathnameWithoutBase === "/login") {
 		reactRouter.navigate(import.meta.env.VITE_BASE_HOME_PATH, { replace: true });
