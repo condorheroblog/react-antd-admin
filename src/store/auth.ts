@@ -38,38 +38,40 @@ export const useAuthStore = create<AuthState & AuthAction>()(
 
 			await fetchLogout();
 			/**
-			 * 2. 清空 token
+			 * 2. 清空 token 等其他信息
 			 */
 
 			get().reset();
+		},
 
+		reset: () => {
 			/**
-			 * 3. 清空用户信息
+			 * 清空 token
+			 */
+			set({
+				...initialState,
+			});
+			/**
+			 * 清空用户信息
 			 * @see {@link https://github.com/pmndrs/zustand?tab=readme-ov-file#read-from-state-in-actions | Read from state in actions}
 			 */
 			useUserStore.getState().reset();
 
 			/**
-			 * 4. 清空权限信息
+			 * 清空权限信息
 			 * @see https://github.com/pmndrs/zustand?tab=readme-ov-file#readingwriting-state-and-reacting-to-changes-outside-of-components
 			 */
 			usePermissionStore.getState().reset();
 
 			/**
-			 * 5. 清空标签页
+			 * 清空标签页
 			 */
 			useTabsStore.getState().resetTabs();
 
 			/**
-			 * 6. 清空 keepAlive 缓存
+			 * 清空 keepAlive 缓存
 			 * 在 container-layout 组件中，根据 openTabs 自动刷新 keepAlive 缓存
 			 */
-		},
-
-		reset: () => {
-			return set({
-				...initialState,
-			});
 		},
 
 	}), { name: "access-token" }),

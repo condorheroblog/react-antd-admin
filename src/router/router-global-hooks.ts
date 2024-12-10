@@ -189,7 +189,10 @@ export async function routerInitReady(reactRouter: ReactRouterType) {
 
 	// 网络请求失败，跳转到 500 页面
 	if (hasError) {
-		reactRouter.navigate("/error/500");
+		const unAuthorized = results.some((result: any) => result.reason.response.status === 401);
+		if (!unAuthorized) {
+			reactRouter.navigate("/error/500");
+		}
 		return;
 	}
 

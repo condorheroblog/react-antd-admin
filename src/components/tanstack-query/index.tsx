@@ -6,10 +6,10 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
-			retry: 3, // 重试次数
+			retry: 0, // 重试次数
 		},
 		mutations: {
-			retry: 3, // 重试次数
+			retry: 0, // 重试次数
 		},
 	},
 });
