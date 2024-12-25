@@ -42,7 +42,7 @@ export function TwoColumnNavigationIcon(props: Partial<CustomIconComponentProps>
 /* ========================== End ========================== */
 
 export function MailCheckIcon(props: Partial<CustomIconComponentProps>) {
-	return <Icon component={MailCheck} {...props} />;
+	return <Icon component={({ ...rest }) => <MailCheck {...rest} fill="none" />} {...props} />;
 }
 
 export function ProfileIcon(props: Partial<CustomIconComponentProps>) {

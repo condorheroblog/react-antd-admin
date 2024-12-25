@@ -2,6 +2,7 @@ import type { TabItemProps } from "#src/store";
 import type { TabsProps } from "antd";
 
 import { useCurrentRoute } from "#src/hooks";
+import { isDynamicRoutingEnabled } from "#src/router/routes/config";
 import { removeTrailingSlash } from "#src/router/utils";
 import { usePermissionStore, usePreferencesStore, useTabsStore } from "#src/store";
 import { isString } from "#src/utils";
@@ -131,8 +132,11 @@ export default function LayoutTabbar() {
 		 *
 		 * 初次进入应用，activeKey 值为空，不触发自动导航
 		 */
-		if (activeKey.length > 0 && activeKey !== location.pathname + location.search + location.hash) {
-			navigate(activeKey);
+		const historyState = openTabs.get(activeKey)?.historyState || { search: "", hash: "" };
+		const activeFullPath = activeKey + historyState.search + historyState.hash;
+		const currentFullpath = location.pathname + location.search + location.hash;
+		if (activeKey.length > 0 && activeFullPath !== currentFullpath) {
+			navigate(activeFullPath);
 		}
 	}, [activeKey]);
 
@@ -140,7 +144,12 @@ export default function LayoutTabbar() {
 	 * 用户刷新当前页面，但不是默认 Tab 页面时，需要添加默认 Tab
 	 */
 	useEffect(() => {
-		if (!Array.from(openTabs.keys()).includes(import.meta.env.VITE_BASE_HOME_PATH) && hasFetchedDynamicRoutes) {
+		// 检查默认 Tab 是否缺失
+		const isDefaultTabMissing = !Array.from(openTabs.keys()).includes(import.meta.env.VITE_BASE_HOME_PATH);
+		// 检查动态路由是否加载完成
+		const isDynamicRoutingReady = !isDynamicRoutingEnabled || hasFetchedDynamicRoutes;
+
+		if (isDefaultTabMissing && isDynamicRoutingReady) {
 			const routeTitle = flatRouteList[import.meta.env.VITE_BASE_HOME_PATH]?.handle?.title;
 			insertBeforeTab(import.meta.env.VITE_BASE_HOME_PATH, {
 				key: import.meta.env.VITE_BASE_HOME_PATH,

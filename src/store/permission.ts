@@ -23,8 +23,8 @@ interface InitialStateType {
 const initialState: InitialStateType = {
 	constantMenus: getMenuItems(rootChildRoutes),
 	wholeMenus: getMenuItems(rootChildRoutes),
-	routeList: [],
-	flatRouteList: {},
+	routeList: rootChildRoutes,
+	flatRouteList: flattenRoutes(rootChildRoutes),
 	hasFetchedDynamicRoutes: false,
 };
 

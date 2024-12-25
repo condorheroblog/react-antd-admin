@@ -93,7 +93,7 @@ export const NotificationPopup: React.FC<Props> = ({ dot, notifications, onEvent
 					bordered
 					header={(
 						<div className="flex items-center justify-between">
-							<div className="text-foreground">{t("widgets.notifications")}</div>
+							<div>{t("widgets.notifications")}</div>
 							<Tooltip title={notifications?.length ? t("widgets.markAllAsRead") : null}>
 								<BasicButton
 									disabled={!notifications?.length}
@@ -120,7 +120,7 @@ export const NotificationPopup: React.FC<Props> = ({ dot, notifications, onEvent
 					)}
 					dataSource={notifications}
 					renderItem={item => (
-						<List.Item className="!justify-start gap-5 hover:!bg-gray-100 cursor-pointer" onClick={() => handleClick(item)}>
+						<List.Item className="relative !justify-start gap-5 hover:!bg-gray-100 cursor-pointer" onClick={() => handleClick(item)}>
 							{!item.isRead && <span className="bg-primary absolute right-2 top-2 h-2 w-2 rounded"></span>}
 							<span className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
 								<img src={item.avatar} className="aspect-square h-full w-full object-cover" role="img" />
