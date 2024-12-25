@@ -166,20 +166,22 @@ export default function LayoutTabbar() {
 	useEffect(() => {
 		const activePath = location.pathname;
 		const normalizedPath = removeTrailingSlash(activePath);
+		// tabbarEnable 变量会导致本组件挂载和卸载，normalizedPath 可能与 activeKey 相同，增加判断防止 addTab 重复添加
+		if (normalizedPath !== activeKey) {
+			setActiveKey(normalizedPath);
 
-		setActiveKey(normalizedPath);
+			const routeTitle = currentRoute.handle?.title;
 
-		const routeTitle = currentRoute.handle?.title;
-
-		addTab(normalizedPath, {
-			key: normalizedPath,
-			// 保证 label 为 string 类型，存储到 sessionStorage。
-			label: isValidElement(routeTitle) ? routeTitle?.props?.children : routeTitle,
-			historyState: { search: location.search, hash: location.hash },
-			/* 登录之后跳转的默认路由，不可以关闭和拖拽 */
-			closable: normalizedPath !== import.meta.env.VITE_BASE_HOME_PATH,
-			draggable: normalizedPath !== import.meta.env.VITE_BASE_HOME_PATH,
-		});
+			addTab(normalizedPath, {
+				key: normalizedPath,
+				// 保证 label 为 string 类型，存储到 sessionStorage。
+				label: isValidElement(routeTitle) ? routeTitle?.props?.children : routeTitle,
+				historyState: { search: location.search, hash: location.hash },
+				/* 登录之后跳转的默认路由，不可以关闭和拖拽 */
+				closable: normalizedPath !== import.meta.env.VITE_BASE_HOME_PATH,
+				draggable: normalizedPath !== import.meta.env.VITE_BASE_HOME_PATH,
+			});
+		}
 	}, [location, currentRoute, setActiveKey, addTab]);
 
 	return (
