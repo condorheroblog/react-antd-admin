@@ -68,6 +68,14 @@ declare global {
 			 * @en Indicates whether the current theme is light. True if the theme is "light", otherwise false.
 			 */
 			isLight: boolean
+			/**
+			 * ant design 组件的类名前缀
+			 *
+			 * @zh 组件的类名前缀
+			 * @en Component class name prefix
+			 * @default "ant"
+			 */
+			prefixCls: string
 		}
 	}
 }

@@ -18,12 +18,14 @@ const constantColumns: ProColumns<RoleItemType>[] = [
 		dataIndex: "index",
 		title: "角色编号",
 		valueType: "indexBorder",
+		width: 80,
 	},
 	{
 		title: "角色名称",
 		dataIndex: "name",
 		disable: true,
 		ellipsis: true,
+		width: 120,
 		formItemProps: {
 			rules: [
 				{
@@ -37,6 +39,7 @@ const constantColumns: ProColumns<RoleItemType>[] = [
 		disable: true,
 		title: "角色标识",
 		dataIndex: "code",
+		width: 120,
 		filters: true,
 		onFilter: true,
 		ellipsis: true,
@@ -46,6 +49,7 @@ const constantColumns: ProColumns<RoleItemType>[] = [
 		title: "状态",
 		dataIndex: "status",
 		valueType: "select",
+		width: 80,
 		render: (text, record) => {
 			return <Tag color={record.status === 1 ? "success" : "default"}>{text}</Tag>;
 		},
@@ -66,8 +70,9 @@ const constantColumns: ProColumns<RoleItemType>[] = [
 	{
 		title: "创建时间",
 		dataIndex: "createTime",
-		valueType: "date",
+		valueType: "dateTime",
 		search: false,
+		width: 180,
 	},
 ];
 
@@ -103,6 +108,7 @@ export default function Role() {
 			title: t("common.action"),
 			valueType: "option",
 			key: "option",
+			width: 120,
 			render: (text, record, _, action) => {
 				return [
 					<BasicButton
@@ -148,7 +154,6 @@ export default function Role() {
 			<BasicTable<RoleItemType>
 				columns={columns}
 				actionRef={actionRef}
-				cardBordered
 				request={async (params) => {
 					// console.log(sort, filter);
 					const responseData = await roleListMutation.mutateAsync(params);
@@ -158,27 +163,6 @@ export default function Role() {
 						total: responseData.result.total,
 					};
 				}}
-				rowKey="id"
-				search={{
-					layout: "horizontal",
-					defaultColsNumber: 3,
-					showHiddenNum: true,
-					labelWidth: "auto",
-				}}
-				options={{
-					fullScreen: true,
-				}}
-				form={{
-					// 同步结果到 url 中
-					syncToUrl: (values, type) => {
-						if (type === "get") {
-							return {
-								...values,
-							};
-						}
-						return values;
-					},
-				}}
 				pagination={{
 					position: ["bottomRight"],
 					defaultPageSize: 10,
@@ -187,10 +171,8 @@ export default function Role() {
 					// showTotal={(total) => `Total ${total} items`}
 					showTotal: total => `共 ${total} 条`,
 				}}
-				dateFormatter="string"
 				headerTitle="角色管理（仅演示，操作后不生效）"
 				toolBarRender={() => [
-
 					<Button
 						key="add-role"
 						icon={<PlusCircleOutlined />}

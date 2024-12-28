@@ -6,7 +6,6 @@ import { resultSuccess } from "./utils";
 const systemMenu = [
 	// 系统管理
 	{
-		parentId: 0,
 		id: system,
 		menuType: 0, // 菜单类型（0 代表菜单、1 代表 iframe、2 代表外链、3 代表按钮）
 		title: "common.menu.system",
@@ -39,19 +38,19 @@ const systemMenu = [
 		parentId: system + 4,
 		id: system + 4 + 1,
 		menuType: 3,
-		title: "新增",
+		title: "common.add",
 	},
 	{
 		parentId: system + 4,
 		id: system + 4 + 2,
 		menuType: 3,
-		title: "编辑",
+		title: "common.edit",
 	},
 	{
 		parentId: system + 4,
 		id: system + 4 + 3,
 		menuType: 3,
-		title: "删除",
+		title: "common.delete",
 	},
 ];
 
@@ -85,7 +84,7 @@ export default defineFakeRoute([
 			list = list.filter(item =>
 				item.name.includes(body?.name ?? "")
 				&& String(item.status).includes(String(body?.status ?? ""))
-				&& (!body.code || item.code === body.code),
+				&& (!body?.code || item.code === body?.code),
 			);
 			return resultSuccess({
 				list,
@@ -139,6 +138,120 @@ export default defineFakeRoute([
 				return resultSuccess([]);
 			}
 			return resultSuccess([]);
+		},
+	},
+	// 菜单管理
+	{
+		url: "/menu-list",
+		method: "get",
+		response: () => {
+			const menuList = [
+				// 系统管理
+				{
+					parentId: "", // 上级菜单 id
+					id: system, // 菜单 id
+					menuType: 0, // 菜单类型（0 代表菜单、1 代表 iframe、2 代表外链、3 代表按钮）
+					title: "common.menu.system", // 菜单名称
+					path: "/system", // 路由路径
+					component: "/system", // 组件路径
+					order: system, // 菜单顺序
+					icon: "SettingOutlined", // 菜单图标
+					currentActiveMenu: "", // 激活路径
+					iframeLink: "", // iframe 链接
+					keepAlive: true, // 是否缓存页面
+					externalLink: "", // 外链地址
+					hideInMenu: false, // 是否隐藏菜单
+					ignoreAccess: false, // 是否忽略权限
+				},
+				{
+					parentId: system,
+					id: system + 1,
+					menuType: 0,
+					title: "common.menu.system.user",
+					path: "/system/user", // 路由路径
+					component: "/system/user", // 组件路径
+					order: undefined, // 菜单顺序
+					icon: "UserOutlined", // 菜单图标
+					currentActiveMenu: "", // 激活路径
+					iframeLink: "", // iframe 链接
+					keepAlive: true, // 是否缓存页面
+					externalLink: "", // 外链地址
+					hideInMenu: false, // 是否隐藏菜单
+					ignoreAccess: false, // 是否忽略权限
+				},
+				{
+					parentId: system,
+					id: system + 2,
+					menuType: 0,
+					title: "common.menu.system.role",
+					path: "/system/role", // 路由路径
+					component: "/system/role", // 组件路径
+					order: undefined, // 菜单顺序
+					icon: "TeamOutlined", // 菜单图标
+					currentActiveMenu: "", // 激活路径
+					iframeLink: "", // iframe 链接
+					keepAlive: true, // 是否缓存页面
+					externalLink: "", // 外链地址
+					hideInMenu: false, // 是否隐藏菜单
+					ignoreAccess: false, // 是否忽略权限
+				},
+				{
+					parentId: system,
+					id: system + 3,
+					menuType: 0,
+					title: "common.menu.system.menu",
+					path: "/system/menu", // 路由路径
+					component: "/system/menu", // 组件路径
+					order: undefined, // 菜单顺序
+					icon: "MenuOutlined", // 菜单图标
+					currentActiveMenu: "", // 激活路径
+					iframeLink: "", // iframe 链接
+					keepAlive: true, // 是否缓存页面
+					externalLink: "", // 外链地址
+					hideInMenu: false, // 是否隐藏菜单
+					ignoreAccess: false, // 是否忽略权限
+				},
+				{
+					parentId: system,
+					id: system + 4,
+					menuType: 0,
+					title: "common.menu.system.dept",
+					path: "/system/dept", // 路由路径
+					component: "/system/dept", // 组件路径
+					order: undefined, // 菜单顺序
+					icon: "ApartmentOutlined", // 菜单图标
+					currentActiveMenu: "", // 激活路径
+					iframeLink: "", // iframe 链接
+					keepAlive: true, // 是否缓存页面
+					externalLink: "", // 外链地址
+					hideInMenu: false, // 是否隐藏菜单
+					ignoreAccess: false, // 是否忽略权限
+				},
+				{
+					parentId: system + 4,
+					id: system + 4 + 1,
+					menuType: 3,
+					title: "common.add",
+				},
+				{
+					parentId: system + 4,
+					id: system + 4 + 2,
+					menuType: 3,
+					title: "common.edit",
+				},
+				{
+					parentId: system + 4,
+					id: system + 4 + 3,
+					menuType: 3,
+					title: "common.delete",
+				},
+			];
+			return resultSuccess({
+				list: menuList,
+				total: menuList.length, // 总条目数
+				pageSize: 10, // 每页显示条目个数
+				current: 1, // 当前页数
+			});
 		},
 	},
 ]);

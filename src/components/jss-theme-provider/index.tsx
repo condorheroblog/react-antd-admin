@@ -1,7 +1,9 @@
 import type { ReactNode } from "react";
+
 import { usePreferences } from "#src/hooks";
 
-import { theme } from "antd";
+import { ConfigProvider, theme } from "antd";
+import { useContext } from "react";
 import { ThemeProvider } from "react-jss";
 
 /**
@@ -32,11 +34,13 @@ const { useToken } = theme;
  * @returns {JSX.Element} 返回的JSX元素
  */
 export function JSSThemeProvider({ children }: JSSThemeProviderProps) {
+	const antdContext = useContext(ConfigProvider.ConfigContext);
+	const prefixCls = antdContext.getPrefixCls();
 	const { token } = useToken();
 	const { theme, isDark, isLight } = usePreferences();
 
 	return (
-		<ThemeProvider theme={{ token, theme, isDark, isLight }}>
+		<ThemeProvider theme={{ token, theme, isDark, isLight, prefixCls }}>
 			{children}
 		</ThemeProvider>
 	);
