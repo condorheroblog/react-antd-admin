@@ -1,0 +1,1 @@
+import{u as r,j as o}from"./index-Qb6QFv69.js";import{i as a}from"./react-ez5sQda2.js";import{aj as e,B as i}from"./antd-7iRxzvCa.js";import"./faker-CiQWN7dT.js";function p(){const{t}=r(),s=a();return o.jsx(e,{status:"500",title:"500",subTitle:t("common.500SubTitle"),extra:o.jsx(i,{type:"primary",onClick:()=>{s("/")},children:t("common.backHome")})})}export{p as default};

@@ -1,1 +1,0 @@
-import{j as n,a1 as o}from"./index-BP5cVUUO.js";function r(s){const{children:t,className:e,style:a}=s;return n.jsx("div",{id:"basic-content",className:o("p-4 box-border",e),style:{...a},children:t})}export{r as B};
