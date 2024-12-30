@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 import plugin from "tailwindcss/plugin";
 
-import { getColorPalettes } from "./src/styles/css-variables";
+import { getColorPalettes } from "./src/styles/theme/antd/css-variables";
 
 export default {
 	darkMode: "class",

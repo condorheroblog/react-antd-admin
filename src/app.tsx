@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import { RouterProvider } from "react-router/dom";
 
 import { router } from "./router";
-import { customAntdDarkTheme, customAntdLightTheme } from "./styles/antd-theme";
+import { customAntdDarkTheme, customAntdLightTheme } from "./styles/theme/antd/antd-theme";
 import "dayjs/locale/zh-cn";
 
 export default function App() {
