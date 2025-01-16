@@ -12,80 +12,12 @@ import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Detail } from "./components/detail";
-
-const constantColumns: ProColumns<RoleItemType>[] = [
-	{
-		dataIndex: "index",
-		title: "角色编号",
-		valueType: "indexBorder",
-		width: 80,
-	},
-	{
-		title: "角色名称",
-		dataIndex: "name",
-		disable: true,
-		ellipsis: true,
-		width: 120,
-		formItemProps: {
-			rules: [
-				{
-					required: true,
-					message: "此项为必填项",
-				},
-			],
-		},
-	},
-	{
-		disable: true,
-		title: "角色标识",
-		dataIndex: "code",
-		width: 120,
-		filters: true,
-		onFilter: true,
-		ellipsis: true,
-	},
-	{
-		disable: true,
-		title: "状态",
-		dataIndex: "status",
-		valueType: "select",
-		width: 80,
-		render: (text, record) => {
-			return <Tag color={record.status === 1 ? "success" : "default"}>{text}</Tag>;
-		},
-		valueEnum: {
-			1: {
-				text: "启用",
-			},
-			0: {
-				text: "停用",
-			},
-		},
-	},
-	{
-		title: "备注",
-		dataIndex: "remark",
-		search: false,
-	},
-	{
-		title: "创建时间",
-		dataIndex: "createTime",
-		valueType: "dateTime",
-		search: false,
-		width: 180,
-	},
-];
+import { getConstantColumns } from "./constants";
 
 export default function Role() {
 	const { t } = useTranslation();
 	const hasAuth = useAuth();
 	const query = useQuery({ queryKey: ["role-menu"], queryFn: fetchRoleMenu });
-	const roleListMutation = useMutation({
-		mutationFn: fetchRoleList,
-	});
-	const roleMenuIdsMutation = useMutation({
-		mutationFn: fetchRoleMenuIds,
-	});
 	const deleteRoleItemMutation = useMutation({
 		mutationFn: fetchDeleteRoleItem,
 	});
@@ -94,21 +26,22 @@ export default function Role() {
 	const [title, setTitle] = useState("");
 	const [detailData, setDetailData] = useState<Partial<RoleItemType> & { menus?: string[] }>({});
 
-	const actionRef = useRef<ActionType>();
+	const actionRef = useRef<ActionType>(null);
 
 	const handleDeleteRow = async (id: number, action?: ProCoreActionType<object>) => {
 		const responseData = await deleteRoleItemMutation.mutateAsync(id);
 		await action?.reload?.();
-		window.$message?.success(`操作成功 userId = ${responseData.result}`);
+		window.$message?.success(`${t("common.deleteSuccess")} userId = ${responseData.result}`);
 	};
 
 	const columns: ProColumns<RoleItemType>[] = [
-		...constantColumns,
+		...getConstantColumns(t),
 		{
 			title: t("common.action"),
 			valueType: "option",
 			key: "option",
 			width: 120,
+			fixed: "right",
 			render: (text, record, _, action) => {
 				return [
 					<BasicButton
@@ -118,9 +51,9 @@ export default function Role() {
 						disabled={!hasAuth("update")}
 						onClick={async () => {
 							/* 请求角色菜单权限 */
-							const responseData = await roleMenuIdsMutation.mutateAsync({ id: record.id });
+							const responseData = await fetchRoleMenuIds({ id: record.id });
 							setIsOpen(true);
-							setTitle("编辑角色");
+							setTitle(t("system.role.editRole"));
 							setDetailData({ ...record, menus: responseData.result });
 						}}
 					>
@@ -156,22 +89,14 @@ export default function Role() {
 				actionRef={actionRef}
 				request={async (params) => {
 					// console.log(sort, filter);
-					const responseData = await roleListMutation.mutateAsync(params);
+					const responseData = await fetchRoleList(params);
 					return {
 						...responseData,
 						data: responseData.result.list,
 						total: responseData.result.total,
 					};
 				}}
-				pagination={{
-					position: ["bottomRight"],
-					defaultPageSize: 10,
-					showQuickJumper: true,
-					showSizeChanger: true,
-					// showTotal={(total) => `Total ${total} items`}
-					showTotal: total => `共 ${total} 条`,
-				}}
-				headerTitle="角色管理（仅演示，操作后不生效）"
+				headerTitle={`${t("common.menu.role")} （${t("common.demoOnly")}）`}
 				toolBarRender={() => [
 					<Button
 						key="add-role"
@@ -180,12 +105,11 @@ export default function Role() {
 						disabled={!hasAuth("add")}
 						onClick={() => {
 							setIsOpen(true);
-							setTitle("新增角色");
+							setTitle(t("system.role.addRole"));
 						}}
 					>
-						新增角色
+						{t("common.add")}
 					</Button>,
-
 				]}
 			/>
 			<Detail

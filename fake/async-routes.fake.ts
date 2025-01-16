@@ -20,7 +20,7 @@ const systemManagementRouter = {
 			path: "/system/user",
 			handle: {
 				icon: "UserOutlined",
-				title: "common.menu.system.user",
+				title: "common.menu.user",
 				roles: ["admin"],
 				permissions: [
 					"permission:button:add",
@@ -33,7 +33,7 @@ const systemManagementRouter = {
 			path: "/system/role",
 			handle: {
 				icon: "TeamOutlined",
-				title: "common.menu.system.role",
+				title: "common.menu.role",
 				roles: ["admin"],
 				permissions: [
 					"permission:button:add",
@@ -46,7 +46,7 @@ const systemManagementRouter = {
 			path: "/system/menu",
 			handle: {
 				icon: "MenuOutlined",
-				title: "common.menu.system.menu",
+				title: "common.menu.menu",
 				roles: ["admin"],
 				permissions: [
 					"permission:button:add",
@@ -60,7 +60,7 @@ const systemManagementRouter = {
 			handle: {
 				keepAlive: false,
 				icon: "ApartmentOutlined",
-				title: "common.menu.system.dept",
+				title: "common.menu.dept",
 				roles: ["admin"],
 				permissions: [
 					"permission:button:add",

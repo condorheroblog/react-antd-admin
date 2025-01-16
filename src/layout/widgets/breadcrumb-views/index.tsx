@@ -29,7 +29,8 @@ export function BreadcrumbViews() {
 			// https://ant.design/components/breadcrumb#use-with-browserhistory
 			itemRender={itemRender}
 			items={matches
-				.filter(match => match.handle)
+				// filter - root route & index route
+				.filter(match => match.handle && !match.pathname.endsWith("/"))
 				.map((match) => {
 					return {
 						title: isString(match.handle?.title) ? t(match.handle?.title) : match.handle?.title,

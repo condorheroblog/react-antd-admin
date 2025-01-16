@@ -12,6 +12,7 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { Form } from "antd";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 interface DetailProps {
 	treeData: TreeDataNodeWithId[]
@@ -23,6 +24,7 @@ interface DetailProps {
 }
 
 export function Detail({ title, open, onCloseChange, detailData, treeData, refreshTable }: DetailProps) {
+	const { t } = useTranslation();
 	const [form] = Form.useForm<RoleItemType>();
 
 	const addRoleItemMutation = useMutation({
@@ -37,13 +39,14 @@ export function Detail({ title, open, onCloseChange, detailData, treeData, refre
 		/* 有 id 则为修改，否则为新增 */
 		if (detailData.id) {
 			await updateRoleItemMutation.mutateAsync(values);
+			window.$message?.success(t("common.updateSuccess"));
 		}
 		else {
 			await addRoleItemMutation.mutateAsync(values);
+			window.$message?.success(t("common.addSuccess"));
 		}
 		/* 刷新表格 */
 		refreshTable?.();
-		window.$message?.success("操作成功");
 		// 不返回不会关闭弹框
 		return true;
 	};
@@ -90,14 +93,12 @@ export function Detail({ title, open, onCloseChange, detailData, treeData, refre
 				rules={[
 					{
 						required: true,
-						message: "请输入角色名称!",
 					},
 				]}
 				width="md"
 				name="name"
-				label="角色名称"
-				tooltip="最长为 24 位"
-				placeholder="请输入角色名称"
+				label={t("system.role.name")}
+				tooltip={t("form.length", { length: 24 })}
 			/>
 
 			<ProFormText
@@ -105,26 +106,24 @@ export function Detail({ title, open, onCloseChange, detailData, treeData, refre
 				rules={[
 					{
 						required: true,
-						message: "请输入角色标识!",
 					},
 				]}
 				width="md"
 				name="code"
-				label="角色标识"
-				placeholder="请输入角色标识"
+				label={t("system.role.id")}
 			/>
 
 			<ProFormRadio.Group
 				name="status"
-				label="角色状态"
+				label={t("common.status")}
 				radioType="button"
 				options={[
 					{
-						label: "启用",
+						label: t("common.enabled"),
 						value: 1,
 					},
 					{
-						label: "停用",
+						label: t("common.deactivated"),
 						value: 0,
 					},
 				]}
@@ -134,12 +133,11 @@ export function Detail({ title, open, onCloseChange, detailData, treeData, refre
 				allowClear
 				width="md"
 				name="remark"
-				label="备注"
-				placeholder="请输入备注"
+				label={t("common.remark")}
 			/>
 
 			<div>
-				<Form.Item name="menus" label="菜单分配">
+				<Form.Item name="menus" label={t("system.role.assignMenu")}>
 					<FormTreeItem treeData={treeData} />
 				</Form.Item>
 			</div>

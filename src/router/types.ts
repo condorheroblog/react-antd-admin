@@ -46,7 +46,7 @@ export interface RouteMeta {
 	keepAlive?: boolean
 
 	/**
-	 * 是否隐藏菜单，用于控制某些路由不在侧边栏菜单中显示
+	 * 是否在菜单中隐藏，用于控制某些路由不在侧边栏菜单中显示
 	 */
 	hideInMenu?: boolean
 

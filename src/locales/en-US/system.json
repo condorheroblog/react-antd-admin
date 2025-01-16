@@ -1,0 +1,42 @@
+{
+	"role": {
+		"name": "Role Name",
+		"id": "Role Id",
+		"addRole": "Add Role",
+		"editRole": "Edit Role",
+		"assignMenu": "Assign Menu"
+	},
+	"user": {
+		"name": "User Name",
+		"id": "User Id",
+		"addUser": "Add User",
+		"editUser": "Edit User"
+	},
+	"menu": {
+		"name": "Menu Name",
+		"routePath": "Route Path",
+		"addMenu": "Add Menu",
+		"editMenu": "Edit Menu",
+		"menuType": "Menu Type",
+		"menuTypeDesc": "Menu Type Description 0: Menu, 1: Iframe, 2: External Link, 3: Button",
+		"menu": "Menu",
+		"iframe": "Iframe",
+		"externalLink": "External Link",
+		"button": "Button",
+		"menuOrder": "Menu Order",
+		"menuIcon": "Menu Icon",
+		"componentUrl": "Component Url",
+		"keepAlive": "Cache Page",
+		"hideInMenu": "Hide in Menu",
+		"currentActiveMenu": "Active Path",
+		"iframeLink": "Iframe Link",
+		"externalLinkUrl": "External Link URL",
+		"parentMenu": "Parent Menu"
+	},
+	"dept": {
+		"name": "Department Name",
+		"id": "Department Id",
+		"addDept": "Add Department",
+		"editDept": "Edit Department"
+	}
+}

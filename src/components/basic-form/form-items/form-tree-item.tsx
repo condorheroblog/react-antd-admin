@@ -17,12 +17,6 @@ interface FormTreeItemProps {
 	onChange?: (value: React.Key[]) => void
 }
 
-const plainOptions = [
-	{ label: "展开所有 / 折叠所有", value: "expandAll" },
-	{ label: "选择所有 / 取消所有", value: "checkAll" },
-	// { label: '父子联动', value: 'checkStrictly' },
-];
-
 const { Search } = Input;
 
 function getParentKey(key: React.Key, tree: TreeDataNodeWithId[]): React.Key {
@@ -44,10 +38,7 @@ function getParentKey(key: React.Key, tree: TreeDataNodeWithId[]): React.Key {
 export function FormTreeItem({ treeData, value, onChange }: FormTreeItemProps) {
 	const [expandedKeys, setExpandedKeys] = useState<React.Key[]>([]);
 	const [searchValue, setSearchValue] = useState("");
-	const [checkedOptions, setCheckedOptions] = useState<string[]>(
-		// plainOptions.map(item => item.value)
-		[],
-	);
+	const [checkedOptions, setCheckedOptions] = useState<string[]>([]);
 	const [autoExpandParent, setAutoExpandParent] = useState(true);
 	const { t } = useTranslation();
 
@@ -113,18 +104,20 @@ export function FormTreeItem({ treeData, value, onChange }: FormTreeItemProps) {
 			onChange?.([]);
 		}
 	}, [checkedOptions, flattenTreeData]);
-
 	return (
 		<>
 			<Search
 				className="mb-3"
-				placeholder="请输入菜单进行搜索"
+				placeholder={t("common.keywordSearch")}
 				allowClear
 				value={searchValue}
 				onChange={handleSearchChange}
 			/>
 			<Checkbox.Group
-				options={plainOptions}
+				options={[
+					{ label: checkedOptions.includes("expandAll") ? t("common.collapseAll") : t("common.expandAll"), value: "expandAll" },
+					{ label: checkedOptions.includes("checkAll") ? t("common.cancelAll") : t("common.checkAll"), value: "checkAll" },
+				]}
 				value={checkedOptions}
 				rootClassName="flex justify-between items-center mb-3"
 				onChange={onCheckboxChange}

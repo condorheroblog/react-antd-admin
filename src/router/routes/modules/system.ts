@@ -24,7 +24,7 @@ const routes: AppRouteRecordRaw[] = [
 				Component: User,
 				handle: {
 					icon: "UserOutlined",
-					title: "common.menu.system.user",
+					title: "common.menu.user",
 					roles: ["admin"],
 					permissions: [
 						"permission:button:add",
@@ -38,7 +38,7 @@ const routes: AppRouteRecordRaw[] = [
 				Component: Role,
 				handle: {
 					icon: "TeamOutlined",
-					title: "common.menu.system.role",
+					title: "common.menu.role",
 					roles: ["admin"],
 					permissions: [
 						"permission:button:add",
@@ -52,7 +52,7 @@ const routes: AppRouteRecordRaw[] = [
 				Component: Menu,
 				handle: {
 					icon: "MenuOutlined",
-					title: "common.menu.system.menu",
+					title: "common.menu.menu",
 					roles: ["admin"],
 					permissions: [
 						"permission:button:add",
@@ -67,7 +67,7 @@ const routes: AppRouteRecordRaw[] = [
 				handle: {
 					keepAlive: false,
 					icon: "ApartmentOutlined",
-					title: "common.menu.system.dept",
+					title: "common.menu.dept",
 					roles: ["admin"],
 					permissions: [
 						"permission:button:add",

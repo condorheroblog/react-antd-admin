@@ -8,49 +8,49 @@ const systemMenu = [
 	{
 		id: system,
 		menuType: 0, // 菜单类型（0 代表菜单、1 代表 iframe、2 代表外链、3 代表按钮）
-		title: "common.menu.system",
+		name: "common.menu.system",
 	},
 	{
 		parentId: system,
 		id: system + 1,
 		menuType: 0,
-		title: "common.menu.system.user",
+		name: "common.menu.user",
 	},
 	{
 		parentId: system,
 		id: system + 2,
 		menuType: 0,
-		title: "common.menu.system.role",
+		name: "common.menu.role",
 	},
 	{
 		parentId: system,
 		id: system + 3,
 		menuType: 0,
-		title: "common.menu.system.menu",
+		name: "common.menu.menu",
 	},
 	{
 		parentId: system,
 		id: system + 4,
 		menuType: 0,
-		title: "common.menu.system.dept",
+		name: "common.menu.dept",
 	},
 	{
 		parentId: system + 4,
 		id: system + 4 + 1,
 		menuType: 3,
-		title: "common.add",
+		name: "common.add",
 	},
 	{
 		parentId: system + 4,
 		id: system + 4 + 2,
 		menuType: 3,
-		title: "common.edit",
+		name: "common.edit",
 	},
 	{
 		parentId: system + 4,
 		id: system + 4 + 3,
 		menuType: 3,
-		title: "common.delete",
+		name: "common.delete",
 	},
 ];
 
@@ -151,7 +151,7 @@ export default defineFakeRoute([
 					parentId: "", // 上级菜单 id
 					id: system, // 菜单 id
 					menuType: 0, // 菜单类型（0 代表菜单、1 代表 iframe、2 代表外链、3 代表按钮）
-					title: "common.menu.system", // 菜单名称
+					name: "common.menu.system", // 菜单名称
 					path: "/system", // 路由路径
 					component: "/system", // 组件路径
 					order: system, // 菜单顺序
@@ -160,14 +160,17 @@ export default defineFakeRoute([
 					iframeLink: "", // iframe 链接
 					keepAlive: true, // 是否缓存页面
 					externalLink: "", // 外链地址
-					hideInMenu: false, // 是否隐藏菜单
+					hideInMenu: false, // 是否在菜单中隐藏
 					ignoreAccess: false, // 是否忽略权限
+					status: 1, // 状态（0 停用、1 启用）
+					createTime: 1737023155965,
+					updateTime: 1737023164653,
 				},
 				{
 					parentId: system,
 					id: system + 1,
 					menuType: 0,
-					title: "common.menu.system.user",
+					name: "common.menu.user",
 					path: "/system/user", // 路由路径
 					component: "/system/user", // 组件路径
 					order: undefined, // 菜单顺序
@@ -176,14 +179,17 @@ export default defineFakeRoute([
 					iframeLink: "", // iframe 链接
 					keepAlive: true, // 是否缓存页面
 					externalLink: "", // 外链地址
-					hideInMenu: false, // 是否隐藏菜单
+					hideInMenu: false, // 是否在菜单中隐藏
 					ignoreAccess: false, // 是否忽略权限
+					status: 1, // 状态（0 停用、1 启用）
+					createTime: 1737023155965,
+					updateTime: 1737023164653,
 				},
 				{
 					parentId: system,
 					id: system + 2,
 					menuType: 0,
-					title: "common.menu.system.role",
+					name: "common.menu.role",
 					path: "/system/role", // 路由路径
 					component: "/system/role", // 组件路径
 					order: undefined, // 菜单顺序
@@ -192,14 +198,17 @@ export default defineFakeRoute([
 					iframeLink: "", // iframe 链接
 					keepAlive: true, // 是否缓存页面
 					externalLink: "", // 外链地址
-					hideInMenu: false, // 是否隐藏菜单
+					hideInMenu: false, // 是否在菜单中隐藏
 					ignoreAccess: false, // 是否忽略权限
+					status: 1, // 状态（0 停用、1 启用）
+					createTime: 1737023155965,
+					updateTime: 1737023164653,
 				},
 				{
 					parentId: system,
 					id: system + 3,
 					menuType: 0,
-					title: "common.menu.system.menu",
+					name: "common.menu.menu",
 					path: "/system/menu", // 路由路径
 					component: "/system/menu", // 组件路径
 					order: undefined, // 菜单顺序
@@ -208,14 +217,17 @@ export default defineFakeRoute([
 					iframeLink: "", // iframe 链接
 					keepAlive: true, // 是否缓存页面
 					externalLink: "", // 外链地址
-					hideInMenu: false, // 是否隐藏菜单
+					hideInMenu: false, // 是否在菜单中隐藏
 					ignoreAccess: false, // 是否忽略权限
+					status: 1, // 状态（0 停用、1 启用）
+					createTime: 1737023155965,
+					updateTime: 1737023164653,
 				},
 				{
 					parentId: system,
 					id: system + 4,
 					menuType: 0,
-					title: "common.menu.system.dept",
+					name: "common.menu.dept",
 					path: "/system/dept", // 路由路径
 					component: "/system/dept", // 组件路径
 					order: undefined, // 菜单顺序
@@ -224,26 +236,38 @@ export default defineFakeRoute([
 					iframeLink: "", // iframe 链接
 					keepAlive: true, // 是否缓存页面
 					externalLink: "", // 外链地址
-					hideInMenu: false, // 是否隐藏菜单
+					hideInMenu: false, // 是否在菜单中隐藏
 					ignoreAccess: false, // 是否忽略权限
+					status: 1, // 状态（0 停用、1 启用）
+					createTime: 1737023155965,
+					updateTime: 1737023164653,
 				},
 				{
 					parentId: system + 4,
 					id: system + 4 + 1,
 					menuType: 3,
-					title: "common.add",
+					name: "common.add",
+					status: 1, // 状态（0 停用、1 启用）
+					createTime: 1737023155965,
+					updateTime: 1737023164653,
 				},
 				{
 					parentId: system + 4,
 					id: system + 4 + 2,
 					menuType: 3,
-					title: "common.edit",
+					name: "common.edit",
+					status: 1, // 状态（0 停用、1 启用）
+					createTime: 1737023155965,
+					updateTime: 1737023164653,
 				},
 				{
 					parentId: system + 4,
 					id: system + 4 + 3,
 					menuType: 3,
-					title: "common.delete",
+					name: "common.delete",
+					status: 1, // 状态（0 停用、1 启用）
+					createTime: 1737023155965,
+					updateTime: 1737023164653,
 				},
 			];
 			return resultSuccess({
@@ -252,6 +276,27 @@ export default defineFakeRoute([
 				pageSize: 10, // 每页显示条目个数
 				current: 1, // 当前页数
 			});
+		},
+	},
+	{
+		url: "/menu-item",
+		method: "post",
+		response: () => {
+			return resultSuccess({});
+		},
+	},
+	{
+		url: "/menu-item",
+		method: "delete",
+		response: () => {
+			return resultSuccess({});
+		},
+	},
+	{
+		url: "/menu-item",
+		method: "put",
+		response: () => {
+			return resultSuccess({});
 		},
 	},
 ]);

@@ -368,7 +368,7 @@ export interface RouteMeta {
 	keepAlive?: boolean
 
 	/**
-	 * 是否隐藏菜单，用于控制某些路由不在侧边栏菜单中显示
+	 * 是否在菜单中隐藏，用于控制某些路由不在侧边栏菜单中显示
 	 */
 	hideInMenu?: boolean
 
@@ -469,7 +469,7 @@ export interface RouteMeta {
 - 类型：`boolean`
 - 默认值：`false`
 
-是否隐藏菜单，用于控制某些路由不在侧边栏菜单中显示。
+是否在菜单中隐藏，用于控制某些路由不在侧边栏菜单中显示。
 
 ### iframeLink
 

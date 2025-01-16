@@ -1,11 +1,13 @@
 import type { ParamsType, ProTableProps } from "@ant-design/pro-components";
 
-import { cn } from "#src/utils/cn";
+import type { TablePaginationConfig } from "antd";
 
-import { LoadingOutlined } from "@ant-design/icons";
+import { cn } from "#src/utils/cn";
+import { DownOutlined, LoadingOutlined, RightOutlined } from "@ant-design/icons";
 import { ProTable } from "@ant-design/pro-components";
 import { useSize } from "ahooks";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { BASIC_TABLE_ROOT_CLASS_NAME } from "./constants";
 import { useStyles } from "./styles";
@@ -35,6 +37,7 @@ export function BasicTable<
 	props: BasicTableProps<DataType, Params, ValueType>,
 ) {
 	const classes = useStyles();
+	const { t } = useTranslation();
 	const { autoHeight = true, offsetBottom } = props;
 	const tableWrapperRef = useRef<HTMLDivElement>(null);
 	const size = useSize(tableWrapperRef);
@@ -106,6 +109,21 @@ export function BasicTable<
 		};
 	};
 
+	const getPaginationProps = () => {
+		if (props.pagination === false) {
+			return false;
+		}
+
+		return {
+			position: ["bottomRight"],
+			defaultPageSize: 10,
+			showQuickJumper: true,
+			showSizeChanger: true,
+			showTotal: total => t("common.pagination", { total }),
+			...props.pagination,
+		} satisfies TablePaginationConfig;
+	};
+
 	return (
 		<div className="h-full" ref={tableWrapperRef}>
 			<ProTable
@@ -122,6 +140,19 @@ export function BasicTable<
 				// 设置 y 为 0，保证 tableBodyRect.height 小于 bodyHeight
 				scroll={{ y: scrollY, ...props.scroll }}
 				loading={getLoadingProps()}
+				pagination={getPaginationProps()}
+				expandable={{
+					// expandIcon: ({ expanded, onExpand, record }) => {
+					// 	return expanded
+					// 		? (
+					// 			<RightOutlined onClick={e => onExpand(record, e)} />
+					// 		)
+					// 		: (
+					// 			<DownOutlined onClick={e => onExpand(record, e)} />
+					// 		);
+					// },
+					...props.expandable,
+				}}
 			/>
 		</div>
 	);

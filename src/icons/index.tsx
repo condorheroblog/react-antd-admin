@@ -4,8 +4,8 @@ import { cn } from "#src/utils";
 import Icon from "@ant-design/icons";
 
 import FollowSystem from "./svg/follow-system.svg?react";
-import Fullscreen from "./svg/fullscreen.svg?react";
 import FullscreenExit from "./svg/fullscreen-exit.svg?react";
+import Fullscreen from "./svg/fullscreen.svg?react";
 import MailCheck from "./svg/mail-check.svg?react";
 import MixedNavigation from "./svg/mixed-navigation.svg?react";
 import Moon from "./svg/moon.svg?react";

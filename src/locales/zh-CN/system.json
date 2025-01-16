@@ -1,0 +1,42 @@
+{
+	"role": {
+		"name": "角色名称",
+		"id": "角色标识",
+		"addRole": "新增角色",
+		"editRole": "编辑角色",
+		"assignMenu": "分配菜单"
+	},
+	"user": {
+		"name": "用户名称",
+		"id": "用户标识",
+		"addUser": "新增用户",
+		"editUser": "编辑用户"
+	},
+	"menu": {
+		"name": "菜单名称",
+		"routePath": "路由路径",
+		"addMenu": "新增菜单",
+		"editMenu": "编辑菜单",
+		"menuType": "菜单类型",
+		"menuTypeDesc": "菜单类型：0 代表菜单、1 代表 Iframe、2 代表外链、3 代表按钮",
+		"menu": "菜单",
+		"iframe": "Iframe",
+		"externalLink": "外链",
+		"button": "按钮",
+		"menuOrder": "菜单顺序",
+		"menuIcon": "菜单图标",
+		"componentUrl": "组件路径",
+		"keepAlive": "缓存页面",
+		"hideInMenu": "菜单中隐藏",
+		"currentActiveMenu": "激活路径",
+		"iframeLink": "Iframe 链接",
+		"externalLinkUrl": "外链地址",
+		"parentMenu": "上级菜单"
+	},
+	"dept": {
+		"name": "部门名称",
+		"id": "部门标识",
+		"addDept": "新增部门",
+		"editDept": "编辑部门"
+	}
+}

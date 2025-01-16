@@ -1,4 +1,6 @@
 {
+	"required": "Please input",
+	"length": "Only supports {{length}} characters",
 	"username": {
 		"required": "Please enter your username",
 		"invalid": "Please enter a username of 4 to 16 characters, supporting letters, numbers, underscores, and hyphens"

@@ -23,7 +23,7 @@ const routes: AppRouteRecordRaw[] = [
 				path: "/personal-center/my-profile",
 				Component: MyProfile,
 				handle: {
-					title: $t("common.menu.personalCenter.profile"),
+					title: $t("common.menu.profile"),
 					icon: createElement(ProfileIcon),
 				},
 			},
@@ -31,7 +31,7 @@ const routes: AppRouteRecordRaw[] = [
 				path: "/personal-center/settings",
 				Component: Settings,
 				handle: {
-					title: $t("common.menu.personalCenter.settings"),
+					title: $t("common.menu.settings"),
 					icon: createElement(UserSettingsIcon),
 				},
 			},

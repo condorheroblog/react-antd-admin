@@ -1,11 +1,11 @@
 import type { FallbackProps } from "react-error-boundary";
+// https://undraw.co/search
+import BugFixing from "#src/assets/svg/undraw-bug-fixing.svg?react";
 import { Button, Typography } from "antd";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
 
-// https://undraw.co/search
-import BugFixing from "#src/assets/svg/undraw-bug-fixing.svg?react";
+import { useNavigate } from "react-router";
 
 const { VITE_BASE_HOME_PATH } = import.meta.env;
 

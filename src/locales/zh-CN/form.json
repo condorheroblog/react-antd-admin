@@ -1,4 +1,6 @@
 {
+	"required": "必填项",
+	"length": "只支持 {{length}} 个字符",
 	"username": {
 		"required": "请输入用户名",
 		"invalid": "4 到 16 位，支持字母、数字、下划线和减号"
