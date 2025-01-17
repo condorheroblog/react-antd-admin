@@ -128,7 +128,7 @@ export default defineFakeRoute([
 	},
 	// 角色管理-权限-菜单权限，根据角色 id 查对应菜单
 	{
-		url: "/role-menu-ids",
+		url: "/menu-by-role-id",
 		method: "get",
 		response: ({ query }) => {
 			if (query.id === "1") {

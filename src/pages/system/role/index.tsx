@@ -1,13 +1,13 @@
 import type { RoleItemType } from "#src/api/system";
 import type { ActionType, ProColumns, ProCoreActionType } from "@ant-design/pro-components";
-import { fetchDeleteRoleItem, fetchRoleList, fetchRoleMenu, fetchRoleMenuIds } from "#src/api/system";
+import { fetchDeleteRoleItem, fetchMenuByRoleId, fetchRoleList, fetchRoleMenu } from "#src/api/system";
 import { BasicButton, BasicContent, BasicTable } from "#src/components";
 import { useAuth } from "#src/hooks";
 import { handleTree } from "#src/utils";
 
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Button, Popconfirm, Tag } from "antd";
+import { Button, Popconfirm } from "antd";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -17,7 +17,18 @@ import { getConstantColumns } from "./constants";
 export default function Role() {
 	const { t } = useTranslation();
 	const hasAuth = useAuth();
-	const query = useQuery({ queryKey: ["role-menu"], queryFn: fetchRoleMenu });
+	const { data: menuItems } = useQuery({
+		queryKey: ["role-menu"],
+		queryFn: async () => {
+			const responseData = await fetchRoleMenu();
+			return responseData?.result.map(item => ({
+				...item,
+				title: item.name,
+				key: item.id,
+			}));
+		},
+		initialData: [],
+	});
 	const deleteRoleItemMutation = useMutation({
 		mutationFn: fetchDeleteRoleItem,
 	});
@@ -51,7 +62,7 @@ export default function Role() {
 						disabled={!hasAuth("update")}
 						onClick={async () => {
 							/* 请求角色菜单权限 */
-							const responseData = await fetchRoleMenuIds({ id: record.id });
+							const responseData = await fetchMenuByRoleId({ id: record.id });
 							setIsOpen(true);
 							setTitle(t("system.role.editRole"));
 							setDetailData({ ...record, menus: responseData.result });
@@ -81,7 +92,6 @@ export default function Role() {
 	const refreshTable = () => {
 		actionRef.current?.reload();
 	};
-
 	return (
 		<BasicContent className="h-full">
 			<BasicTable<RoleItemType>
@@ -118,7 +128,7 @@ export default function Role() {
 				onCloseChange={onCloseChange}
 				detailData={detailData}
 				refreshTable={refreshTable}
-				treeData={handleTree(query.data?.result || [])}
+				treeData={handleTree(menuItems || [])}
 			/>
 		</BasicContent>
 	);
