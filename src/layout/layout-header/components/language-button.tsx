@@ -3,6 +3,7 @@ import type { ButtonProps, MenuProps } from "antd";
 
 import { BasicButton } from "#src/components";
 import { useLanguage } from "#src/hooks";
+import { getLanguageItems } from "#src/layout/widgets/preferences/blocks/general/utils";
 
 import { TranslationOutlined } from "@ant-design/icons";
 import { Dropdown } from "antd";
@@ -10,16 +11,7 @@ import { Dropdown } from "antd";
 export function LanguageButton({ ...restProps }: ButtonProps) {
 	const { language, setLanguage } = useLanguage();
 
-	const items: MenuProps["items"] = [
-		{
-			label: "简体中文",
-			key: "zh-CN",
-		},
-		{
-			label: "English",
-			key: "en-US",
-		},
-	];
+	const items: MenuProps["items"] = getLanguageItems();
 
 	const onClick: MenuProps["onClick"] = ({ key }) => {
 		setLanguage(key as LanguageType);

@@ -71,13 +71,28 @@ interface LayoutState {
 	sideCollapseWidth: number
 }
 
-interface PreferencesState extends AnimationState, LayoutState {
+export interface GeneralState {
 	/**
 		* @zh 当前语言
 		* @en Current language
+		* @default "zh-CN"
 		*/
 	language: LanguageType
+	/**
+	 * @zh 是否开启更新检查
+	 * @en Whether to enable update check
+	 * @default true
+	 */
+	enableCheckUpdates: boolean
+	/**
+	 * @zh 轮训时间，单位：分钟，默认 1 分钟
+	 * @en Polling time, unit: minute, default 1 minute
+	 * @default 1
+	 */
+	checkUpdatesInterval: number
+}
 
+interface PreferencesState extends AnimationState, LayoutState, GeneralState {
 	/* ================== Theme ================== */
 	/**
 	 * @zh 当前主题
@@ -169,7 +184,12 @@ interface PreferencesState extends AnimationState, LayoutState {
  * 默认偏好设置
  */
 export const DEFAULT_PREFERENCES = {
+	/* ================== General ================== */
 	language: "zh-CN",
+	enableCheckUpdates: true,
+	checkUpdatesInterval: 1,
+	/* ================== General ================== */
+
 	/* ================== Theme ================== */
 	theme: "auto",
 	colorBlindMode: false,

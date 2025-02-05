@@ -10,7 +10,14 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
-import { Animation, BuiltinTheme, PreferencesLayout, SiteTheme, Tabbar } from "./blocks";
+import {
+	Animation,
+	BuiltinTheme,
+	General,
+	PreferencesLayout,
+	SiteTheme,
+	Tabbar,
+} from "./blocks";
 
 export function Preferences({ ...restProps }: ButtonProps) {
 	const { t } = useTranslation();
@@ -98,6 +105,8 @@ export function Preferences({ ...restProps }: ButtonProps) {
 						alignItems: "center",
 					}}
 				>
+					<Divider>{t("preferences.general.title")}</Divider>
+					<General />
 					<Divider>{t("preferences.theme.title")}</Divider>
 					<SiteTheme />
 					<Divider>{t("preferences.theme.builtin.title")}</Divider>

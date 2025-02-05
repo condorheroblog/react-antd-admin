@@ -76,5 +76,10 @@
 		"loading": "Page Loading",
 		"transition": "Page Transition",
 		"progress": "Page Progress"
+	},
+	"general": {
+		"title": "General",
+		"language": "Language",
+		"enableCheckUpdate": "Check Update"
 	}
 }

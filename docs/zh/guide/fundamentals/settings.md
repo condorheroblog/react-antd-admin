@@ -50,9 +50,6 @@ VITE_API_BASE_URL = "/api"
 # 登录之后默认调转的路由
 VITE_BASE_HOME_PATH = "/home"
 
-# 开启系统自动更新
-VITE_APP_VERSION_MONITOR = "Y"
-
 # 网站标题
 VITE_GLOB_APP_TITLE = "React Antd Admin"
 
@@ -88,7 +85,6 @@ VITE_PORT=3333
 interface ImportMetaEnv {
 	readonly VITE_API_BASE_URL: string
 	readonly VITE_BASE_HOME_PATH: string
-	readonly VITE_APP_VERSION_MONITOR: "Y" | "N"
 	readonly VITE_GLOB_APP_TITLE: string
 	readonly VITE_PORT: number // [!code ++]
 }
@@ -113,7 +109,12 @@ interface ImportMeta {
  * 默认偏好设置
  */
 export const DEFAULT_PREFERENCES = {
+	/* ================== General ================== */
 	language: "zh-CN",
+	enableCheckUpdates: true,
+	checkUpdatesInterval: 1,
+	/* ================== General ================== */
+
 	/* ================== Theme ================== */
 	theme: "auto",
 	colorBlindMode: false,

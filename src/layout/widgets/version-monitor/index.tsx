@@ -3,13 +3,20 @@ import { createElement, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 interface AppVersionMonitorProps {
-	// 轮训时间，单位：分钟，默认 1 分钟
+	/**
+	 * @zh 轮训时间，单位：分钟，默认 1 分钟
+	 * @en Polling time, unit: minute, default 1 minute
+	 * @default 1
+	 */
 	checkUpdatesInterval?: number
 	// 检查更新的地址
 	checkUpdateUrl?: string
 }
 
-export function AppVersionMonitor({ checkUpdatesInterval = 1, checkUpdateUrl = import.meta.env.BASE_URL ?? "/" }: AppVersionMonitorProps) {
+export function AppVersionMonitor({
+	checkUpdatesInterval = 1,
+	checkUpdateUrl = import.meta.env.BASE_URL ?? "/",
+}: AppVersionMonitorProps) {
 	let isCheckingUpdates = false;
 	const { t } = useTranslation();
 	const currentVersionTag = useRef("");

@@ -6,7 +6,7 @@ import { SelectItem } from "../../select-item";
 import { SwitchItem } from "../../switch-item";
 
 export function Tabbar() {
-	const { t, i18n } = useTranslation();
+	const { t } = useTranslation();
 	const {
 		tabbarEnable,
 		tabbarShowIcon,
@@ -88,7 +88,6 @@ export function Tabbar() {
 				{t("preferences.tabbar.showMaximize")}
 			</SwitchItem>
 			<SelectItem
-				key={i18n.language}
 				name="tabbarStyleType"
 				value={tabbarStyleType}
 				disabled={!tabbarEnable}
