@@ -11,6 +11,7 @@
 		"svgr",
 		"vitepress",
 		"vite",
+		"taze",
 		"zustand"
 	],
 	// Disable the default formatter, use eslint instead

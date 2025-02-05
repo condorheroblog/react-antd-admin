@@ -12,7 +12,7 @@ import {
 	Space,
 	Typography,
 } from "antd";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
 import { createUseStyles } from "react-jss";
 import { FORM_COMPONENT_MAP, FormModeContext } from "./form-mode-context";
@@ -64,7 +64,7 @@ export default function Login() {
 						<div className="flex flex-col justify-center h-full gap-3">
 							<Space>
 								<img src={logo} alt="logo" className={classes.logo} />
-								<Title level={1} ellipsis={true} className="!text-sm">
+								<Title level={1} ellipsis className="!text-sm">
 									{import.meta.env.VITE_GLOB_APP_TITLE}
 								</Title>
 							</Space>

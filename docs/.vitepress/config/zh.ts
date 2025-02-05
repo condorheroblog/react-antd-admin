@@ -1,4 +1,5 @@
-import { type DefaultTheme, defineConfig } from "vitepress";
+import type { DefaultTheme } from "vitepress";
+import { defineConfig } from "vitepress";
 
 export const zh = defineConfig({
 	lang: "zh-Hans",
@@ -85,7 +86,9 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
 				{ text: "国际化", link: "advanced/locale" },
 				{ text: "权限", link: "advanced/access" },
 				{ text: "主题", link: "advanced/theme" },
-				{ text: "App Loading", link: "advanced/loading" },
+				{ text: "应用 Loading", link: "advanced/loading" },
+				{ text: "监控网站更新", link: "advanced/monitoring-updates" },
+				{ text: "项目升级", link: "advanced/upgrading" },
 			],
 		},
 	];
