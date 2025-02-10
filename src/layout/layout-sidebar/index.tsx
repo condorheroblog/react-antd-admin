@@ -15,7 +15,7 @@ export default function LayoutSidebar({ children, computedSidebarWidth }: Layout
 	const { sidebarCollapsed, sidebarTheme, isDark } = usePreferences();
 	const {
 		token: { Menu },
-	} = theme.useToken();
+	} = antdTheme.useToken();
 
 	const isFixedDarkTheme = isDark || sidebarTheme === "dark";
 
@@ -36,7 +36,7 @@ export default function LayoutSidebar({ children, computedSidebarWidth }: Layout
 						boxShadow: "3px 0 5px 0 rgb(29, 35, 41, 0.05)",
 					}
 				}
-				className="fixed left-0 top-0 bottom-0 transition-all overflow-y-auto overflow-x-hidden border-r border-r-colorBorderSecondary"
+				className="fixed top-0 bottom-0 left-0 overflow-x-hidden overflow-y-auto transition-all border-r border-r-colorBorderSecondary"
 			>
 				<Logo sidebarCollapsed={sidebarCollapsed} />
 				<div className="overflow-hidden" style={{ height: `calc(100% - ${headerHeight}px - ${siderTriggerHeight}px)` }}>
