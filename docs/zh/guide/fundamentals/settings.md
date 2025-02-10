@@ -133,8 +133,7 @@ export const DEFAULT_PREFERENCES = {
 
 	/* ================== Layout ================== */
 	navigationStyle: SIDE_NAVIGATION,
-	sidebarWidth: 210,
-	sideCollapseWidth: COLLAPSED_WIDTH,
+
 	/* ================== Layout ================== */
 
 	/* ================== Tabbar ================== */
@@ -146,6 +145,17 @@ export const DEFAULT_PREFERENCES = {
 	tabbarShowMore: true,
 	tabbarShowMaximize: true,
 	/* ================== Tabbar ================== */
+
+	/* ================== Sidebar ================== */
+	sidebarEnable: true,
+	sidebarWidth: 210,
+	sideCollapsedWidth: 56,
+	sidebarCollapsed: false,
+	sidebarCollapseShowTitle: true,
+	sidebarExtraCollapsedWidth: 48,
+	firstColumnWidthInTwoColumnNavigation: 80,
+	sidebarTheme: "light",
+	/* ================== Sidebar ================== */
 } satisfies PreferencesState;
 ```
 

@@ -1,9 +1,9 @@
 import { Scrollbar } from "#src/components";
+import { usePreferences } from "#src/hooks";
 
-import { theme } from "antd";
-import { useContext } from "react";
+import { theme as antdTheme, ConfigProvider } from "antd";
 
-import { LayoutContext } from "../container-layout/layout-context";
+import { headerHeight, siderTriggerHeight } from "../constants";
 import { Logo, SiderTrigger } from "../widgets";
 
 export interface LayoutSidebarProps {
@@ -12,30 +12,40 @@ export interface LayoutSidebarProps {
 }
 
 export default function LayoutSidebar({ children, computedSidebarWidth }: LayoutSidebarProps) {
-	const { sidebarCollapsed } = useContext(LayoutContext);
+	const { sidebarCollapsed, sidebarTheme, isDark } = usePreferences();
 	const {
-		token: { colorBgContainer },
+		token: { Menu },
 	} = theme.useToken();
 
+	const isFixedDarkTheme = isDark || sidebarTheme === "dark";
+
 	return (
-		<aside
-			style={
-				{
-					// 一个像素的 border
-					width: computedSidebarWidth + 1,
-					backgroundColor: colorBgContainer,
-					boxShadow: "3px 0 5px 0 rgb(29, 35, 41, 0.05)",
-				}
-			}
-			className="fixed left-0 top-0 bottom-0 transition-all overflow-y-auto overflow-x-hidden border-r border-r-colorBorderSecondary"
+		<ConfigProvider
+			theme={{
+				algorithm: isFixedDarkTheme
+					? antdTheme.darkAlgorithm
+					: antdTheme.defaultAlgorithm,
+			}}
 		>
-			<Logo sidebarCollapsed={sidebarCollapsed} />
-			<div className="overflow-hidden" style={{ height: "calc(100% - 48px - 40px)" }}>
-				<Scrollbar>
-					{children}
-				</Scrollbar>
-			</div>
-			<SiderTrigger />
-		</aside>
+			<aside
+				style={
+					{
+						// 一个像素的 border
+						width: computedSidebarWidth + 1,
+						backgroundColor: isFixedDarkTheme ? Menu?.darkItemBg : Menu?.itemBg,
+						boxShadow: "3px 0 5px 0 rgb(29, 35, 41, 0.05)",
+					}
+				}
+				className="fixed left-0 top-0 bottom-0 transition-all overflow-y-auto overflow-x-hidden border-r border-r-colorBorderSecondary"
+			>
+				<Logo sidebarCollapsed={sidebarCollapsed} />
+				<div className="overflow-hidden" style={{ height: `calc(100% - ${headerHeight}px - ${siderTriggerHeight}px)` }}>
+					<Scrollbar>
+						{children}
+					</Scrollbar>
+				</div>
+				<SiderTrigger />
+			</aside>
+		</ConfigProvider>
 	);
 }

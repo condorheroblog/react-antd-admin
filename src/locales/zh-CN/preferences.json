@@ -39,8 +39,21 @@
 		"twoColumnNavigation": "双列导航",
 		"twoColumnNavigationTip": "垂直双列菜单在侧边位置",
 		"mixedNavigation": "混合导航",
-		"mixedNavigationTip": "一级导航在顶部，二级导航在侧边",
-		"sidebarWidth": "侧边栏宽度"
+		"mixedNavigationTip": "一级导航在顶部，二级导航在侧边"
+	},
+	"sidebar": {
+		"title": "侧边栏",
+		"width": "宽度",
+		"enable": "显示侧边栏",
+		"collapsedWidth": "折叠菜单宽度",
+		"collapsed": "折叠菜单",
+		"collapsedShowTitle": "折叠显示菜单名",
+		"firstColumnWidthInTwoColumnNavigation": "双列导航第一列宽度",
+		"sidebarTheme": "侧边栏主题",
+		"autoActivateChild": "自动激活子菜单",
+		"autoActivateChildTip": "点击顶层菜单时,自动激活第一个子菜单或者上一次激活的子菜单",
+		"expandOnHover": "鼠标悬停展开",
+		"expandOnHoverTip": "鼠标在折叠区域悬浮时，`启用`则展开当前子菜单，`禁用`则展开整个侧边栏"
 	},
 	"tabbar": {
 		"title": "标签栏",

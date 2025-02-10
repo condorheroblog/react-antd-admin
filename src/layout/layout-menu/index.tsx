@@ -1,11 +1,10 @@
 import type { MenuProps } from "antd";
 import type { MenuItemType } from "./types";
 
-import { useDeviceType } from "#src/hooks";
-import { LayoutContext } from "#src/layout/container-layout/layout-context";
+import { useDeviceType, usePreferences } from "#src/hooks";
 
 import { Menu } from "antd";
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useMatches } from "react-router";
 
 import { findChildrenLen } from "./utils";
@@ -28,7 +27,7 @@ export default function LayoutMenu({
 	menus = emptyArray,
 }: LayoutMenuProps) {
 	const matches = useMatches();
-	const { sidebarCollapsed } = useContext(LayoutContext);
+	const { sidebarCollapsed, sidebarTheme, isDark } = usePreferences();
 	const [openKeys, setOpenKeys] = useState<string[]>([]);
 	const { isMobile } = useDeviceType();
 
@@ -94,7 +93,7 @@ export default function LayoutMenu({
 			{...menuInlineCollapsedProp}
 			style={{ height: isMobile ? "100%" : "initial" }}
 			mode={mode}
-			// theme="dark"
+			theme={isDark ? "dark" : sidebarTheme}
 			items={menus}
 			{...menuOpenProps}
 			selectedKeys={getSelectedKeys}

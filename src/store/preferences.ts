@@ -4,9 +4,9 @@ import type {
 	TWO_COLUMN_NAVIGATION,
 } from "#src/layout/widgets/preferences/blocks/layout/constants";
 import type { LanguageType } from "#src/locales";
+import type { MenuProps } from "antd";
 
 import { SIDE_NAVIGATION } from "#src/layout/widgets/preferences/blocks/layout/constants";
-import { COLLAPSED_WIDTH } from "#src/styles/theme/antd/antd-theme";
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
@@ -59,16 +59,6 @@ export type BuiltinThemeType = "red" | "volcano" | "orange" | "gold" | "yellow" 
 
 interface LayoutState {
 	navigationStyle: NavigationType
-	/**
-	 * 侧边菜单宽度
-	 * @default 210
-	 */
-	sidebarWidth: number
-	/**
-	 * 侧边菜单折叠宽度
-	 * @default 56
-	 */
-	sideCollapseWidth: number
 }
 
 export interface GeneralState {
@@ -92,7 +82,50 @@ export interface GeneralState {
 	checkUpdatesInterval: number
 }
 
-interface PreferencesState extends AnimationState, LayoutState, GeneralState {
+export interface SidebarState {
+	/**
+	 * 侧边栏是否可见
+	 * @default true
+	 */
+	sidebarEnable?: boolean
+	/**
+	 * 侧边菜单宽度
+	 * @default 210
+	 */
+	sidebarWidth: number
+	/**
+	 * 侧边菜单折叠宽度
+	 * @default 56
+	 */
+	sideCollapsedWidth: number
+	/**
+	 * 侧边菜单折叠状态
+	 * @default false
+	 */
+	sidebarCollapsed: boolean
+	/**
+	 * 侧边菜单是否折叠时，是否显示 title
+	 * @default true
+	 */
+	sidebarCollapseShowTitle: boolean
+	/**
+	 * 侧边菜单折叠额外宽度
+	 * @default 48
+	 */
+	sidebarExtraCollapsedWidth: number
+	/**
+	 * 两栏布局时，左侧菜单宽度
+	 * @default 80
+	 */
+	firstColumnWidthInTwoColumnNavigation: number
+	/**
+	 * 侧边栏
+	 * @default dark
+	 */
+	sidebarTheme: MenuProps["theme"]
+}
+
+interface PreferencesState extends AnimationState, LayoutState, GeneralState, SidebarState {
 	/* ================== Theme ================== */
 	/**
 	 * @zh 当前主题
@@ -208,8 +241,7 @@ export const DEFAULT_PREFERENCES = {
 
 	/* ================== Layout ================== */
 	navigationStyle: SIDE_NAVIGATION,
-	sidebarWidth: 210,
-	sideCollapseWidth: COLLAPSED_WIDTH,
+
 	/* ================== Layout ================== */
 
 	/* ================== Tabbar ================== */
@@ -221,6 +253,17 @@ export const DEFAULT_PREFERENCES = {
 	tabbarShowMore: true,
 	tabbarShowMaximize: true,
 	/* ================== Tabbar ================== */
+
+	/* ================== Sidebar ================== */
+	sidebarEnable: true,
+	sidebarWidth: 210,
+	sideCollapsedWidth: 56,
+	sidebarCollapsed: false,
+	sidebarCollapseShowTitle: true,
+	sidebarExtraCollapsedWidth: 48,
+	firstColumnWidthInTwoColumnNavigation: 80,
+	sidebarTheme: "light",
+	/* ================== Sidebar ================== */
 } satisfies PreferencesState;
 
 /**

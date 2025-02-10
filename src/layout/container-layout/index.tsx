@@ -3,7 +3,7 @@ import { usePreferencesStore, useTabsStore } from "#src/store";
 import { cn } from "#src/utils";
 
 import { Drawer, Grid } from "antd";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { createUseStyles } from "react-jss";
 
 import { useLayout } from "../hooks";
@@ -16,7 +16,6 @@ import LayoutMixedSidebar from "../layout-mixed-sidebar";
 import LayoutSidebar from "../layout-sidebar";
 import LayoutTabbar from "../layout-tabbar";
 import { BreadcrumbViews, Logo } from "../widgets";
-import { LayoutContext } from "./layout-context";
 
 const { useBreakpoint } = Grid;
 const useStyles = createUseStyles({
@@ -44,41 +43,38 @@ const useStyles = createUseStyles({
  * import { ContainerLayout } from "#src/layout";
  */
 export default function ContainerLayout() {
-	const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 	const classes = useStyles();
 	const screens = useBreakpoint();
-	const { isTopNav, isTwoColumnNav, isMixedNav, sidebarWidth, sideCollapseWidth } = useLayout();
+	const { isTopNav, isTwoColumnNav, isMixedNav, sidebarWidth, sideCollapsedWidth, firstColumnWidthInTwoColumnNavigation } = useLayout();
 	const isMaximize = useTabsStore(state => state.isMaximize);
-	const tabbarEnable = usePreferencesStore(state => state.tabbarEnable);
+	const { tabbarEnable, sidebarEnable, sidebarCollapsed, setPreferences } = usePreferencesStore();
 	const { isMobile } = useDeviceType();
 	const { sideNavItems, topNavItems, handleMenuSelect } = useMenu();
 
 	useEffect(() => {
 		/* iPad */
 		if (screens.lg && !screens.xl) {
-			setSidebarCollapsed(true);
+			setPreferences("sidebarCollapsed", true);
 		}
 		/* PC */
 		else if (screens.xl) {
-			setSidebarCollapsed(false);
+			setPreferences("sidebarCollapsed", false);
 		}
 		/* Mobile */
 		else if (screens.xs || (screens.sm && !screens.md)) {
-			setSidebarCollapsed(false);
+			setPreferences("sidebarCollapsed", false);
 		}
 	}, [screens]);
 
-	const layoutContextValue = useMemo(() => ({ sidebarCollapsed, setSidebarCollapsed }), [sidebarCollapsed, setSidebarCollapsed]);
-
-	const sidebarEnableState = useMemo(() => !isTopNav, [isTopNav]);
+	const sidebarEnableState = useMemo(() => !isTopNav && sidebarEnable, [isTopNav, sidebarEnable]);
 	const computedSidebarWidth = useMemo(() => {
 		if (isMaximize || isMobile) {
 			return 0;
 		}
-		const currentSidebarWidth = sidebarCollapsed ? sideCollapseWidth : sidebarWidth;
+		const currentSidebarWidth = sidebarCollapsed ? sideCollapsedWidth : sidebarWidth;
 		if (isTwoColumnNav) {
 			/* 双列导航，第一列默认宽度 */
-			return currentSidebarWidth + 80;
+			return currentSidebarWidth + (firstColumnWidthInTwoColumnNavigation ?? 0);
 		}
 		if (sidebarEnableState) {
 			return currentSidebarWidth;
@@ -92,81 +88,81 @@ export default function ContainerLayout() {
 		sidebarEnableState,
 		sidebarWidth,
 		sidebarCollapsed,
-		sideCollapseWidth,
+		sideCollapsedWidth,
+		firstColumnWidthInTwoColumnNavigation,
 	]);
 
 	return (
-		<LayoutContext.Provider value={layoutContextValue}>
-			<section
-				style={{
-					paddingLeft: computedSidebarWidth,
-				}}
-				className={cn(
-					"transition-all flex flex-col h-screen",
-				)}
-			>
-				<LayoutHeader>
-					{isTopNav || isMixedNav
-						? (
-							<>
-								{isTopNav ? <Logo sidebarCollapsed={false} className="mr-8" /> : null}
-								<LayoutMenu mode="horizontal" menus={topNavItems} handleMenuSelect={handleMenuSelect} />
-							</>
-						)
-						: <BreadcrumbViews />}
-				</LayoutHeader>
-				{tabbarEnable ? <LayoutTabbar /> : null}
 
-				{/* Mobile */}
-				{
-					isMobile
-						? (
-							<Drawer
-								open={sidebarCollapsed}
-								placement="left"
-								width="clamp(200px, 50vw, 210px)"
-								className={cn(classes.drawerStyles)}
-								onClose={() => setSidebarCollapsed(false)}
-							>
-								<LayoutMenu autoOpenMenu menus={sideNavItems} handleMenuSelect={handleMenuSelect} />
-							</Drawer>
-						)
-						: null
-				}
+		<section
+			style={{
+				paddingLeft: computedSidebarWidth,
+			}}
+			className={cn(
+				"transition-all flex flex-col h-screen",
+			)}
+		>
+			<LayoutHeader>
+				{isTopNav || isMixedNav
+					? (
+						<>
+							{isTopNav ? <Logo sidebarCollapsed={false} className="mr-8" /> : null}
+							<LayoutMenu mode="horizontal" menus={topNavItems} handleMenuSelect={handleMenuSelect} />
+						</>
+					)
+					: <BreadcrumbViews />}
+			</LayoutHeader>
+			{tabbarEnable ? <LayoutTabbar /> : null}
 
-				{/* PC */}
-				{
-					sidebarEnableState && !isTwoColumnNav
-						? (
-							<LayoutSidebar
-								computedSidebarWidth={computedSidebarWidth}
-							>
-								<LayoutMenu
-									autoOpenMenu
-									menus={sideNavItems}
-									handleMenuSelect={handleMenuSelect}
-								/>
-							</LayoutSidebar>
-						)
-						: null
-				}
-				{
-					isTwoColumnNav
-						? (
-							<LayoutMixedSidebar
-								computedSidebarWidth={computedSidebarWidth}
-								sideNavItems={sideNavItems}
-								topNavItems={topNavItems}
+			{/* Mobile */}
+			{
+				isMobile
+					? (
+						<Drawer
+							open={sidebarCollapsed}
+							placement="left"
+							width="clamp(200px, 50vw, 210px)"
+							className={cn(classes.drawerStyles)}
+							onClose={() => setPreferences("sidebarCollapsed", false)}
+						>
+							<LayoutMenu autoOpenMenu menus={sideNavItems} handleMenuSelect={handleMenuSelect} />
+						</Drawer>
+					)
+					: null
+			}
+
+			{/* PC */}
+			{
+				sidebarEnableState && !isTwoColumnNav
+					? (
+						<LayoutSidebar
+							computedSidebarWidth={computedSidebarWidth}
+						>
+							<LayoutMenu
+								autoOpenMenu
+								menus={sideNavItems}
 								handleMenuSelect={handleMenuSelect}
 							/>
-						)
-						: null
-				}
+						</LayoutSidebar>
+					)
+					: null
+			}
+			{
+				isTwoColumnNav
+					? (
+						<LayoutMixedSidebar
+							computedSidebarWidth={computedSidebarWidth}
+							sideNavItems={sideNavItems}
+							topNavItems={topNavItems}
+							handleMenuSelect={handleMenuSelect}
+						/>
+					)
+					: null
+			}
 
-				<LayoutContent />
+			<LayoutContent />
 
-				<LayoutFooter className="bg-colorBgContainer" />
-			</section>
-		</LayoutContext.Provider>
+			<LayoutFooter className="bg-colorBgContainer" />
+		</section>
 	);
 }

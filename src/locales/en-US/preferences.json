@@ -39,8 +39,21 @@
 		"twoColumnNavigation": "Two Column Navigation",
 		"twoColumnNavigationTip": "Vertical two-column menu at the side position",
 		"mixedNavigation": "Mixed Navigation",
-		"mixedNavigationTip": "Primary navigation at the top, secondary navigation at the side",
-		"sidebarWidth": "Sidebar Width"
+		"mixedNavigationTip": "Primary navigation at the top, secondary navigation at the side"
+	},
+	"sidebar": {
+		"title": "Sidebar",
+		"width": "Width",
+		"enable": "Show Sidebar",
+		"collapsedWidth": "Collpase Menu Width",
+		"collapsed": "Collpase Menu",
+		"collapsedShowTitle": "Show Menu Title",
+		"firstColumnWidthInTwoColumnNavigation": "First Column Width in Two-Column Navigation",
+		"sidebarTheme": "Sidebar Theme",
+		"autoActivateChild": "Auto Activate SubMenu",
+		"autoActivateChildTip": "`Enabled` to automatically activate the submenu while click menu.",
+		"expandOnHover": "Expand On Hover",
+		"expandOnHoverTip": "When the mouse hovers over menu, \n `Enabled` to expand children menus \n `Disabled` to expand whole sidebar."
 	},
 	"tabbar": {
 		"title": "Tabbar",

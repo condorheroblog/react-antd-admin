@@ -1,29 +1,34 @@
 import { BasicButton } from "#src/components";
-import { LayoutContext } from "#src/layout/container-layout/layout-context";
+
+import { usePreferences } from "#src/hooks";
 import { cn } from "#src/utils";
 
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { useContext } from "react";
+
+import { siderTriggerHeight } from "../../constants";
 
 interface SiderTriggerProps {
 	className?: string
 }
-/**
- * @zh 高度 40px
- * @en The height is 40px
- */
+
 export function SiderTrigger({ className }: SiderTriggerProps) {
-	const { sidebarCollapsed, setSidebarCollapsed } = useContext(LayoutContext);
+	const { sidebarCollapsed, setPreferences, sidebarTheme } = usePreferences();
 
 	return (
 		<BasicButton
 			type="text"
 			style={{
 				boxShadow: "0px -3px 5px 0 rgb(29, 35, 41, 0.05)",
+				height: siderTriggerHeight,
 			}}
 			icon={sidebarCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-			onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-			className={cn("h-10 !w-full rounded-none border-t border-t-colorBorderSecondary", className)}
+			onClick={() => setPreferences("sidebarCollapsed", !sidebarCollapsed)}
+			className={cn(
+				"!w-full rounded-none border-t",
+				className,
+				sidebarTheme === "dark" ? "border-t-[#303030]" : "border-t-colorBorderSecondary",
+			)}
 		/>
+
 	);
 }

@@ -24,7 +24,8 @@ export function useLayout() {
 	// LayoutType
 	const navigationStyle = usePreferencesStore(state => state.navigationStyle);
 	const sidebarWidth = usePreferencesStore(state => state.sidebarWidth);
-	const sideCollapseWidth = usePreferencesStore(state => state.sideCollapseWidth);
+	const sideCollapsedWidth = usePreferencesStore(state => state.sideCollapsedWidth);
+	const firstColumnWidthInTwoColumnNavigation = usePreferencesStore(state => state.firstColumnWidthInTwoColumnNavigation);
 
 	/**
 	 * 当前导航类型
@@ -73,6 +74,7 @@ export function useLayout() {
 		isMixedNav,
 		isTwoColumnNav,
 		sidebarWidth,
-		sideCollapseWidth,
+		sideCollapsedWidth,
+		firstColumnWidthInTwoColumnNavigation,
 	};
 }

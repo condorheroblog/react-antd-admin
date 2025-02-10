@@ -1,15 +1,15 @@
 import type { ButtonProps } from "antd";
-import { useDeviceType } from "#src/hooks";
-import { LayoutContext } from "#src/layout/container-layout/layout-context";
+import { useDeviceType, usePreferences } from "#src/hooks";
+import { useLayout } from "#src/layout/hooks/use-layout";
 import { NotificationContainer } from "#src/layout/widgets/notification/notification-container";
 import { Preferences } from "#src/layout/widgets/preferences";
 import { useTabsStore } from "#src/store";
 import { cn } from "#src/utils";
 
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { Button, theme } from "antd";
-import { useContext } from "react";
+import { theme as antdTheme, Button, ConfigProvider, theme } from "antd";
 
+import { headerHeight } from "../constants";
 import { FullscreenButton } from "./components/fullscreen-button";
 import { LanguageButton } from "./components/language-button";
 import { ThemeButton } from "./components/theme-button";
@@ -27,43 +27,61 @@ const buttonProps: ButtonProps = {
 
 export default function LayoutHeader({ className, children }: LayoutHeaderProps) {
 	const {
-		token: { colorBgContainer },
+		token: { Menu },
 	} = theme.useToken();
-	const { sidebarCollapsed, setSidebarCollapsed } = useContext(LayoutContext);
+	const {
+		sidebarCollapsed,
+		setPreferences,
+		isDark,
+		sidebarTheme,
+	} = usePreferences();
 	const { isMobile } = useDeviceType();
 	const isMaximize = useTabsStore(state => state.isMaximize);
+	const { isTopNav, isMixedNav } = useLayout();
+	const isFixedDarkTheme = isDark || (sidebarTheme === "dark" && (isMixedNav || isTopNav));
 
 	return (
-		<header
-			className={cn(className, "h-12 flex-shrink-0 flex gap-5 justify-between items-center transition-all md:px-4", { "h-0 overflow-hidden": isMaximize })}
-			style={{ background: colorBgContainer }}
+		<ConfigProvider
+			theme={{
+				algorithm: isFixedDarkTheme
+					? antdTheme.darkAlgorithm
+					: antdTheme.defaultAlgorithm,
+			}}
 		>
+			<header
+				className={cn(className, "flex-shrink-0 flex gap-5 justify-between items-center transition-all md:px-4", { "h-0 overflow-hidden": isMaximize })}
+				style={{
+					background: isFixedDarkTheme ? Menu?.darkItemBg : Menu?.itemBg,
+					height: headerHeight,
+				}}
+			>
 
-			{
-				isMobile
-					? (
-						<Button
-							type="text"
-							icon={sidebarCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-							onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-							className="h-full"
-						/>
-					)
-					: null
-			}
+				{
+					isMobile
+						? (
+							<Button
+								type="text"
+								icon={sidebarCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+								onClick={() => setPreferences("sidebarCollapsed", !sidebarCollapsed)}
+								className="h-full"
+							/>
+						)
+						: null
+				}
 
-			<div className="flex items-center flex-grow h-full overflow-hidden">
-				{children}
-			</div>
+				<div className="flex items-center flex-grow h-full overflow-hidden">
+					{children}
+				</div>
 
-			<div className="flex items-center">
-				<Preferences {...buttonProps} />
-				<ThemeButton {...buttonProps} />
-				<LanguageButton {...buttonProps} />
-				<FullscreenButton {...buttonProps} target={document.documentElement} />
-				<NotificationContainer {...buttonProps} />
-				<UserMenu {...buttonProps} />
-			</div>
-		</header>
+				<div className="flex items-center">
+					<Preferences {...buttonProps} />
+					<ThemeButton {...buttonProps} />
+					<LanguageButton {...buttonProps} />
+					<FullscreenButton {...buttonProps} target={document.documentElement} />
+					<NotificationContainer {...buttonProps} />
+					<UserMenu {...buttonProps} />
+				</div>
+			</header>
+		</ConfigProvider>
 	);
 }

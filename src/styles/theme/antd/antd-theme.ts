@@ -1,6 +1,5 @@
 import type { ThemeConfig } from "antd";
 
-export const COLLAPSED_WIDTH = 56;
 /**
  * 自定义的Ant Design浅色主题配置
  *
@@ -12,11 +11,7 @@ export const COLLAPSED_WIDTH = 56;
  * @see https://ant.design/docs/react/customize-theme (English version configuration guide)
  */
 export const customAntdLightTheme: ThemeConfig = {
-	components: {
-		Menu: {
-			collapsedWidth: COLLAPSED_WIDTH,
-		},
-	},
+
 };
 
 /**
@@ -30,9 +25,5 @@ export const customAntdLightTheme: ThemeConfig = {
  * @see https://ant.design/docs/react/customize-theme (English version configuration guide)
  */
 export const customAntdDarkTheme: ThemeConfig = {
-	components: {
-		Menu: {
-			collapsedWidth: COLLAPSED_WIDTH,
-		},
-	},
+
 };

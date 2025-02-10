@@ -27,7 +27,7 @@ export default function App() {
 
 		enableCheckUpdates,
 		checkUpdatesInterval,
-
+		sideCollapsedWidth,
 	} = usePreferences();
 
 	useScrollToHash();
@@ -129,6 +129,17 @@ export default function App() {
 					...(isDark ? customAntdDarkTheme.token : customAntdLightTheme.token),
 					borderRadius: themeRadius,
 					colorPrimary: themeColorPrimary,
+				},
+				components: {
+					...(isDark ? customAntdDarkTheme.components : customAntdLightTheme.components),
+					Menu: {
+						darkItemBg: "#141414",
+						itemBg: "#fff",
+						...(isDark
+							? customAntdDarkTheme.components?.Menu
+							: customAntdLightTheme.components?.Menu),
+						collapsedWidth: sideCollapsedWidth,
+					},
 				},
 			}}
 		>

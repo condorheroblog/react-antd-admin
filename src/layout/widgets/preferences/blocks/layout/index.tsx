@@ -6,7 +6,6 @@ import {
 	TOP_NAVIGATION,
 	TWO_COLUMN_NAVIGATION,
 } from "#src/layout/widgets/preferences/blocks/layout/constants";
-import { NumberInputSpinner } from "#src/layout/widgets/preferences/number-input-spinner";
 import { usePreferencesStore } from "#src/store";
 import { cn } from "#src/utils";
 
@@ -16,7 +15,6 @@ import { useTranslation } from "react-i18next";
 
 export function PreferencesLayout() {
 	const navigationStyle = usePreferencesStore(state => state.navigationStyle);
-	const sidebarWidth = usePreferencesStore(state => state.sidebarWidth);
 	const setPreferences = usePreferencesStore(state => state.setPreferences);
 	const { t } = useTranslation();
 
@@ -86,15 +84,6 @@ export function PreferencesLayout() {
 					))
 				}
 			</ul>
-			<NumberInputSpinner
-				min={180}
-				max={320}
-				name="sidebarWidth"
-				value={sidebarWidth}
-				onChange={(name, value) => setPreferences(name, value)}
-			>
-				{t("preferences.layout.sidebarWidth")}
-			</NumberInputSpinner>
 		</>
 	);
 }

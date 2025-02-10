@@ -1,8 +1,10 @@
 import logo from "#src/assets/svg/logo.svg?url";
+
 import { Typography } from "antd";
 import { clsx } from "clsx";
-
 import { useNavigate } from "react-router";
+
+import { headerHeight } from "../../constants";
 
 const { Title } = Typography;
 
@@ -20,8 +22,8 @@ export function Logo({ sidebarCollapsed, className }: LogoProps) {
 
 	return (
 		<div
-			// 和 header 高度保持一致
-			className={clsx("h-12 flex items-center justify-center gap-2 cursor-pointer", className)}
+			style={{ height: headerHeight }}
+			className={clsx("flex items-center justify-center gap-2 cursor-pointer", className)}
 			onClick={() => navigate(import.meta.env.VITE_BASE_HOME_PATH)}
 		>
 			<img
@@ -31,7 +33,11 @@ export function Logo({ sidebarCollapsed, className }: LogoProps) {
 				height={32}
 			/>
 
-			<Title level={1} className={clsx("!text-sm !m-0", { hidden: sidebarCollapsed })} ellipsis={true}>
+			<Title
+				level={1}
+				className={clsx("!text-sm !m-0", { hidden: sidebarCollapsed })}
+				ellipsis
+			>
 				{import.meta.env.VITE_GLOB_APP_TITLE}
 			</Title>
 

@@ -1,7 +1,7 @@
 import { GlobalSpin, Scrollbar } from "#src/components";
 import { usePermissionStore, usePreferencesStore, useTabsStore } from "#src/store";
 import { theme } from "antd";
-import KeepAlive, { useKeepaliveRef } from "keepalive-for-react";
+import KeepAlive, { useKeepAliveRef } from "keepalive-for-react";
 import { useEffect, useMemo } from "react";
 import { useLocation, useOutlet } from "react-router";
 
@@ -13,7 +13,7 @@ export default function LayoutContent() {
 	} = theme.useToken();
 	const { pathname, search } = useLocation();
 	const outlet = useOutlet();
-	const aliveRef = useKeepaliveRef();
+	const aliveRef = useKeepAliveRef();
 	const isRefresh = useTabsStore(state => state.isRefresh);
 	const openTabs = useTabsStore(state => state.openTabs);
 	const tabbarEnable = usePreferencesStore(state => state.tabbarEnable);
