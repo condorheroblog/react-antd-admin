@@ -2,9 +2,8 @@ import { useDeviceType } from "#src/hooks";
 import { usePreferencesStore, useTabsStore } from "#src/store";
 import { cn } from "#src/utils";
 
-import { Drawer, Grid } from "antd";
+import { Grid } from "antd";
 import { useEffect, useMemo } from "react";
-import { createUseStyles } from "react-jss";
 
 import { useLayout } from "../hooks";
 import LayoutContent from "../layout-content";
@@ -13,24 +12,12 @@ import LayoutHeader from "../layout-header";
 import LayoutMenu from "../layout-menu";
 import { useMenu } from "../layout-menu/use-menu";
 import LayoutMixedSidebar from "../layout-mixed-sidebar";
+import LayoutMobileMenu from "../layout-mobile-menu";
 import LayoutSidebar from "../layout-sidebar";
 import LayoutTabbar from "../layout-tabbar";
 import { BreadcrumbViews, Logo } from "../widgets";
 
 const { useBreakpoint } = Grid;
-const useStyles = createUseStyles({
-	drawerStyles: {
-		"& .ant-drawer-body": {
-			"padding": 0,
-			"&>ul": {
-				paddingTop: "1em",
-			},
-		},
-		"& .ant-drawer-header": {
-			display: "none",
-		},
-	},
-});
 
 /**
  * Please do not use this component through lazy, otherwise the switching routing page will flash.
@@ -43,7 +30,6 @@ const useStyles = createUseStyles({
  * import { ContainerLayout } from "#src/layout";
  */
 export default function ContainerLayout() {
-	const classes = useStyles();
 	const screens = useBreakpoint();
 	const { isTopNav, isTwoColumnNav, isMixedNav, sidebarWidth, sideCollapsedWidth, firstColumnWidthInTwoColumnNavigation } = useLayout();
 	const isMaximize = useTabsStore(state => state.isMaximize);
@@ -114,22 +100,8 @@ export default function ContainerLayout() {
 			</LayoutHeader>
 			{tabbarEnable ? <LayoutTabbar /> : null}
 
-			{/* Mobile */}
-			{
-				isMobile
-					? (
-						<Drawer
-							open={sidebarCollapsed}
-							placement="left"
-							width="clamp(200px, 50vw, 210px)"
-							className={cn(classes.drawerStyles)}
-							onClose={() => setPreferences("sidebarCollapsed", false)}
-						>
-							<LayoutMenu autoOpenMenu menus={sideNavItems} handleMenuSelect={handleMenuSelect} />
-						</Drawer>
-					)
-					: null
-			}
+			{/* Mobile Menu */}
+			<LayoutMobileMenu />
 
 			{/* PC */}
 			{

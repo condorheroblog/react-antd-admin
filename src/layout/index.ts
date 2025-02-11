@@ -5,6 +5,7 @@ export { default as LayoutFooter } from "./layout-footer";
 export { default as LayoutHeader } from "./layout-header";
 export { default as LayoutMenu } from "./layout-menu";
 export { default as LayoutMixedSidebar } from "./layout-mixed-sidebar";
+export { default as LayoutMobileMenu } from "./layout-mobile-menu";
 export { default as LayoutSidebar } from "./layout-sidebar";
 export { default as LayoutTabbar } from "./layout-tabbar";
 export { default as ParentLayout } from "./parent-layout";
