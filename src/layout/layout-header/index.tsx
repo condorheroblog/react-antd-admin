@@ -1,8 +1,8 @@
 import type { ButtonProps } from "antd";
 import { useDeviceType, usePreferences } from "#src/hooks";
 import { useLayout } from "#src/layout/hooks/use-layout";
+import { Preferences } from "#src/layout/widgets";
 import { NotificationContainer } from "#src/layout/widgets/notification/notification-container";
-import { Preferences } from "#src/layout/widgets/preferences";
 import { useTabsStore } from "#src/store";
 import { cn } from "#src/utils";
 
@@ -49,10 +49,14 @@ export default function LayoutHeader({ className, children }: LayoutHeaderProps)
 			}}
 		>
 			<header
-				className={cn(className, "flex-shrink-0 flex gap-5 justify-between items-center transition-all md:px-4", { "h-0 overflow-hidden": isMaximize })}
+				className={cn(
+					"flex-shrink-0 flex gap-5 justify-between items-center transition-all md:px-4",
+					{ "overflow-hidden": isMaximize },
+					className,
+				)}
 				style={{
 					background: isFixedDarkTheme ? Menu?.darkItemBg : Menu?.itemBg,
-					height: headerHeight,
+					height: isMaximize ? 0 : headerHeight,
 				}}
 			>
 
