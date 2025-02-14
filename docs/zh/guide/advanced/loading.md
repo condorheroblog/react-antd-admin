@@ -45,6 +45,14 @@ loading 效果的代码属于 pure-admin
 
 在 `src/index.tsx` 文件中，注释或者移除掉 setupLoading 函数。
 
+## Loading2
+
+在 [/src/plugins/loading.ts](https://github.com/condorheroblog/react-antd-admin/tree/main/src/plugins/loading2.ts) 中提供了另一种 loading 效果。
+
+![app-loading2](/public/guide/app-loading2.png)
+
+如果要使用这个 loading 效果，在 `src/index.tsx` 中替换 setupLoading 为 setupLoading2 即可。
+
 ## 自定义 loading 效果
 
 编辑文件 `src/plugins/loading.ts`，修改代码即可。

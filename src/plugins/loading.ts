@@ -1,9 +1,13 @@
 import { usePreferencesStore } from "#src/store/preferences";
 
+/**
+ * Preview loading page.
+ * https://github.com/user-attachments/assets/110701a8-2cf4-4e5f-a07e-b832da4e1586
+ */
 export function setupLoading() {
 	/**
 	 * @see https://github.com/pure-admin/vue-pure-admin/blob/cd21f1e050011d8f761094bf8a1e110fb8a33959/index.html#L20-L81
-	 * this CSS code from https://github.com/pure-admin/vue-pure-admin
+	 * This CSS code from https://github.com/pure-admin/vue-pure-admin
 	 * @author pure-admin
 	 */
 	const loading = `
