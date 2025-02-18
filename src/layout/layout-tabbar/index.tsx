@@ -14,6 +14,7 @@ import { isValidElement, useCallback, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router";
 
+import { tabbarHeight } from "../constants";
 import { DraggableTabBar } from "./components/draggable-tab-bar";
 import { TabMaximize } from "./components/tab-maximize";
 import { TabOptions } from "./components/tab-options";
@@ -102,7 +103,7 @@ export default function LayoutTabbar() {
 	 */
 	const tabBarExtraContent = useMemo(() => ({
 		right: (
-			<div className="flex items-center" style={{ height: 35 }}>
+			<div className="flex items-center" style={{ height: tabbarHeight }}>
 				<Button
 					icon={(
 						<RedoOutlined
