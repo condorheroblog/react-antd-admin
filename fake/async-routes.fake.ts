@@ -8,7 +8,7 @@ import { resultSuccess } from "./utils";
  * common：普通角色
  */
 
-const systemManagementRouter = {
+export const systemManagementRouter = {
 	path: "/system",
 	handle: {
 		icon: "SettingOutlined",

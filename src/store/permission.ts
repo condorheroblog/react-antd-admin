@@ -6,6 +6,7 @@ import { router } from "#src/router";
 import { ROOT_ROUTE_ID } from "#src/router/constants";
 import { rootChildRoutes, routes } from "#src/router/routes";
 import { addAsyncRoutes, ascending, flattenRoutes, getMenuItems } from "#src/router/utils";
+import { useUserStore } from "#src/store";
 import { create } from "zustand";
 
 interface InitialStateType {
@@ -32,33 +33,26 @@ type PermissionState = typeof initialState;
 
 interface PermissionAction {
 	handleAsyncRoutes: () => Promise<InitialStateType>
+	handleSyncRoutes: () => Promise<InitialStateType>
 	reset: () => void
 };
 
 export const usePermissionStore = create<PermissionState & PermissionAction>(set => ({
 	...initialState,
 
+	/* 发送请求获取动态路由 */
 	handleAsyncRoutes: async () => {
 		const { result } = await fetchAsyncRoutes();
 		// 为动态路由添加前端组件
-		const dynamicRoutes = addAsyncRoutes(result);
-		const newRoutes = ascending([...rootChildRoutes, ...dynamicRoutes]);
+		const newState = processApplicationRouting(result ?? []);
+		set(() => newState);
+		return newState;
+	},
 
-		const constantMenus = getMenuItems((router.routes[0].children || []) as AppRouteRecordRaw[]);
-
-		/* 添加动态路由到前端根路由 */
-		router.patchRoutes(ROOT_ROUTE_ID, dynamicRoutes);
-
-		const flatRouteList = flattenRoutes(newRoutes);
-
-		const wholeMenus = getMenuItems(newRoutes);
-		const newState = {
-			constantMenus,
-			wholeMenus,
-			routeList: newRoutes,
-			flatRouteList,
-			hasFetchedDynamicRoutes: true,
-		};
+	/* 从用户接口中获取动态路由 */
+	handleSyncRoutes: async () => {
+		const { menus } = useUserStore.getState();
+		const newState = processApplicationRouting(menus ?? []);
 		set(() => newState);
 		return newState;
 	},
@@ -69,3 +63,24 @@ export const usePermissionStore = create<PermissionState & PermissionAction>(set
 		set(initialState);
 	},
 }));
+
+function processApplicationRouting(menus: AppRouteRecordRaw[]) {
+	const dynamicRoutes = addAsyncRoutes(menus);
+	const newRoutes = ascending([...rootChildRoutes, ...dynamicRoutes]);
+
+	const constantMenus = getMenuItems((router.routes[0].children || []) as AppRouteRecordRaw[]);
+
+	/* 添加动态路由到前端根路由 */
+	router.patchRoutes(ROOT_ROUTE_ID, dynamicRoutes);
+
+	const flatRouteList = flattenRoutes(newRoutes);
+
+	const wholeMenus = getMenuItems(newRoutes);
+	return {
+		constantMenus,
+		wholeMenus,
+		routeList: newRoutes,
+		flatRouteList,
+		hasFetchedDynamicRoutes: true,
+	};
+}

@@ -1,5 +1,6 @@
 import { defineFakeRoute } from "vite-plugin-fake-server/client";
 
+// import { systemManagementRouter } from "./async-routes.fake";
 import { ADMIN_TOKEN } from "./constants";
 import { resultSuccess } from "./utils";
 
@@ -18,6 +19,7 @@ export default defineFakeRoute([
 					phoneNumber: "1234567890",
 					description: "manager",
 					roles: ["admin"],
+					// menus: [systemManagementRouter],
 				});
 			}
 			else {

@@ -7,7 +7,7 @@ import { NProgress } from "#src/utils";
 import { matchRoutes } from "react-router";
 
 import { LOGIN, ROUTE_WHITE_LIST } from "./constants";
-import { isDynamicRoutingEnabled } from "./routes/config";
+import { isDynamicRoutingEnabled, isSendRoutingRequest } from "./routes/config";
 import { replaceBaseWithRoot } from "./utils";
 
 // 不需要登录路由的路由白名单
@@ -168,7 +168,7 @@ export async function routerInitReady(reactRouter: ReactRouterType) {
 	/* --------------- 以下为已登录的处理逻辑 ------------------ */
 
 	// 已登录，获取动态路由
-	const { handleAsyncRoutes } = usePermissionStore.getState();
+	const { handleAsyncRoutes, handleSyncRoutes } = usePermissionStore.getState();
 
 	// 初始化一个空数组来存放 Promise 对象
 	const promises = [];
@@ -177,7 +177,7 @@ export async function routerInitReady(reactRouter: ReactRouterType) {
 	promises.push(useUserStore.getState().getUserInfo());
 
 	// 如果启用了动态路由，则添加处理动态路由的 Promise
-	if (isDynamicRoutingEnabled) {
+	if (isDynamicRoutingEnabled && isSendRoutingRequest) {
 		promises.push(handleAsyncRoutes());
 	}
 
@@ -186,6 +186,10 @@ export async function routerInitReady(reactRouter: ReactRouterType) {
 	 */
 	const results = await Promise.allSettled(promises);
 	const hasError = results.some(result => result.status === "rejected");
+	// 启用了动态路由且路由从用户接口中获取
+	if (isDynamicRoutingEnabled && !isSendRoutingRequest) {
+		await handleSyncRoutes();
+	}
 
 	// 网络请求失败，跳转到 500 页面
 	if (hasError) {

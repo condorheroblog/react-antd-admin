@@ -52,6 +52,8 @@ src/router
 
 动态路由存储在 `src/router/routes/modules` 目录下，如果不需要动态路由，保持这个文件夹为空即可。
 
+默认情况下，动态路由是开启的且会单独发送一个请求获取动态路由，如果动态路由在请求用户详情接口返回，则可以在 `src/router/routes/config` 文件中配置 isSendRoutingRequest 属性为 false 关闭单独的接口请求。
+
 ### 如何关闭动态路由
 
 在 `src/router/routes/config` 文件中配置 isDynamicRoutingEnabled 属性为 false，即可关闭动态路由。

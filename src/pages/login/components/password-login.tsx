@@ -1,6 +1,6 @@
 import { BasicButton } from "#src/components";
 import { PASSWORD_RULES, USERNAME_RULES } from "#src/constants";
-import { isDynamicRoutingEnabled } from "#src/router/routes/config";
+import { isDynamicRoutingEnabled, isSendRoutingRequest } from "#src/router/routes/config";
 import { useAuthStore, usePermissionStore, useUserStore } from "#src/store";
 
 import {
@@ -31,7 +31,7 @@ export function PasswordLogin() {
 	const [searchParams] = useSearchParams();
 	const navigate = useNavigate();
 	const login = useAuthStore(state => state.login);
-	const handleAsyncRoutes = usePermissionStore(state => state.handleAsyncRoutes);
+	const { handleAsyncRoutes, handleSyncRoutes } = usePermissionStore();
 	const getUserInfo = useUserStore(state => state.getUserInfo);
 	const { setFormMode } = useContext(FormModeContext);
 
@@ -50,7 +50,7 @@ export function PasswordLogin() {
 			promises.push(getUserInfo());
 
 			// 如果启用了动态路由，则添加处理动态路由的 Promise
-			if (isDynamicRoutingEnabled) {
+			if (isDynamicRoutingEnabled && isSendRoutingRequest) {
 				promises.push(handleAsyncRoutes());
 			}
 			const results = await Promise.allSettled(
@@ -60,6 +60,10 @@ export function PasswordLogin() {
 				 */
 				promises,
 			);
+			// 启用了动态路由且路由从用户接口中获取
+			if (isDynamicRoutingEnabled && !isSendRoutingRequest) {
+				await handleSyncRoutes();
+			}
 			/* ================= 分割线 ================= */
 
 			const hasError = results.some(result => result.status === "rejected");

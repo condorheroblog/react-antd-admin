@@ -11,6 +11,7 @@ const initialState = {
 	phoneNumber: "",
 	description: "",
 	roles: [],
+	// menus: [],
 };
 
 type UserState = UserInfoType;
