@@ -1,18 +1,20 @@
+import { ArrowLeftOutlined } from "@ant-design/icons";
 import { Button, Result } from "antd";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
-export default function Error500() {
+export default function Exception403() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 
-	const Result500 = (
+	const Result403 = (
 		<Result
-			status="500"
-			title="500"
-			subTitle={t("common.500SubTitle")}
+			status="403"
+			title="403"
+			subTitle={t("exception.403SubTitle")}
 			extra={(
 				<Button
+					icon={<ArrowLeftOutlined />}
 					type="primary"
 					onClick={() => {
 						navigate("/");
@@ -24,5 +26,5 @@ export default function Error500() {
 		/>
 	);
 
-	return Result500;
+	return Result403;
 }

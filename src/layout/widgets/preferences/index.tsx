@@ -2,6 +2,7 @@ import type { ButtonProps } from "antd";
 
 import { BasicButton } from "#src/components";
 import { useDeviceType, usePreferences } from "#src/hooks";
+import { loginPath } from "#src/router/extra-info";
 import { useAuthStore, usePreferencesStore } from "#src/store";
 
 import { CopyOutlined, RedoOutlined, SettingOutlined } from "@ant-design/icons";
@@ -32,7 +33,7 @@ export function Preferences({ ...restProps }: ButtonProps) {
 	const clearAndLogout = async () => {
 		await logout();
 		usePreferencesStore.persist.clearStorage();
-		navigate("/login");
+		navigate(loginPath);
 	};
 
 	const handleCopyPreferences = async () => {

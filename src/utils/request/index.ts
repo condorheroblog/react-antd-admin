@@ -1,7 +1,7 @@
 import type { Options } from "ky";
 import { refreshTokenPath } from "#src/api/user";
 
-import { LOGIN } from "#src/router/constants";
+import { loginPath } from "#src/router/extra-info";
 import { useAuthStore, usePreferencesStore } from "#src/store";
 import ky from "ky";
 
@@ -12,7 +12,7 @@ import { goLogin } from "./go-login";
 import { refreshTokenAndRetry } from "./refresh";
 
 // 请求白名单, 请求白名单内的接口不需要携带 token
-const requestWhiteList = ["/login"];
+const requestWhiteList = [loginPath];
 
 // 请求超时时间
 const API_TIMEOUT = Number(import.meta.env.VITE_API_TIMEOUT) || 10000;
@@ -61,7 +61,7 @@ const defaultConfig: Options = {
 						// If there is no refresh token, it means that the user has not logged in.
 						if (!refreshToken) {
 							// 如果页面的路由已经重定向到登录页，则不用调转直接返回结果
-							if (location.pathname === LOGIN) {
+							if (location.pathname === loginPath) {
 								return response;
 							}
 							else {

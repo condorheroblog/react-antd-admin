@@ -8,5 +8,6 @@ export * from "./fullscreen-button";
 export * from "./global-spin";
 export * from "./iframe";
 export * from "./jss-theme-provider";
+export * from "./page-error";
 export * from "./scrollbar";
 export * from "./tanstack-query";

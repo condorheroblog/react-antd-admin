@@ -1,17 +1,18 @@
 import type { BlockerFunction } from "react-router";
 import type { ReactRouterType, RouterSubscriber } from "./types";
 
+import { exception403Path, exception404Path, exception500Path, loginPath } from "#src/router/extra-info";
 import { useAuthStore, usePermissionStore, usePreferencesStore, useUserStore } from "#src/store";
 import { NProgress } from "#src/utils";
 
 import { matchRoutes } from "react-router";
 
-import { LOGIN, ROUTE_WHITE_LIST } from "./constants";
+import { ROUTE_WHITE_LIST } from "./constants";
 import { isDynamicRoutingEnabled, isSendRoutingRequest } from "./routes/config";
 import { replaceBaseWithRoot } from "./utils";
 
 // 不需要登录路由的路由白名单
-const noLoginWhiteList = Array.from(ROUTE_WHITE_LIST).filter(item => item !== LOGIN);
+const noLoginWhiteList = Array.from(ROUTE_WHITE_LIST).filter(item => item !== loginPath);
 
 /**
  * 全局前置守卫，用于在路由跳转前执行一些操作
@@ -44,14 +45,14 @@ export const routerBeforeEach: (reactRouter: ReactRouterType) => BlockerFunction
 	// 未登录
 	if (!isLogin) {
 		// 未登录且目标页不是登录页，则跳转到登录页
-		if (pathnameWithoutBase !== LOGIN) {
+		if (pathnameWithoutBase !== loginPath) {
 			// pathnameWithoutBase 长度大于 1，则携带当前路径跳转登录页
 			if (pathnameWithoutBase.length > 1) {
-				reactRouter.navigate(`/login?redirect=${pathnameWithoutBase}${search}`);
+				reactRouter.navigate(`${loginPath}?redirect=${pathnameWithoutBase}${search}`);
 				return true;
 			}
 			else {
-				reactRouter.navigate("/login");
+				reactRouter.navigate(loginPath);
 				return true;
 			}
 		}
@@ -70,7 +71,7 @@ export const routerBeforeEach: (reactRouter: ReactRouterType) => BlockerFunction
 		return true;
 	}
 	/* 已登录时匹配 login 路由，跳转到首页 */
-	if (pathnameWithoutBase === "/login") {
+	if (pathnameWithoutBase === loginPath) {
 		reactRouter.navigate(import.meta.env.VITE_BASE_HOME_PATH, { replace: true });
 		return true;
 	}
@@ -89,7 +90,7 @@ export const routerBeforeEach: (reactRouter: ReactRouterType) => BlockerFunction
 	}
 	// 如果当前路由有子路由，则跳转到 404 页面
 	if (hasChildren && hasChildren > 0) {
-		reactRouter.navigate("/error/404");
+		reactRouter.navigate(exception404Path);
 		return true;
 	}
 
@@ -97,7 +98,7 @@ export const routerBeforeEach: (reactRouter: ReactRouterType) => BlockerFunction
 	const hasRoutePermission = userRoles.some(role => routeRoles?.includes(role));
 	// 未通过权限校验，则跳转到 403 页面，如果路由上没有设置 roles，则默认放行
 	if (routeRoles && routeRoles.length && !hasRoutePermission) {
-		reactRouter.navigate("/error/403");
+		reactRouter.navigate(exception403Path);
 		return true;
 	}
 
@@ -148,14 +149,14 @@ export async function routerInitReady(reactRouter: ReactRouterType) {
 	// 未登录
 	if (!isLogin) {
 		// 未登录且目标页不是登录页，则跳转到登录页
-		if (pathnameWithoutBase !== LOGIN) {
+		if (pathnameWithoutBase !== loginPath) {
 			// pathnameWithoutBase 长度大于 1，则携带当前路径跳转登录页
 			if (pathnameWithoutBase.length > 1) {
-				reactRouter.navigate(`/login?redirect=${pathnameWithoutBase}${search}`);
+				reactRouter.navigate(`${loginPath}?redirect=${pathnameWithoutBase}${search}`);
 				return;
 			}
 			else {
-				reactRouter.navigate("/login");
+				reactRouter.navigate(loginPath);
 				return;
 			}
 		}
@@ -195,7 +196,7 @@ export async function routerInitReady(reactRouter: ReactRouterType) {
 	if (hasError) {
 		const unAuthorized = results.some((result: any) => result.reason.response.status === 401);
 		if (!unAuthorized) {
-			reactRouter.navigate("/error/500");
+			reactRouter.navigate(exception500Path);
 		}
 		return;
 	}
@@ -209,7 +210,7 @@ export async function routerInitReady(reactRouter: ReactRouterType) {
 	}
 
 	/* 已登录时匹配 login 路由，跳转到首页 */
-	if (pathnameWithoutBase === "/login") {
+	if (pathnameWithoutBase === loginPath) {
 		reactRouter.navigate(import.meta.env.VITE_BASE_HOME_PATH, { replace: true });
 		return;
 	}
@@ -255,13 +256,13 @@ export async function routerInitReady(reactRouter: ReactRouterType) {
 	}
 	// 如果当前路由有子路由，则跳转到 404 页面
 	if (hasChildren && hasChildren > 0) {
-		return reactRouter.navigate("/error/404");
+		return reactRouter.navigate(exception404Path);
 	}
 
 	// 路由权限校验
 	const hasRoutePermission = userRoles.some(role => routeRoles?.includes(role));
 	// 未通过权限校验，则跳转到 403 页面，如果路由上没有设置 roles，则默认放行
 	if (routeRoles && routeRoles.length && !hasRoutePermission) {
-		return reactRouter.navigate("/error/403");
+		return reactRouter.navigate(exception403Path);
 	}
 }

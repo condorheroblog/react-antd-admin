@@ -1,5 +1,6 @@
 import { BasicButton } from "#src/components";
 import { PASSWORD_RULES, USERNAME_RULES } from "#src/constants";
+import { exception500Path } from "#src/router/extra-info";
 import { isDynamicRoutingEnabled, isSendRoutingRequest } from "#src/router/routes/config";
 import { useAuthStore, usePermissionStore, useUserStore } from "#src/store";
 
@@ -37,6 +38,7 @@ export function PasswordLogin() {
 
 	const handleFinish = async (values: PasswordLoginFormType) => {
 		setLoading(true);
+		window.$message?.loading(t("authority.loginInProgress"), 0);
 
 		try {
 			/* 先登录 */
@@ -66,12 +68,15 @@ export function PasswordLogin() {
 			}
 			/* ================= 分割线 ================= */
 
+			window.$message?.destroy();
+
 			const hasError = results.some(result => result.status === "rejected");
 			// 网络请求失败，跳转到 500 页面
 			if (hasError) {
-				navigate("/error/500");
+				navigate(exception500Path);
 			}
 			else {
+				window.$message?.success(t("authority.loginSuccess"));
 				const redirect = searchParams.get("redirect");
 				if (redirect) {
 					navigate(`/${redirect.slice(1)}`);
@@ -82,7 +87,11 @@ export function PasswordLogin() {
 			}
 		}
 		finally {
-			setLoading(false);
+			// Prevent multiple requests from being made by clicking the login button
+			setTimeout(() => {
+				window.$message?.destroy();
+				setLoading(false);
+			}, 1000);
 		}
 	};
 

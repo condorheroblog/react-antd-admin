@@ -1,7 +1,7 @@
 import type { AppRouteRecordRaw } from "#src/router/types";
 
 import { $t } from "#src/locales";
-import { LOGIN } from "#src/router/constants";
+import { loginPath } from "#src/router/extra-info";
 
 import { lazy } from "react";
 
@@ -9,7 +9,7 @@ const Login = lazy(() => import("#src/pages/login"));
 
 const routes: AppRouteRecordRaw[] = [
 	{
-		path: LOGIN,
+		path: loginPath,
 		Component: Login,
 		handle: {
 			hideInMenu: true,

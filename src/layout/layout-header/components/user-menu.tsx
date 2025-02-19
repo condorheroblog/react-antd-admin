@@ -2,6 +2,7 @@ import type { ButtonProps, MenuProps } from "antd";
 
 import { BasicButton } from "#src/components";
 import { UserCircleIcon } from "#src/icons";
+import { loginPath } from "#src/router/extra-info";
 import { useAuthStore, useUserStore } from "#src/store";
 import { cn, isWindowsOs } from "#src/utils";
 
@@ -21,7 +22,7 @@ export function UserMenu({ ...restProps }: ButtonProps) {
 	const onClick: MenuProps["onClick"] = async ({ key }) => {
 		if (key === "logout") {
 			await logout();
-			navigate("/login");
+			navigate(loginPath);
 		}
 		if (key === "personal-center") {
 			navigate("/personal-center/my-profile");

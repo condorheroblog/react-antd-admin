@@ -5,12 +5,12 @@ import { addIdToRoutes } from "#src/router/utils";
 import { lazy } from "react";
 
 import authRoutes from "./auth";
-import errorRoutes from "./error";
+import exceptionRoutes from "./exception";
 
-const NotFound = lazy(() => import("#src/pages/error/404"));
+const NotFound = lazy(() => import("#src/pages/exception/404"));
 
 /** 核心路由，根路由的 children */
-export const coreRouteRootChildren = addIdToRoutes([...authRoutes, ...errorRoutes]);
+export const coreRouteRootChildren = addIdToRoutes([...authRoutes, ...exceptionRoutes]);
 export const coreRoutes: any = [
 	{
 		path: "/",

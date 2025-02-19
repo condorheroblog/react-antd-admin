@@ -1,5 +1,5 @@
+import { PageError } from "#src/components";
 import { usePreferences } from "#src/hooks";
-import PageError from "#src/pages/error/page-error";
 import { isString, toggleHtmlClass } from "#src/utils";
 
 import { useEffect } from "react";

@@ -6,8 +6,10 @@ import { ContainerLayout } from "#src/layout";
 import { isString } from "#src/utils";
 
 import * as antdIcons from "@ant-design/icons";
-import { createElement } from "react";
+import { createElement, lazy } from "react";
 import { Link } from "react-router";
+
+const ExceptionUnknownComponent = lazy(() => import("#src/pages/exception/unknown-component"));
 
 const allAntdIcons: { [key: string]: any } = antdIcons;
 
@@ -145,7 +147,7 @@ const modulesRoutes = import.meta.glob<
 >([
 	"/src/pages/**/*.tsx",
 	// Fix plugin vite:reporter
-	"!/src/pages/error/page-error/*.tsx",
+	"!/src/pages/exception/**/*.tsx",
 ]);
 
 /** 过滤后端传来的动态路由 重新生成规范路由 */
@@ -166,14 +168,19 @@ export function addAsyncRoutes(arrRoutes: Array<AppRouteRecordRaw>) {
 		else {
 			const routePath = v.path!;
 			const index = modulesRoutesKeys.findIndex(ev => ev === `/src/pages${routePath}/index.tsx`);
-			// https://github.com/remix-run/react-router/tree/dev/examples/lazy-loading-router-provider
-			// https://reactrouter.com/en/main/route/lazy
-			v.lazy = async () => {
-				const DefaultComponent = await modulesRoutes[modulesRoutesKeys[index]]();
-				return {
-					Component: DefaultComponent.default,
+			if (index !== -1) {
+				// https://github.com/remix-run/react-router/tree/dev/examples/lazy-loading-router-provider
+				// https://reactrouter.com/en/main/route/lazy
+				v.lazy = async () => {
+					const DefaultComponent = await modulesRoutes[modulesRoutesKeys[index]]?.();
+					return {
+						Component: DefaultComponent?.default || DefaultComponent,
+					};
 				};
-			};
+			}
+			else {
+				v.Component = ExceptionUnknownComponent;
+			}
 		}
 		if (v?.children && v.children.length) {
 			addAsyncRoutes(v.children);

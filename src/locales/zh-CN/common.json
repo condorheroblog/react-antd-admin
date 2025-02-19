@@ -12,6 +12,7 @@
 		"exception_403": "403",
 		"exception_404": "404",
 		"exception_500": "500",
+		"exceptionUnknownComponent": "未知组件",
 		"system": "系统管理",
 		"user": "用户管理",
 		"role": "角色管理",
@@ -76,8 +77,5 @@
 	"expandAll": "展开所有",
 	"collapseAll": "折叠所有",
 	"checkAll": "选择所有",
-	"cancelAll": "取消所有",
-	"404SubTitle": "抱歉，您访问的页面不存在。",
-	"403SubTitle": "抱歉，您没有权限访问这个页面。",
-	"500SubTitle": "抱歉，服务器出错了。"
+	"cancelAll": "取消所有"
 }
