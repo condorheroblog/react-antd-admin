@@ -10,20 +10,23 @@ outline: deep
 
 ```bash
 src/router
-├── constants.ts               # 路由常量，包含路由白名单
-├── router-global-hooks.ts     # 路由拦截钩子
-├── utils                      # 路由工具
-├── types                      # 路由类型
-├── guards                     # 路由守卫
-├── index.ts                   # 路由配置文件
+├── constants.ts                   # 路由常量，包含路由白名单
+├── utils                          # 路由工具
+├── types                          # 路由类型
+│   │   ├── guard                  # 路由守卫
+│   │   │   ├── auth-guard.tsx     # 权限守卫
+│   │   │   ├── common-guard.ts    # 通用守卫（加载顶部动画）
+│   │   │   ├── guard.ts           # 创建守卫
+│   │   │   └── index.ts           # 路由守卫聚合
+├── index.ts                       # 路由配置文件
 ├── extra-info
-│   ├── order                  # 路由顺序决定菜单排序
-│   └── index.ts               # 聚合导出
+│   ├── order                      # 路由顺序决定菜单排序
+│   └── index.ts                   # 聚合导出
 └── routes
-    ├── core                   # 核心路由
-    ├── modules                # 动态路由
-    └── static                 # 静态路由
-    └── index.ts               # 聚合路由
+    ├── core                       # 核心路由
+    ├── modules                    # 动态路由
+    └── static                     # 静态路由
+    └── index.ts                   # 聚合路由
 ```
 
 ## 路由类型
@@ -36,7 +39,7 @@ src/router
 
 ### 核心路由
 
-核心路由是应用必须的包含的路由，例如根路由、登录路由、404 路由等；核心路由的配置在应用下 `src/router/routes/core` 目录下
+核心路由是应用必须的包含的路由，例如根路由、登录路由、404 路由等；核心路由的配置在应用下 `src/router/routes/core` 目录下。**正式项目，请设置核心路由在菜单中隐藏（`hideInMenu = true`）**
 
 ::: tip
 
@@ -56,7 +59,7 @@ src/router
 
 ### 如何关闭动态路由
 
-在 `src/router/routes/config` 文件中配置 isDynamicRoutingEnabled 属性为 false，即可关闭动态路由。
+在 `src/router/routes/config` 文件中配置 enabledDynamicRouting 属性为 false，即可关闭动态路由。
 
 ::: warning
 
@@ -75,7 +78,7 @@ src/router
 /** 根路由下的子路由 */
 const rootChildRoutes = ascending([
 	...coreRouteRootChildren,
-	...(!isDynamicRoutingEnabled ? dynamicRoutes : []),
+	...(!enabledDynamicRouting ? dynamicRoutes : []),
 	// ...staticRoutes, // [!code ++]
 ]);
 ```
@@ -265,9 +268,9 @@ export default routes;
 
 :::
 
-## 新增页面
+## 新增路由
 
-新增一个页面的步骤如下：
+新增路由的步骤如下：
 
 1. 添加路由文件
 2. 添加页面组件
@@ -275,6 +278,8 @@ export default routes;
 ### 添加路由
 
 在对应的路由文件夹下添加一个路由文件，如下：
+
+> 需要登录才能访问的路由中，必须在根路由中使用 ContainerLayout 组件，否则会导致菜单无法正常显示。**所以一级路由需要嵌套在 children 中，并设定 index = true**
 
 ```ts
 import type { AppRouteRecordRaw } from "#src/router/types";
@@ -405,7 +410,7 @@ export interface RouteMeta {
 	externalLink?: string
 
 	/**
-	 * 是否忽略权限，即无需登录即可访问
+	 * 用于配置页面是否忽略权限，直接可以访问
 	 */
 	ignoreAccess?: boolean
 
@@ -492,7 +497,7 @@ iframe 链接，如果路由需要在 iframe 中加载外部页面时使用。
 - 类型：`boolean`
 - 默认值：`false`
 
-是否忽略权限，即无需登录即可访问。
+用于配置页面是否忽略权限，直接可以访问。
 
 ### currentActiveMenu
 

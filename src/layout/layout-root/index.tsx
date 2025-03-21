@@ -1,5 +1,6 @@
 import { PageError } from "#src/components";
 import { usePreferences } from "#src/hooks";
+import { AuthGuard } from "#src/router/guard";
 import { isString, toggleHtmlClass } from "#src/utils";
 
 import { useEffect } from "react";
@@ -8,11 +9,9 @@ import { useTranslation } from "react-i18next";
 import { Outlet, useLocation, useMatches } from "react-router";
 
 /**
- * RouterGuards 组件用于路由守卫，主要处理路由守卫相关的逻辑。
- *
- * @returns 返回 JSX.Element，用于渲染 Outlet 组件。
+ * 根布局组件
  */
-export function RouterGuards() {
+export default function LayoutRoot() {
 	const matches = useMatches();
 	const { t } = useTranslation();
 	const location = useLocation();
@@ -38,7 +37,9 @@ export function RouterGuards() {
 
 	return (
 		<ErrorBoundary FallbackComponent={PageError}>
-			<Outlet />
+			<AuthGuard>
+				<Outlet />
+			</AuthGuard>
 		</ErrorBoundary>
 	);
 }

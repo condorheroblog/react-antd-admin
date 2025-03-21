@@ -60,7 +60,7 @@ const defaultConfig: Options = {
 						const { refreshToken } = useAuthStore.getState();
 						// If there is no refresh token, it means that the user has not logged in.
 						if (!refreshToken) {
-							// 如果页面的路由已经重定向到登录页，则不用调转直接返回结果
+							// 如果页面的路由已经重定向到登录页，则不用跳转直接返回结果
 							if (location.pathname === loginPath) {
 								return response;
 							}

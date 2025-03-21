@@ -61,7 +61,7 @@ export interface RouteMeta {
 	externalLink?: string
 
 	/**
-	 * 是否忽略权限，即无需登录即可访问
+	 * 用于配置页面是否忽略权限，直接可以访问
 	 */
 	ignoreAccess?: boolean
 

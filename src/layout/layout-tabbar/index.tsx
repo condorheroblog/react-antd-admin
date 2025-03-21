@@ -2,7 +2,7 @@ import type { TabItemProps } from "#src/store";
 import type { TabsProps } from "antd";
 
 import { useCurrentRoute } from "#src/hooks";
-import { isDynamicRoutingEnabled } from "#src/router/routes/config";
+import { enabledDynamicRouting } from "#src/router/routes/config";
 import { removeTrailingSlash } from "#src/router/utils";
 import { usePermissionStore, usePreferencesStore, useTabsStore } from "#src/store";
 import { isString } from "#src/utils";
@@ -148,7 +148,7 @@ export default function LayoutTabbar() {
 		// 检查默认 Tab 是否缺失
 		const isDefaultTabMissing = !Array.from(openTabs.keys()).includes(import.meta.env.VITE_BASE_HOME_PATH);
 		// 检查动态路由是否加载完成
-		const isDynamicRoutingReady = !isDynamicRoutingEnabled || hasFetchedDynamicRoutes;
+		const isDynamicRoutingReady = !enabledDynamicRouting || hasFetchedDynamicRoutes;
 
 		if (isDefaultTabMissing && isDynamicRoutingReady) {
 			const routeTitle = flatRouteList[import.meta.env.VITE_BASE_HOME_PATH]?.handle?.title;

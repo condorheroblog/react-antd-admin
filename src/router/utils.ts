@@ -179,6 +179,7 @@ export function addAsyncRoutes(arrRoutes: Array<AppRouteRecordRaw>) {
 				};
 			}
 			else {
+				console.warn(`[Frontend component not found]: routePath - ${JSON.stringify(routePath)}`);
 				v.Component = ExceptionUnknownComponent;
 			}
 		}

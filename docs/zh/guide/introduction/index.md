@@ -1,10 +1,13 @@
 # 介绍 {#instroduction}
 
-react-antd-admin 是一个基于 React 18、Vite 5 和 TypeScript 的中后台解决方案。它旨在帮助您快速搭建企业级中后台项目。无论是在采用新技术方面还是其他方面，它都能为您提供帮助。
+react-antd-admin 是一个基于 React Hooks、Vite、TypeScript 和 antd 搭建的**中后台**解决方案。它开箱即用内置权限校验、动态菜单、多主题配置、路由动画、多页面缓存、颗粒化按钮级别的权限控制、代码规范等功能，让你不操心技术，而专注于业务开发。
+
+项目使用的技术较新，但同时包含各个方面的最佳实践，所以此项目可作为模板为企业赋能，也可作为学习素材为个人赋能，欢迎使用。
 
 ## 特性
 
 - [React Hooks](https://react.dev/)
+- [React Router](https://reactrouter.com/)
 - [antd](https://ant.design/index-cn/)
 - [Zustand](https://zustand-demo.pmnd.rs/)
 - [Vite](https://vitejs.dev/)

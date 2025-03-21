@@ -1,7 +1,7 @@
 import type { AppRouteRecordRaw, RouteFileModule } from "#src/router/types";
 
 import { ascending, mergeRouteModules } from "#src/router/utils";
-import { isDynamicRoutingEnabled } from "./config";
+import { enabledDynamicRouting } from "./config";
 import { coreRouteRootChildren, coreRoutes } from "./core";
 
 // 前端静态路由文件
@@ -23,7 +23,7 @@ const staticRoutes: AppRouteRecordRaw[] = mergeRouteModules(staticRouteFiles);
 /** 根路由下的子路由 */
 const rootChildRoutes = ascending([
 	...coreRouteRootChildren,
-	...(!isDynamicRoutingEnabled ? dynamicRoutes : []),
+	...(!enabledDynamicRouting ? dynamicRoutes : []),
 	...staticRoutes,
 ]);
 

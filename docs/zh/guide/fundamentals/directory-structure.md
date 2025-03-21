@@ -66,6 +66,7 @@ react-antd-admin
 │   │   ├── layout-menu                    # 布局菜单
 │   │   ├── layout-mixed-sidebar           # 布局混合侧边栏
 │   │   ├── layout-sidebar                 # 布局侧边栏
+│   │   ├── layout-root                    # 根布局
 │   │   ├── layout-tabbar                  # 布局 tabbar
 │   │   ├── parent-layout                  # 父布局
 │   │   └── widgets                        # 放在布局组件中的小部件
@@ -80,7 +81,8 @@ react-antd-admin
 │   │   ├── error                          # 错误页面
 │   │   │   ├── 403                        # 403 页面
 │   │   │   ├── 404                        # 404 页面
-│   │   │   └── page-error                 # 代码运行错误页面
+│   │   │   ├── 500                        # 500 页面
+│   │   │   └── unknown-component          # 未知组件页面
 │   │   ├── home                           # 首页
 │   │   ├── login                          # 登录页面
 │   │   ├── personal-center                # 个人中心页面
@@ -91,17 +93,17 @@ react-antd-admin
 │   ├── plugins	                           # App 插件
 │   │   ├── index.ts                       # 聚合导出所有的插件
 │   │   └── loading.ts                     # 应用加载动画
+│   │   └── loading2.ts                    # 应用加载动画 2
 │   ├── router                             # 路由
 │   │   ├── constants.ts                   # 路由配置一些常量
 │   │   ├── extra-info                     # 路由配置信息，比如路由的顺序
-│   │   ├── guards.tsx                     # 路由守卫
+│   │   ├── guard                          # 路由守卫
 │   │   ├── index.ts                       # 路由入口文件
 │   │   ├── routes                         # 路由模块
 │   │   │   ├── core                       # 核心路由
 │   │   │   ├── static                     # 静态路由
 │   │   │   ├── modules                    # 动态路由
 │   │   │   └── ...
-│   │   ├── router-global-hooks.ts         # 路由全局钩子
 │   │   ├── types.ts                       # 路由类型定义
 │   │   └── utils.ts                       # 路由工具函数
 │   ├── setupTests.ts                      # 测试配置

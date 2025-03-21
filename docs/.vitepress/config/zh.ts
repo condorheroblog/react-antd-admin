@@ -64,6 +64,10 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
 			text: "简介",
 			items: [
 				{ text: "介绍", link: "introduction" },
+				{
+					link: "introduction/why",
+					text: "为什么选择我们",
+				},
 				{ text: "快速开始", link: "introduction/quick-start" },
 			],
 		},

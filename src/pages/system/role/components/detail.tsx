@@ -136,11 +136,9 @@ export function Detail({ title, open, onCloseChange, detailData, treeData, refre
 				label={t("common.remark")}
 			/>
 
-			<div>
-				<Form.Item name="menus" label={t("system.role.assignMenu")}>
-					<FormTreeItem treeData={treeData} />
-				</Form.Item>
-			</div>
+			<Form.Item name="menus" label={t("system.role.assignMenu")}>
+				<FormTreeItem treeData={treeData} />
+			</Form.Item>
 		</DrawerForm>
 	);
 };

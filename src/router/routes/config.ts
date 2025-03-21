@@ -5,7 +5,7 @@
  * 1. 开启情况下，不会读取 src/router/routes/modules 目录下的路由
  * 2. 关闭情况下，会尝试读取 src/router/routes/modules 目录下的路由，便于调试
  */
-export const isDynamicRoutingEnabled = true;
+export const enabledDynamicRouting = true;
 /**
  * 开启动态路由情况下，是否发送路由请求获取动态路由数据
  *
