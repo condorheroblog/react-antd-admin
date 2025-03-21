@@ -3,12 +3,15 @@ import { cn } from "#src/utils";
 
 import Icon from "@ant-design/icons";
 
+import Embedded from "./svg/embedded.svg?react";
+import External from "./svg/external.svg?react";
 import FollowSystem from "./svg/follow-system.svg?react";
 import FullscreenExit from "./svg/fullscreen-exit.svg?react";
 import Fullscreen from "./svg/fullscreen.svg?react";
 import MailCheck from "./svg/mail-check.svg?react";
 import MixedNavigation from "./svg/mixed-navigation.svg?react";
 import Moon from "./svg/moon.svg?react";
+import OutsidePage from "./svg/outside-page.svg?react";
 import ProfileCard from "./svg/profile-card.svg?react";
 import ReactLogo from "./svg/react-logo.svg?react";
 import ServerError from "./svg/server-error.svg?react";
@@ -83,4 +86,17 @@ export function FullscreenExitIcon(props: Partial<CustomIconComponentProps>) {
 
 export function ServerErrorIcon(props: Partial<CustomIconComponentProps>) {
 	return <Icon component={ServerError} {...props} />;
+}
+
+/* Outside Page */
+export function OutsidePageIcon(props: Partial<CustomIconComponentProps>) {
+	return <Icon component={OutsidePage} {...props} />;
+}
+
+export function EmbeddedIcon(props: Partial<CustomIconComponentProps>) {
+	return <Icon component={Embedded} {...props} />;
+}
+
+export function ExternalIcon(props: Partial<CustomIconComponentProps>) {
+	return <Icon component={External} {...props} />;
 }

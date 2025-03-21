@@ -1,6 +1,7 @@
 import type { MenuItemType } from "./types";
 
 import { isString } from "#src/utils";
+import { cloneElement, isValidElement } from "react";
 
 /**
  * 将菜单树中的所有 label 转换为国际化文本
@@ -10,9 +11,16 @@ import { isString } from "#src/utils";
  */
 export function translateMenus(menus: MenuItemType[], t: (key: string) => string): MenuItemType[] {
 	return menus.map((menu) => {
+		let translatedLabel: React.ReactNode = menu.label;
+		if (isValidElement(menu.label)) {
+			translatedLabel = cloneElement(menu.label, {}, t(menu.label.props.children));
+		}
+		if (isString(menu.label)) {
+			translatedLabel = t(menu.label);
+		}
 		const translatedMenu = {
 			...menu,
-			label: isString(menu.label) ? t(menu.label) : menu.label,
+			label: translatedLabel,
 		};
 
 		if (menu.children && menu.children.length > 0) {

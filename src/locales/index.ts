@@ -1,6 +1,7 @@
+import type { InitOptions } from "i18next";
+
 import enUS from "antd/locale/en_US";
 import zhCN from "antd/locale/zh_CN";
-
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
@@ -24,9 +25,21 @@ export const i18nResources = {
 	},
 };
 
-export const i18nInitOptions = {
+export const i18nInitOptions: InitOptions = {
 	lng: "zh-CN",
 	resources: i18nResources,
+	saveMissing: import.meta.env.DEV,
+	missingKeyHandler: async (languages, namespace, translationKey) => {
+		if (import.meta.env.PROD) {
+			return;
+		}
+		const currentLanguage = i18n.language;
+		/**
+		 * @see https://www.i18next.com/overview/api#missingkeyhandler
+		 * 消息的格式参考：https://github.com/intlify/vue-i18n/blob/v11.1.2/packages/shared/src/warn.ts
+		 */
+		console.warn(`[i18n] Not found '${translationKey}' key in '${currentLanguage}' locale messages.`);
+	},
 };
 
 export function setupI18n() {

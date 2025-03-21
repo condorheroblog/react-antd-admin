@@ -2,9 +2,10 @@ import type { MenuItemType } from "#src/layout/layout-menu/types";
 import type { AppRouteRecordRaw, RouteFileModule } from "./types";
 
 import { Iframe } from "#src/components/iframe";
+import * as basicIcons from "#src/icons";
 import { ContainerLayout } from "#src/layout";
-import { isString } from "#src/utils";
 
+import { isString } from "#src/utils";
 import * as antdIcons from "@ant-design/icons";
 import { createElement, lazy } from "react";
 import { Link } from "react-router";
@@ -12,6 +13,7 @@ import { Link } from "react-router";
 const ExceptionUnknownComponent = lazy(() => import("#src/pages/exception/unknown-component"));
 
 const allAntdIcons: { [key: string]: any } = antdIcons;
+const allBasicIcons: { [key: string]: any } = basicIcons;
 
 /**
  * 合并路由模块
@@ -72,17 +74,40 @@ export function getMenuItems(routeList: AppRouteRecordRaw[]) {
 
 		const menuItem: MenuItemType = {
 			key: item.path!,
-			icon: isString(iconName) ? createElement(allAntdIcons[iconName]) : iconName,
 			label: externalLink
 				? createElement(
 					Link,
-					{ to: externalLink, target: "_blank", rel: "noopener noreferrer" },
+					{
+						// 阻止事件冒泡，防止触发菜单的点击事件
+						onClick: (e) => {
+							e.stopPropagation();
+						},
+						to: externalLink,
+						target: "_blank",
+						rel: "noopener noreferrer",
+					},
 					label,
 				)
 				: (
 					label
 				),
 		};
+		if (iconName) {
+			menuItem.icon = iconName;
+			if (isString(iconName)) {
+				if (allAntdIcons[iconName]) {
+					menuItem.icon = createElement(allAntdIcons[iconName]);
+				}
+				else if (allBasicIcons[iconName]) {
+					menuItem.icon = createElement(allBasicIcons[iconName]);
+				}
+				else {
+					console.warn(
+						`iconName: ${iconName} is not found in allAntdIcons or allBasicIcons`,
+					);
+				}
+			}
+		}
 		if (Array.isArray(item.children) && item.children.length > 0) {
 			// 过滤掉非首页，且不显示在菜单中的路由
 			const noIndexRoute = item.children.filter(route => !route.index && !route?.handle?.hideInMenu);
