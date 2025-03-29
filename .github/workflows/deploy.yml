@@ -25,9 +25,6 @@ jobs:
           node-version: lts/*
           cache: pnpm
 
-      - name: spa-github-index-page 📒
-        run: pnpm run spa-github-index-page
-
       - name: Install and Build 🔧
         run: |
           pnpm install -r
