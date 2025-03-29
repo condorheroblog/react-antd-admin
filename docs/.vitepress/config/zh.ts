@@ -51,9 +51,18 @@ export const zh = defineConfig({
 function nav(): DefaultTheme.NavItem[] {
 	return [
 		{
+			text: "在线预览",
+			link: "https://condorheroblog.github.io/react-antd-admin/",
+		},
+		{
 			text: "指南",
 			link: "/zh/guide/introduction/",
 			activeMatch: "/zh/guide/",
+		},
+		{
+			text: "赞助",
+			link: "/zh/sponsor/",
+			activeMatch: "/zh/sponsor/",
 		},
 	];
 }

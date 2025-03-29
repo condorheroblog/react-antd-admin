@@ -2,7 +2,7 @@ import type { RoleItemType } from "#src/api/system";
 import type { ActionType, ProColumns, ProCoreActionType } from "@ant-design/pro-components";
 import { fetchDeleteRoleItem, fetchMenuByRoleId, fetchRoleList, fetchRoleMenu } from "#src/api/system";
 import { BasicButton, BasicContent, BasicTable } from "#src/components";
-import { useAuth } from "#src/hooks";
+import { accessControlCodes, useAccess } from "#src/hooks";
 import { handleTree } from "#src/utils";
 
 import { PlusCircleOutlined } from "@ant-design/icons";
@@ -16,7 +16,7 @@ import { getConstantColumns } from "./constants";
 
 export default function Role() {
 	const { t } = useTranslation();
-	const hasAuth = useAuth();
+	const { hasAccessByCodes } = useAccess();
 	const { data: menuItems } = useQuery({
 		queryKey: ["role-menu"],
 		queryFn: async () => {
@@ -59,7 +59,7 @@ export default function Role() {
 						key="editable"
 						type="link"
 						size="small"
-						disabled={!hasAuth("update")}
+						disabled={!hasAccessByCodes(accessControlCodes.update)}
 						onClick={async () => {
 							/* 请求角色菜单权限 */
 							const responseData = await fetchMenuByRoleId({ id: record.id });
@@ -77,7 +77,7 @@ export default function Role() {
 						okText={t("common.confirm")}
 						cancelText={t("common.cancel")}
 					>
-						<BasicButton type="link" size="small" disabled={!hasAuth("delete")}>{t("common.delete")}</BasicButton>
+						<BasicButton type="link" size="small" disabled={!hasAccessByCodes(accessControlCodes.delete)}>{t("common.delete")}</BasicButton>
 					</Popconfirm>,
 				];
 			},
@@ -112,7 +112,7 @@ export default function Role() {
 						key="add-role"
 						icon={<PlusCircleOutlined />}
 						type="primary"
-						disabled={!hasAuth("add")}
+						disabled={!hasAccessByCodes(accessControlCodes.add)}
 						onClick={() => {
 							setIsOpen(true);
 							setTitle(t("system.role.addRole"));

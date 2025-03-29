@@ -33,8 +33,8 @@ react-antd-admin
 │   │   ├── svg                            # svg 文件
 │   │   └── images                         # 图片
 │   ├── components                         # 公共组件
+│   │   ├── access-control                 # 权限组件
 │   │   ├── antd-app                       # antd 主题配置
-│   │   ├── auth                           # 权限组件
 │   │   ├── basic-button                   # 基础按钮
 │   │   ├── basic-content                  # 基础内容
 │   │   ├── basic-form                     # 基础表单
@@ -49,7 +49,7 @@ react-antd-admin
 │   ├── constants                          # 全局常用的一些常量
 │   ├── hooks                              # 自定义 hooks
 │   │   ├── index.ts                       # 聚合导出所有的 hooks
-│   │   ├── use-auth                       # 权限
+│   │   ├── use-access                     # 权限
 │   │   ├── use-current-route              # 获取当前最新路由
 │   │   ├── use-device-type                # 获取设备类型
 │   │   ├── use-language                   # 获取语言
@@ -95,24 +95,25 @@ react-antd-admin
 │   │   └── loading.ts                     # 应用加载动画
 │   │   └── loading2.ts                    # 应用加载动画 2
 │   ├── router                             # 路由
-│   │   ├── constants.ts                   # 路由配置一些常量
+│   │   ├── constants.ts                   # 路由常量
 │   │   ├── extra-info                     # 路由配置信息，比如路由的顺序
 │   │   ├── guard                          # 路由守卫
 │   │   ├── index.ts                       # 路由入口文件
 │   │   ├── routes                         # 路由模块
 │   │   │   ├── core                       # 核心路由
+│   │   │   ├── external                   # 外部路由
 │   │   │   ├── static                     # 静态路由
 │   │   │   ├── modules                    # 动态路由
 │   │   │   └── ...
 │   │   ├── types.ts                       # 路由类型定义
-│   │   └── utils.ts                       # 路由工具函数
+│   │   └── utils                          # 路由工具函数
 │   ├── setupTests.ts                      # 测试配置
 │   ├── store                              # 状态管理
 │   │   ├── auth.ts                        # accessToken 和 refreshToken
 │   │   ├── global.ts                      # 全局 store，比如 loading 等
 │   │   ├── index.ts                       # 聚合导出所有的 store
-│   │   ├── permission.ts                  # 页面和菜单的权限
-│   │   ├── preferences.ts                 # 偏好设置
+│   │   ├── access.ts                      # 页面路由、菜单、权限
+│   │   ├── preferences                    # 偏好设置
 │   │   ├── tabs.ts                        # 标签页
 │   │   └── user.ts                        # 用户信息
 │   ├── styles                             # 样式
@@ -142,7 +143,7 @@ react-antd-admin
 │       ├── request                        # 封装 ky 的请求库
 │       ├── static-antd                    # 静态 antd 的 message、notification、modal 等
 │       ├── toggle-html-class              # 切换 html 标签的 class
-│       └── tree                           # 格式化菜单的数据项
+│       └── tree                           # 树形结构相关
 ├── tailwind.config.ts                     # tailwind 配置
 ├── tests                                  # 测试文件目录
 ├── tsconfig.json                          # ts 配置

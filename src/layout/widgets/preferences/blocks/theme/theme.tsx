@@ -1,4 +1,4 @@
-import type { ThemeType } from "#src/store";
+import type { ThemeType } from "#src/store/preferences/types";
 import type { InputNumberProps } from "antd";
 
 import { FollowSystemIcon, MoonIcon, SunIcon } from "#src/icons";

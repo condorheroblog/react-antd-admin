@@ -98,6 +98,13 @@ Thanks to the following excellent projects for providing inspiration:
 
 [![Star History Chart](https://api.star-history.com/svg?repos=condorheroblog/react-antd-admin&type=Date)](https://star-history.com/#condorheroblog/react-antd-admin&Date)
 
+## Sponsor
+
+If this project was helpful to you, you can buy the author a takeaway meal.
+
+![Sponsor](https://condorheroblog.github.io/react-antd-admin/docs/sponsor.png)
+
+
 ## License
 
 [MIT](https://github.com/condorheroblog/react-antd-admin/blob/main/LICENSE) License © 2023-Present [Condor Hero](https://github.com/condorheroblog)

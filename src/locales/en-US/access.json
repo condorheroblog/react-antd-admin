@@ -1,0 +1,39 @@
+{
+	"accessMode": {
+		"title": "Backend Access Permission Visibility",
+		"description": "The current page only supports obtaining route visibility through backend interfaces"
+	},
+	"adminVisible": {
+		"title": "Admin Visible",
+		"description": "The current page is only visible to Admin accounts"
+	},
+	"commonVisible": {
+		"title": "Common Visible",
+		"description": "The current page is only visible to Common accounts"
+	},
+	"pageControl": {
+		"alertMessage": "Demo of Frontend Page Access Permissions",
+		"alertDescription": "Switch to different accounts and observe the changes in the 'Permission Demonstration' submenu on the left.",
+		"cardTitle": "Permission Mode",
+		"frontendControl": "Frontend Permission Control",
+		"backendControl": "Backend Permission Control",
+		"switchToFrontend": "Switch to Frontend Permission Mode",
+		"switchToBackend": "Switch to Backend Permission Mode",
+		"switchAdmin": "Switch to Admin User",
+		"switchCommon": "Switch to Common User",
+		"currentPermissionMode": "Current permission mode:",
+		"accountSwitching": "Account Switching",
+		"warningMessage": "If enableFrontendAceess and enableBackendAceess are equal, switching routing mode is not allowed."
+	},
+	"buttonControl": {
+		"alertMessage": "Demo of Frontend Button Access Permissions",
+		"alertDescription": "Switch between different accounts to observe button changes.",
+		"currentRole": "Current Role",
+		"switchAdmin": "Switch to Admin User",
+		"switchCommon": "Switch to Common User",
+		"componentControlPermissionCodes": "Component-based Control - Permission Codes",
+		"componentControlRoles": "Component-based Control - Roles",
+		"functionControlPermissionCodes": "Function-based Control - Permission Codes",
+		"functionControlRoles": "Function-based Control - Roles"
+	}
+}

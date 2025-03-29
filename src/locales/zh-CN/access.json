@@ -1,0 +1,39 @@
+{
+	"accessMode": {
+		"title": "后端访问权限可见",
+		"description": "当前页面仅支持通过后端接口获取路由可见"
+	},
+	"adminVisible": {
+		"title": "Admin 可见",
+		"description": "当前页面仅 Admin 账号可见"
+	},
+	"commonVisible": {
+		"title": "Common 可见",
+		"description": "当前页面仅 Common 账号可见"
+	},
+	"pageControl": {
+		"alertMessage": "前端页面访问权限演示",
+		"alertDescription": "切换不同的账号，观察左侧「权限演示」子菜单变化。",
+		"cardTitle": "权限模式",
+		"frontendControl": "前端权限控制",
+		"backendControl": "后端权限控制",
+		"switchToFrontend": "切换为前端权限模式",
+		"switchToBackend": "切换为后端权限模式",
+		"switchAdmin": "切换 Admin 用户",
+		"switchCommon": "切换 Common 用户",
+		"currentPermissionMode": "当前权限模式：",
+		"accountSwitching": "账号切换",
+		"warningMessage": "enableFrontendAceess 和 enableBackendAceess 相等时不允许切换路由模式。"
+	},
+	"buttonControl": {
+		"alertMessage": "前端按钮访问权限演示",
+		"alertDescription": "切换不同的账号，观察按钮变化。",
+		"currentRole": "当前角色",
+		"switchAdmin": "切换 Admin 用户",
+		"switchCommon": "切换 Common 用户",
+		"componentControlPermissionCodes": "组件形式控制 - 权限码",
+		"componentControlRoles": "组件形式控制 - 角色",
+		"functionControlPermissionCodes": "函数形式控制 - 权限码",
+		"functionControlRoles": "函数形式控制 - 角色"
+	}
+}

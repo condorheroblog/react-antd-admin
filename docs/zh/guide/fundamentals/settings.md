@@ -102,7 +102,7 @@ interface ImportMeta {
 
 ![preferences](/guide/preferences.png)
 
-使用偏好配置设置好之后，可以一键复制到 `src/store/preferences.ts` 文件中找到 `DEFAULT_PREFERENCES` 变量直接，覆盖框架默认配置。
+使用偏好配置设置好之后，可以一键复制到 `src/store/preferences/index.ts` 文件中找到 `DEFAULT_PREFERENCES` 变量直接，覆盖框架默认配置。
 
 ```ts
 /**
@@ -110,6 +110,8 @@ interface ImportMeta {
  */
 export const DEFAULT_PREFERENCES = {
 	/* ================== General ================== */
+	enabledBackendAccess: true,
+	enableFrontendAceess: false,
 	language: "zh-CN",
 	enableCheckUpdates: true,
 	checkUpdatesInterval: 1,

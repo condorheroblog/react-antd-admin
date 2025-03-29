@@ -2,7 +2,7 @@
 	"title": "Preferences",
 	"copyPreferences": "Copy Preferences",
 	"copyPreferencesSuccessTitle": "Copy successful",
-	"copyPreferencesSuccess": "Copy successful, please override in `src/store/preferences.ts`",
+	"copyPreferencesSuccess": "Copy successful, please override in `src/store/preferences/index.ts`",
 	"clearAndLogout": "Clear Cache & Logout",
 	"theme": {
 		"title": "Theme",

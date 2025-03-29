@@ -47,6 +47,7 @@ export const shared = defineConfig({
 	],
 
 	themeConfig: {
+		outline: "deep",
 		logo: { src: "/logo.svg", width: 24, height: 24 },
 
 		socialLinks: [

@@ -7,13 +7,24 @@
  * 4. ……
  */
 
-import { createBrowserRouter } from "react-router";
+import { LayoutRoot } from "#src/layout";
 
+import { createBrowserRouter } from "react-router";
+import { ROOT_ROUTE_ID } from "./constants";
 import { createRouterGuard } from "./guard";
-import { routes } from "./routes";
+import { baseRoutes } from "./routes";
+
+export const rootRoute = [
+	{
+		path: "/",
+		id: ROOT_ROUTE_ID,
+		Component: LayoutRoot,
+		children: baseRoutes,
+	},
+];
 
 export const router = createBrowserRouter(
-	routes,
+	rootRoute,
 	{
 		basename: import.meta.env.BASE_URL,
 	},

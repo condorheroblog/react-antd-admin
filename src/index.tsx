@@ -10,11 +10,14 @@ import App from "./app";
 import "./styles/index.css";
 
 async function setupApp() {
+	/**
+	 * @zh 初始化国际化，必须放在第一位，loading 和 路由都引用了国际化
+	 * @en Initialize internationalization, must be placed first. Loading and routing both refer to internationalization
+	*/
+	setupI18n();
+
 	// App Loading
 	setupLoading();
-
-	/* setupI18n 必须放在 setupRouter 前面 */
-	setupI18n();
 
 	/* setupRouter 使用了 setupI18n，所以必须放在 setupI18n 后面 */
 	await setupRouter();

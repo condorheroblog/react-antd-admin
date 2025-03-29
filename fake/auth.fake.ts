@@ -6,14 +6,14 @@ import { resultSuccess } from "./utils";
 export default defineFakeRoute([
 	{
 		url: "/login",
-		timeout: 1000,
+		timeout: 0,
 		method: "post",
 		// statusCode: 401,
 		// response: () => ({ code: 401, message: "Unauthorized" }),
 		// statusCode: 400,
 		// response: () => ({ code: 404, message: "Not found" }),
 		response: ({ body }) => {
-			if (body.username !== "commom") {
+			if (body.username !== "common") {
 				return resultSuccess({
 					token: ADMIN_TOKEN,
 					refreshToken: ADMIN_REFRESH_TOKEN,

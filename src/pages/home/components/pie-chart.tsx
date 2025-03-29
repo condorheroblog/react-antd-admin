@@ -85,7 +85,7 @@ export default function PieChart() {
 				/>
 			)}
 		>
-			<ReactECharts option={option} />
+			<ReactECharts opts={{ height: "auto", width: "auto" }} option={option} />
 		</Card>
 	);
 }

@@ -1,133 +1,4 @@
 /**
- * @description 提取菜单树中的每一项uniqueId
- * @param tree 树
- * @returns 每一项uniqueId组成的数组
- */
-export function extractPathList(tree: any[]): any {
-	if (!Array.isArray(tree)) {
-		console.warn("tree must be an array");
-		return [];
-	}
-	if (!tree || tree.length === 0)
-		return [];
-	const expandedPaths: Array<number | string> = [];
-	for (const node of tree) {
-		const hasChildren = node.children && node.children.length > 0;
-		if (hasChildren) {
-			extractPathList(node.children);
-		}
-		expandedPaths.push(node.uniqueId);
-	}
-	return expandedPaths;
-}
-
-/**
- * @description 如果父级下children的length为1，删除children并自动组建唯一uniqueId
- * @param tree 树
- * @param pathList 每一项的id组成的数组
- * @returns 组件唯一uniqueId后的树
- */
-export function deleteChildren(tree: any[], pathList = []): any {
-	if (!Array.isArray(tree)) {
-		console.warn("menuTree must be an array");
-		return [];
-	}
-	if (!tree || tree.length === 0)
-		return [];
-	for (const [key, node] of tree.entries()) {
-		if (node.children && node.children.length === 1)
-			delete node.children;
-		node.id = key;
-		node.parentId = pathList.length ? pathList[pathList.length - 1] : null;
-		node.pathList = [...pathList, node.id];
-		node.uniqueId
-			= node.pathList.length > 1 ? node.pathList.join("-") : node.pathList[0];
-		const hasChildren = node.children && node.children.length > 0;
-		if (hasChildren) {
-			deleteChildren(node.children, node.pathList);
-		}
-	}
-	return tree;
-}
-
-/**
- * @description 创建层级关系
- * @param tree 树
- * @param pathList 每一项的id组成的数组
- * @returns 创建层级关系后的树
- */
-export function buildHierarchyTree(tree: any[], pathList = []): any {
-	if (!Array.isArray(tree)) {
-		console.warn("tree must be an array");
-		return [];
-	}
-	if (!tree || tree.length === 0)
-		return [];
-	for (const [key, node] of tree.entries()) {
-		node.id = key;
-		node.parentId = pathList.length ? pathList[pathList.length - 1] : null;
-		node.pathList = [...pathList, node.id];
-		const hasChildren = node.children && node.children.length > 0;
-		if (hasChildren) {
-			buildHierarchyTree(node.children, node.pathList);
-		}
-	}
-	return tree;
-}
-
-/**
- * @description 广度优先遍历，根据唯一uniqueId找当前节点信息
- * @param tree 树
- * @param uniqueId 唯一uniqueId
- * @returns 当前节点信息
- */
-export function getNodeByUniqueId(tree: any[], uniqueId: number | string): any {
-	if (!Array.isArray(tree)) {
-		console.warn("menuTree must be an array");
-		return [];
-	}
-	if (!tree || tree.length === 0)
-		return [];
-	const item = tree.find(node => node.uniqueId === uniqueId);
-	if (item)
-		return item;
-	const childrenList = tree
-		.filter(node => node.children)
-		.map(i => i.children)
-		.flat(1) as unknown;
-	return getNodeByUniqueId(childrenList as any[], uniqueId);
-}
-
-/**
- * @description 向当前唯一uniqueId节点中追加字段
- * @param tree 树
- * @param uniqueId 唯一uniqueId
- * @param fields 需要追加的字段
- * @returns 追加字段后的树
- */
-export function appendFieldByUniqueId(tree: any[], uniqueId: number | string, fields: object): any {
-	if (!Array.isArray(tree)) {
-		console.warn("menuTree must be an array");
-		return [];
-	}
-	if (!tree || tree.length === 0)
-		return [];
-	for (const node of tree) {
-		const hasChildren = node.children && node.children.length > 0;
-		if (
-			node.uniqueId === uniqueId
-			&& Object.prototype.toString.call(fields) === "[object Object]"
-		) {
-			Object.assign(node, fields);
-		}
-		if (hasChildren) {
-			appendFieldByUniqueId(node.children, uniqueId, fields);
-		}
-	}
-	return tree;
-}
-
-/**
  * @description 构造树型结构数据
  * @param data 数据源
  * @param id id字段 默认id
@@ -181,4 +52,100 @@ export function handleTree(data: any[], id?: string, parentId?: string, children
 		}
 	}
 	return tree;
+}
+
+export interface TreeConfigOptions {
+	// 子属性的名称，默认为'children'
+	childProps: string
+}
+
+/**
+ * @zh_CN 遍历树形结构，并返回所有节点中指定的值。
+ * @param tree 树形结构数组
+ * @param getValue 获取节点值的函数
+ * @param options 作为子节点数组的可选属性名称。
+ * @returns 所有节点中指定的值的数组
+ */
+export function traverseTreeValues<T, V>(
+	tree: T[],
+	getValue: (node: T) => V,
+	options?: TreeConfigOptions,
+): V[] {
+	const result: V[] = [];
+	const { childProps } = options || {
+		childProps: "children",
+	};
+
+	const dfs = (treeNode: T) => {
+		const value = getValue(treeNode);
+		result.push(value);
+		const children = (treeNode as Record<string, any>)?.[childProps];
+		if (!children) {
+			return;
+		}
+		if (children.length > 0) {
+			for (const child of children) {
+				dfs(child);
+			}
+		}
+	};
+
+	for (const treeNode of tree) {
+		dfs(treeNode);
+	}
+	return result.filter(Boolean);
+}
+
+/**
+ * 根据条件过滤给定树结构的节点，并以原有顺序返回所有匹配节点的数组。
+ * @param tree 要过滤的树结构的根节点数组。
+ * @param filter 用于匹配每个节点的条件。
+ * @param options 作为子节点数组的可选属性名称。
+ * @returns 包含所有匹配节点的数组。
+ */
+export function filterTree<T extends Record<string, any>>(
+	tree: T[],
+	filter: (node: T) => boolean,
+	options?: TreeConfigOptions,
+): T[] {
+	const { childProps } = options || {
+		childProps: "children",
+	};
+
+	const _filterTree = (nodes: T[]): T[] => {
+		return nodes.filter((node: Record<string, any>) => {
+			if (filter(node as T)) {
+				if (node[childProps]) {
+					node[childProps] = _filterTree(node[childProps]);
+				}
+				return true;
+			}
+			return false;
+		});
+	};
+
+	return _filterTree(tree);
+}
+
+/**
+ * 根据条件重新映射给定树结构的节点
+ * @param tree 要过滤的树结构的根节点数组。
+ * @param mapper 用于map每个节点的条件。
+ * @param options 作为子节点数组的可选属性名称。
+ */
+export function mapTree<T, V extends Record<string, any>>(
+	tree: T[],
+	mapper: (node: T) => V,
+	options?: TreeConfigOptions,
+): V[] {
+	const { childProps } = options || {
+		childProps: "children",
+	};
+	return tree.map((node) => {
+		const mapperNode: Record<string, any> = mapper(node);
+		if (mapperNode[childProps]) {
+			mapperNode[childProps] = mapTree(mapperNode[childProps], mapper, options);
+		}
+		return mapperNode as V;
+	});
 }

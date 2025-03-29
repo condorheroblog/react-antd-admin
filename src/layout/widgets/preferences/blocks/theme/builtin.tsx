@@ -1,4 +1,4 @@
-import type { BuiltinThemeType } from "#src/store";
+import type { BuiltinThemeType } from "#src/store/preferences/types";
 import type { ColorPickerProps } from "antd";
 
 import { usePreferencesStore } from "#src/store";

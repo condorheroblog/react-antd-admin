@@ -13,35 +13,15 @@ loading 效果的代码属于 pure-admin
 
 :::
 
+## 为什么？
+
+单页面应用，用户初次进入或者刷新应用，一是会下载大量代码进行页面渲染，二是页面展示前需要时间发送接口请求用户详情和动态路由，这个过程需要用户等待，为了避免用户看到白屏或者短暂的黑屏（暗黑主题），我们使用 loading 效果避免这个问题。
+
 ## 原理
 
-单页面应用，用户初次进入或者刷新应用，会加载一次 `index.html`，在 React 代码注入到 应用入口之前（`<div id="root"></div>`），页面显示白屏。为了友好的体验，在 `index.html` 显示 loading 效果。
+进入应用调用 setupLoading 显示 App Loading，请求完用户详情接口调用 hideLoading 函数关闭 Loading。
 
-因为 React 代码注入到 `index.html` 后，入口标签的内容最终会被替换，所以不需要担心类名冲突的问题。
-
-::: info React 代码注入前
-
-```html
-<div id="root">
-	<style>
-		.loader {}
-	</style>
-	<div class="loader"></div>
-</div>
-```
-
-:::
-
-::: info React 代码注入后
-
-```html
-<div id="root">
-	<!-- React Code -->
-</div>
-```
-:::
-
-## 关闭
+## 关闭 Loading 效果
 
 在 `src/index.tsx` 文件中，注释或者移除掉 setupLoading 函数。
 
@@ -51,7 +31,7 @@ loading 效果的代码属于 pure-admin
 
 ![app-loading2](/public/guide/app-loading2.png)
 
-如果要使用这个 loading 效果，在 `src/index.tsx` 中替换 setupLoading 为 setupLoading2 即可。
+如果要使用这个 loading 效果，批量替换代码中的 setupLoading 函数为 setupLoading2 即可。
 
 ## 自定义 loading 效果
 

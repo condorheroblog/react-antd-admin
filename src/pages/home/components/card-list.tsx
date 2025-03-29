@@ -5,10 +5,10 @@ import {
 	ShoppingCartOutlined,
 	UserOutlined,
 } from "@ant-design/icons";
-import { Card, Col, Row } from "antd";
+import { Button, Card, Col, Row } from "antd";
+import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
 
-const { Meta } = Card;
 const wrapperCol: ColProps = {
 	xs: 24,
 	sm: 24,
@@ -17,46 +17,57 @@ const wrapperCol: ColProps = {
 	xl: 12,
 	xxl: 6,
 };
+
 export default function CardList() {
 	const { t } = useTranslation();
+
+	const CARD_LIST = [
+		{
+			title: t("home.newVisits"),
+			data: 102_400,
+			icon: <UserOutlined />,
+		},
+		{
+			title: t("home.messages"),
+			data: 81212,
+			icon: <MessageOutlined />,
+		},
+		{
+			title: t("home.purchases"),
+			data: 9280,
+			icon: <MoneyCollectOutlined />,
+		},
+		{
+			title: t("home.shoppings"),
+			data: 13600,
+			icon: <ShoppingCartOutlined />,
+		},
+
+	];
+
 	return (
 		<Row justify="space-between" gutter={[20, 20]}>
-			<Col {...wrapperCol}>
-				<Card>
-					<Meta
-						avatar={<UserOutlined style={{ fontSize: 30 }} />}
-						title={t("home.newVisits")}
-						description="102,400"
-					/>
-				</Card>
-			</Col>
-			<Col {...wrapperCol}>
-				<Card>
-					<Meta
-						avatar={<MessageOutlined style={{ fontSize: 30 }} />}
-						title={t("home.messages")}
-						description="81,212"
-					/>
-				</Card>
-			</Col>
-			<Col {...wrapperCol}>
-				<Card>
-					<Meta
-						avatar={<MoneyCollectOutlined style={{ fontSize: 30 }} />}
-						title={t("home.purchases")}
-						description="9,280"
-					/>
-				</Card>
-			</Col>
-			<Col span={6} {...wrapperCol}>
-				<Card>
-					<Meta
-						avatar={<ShoppingCartOutlined style={{ fontSize: 30 }} />}
-						title={t("home.shoppings")}
-						description="13,600"
-					/>
-				</Card>
-			</Col>
+			{
+				CARD_LIST.map((cardItem) => {
+					return (
+						<Col {...wrapperCol} key={cardItem.title}>
+							<Card className="">
+								<div className="flex justify-between items-center">
+									<div className="flex flex-col">
+										<h3 className="text-xl">{cardItem.title}</h3>
+										<CountUp end={cardItem.data} separator="," />
+									</div>
+									<Button
+										className="text-3xl"
+										icon={cardItem.icon}
+										type="text"
+									/>
+								</div>
+							</Card>
+						</Col>
+					);
+				})
+			}
 		</Row>
 	);
 }

@@ -1,4 +1,4 @@
-import type { NavigationType } from "#src/store";
+import type { NavigationType } from "#src/store/preferences/types";
 import { MixedNavigationIcon, SideNavigationIcon, TopNavigationIcon, TwoColumnNavigationIcon } from "#src/icons";
 import {
 	MIXED_NAVIGATION,

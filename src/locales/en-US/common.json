@@ -1,6 +1,12 @@
 {
 	"menu": {
 		"home": "Home",
+		"access": "Access Demo",
+		"accessMode": "Access Mode",
+		"pageControl": "Page Control",
+		"buttonControl": "Button Control",
+		"adminVisible": "Admin Visible",
+		"commonVisible": "Common Visible",
 		"about": "About",
 		"nestMenus": "Nest Menus",
 		"menu1": "Menu1",
@@ -27,6 +33,7 @@
 		"profile": "My Profile",
 		"settings": "Settings"
 	},
+	"appLoading": "Loading Resources...",
 	"back": "Back",
 	"backHome": "Back to Home",
 	"warning": "Warning",

@@ -1,5 +1,5 @@
 import { GlobalSpin, Scrollbar } from "#src/components";
-import { usePermissionStore, usePreferencesStore, useTabsStore } from "#src/store";
+import { useAccessStore, usePreferencesStore, useTabsStore } from "#src/store";
 import { theme } from "antd";
 import KeepAlive, { useKeepAliveRef } from "keepalive-for-react";
 import { useEffect, useMemo } from "react";
@@ -17,7 +17,7 @@ export default function LayoutContent() {
 	const isRefresh = useTabsStore(state => state.isRefresh);
 	const openTabs = useTabsStore(state => state.openTabs);
 	const tabbarEnable = usePreferencesStore(state => state.tabbarEnable);
-	const flatRouteList = usePermissionStore(state => state.flatRouteList);
+	const flatRouteList = useAccessStore(state => state.flatRouteList);
 	const transitionName = usePreferencesStore(state => state.transitionName);
 	const transitionEnable = usePreferencesStore(state => state.transitionEnable);
 

@@ -98,6 +98,12 @@ pnpm preview
 
 [![Star History Chart](https://api.star-history.com/svg?repos=condorheroblog/react-antd-admin&type=Date)](https://star-history.com/#condorheroblog/react-antd-admin&Date)
 
+## 赞助
+
+如果此项目对你有帮助，可以请作者吃顿外卖。
+
+![Sponsor](https://condorheroblog.github.io/react-antd-admin/docs/sponsor.png
+
 ## License
 
 [MIT](https://github.com/condorheroblog/react-antd-admin/blob/main/LICENSE) License © 2023-Present [Condor Hero](https://github.com/condorheroblog)

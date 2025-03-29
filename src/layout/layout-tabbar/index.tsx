@@ -2,9 +2,8 @@ import type { TabItemProps } from "#src/store";
 import type { TabsProps } from "antd";
 
 import { useCurrentRoute } from "#src/hooks";
-import { enabledDynamicRouting } from "#src/router/routes/config";
 import { removeTrailingSlash } from "#src/router/utils";
-import { usePermissionStore, usePreferencesStore, useTabsStore } from "#src/store";
+import { useAccessStore, usePreferencesStore, useTabsStore } from "#src/store";
 import { isString } from "#src/utils";
 
 import { RedoOutlined } from "@ant-design/icons";
@@ -34,7 +33,7 @@ export default function LayoutTabbar() {
 	const currentRoute = useCurrentRoute();
 
 	const { tabbarStyleType, tabbarShowMaximize, tabbarShowMore } = usePreferencesStore();
-	const { flatRouteList, hasFetchedDynamicRoutes } = usePermissionStore();
+	const { flatRouteList } = useAccessStore();
 	const { activeKey, isRefresh, setActiveKey, setIsRefresh, openTabs, addTab, insertBeforeTab } = useTabsStore();
 	const [items, onClickMenu] = useDropdownMenu();
 
@@ -124,12 +123,20 @@ export default function LayoutTabbar() {
 
 	/**
 	 * 活动标签页被关闭，自动导航到合适路由
+	 *
+	 * Warning：除了初次进入系统（例如登录），项目中请统一使用 navigate(import.meta.env.VITE_BASE_HOME_PATH) 替代直接使用 navigate("/")，原因如下：
+	 * 1. 直接导航到根路径("/")会导致路由根组件重新渲染
+	 * 2. 此组件将无法正确监听到 location 变化
+	 * 3. 会造成 activeKey 状态保持为上一个活动标签页（显示异常）
+	 * 4. 结果 location.pathname 是新的，activeKey 状态却是上一个活动标签页，导致导航异常。
 	 */
 	useEffect(() => {
 		/**
 		 * 以下动作会触发活动标签页被关闭：
 		 * 1. 关闭当前标签页
 		 * 2. 当使用 关闭左边/右边/其他/所有标签页 功能，激活的标签页被关闭
+		 *
+		 * 此时 activeKey 是最新的，location.pathname 还未更新，使用 navigate 导航到最新的活动标签页，防止显示异常。
 		 *
 		 * 初次进入应用，activeKey 值为空，不触发自动导航
 		 */
@@ -147,10 +154,8 @@ export default function LayoutTabbar() {
 	useEffect(() => {
 		// 检查默认 Tab 是否缺失
 		const isDefaultTabMissing = !Array.from(openTabs.keys()).includes(import.meta.env.VITE_BASE_HOME_PATH);
-		// 检查动态路由是否加载完成
-		const isDynamicRoutingReady = !enabledDynamicRouting || hasFetchedDynamicRoutes;
 
-		if (isDefaultTabMissing && isDynamicRoutingReady) {
+		if (isDefaultTabMissing) {
 			const routeTitle = flatRouteList[import.meta.env.VITE_BASE_HOME_PATH]?.handle?.title;
 			insertBeforeTab(import.meta.env.VITE_BASE_HOME_PATH, {
 				key: import.meta.env.VITE_BASE_HOME_PATH,
@@ -159,7 +164,7 @@ export default function LayoutTabbar() {
 				draggable: false,
 			});
 		}
-	}, [openTabs, insertBeforeTab, hasFetchedDynamicRoutes, flatRouteList]);
+	}, [openTabs, insertBeforeTab, flatRouteList]);
 
 	/**
 	 * 监听路由变化，添加标签页和激活标签页

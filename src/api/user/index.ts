@@ -3,6 +3,8 @@ import type { AppRouteRecordRaw } from "#src/router/types";
 import type { AuthType, UserInfoType } from "./types";
 import { request } from "#src/utils";
 
+export * from "./types";
+
 export function fetchLogin(data: PasswordLoginFormType) {
 	return request
 		.post("login", { json: data })

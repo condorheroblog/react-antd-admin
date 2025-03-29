@@ -17,7 +17,7 @@ export default function Exception404() {
 					icon={<ArrowLeftOutlined />}
 					type="primary"
 					onClick={() => {
-						navigate("/");
+						navigate(import.meta.env.VITE_BASE_HOME_PATH);
 					}}
 				>
 					{t("common.backHome")}

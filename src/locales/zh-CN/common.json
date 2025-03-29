@@ -1,6 +1,12 @@
 {
 	"menu": {
 		"home": "首页",
+		"access": "权限演示",
+		"accessMode": "权限模式",
+		"pageControl": "页面控制",
+		"buttonControl": "按钮控制",
+		"adminVisible": "Admin 可见",
+		"commonVisible": "Common 可见",
 		"about": "关于",
 		"nestMenus": "嵌套菜单",
 		"menu1": "菜单 1",
@@ -27,6 +33,7 @@
 		"profile": "我的资料",
 		"settings": "设置"
 	},
+	"appLoading": "资源正在加载中...",
 	"back": "返回",
 	"backHome": "返回首页",
 	"warning": "警告",

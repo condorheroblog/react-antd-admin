@@ -35,6 +35,7 @@ export function PasswordLogin() {
 	const { setFormMode } = useContext(FormModeContext);
 
 	const handleFinish = async (values: PasswordLoginFormType) => {
+		setLoading(true);
 		messageLoadingApi?.loading(t("authority.loginInProgress"), 0);
 
 		login(values).then(() => {
@@ -45,7 +46,7 @@ export function PasswordLogin() {
 				navigate(`/${redirect.slice(1)}`);
 			}
 			else {
-				navigate("/");
+				navigate(import.meta.env.VITE_BASE_HOME_PATH);
 			}
 		}).finally(() => {
 			messageLoadingApi?.destroy();

@@ -23,7 +23,7 @@
 
 ## 路由组件
 
-只列举你可能用到的：
+只列举项目中常用的：
 
 | 组件名      | 作用         | 说明              |
 |-------------|------------|-----------------|
@@ -42,6 +42,8 @@ const matches = useMatches();
 console.log(matches);
 // 输出：[{ pathname: '/path', params: {}, data: {} }, ...]
 ```
+
+基于 `useMatches()` 项目封装了 `useCurrentRoute` hook，可以获取当前最新的路由信息。
 
 ### useParams
 
@@ -83,7 +85,7 @@ const [searchParams] = useSearchParams();
 console.log(searchParams.get("x")); // 输出 x 的值
 ```
 
-> 推荐使用 [nuqs](https://nuqs.47ng.com/) 替代 useSearchParams，可以像使用 useState 一样管理**查询参数**。
+> 推荐使用 [nuqs](https://nuqs.47ng.com/) 替代 useSearchParams 进行业务开发，[nuqs](https://nuqs.47ng.com/)  可以像使用 useState 一样简洁管理**查询参数**。
 
 ```ts
 import { useQueryState } from "nuqs";
@@ -100,7 +102,11 @@ const outlet = useOutlet();
 console.log(outlet); // 输出：<div>...</div>
 ```
 
+路由的缓存使用这个 API 实现。
+
 ## 路由守卫和路由钩子
 
-- `guard.ts`
-- `router-global-hooks.ts`
+路由守卫和路由钩子在 `src/router/guard` 中定义。
+
+- `auth-guard.tsx` 路由守卫，用于权限校验
+- `common-gurard.ts` 无权限校验逻辑，支持加载动画等拦截功能

@@ -1,7 +1,7 @@
 import type { AuthType } from "#src/api/user/types";
 import type { PasswordLoginFormType } from "#src/pages/login/components/password-login";
 import { fetchLogin, fetchLogout } from "#src/api/user";
-import { usePermissionStore, useTabsStore, useUserStore } from "#src/store";
+import { useAccessStore, useTabsStore, useUserStore } from "#src/store";
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
@@ -61,7 +61,7 @@ export const useAuthStore = create<AuthState & AuthAction>()(
 			 * 清空权限信息
 			 * @see https://github.com/pmndrs/zustand?tab=readme-ov-file#readingwriting-state-and-reacting-to-changes-outside-of-components
 			 */
-			usePermissionStore.getState().reset();
+			useAccessStore.getState().reset();
 
 			/**
 			 * 清空标签页

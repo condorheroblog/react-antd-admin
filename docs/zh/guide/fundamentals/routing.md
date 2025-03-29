@@ -4,13 +4,19 @@ outline: deep
 
 # 路由和菜单
 
-本项目使用 [React Router](https://reactrouter.com/) 的数据路由生成路由，并根据路由自动生成菜单。
+项目使用 [React Router](https://reactrouter.com/) 的数据路由生成路由，并根据路由自动生成菜单。
+
+::: tip
+
+除了初次进入系统，即登录页面，项目中禁止使用 `navigate("/")` 直接跳转到首页，这会重新渲染这个应用，请使用 `navigate(import.meta.env.VITE_BASE_HOME_PATH)` 替代。
+
+:::
 
 ## 路由目录
 
 ```bash
 src/router
-├── constants.ts                   # 路由常量，包含路由白名单
+├── constants.ts                   # 路由常量
 ├── utils                          # 路由工具
 ├── types                          # 路由类型
 │   │   ├── guard                  # 路由守卫
@@ -24,22 +30,26 @@ src/router
 │   └── index.ts                   # 聚合导出
 └── routes
     ├── core                       # 核心路由
+    ├── external                   # 外部路由
     ├── modules                    # 动态路由
-    └── static                     # 静态路由
+    ├── static                     # 静态路由
     └── index.ts                   # 聚合路由
 ```
 
 ## 路由类型
 
-路由分为三大类：核心路由、静态路由和动态路由。
+路由分为四大类：核心路由、外部路由、静态路由和动态路由。
 
-1. 核心路由应用必须的包含的路由，例如根路由、登录路由、404 路由等；
-2. 静态路由或者叫前端路由，是在项目启动时就已经确定的路由；
-3. 动态路由或者叫后端路由，在用户登录后，根据用户的权限动态生成的路由。
+1. 核心路由是应用必须的包含的路由，例如根路由、登录路由、404 路由、403 路由等；
+2. 外部路由即不需要登录和权限认证的路由，例如网站的文档、用户协议、隐私政策等；
+3. 静态路由或者叫前端路由，是在项目启动时就已经确定的路由；
+4. 动态路由或者叫后端路由，在用户登录后，根据接口返回的结果动态生成的路由。
 
 ### 核心路由
 
-核心路由是应用必须的包含的路由，例如根路由、登录路由、404 路由等；核心路由的配置在应用下 `src/router/routes/core` 目录下。**正式项目，请设置核心路由在菜单中隐藏（`hideInMenu = true`）**
+核心路由是应用必须的包含的路由，例如根路由、登录路由、404 路由等；核心路由的配置在应用下 `src/router/routes/core` 目录下。
+
+> **项目中，请设置核心路由在菜单中隐藏（`hideInMenu = true`）**
 
 ::: tip
 
@@ -47,41 +57,25 @@ src/router
 
 :::
 
+### 外部路由
+
+外部路由即不需要登录和权限认证的路由，例如网站的文档、用户协议、隐私政策等；外部路由的配置在应用下 `src/router/routes/external` 目录下。
+
 ### 静态路由
 
 静态路由存储在 `src/router/routes/static` 目录下，如果不需要静态路由，保持这个文件夹为空即可。
 
 ### 动态路由
 
-动态路由存储在 `src/router/routes/modules` 目录下，如果不需要动态路由，保持这个文件夹为空即可。
+动态路由存储在 `src/router/routes/modules` 目录下。
 
-默认情况下，动态路由是开启的且会单独发送一个请求获取动态路由，如果动态路由在请求用户详情接口返回，则可以在 `src/router/routes/config` 文件中配置 isSendRoutingRequest 属性为 false 关闭单独的接口请求。
+- 路由仅为调用后端获取的情况下，即 `设置 enabledBackendAccess 为 true 、enableFrontendAceess 为 false`，此目录仅仅作为备份，并不会被读取。
+- 路由仅为前端获取的情况下，即 `设置 enabledBackendAccess 为 false 、enableFrontendAceess 为 true`，则会读取此目录下的路由。
 
-### 如何关闭动态路由
+### 路由获取的方式
 
-在 `src/router/routes/config` 文件中配置 enabledDynamicRouting 属性为 false，即可关闭动态路由。
+查看权限控制章节，请查看 [权限](../advanced/access)。
 
-::: warning
-
-关闭动态路由后，在 `src/router/routes/index.ts` 中的代码会尝试读取 modules 目录下的路由，方便调试，开启动态路由的情况下，则不会读取 modules 目录下的路由。
-
-:::
-
-### 如何关闭静态路由
-
-保持 `src/router/routes/static` 文件夹为空即可，或者在 `src/router/routes/index.ts` 注释掉静态路由的代码即可。
-
-```ts
-/** 静态路由 */
-// const staticRoutes: AppRouteRecordRaw[] = mergeRouteModules(staticRouteFiles); // [!code ++]
-
-/** 根路由下的子路由 */
-const rootChildRoutes = ascending([
-	...coreRouteRootChildren,
-	...(!enabledDynamicRouting ? dynamicRoutes : []),
-	// ...staticRoutes, // [!code ++]
-]);
-```
 
 ## 路由 id
 

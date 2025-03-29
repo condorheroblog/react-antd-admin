@@ -1,5 +1,8 @@
 import { usePreferencesStore } from "#src/store/preferences";
+import { isDarkTheme } from "#src/utils";
 
+export const loadingId = "loading-e8a3a985";
+export const loadingContainerId = "loading-container-e8a3a985";
 /**
  * Preview loading page.
  * https://github.com/user-attachments/assets/110701a8-2cf4-4e5f-a07e-b832da4e1586
@@ -12,17 +15,21 @@ export function setupLoading() {
 	 */
 	const loading = `
 <style>
-#root {
+#${loadingContainerId} {
 	position: fixed;
 	inset: 0;
-	overflow: hidden;
+	z-index: 9999999;
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	width: 100vw;
+	background-color: ${isDarkTheme(usePreferencesStore.getState().theme) ? "#181818" : "transparent"};
+	overflow: hidden;
 }
-.loader,
-.loader::before,
-.loader::after {
+#${loadingId},
+#${loadingId}::before,
+#${loadingId}::after {
 	width: 2.5em;
 	height: 2.5em;
 	border-radius: 50%;
@@ -30,7 +37,7 @@ export function setupLoading() {
 	animation-fill-mode: both;
 }
 
-.loader {
+#${loadingId} {
 	position: relative;
 	top: 0;
 	margin: 80px auto;
@@ -42,19 +49,19 @@ export function setupLoading() {
 	animation-delay: -0.16s;
 }
 
-.loader::before,
-.loader::after {
+#${loadingId}::before,
+#${loadingId}::after {
 	position: absolute;
 	top: 0;
 	content: "";
 }
 
-.loader::before {
+#${loadingId}::before {
 	left: -3.5em;
 	animation-delay: -0.32s;
 }
 
-.loader::after {
+#${loadingId}::after {
 	left: 3.5em;
 }
 
@@ -70,11 +77,18 @@ export function setupLoading() {
 	}
 }
 </style>
-<div class="loader"></div>`;
+<div id="${loadingId}"></div>
+`;
+	const loadingContainerElement = document.getElementById(loadingContainerId);
+	if (!loadingContainerElement) {
+		const loadingDiv = document.createElement("div");
+		loadingDiv.id = loadingContainerId;
+		loadingDiv.innerHTML = `<!-- A loading animation displayed before code loads, driven by setupLoading function -->${loading}`;
 
-	const app = document.getElementById("root");
+		const app = document.getElementById("root");
 
-	if (app) {
-		app.innerHTML = loading;
+		if (app) {
+			app.before(loadingDiv);
+		}
 	}
 }

@@ -1,5 +1,6 @@
-import { system } from "#/src/router/extra-info";
+import { about, access, home, outside, personalCenter, routeNest, system } from "#/src/router/extra-info";
 import { defineFakeRoute } from "vite-plugin-fake-server/client";
+import { ADMIN_TOKEN } from "./constants";
 import { resultSuccess } from "./utils";
 
 /**
@@ -8,12 +9,13 @@ import { resultSuccess } from "./utils";
  * common：普通角色
  */
 
-export const systemManagementRouter = {
+const systemManagementRouter = {
 	path: "/system",
 	handle: {
 		icon: "SettingOutlined",
 		title: "common.menu.system",
 		order: system,
+		roles: ["admin"],
 	},
 	children: [
 		{
@@ -72,160 +74,222 @@ export const systemManagementRouter = {
 	],
 };
 
-// const systemMonitorRouter = {
-// 	path: "/monitor",
-// 	meta: {
-// 		icon: "ep:monitor",
-// 		title: "menus.pureSysMonitor",
-// 		order: monitor,
-// 	},
-// 	children: [
-// 		{
-// 			path: "/monitor/online-user",
-// 			component: "monitor/online/index",
-// 			name: "OnlineUser",
-// 			meta: {
-// 				icon: "ri:user-voice-line",
-// 				title: "menus.pureOnlineUser",
-// 				roles: ["admin"],
-// 			},
-// 		},
-// 		{
-// 			path: "/monitor/login-logs",
-// 			component: "monitor/logs/login/index",
-// 			name: "LoginLog",
-// 			meta: {
-// 				icon: "ri:window-line",
-// 				title: "menus.pureLoginLog",
-// 				roles: ["admin"],
-// 			},
-// 		},
-// 		{
-// 			path: "/monitor/operation-logs",
-// 			component: "monitor/logs/operation/index",
-// 			name: "OperationLog",
-// 			meta: {
-// 				icon: "ri:history-fill",
-// 				title: "menus.pureOperationLog",
-// 				roles: ["admin"],
-// 			},
-// 		},
-// 		{
-// 			path: "/monitor/system-logs",
-// 			component: "monitor/logs/system/index",
-// 			name: "SystemLog",
-// 			meta: {
-// 				icon: "ri:file-search-line",
-// 				title: "menus.pureSystemLog",
-// 				roles: ["admin"],
-// 			},
-// 		},
-// 	],
-// };
+const homeRouter = {
+	path: "/home",
+	handle: {
+		icon: "HomeFilled",
+		title: "common.menu.home",
+		order: home,
+	},
+};
 
-// const permissionRouter = {
-// 	path: "/permission",
-// 	meta: {
-// 		title: "menus.purePermission",
-// 		icon: "ep:lollipop",
-// 		order: permission,
-// 	},
-// 	children: [
-// 		{
-// 			path: "/permission/page/index",
-// 			name: "PermissionPage",
-// 			meta: {
-// 				title: "menus.purePermissionPage",
-// 				roles: ["admin", "common"],
-// 			},
-// 		},
-// 		{
-// 			path: "/permission/button",
-// 			meta: {
-// 				title: "menus.purePermissionButton",
-// 				roles: ["admin", "common"],
-// 			},
-// 			children: [
-// 				{
-// 					path: "/permission/button/router",
-// 					component: "permission/button/index",
-// 					name: "PermissionButtonRouter",
-// 					meta: {
-// 						title: "menus.purePermissionButtonRouter",
-// 						auths: [
-// 							"permission:btn:add",
-// 							"permission:btn:edit",
-// 							"permission:btn:delete",
-// 						],
-// 					},
-// 				},
-// 				{
-// 					path: "/permission/button/login",
-// 					component: "permission/button/perms",
-// 					name: "PermissionButtonLogin",
-// 					meta: {
-// 						title: "menus.purePermissionButtonLogin",
-// 					},
-// 				},
-// 			],
-// 		},
-// 	],
-// };
+const aboutRouter = {
+	path: "/about",
+	handle: {
+		icon: "CopyrightOutlined",
+		title: "common.menu.about",
+		order: about,
+	},
+};
 
-// const tabsRouter = {
-// 	path: "/tabs",
-// 	meta: {
-// 		icon: "ri:bookmark-2-line",
-// 		title: "menus.pureTabs",
-// 		order: tabs,
-// 	},
-// 	children: [
-// 		{
-// 			path: "/tabs/index",
-// 			name: "Tabs",
-// 			meta: {
-// 				title: "menus.pureTabs",
-// 				roles: ["admin", "common"],
-// 			},
-// 		},
-// 		// query 传参模式
-// 		{
-// 			path: "/tabs/query-detail",
-// 			name: "TabQueryDetail",
-// 			meta: {
-// 				// 不在menu菜单中显示
-// 				showLink: false,
-// 				activePath: "/tabs/index",
-// 				roles: ["admin", "common"],
-// 			},
-// 		},
-// 		// params 传参模式
-// 		{
-// 			path: "/tabs/params-detail/:id",
-// 			component: "params-detail",
-// 			name: "TabParamsDetail",
-// 			meta: {
-// 				// 不在menu菜单中显示
-// 				showLink: false,
-// 				activePath: "/tabs/index",
-// 				roles: ["admin", "common"],
-// 			},
-// 		},
-// 	],
-// };
+const outsideRouter = {
+	path: "/outside",
+	handle: {
+		icon: "OutsidePageIcon",
+		title: "common.menu.outside",
+		order: outside,
+	},
+	children: [
+		{
+			path: "/outside/embedded",
+			handle: {
+				icon: "EmbeddedIcon",
+				title: "common.menu.embedded",
+			},
+			children: [
+				{
+					path: "/outside/embedded/ant-design",
+					handle: {
+						icon: "AntDesignOutlined",
+						title: "common.menu.antd",
+						iframeLink: "https://ant.design/",
+					},
+				},
+				{
+					path: "/outside/embedded/project-docs",
+					handle: {
+						icon: "ContainerOutlined",
+						title: "common.menu.projectDocs",
+						iframeLink: "https://condorheroblog.github.io/react-antd-admin/docs/",
+					},
+				},
+			],
+		},
+		{
+			path: "/outside/external-link",
+			handle: {
+				icon: "ExternalIcon",
+				title: "common.menu.externalLink",
+			},
+			children: [
+				{
+					path: "/outside/external-link/react-docs",
+					handle: {
+						icon: "ReactLogoIcon",
+						title: "common.menu.reactDocs",
+						externalLink: "https://react.dev/",
+					},
+				},
+			],
+		},
+	],
+};
+
+const personalCenterRouter = {
+	path: "/personal-center",
+	handle: {
+		order: personalCenter,
+		title: "common.menu.personalCenter",
+		icon: "UserCircleIcon",
+	},
+	children: [
+		{
+			path: "/personal-center/my-profile",
+			handle: {
+				title: "common.menu.profile",
+				icon: "ProfileIcon",
+			},
+		},
+		{
+			path: "/personal-center/settings",
+			handle: {
+				title: "common.menu.settings",
+				icon: "UserSettingsIcon",
+			},
+		},
+	],
+};
+
+const routeNestRouter = {
+	path: "/route-nest",
+	handle: {
+		order: routeNest,
+		title: "common.menu.nestMenus",
+		icon: "NodeExpandOutlined",
+	},
+	children: [
+		{
+			path: "/route-nest/menu1",
+			handle: {
+				title: "common.menu.menu1",
+				icon: "SisternodeOutlined",
+			},
+			children: [
+				{
+					path: "/route-nest/menu1/menu1-1",
+					handle: {
+						title: "common.menu.menu1-1",
+						icon: ("SubnodeOutlined"),
+					},
+				},
+				{
+					path: "/route-nest/menu1/menu1-2",
+					handle: {
+						title: "common.menu.menu1-2",
+						icon: ("SubnodeOutlined"),
+					},
+				},
+			],
+		},
+		{
+			path: "/route-nest/menu2",
+			handle: {
+				title: "common.menu.menu2",
+				icon: "SubnodeOutlined",
+			},
+		},
+	],
+};
 
 export default defineFakeRoute([
 	{
 		url: "/get-async-routes",
+		timeout: 1000,
 		method: "get",
-		response: () => resultSuccess(
-			[
-				systemManagementRouter,
-				// systemMonitorRouter,
-				// permissionRouter,
-				// frameRouter,
-				// tabsRouter,
-			],
-		),
+		response: ({ headers }) => {
+			const userToken = headers.authorization?.split(" ")?.[1];
+			const isAdmin = userToken === ADMIN_TOKEN;
+			const accessRouter = {
+				path: "/access",
+				handle: {
+					icon: "SafetyOutlined",
+					title: "common.menu.access",
+					order: access,
+				},
+				children: [
+					/**
+					 * @zh 通过接口获取路由时可见
+					 * @en Visible only when getting routes through the interface
+					*/
+					{
+						path: "/access/access-mode",
+						handle: {
+							icon: "CloudOutlined",
+							title: "common.menu.accessMode",
+						},
+					},
+					{
+						path: "/access/page-control",
+						handle: {
+							icon: "FileTextOutlined",
+							title: "common.menu.pageControl",
+						},
+					},
+					{
+						path: "/access/button-control",
+						handle: {
+							icon: "LockOutlined",
+							title: "common.menu.buttonControl",
+							permissions: isAdmin
+								? [
+									"permission:button:get",
+									"permission:button:update",
+									"permission:button:delete",
+									"permission:button:add",
+								]
+								: [
+									"permission:button:get",
+								],
+						},
+					},
+					isAdmin
+						? {
+							path: "/access/admin-visible",
+							handle: {
+								icon: "EyeOutlined",
+								title: "common.menu.adminVisible",
+							},
+						}
+						: {
+							path: "/access/common-visible",
+							handle: {
+								icon: "EyeOutlined",
+								title: "common.menu.commonVisible",
+							},
+						},
+				],
+			};
+			return resultSuccess(
+				[
+					homeRouter,
+					accessRouter,
+					aboutRouter,
+					systemManagementRouter,
+					outsideRouter,
+					personalCenterRouter,
+					routeNestRouter,
+				],
+			);
+		},
 	},
 ]);

@@ -2,7 +2,7 @@
 	"title": "偏好设置",
 	"copyPreferences": "复制偏好设置",
 	"copyPreferencesSuccessTitle": "复制成功",
-	"copyPreferencesSuccess": "复制成功，请在 `src/store/preferences.ts` 内进行覆盖",
+	"copyPreferencesSuccess": "复制成功，请在 `src/store/preferences/index.ts` 内进行覆盖",
 	"clearAndLogout": "清空缓存 & 退出登录",
 	"theme": {
 		"title": "主题",

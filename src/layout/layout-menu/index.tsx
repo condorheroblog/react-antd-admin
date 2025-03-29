@@ -97,7 +97,11 @@ export default function LayoutMenu({
 			items={menus}
 			{...menuOpenProps}
 			selectedKeys={getSelectedKeys}
-			onSelect={({ key }) => handleMenuSelect?.(key, mode)}
+			/**
+			 * 使用 onClick 替代 onSelect 事件，原因是当子路由激活父菜单时，点击父菜单依然可以正常导航。
+			 * @see https://github.com/user-attachments/assets/cf67a973-f210-45e4-8278-08727ab1b8ce
+			 */
+			onClick={({ key }) => handleMenuSelect?.(key, mode)}
 		/>
 	);
 }

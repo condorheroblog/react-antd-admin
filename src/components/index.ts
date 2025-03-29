@@ -1,5 +1,5 @@
+export * from "./access-control";
 export * from "./antd-app";
-export * from "./auth";
 export * from "./basic-button";
 export * from "./basic-content";
 export * from "./basic-form";

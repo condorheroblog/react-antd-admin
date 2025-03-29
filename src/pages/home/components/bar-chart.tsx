@@ -37,7 +37,7 @@ export default function BarChart() {
 	};
 	return (
 		<Card title={t("home.views")}>
-			<ReactECharts option={option} />
+			<ReactECharts opts={{ height: "auto", width: "auto" }} option={option} />
 		</Card>
 	);
 }

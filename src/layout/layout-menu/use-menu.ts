@@ -2,7 +2,7 @@ import type { MenuProps } from "antd";
 
 import { useCurrentRoute } from "#src/hooks";
 import { removeTrailingSlash } from "#src/router/utils";
-import { usePermissionStore } from "#src/store";
+import { useAccessStore } from "#src/store";
 
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -12,7 +12,7 @@ import { useLayout } from "../hooks";
 import { findDeepestFirstItem, findRootMenuByPath, translateMenus } from "./utils";
 
 export function useMenu() {
-	const wholeMenus = usePermissionStore(state => state.wholeMenus);
+	const wholeMenus = useAccessStore(state => state.wholeMenus);
 	const { isMixedNav, isTwoColumnNav } = useLayout();
 	const [rootMenuKey, setRootMenuKey] = useState("");
 	const navigate = useNavigate();
@@ -66,6 +66,9 @@ export function useMenu() {
 	 * 菜单点击事件处理
 	 */
 	const handleMenuSelect = (key: string, mode: MenuProps["mode"]) => {
+		if (key === removeTrailingSlash(pathname)) {
+			return;
+		}
 		/* 1. 非混合导航模式 2. 混合导航模式下的侧边导航 */
 		if (!shouldSplitMenuItems || mode !== "horizontal") {
 			// eslint-disable-next-line regexp/no-unused-capturing-group

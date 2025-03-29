@@ -17,6 +17,7 @@ const routes: AppRouteRecordRaw[] = [
 			icon: "SettingOutlined",
 			title: "common.menu.system",
 			order: system,
+			roles: ["admin"],
 		},
 		children: [
 			{
