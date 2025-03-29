@@ -1,1 +1,0 @@
-import{j as t}from"./index-BTBW2FwQ.js";import"./react-B2eEhSVY.js";import{B as r}from"./index-LLqtyelV.js";import"./faker-Dcf0Eyuj.js";import"./antd-C3AkHkw7.js";function p(){return t.jsx(r,{children:"menu2"})}export{p as default};
