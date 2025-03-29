@@ -22,7 +22,6 @@ react-antd-admin
 │   ├── logo512.png
 │   ├── manifest.json
 │   └── robots.txt
-├── scripts                                # 构建项目运行的脚本
 ├── src                                    # 源代码
 │   ├── api                                # 请求接口目录
 │   │   └── user                           # 用户相关模块（下面是一个模板包含两个文件）

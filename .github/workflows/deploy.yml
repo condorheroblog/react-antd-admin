@@ -33,9 +33,6 @@ jobs:
           pnpm install -r
           pnpm run build && pnpm --filter docs run docs:build
 
-      - name: spa-github-404-page 🔷
-        run: pnpm run spa-github-404-page
-
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:

@@ -23,8 +23,6 @@
 		"build": "NODE_OPTIONS=--max-old-space-size=8192 vite build",
 		"preview": "vite preview",
 		"typecheck": "tsc --noEmit",
-		"spa-github-index-page": "node ./scripts/spa-github-index-page.mjs",
-		"spa-github-404-page": "node ./scripts/spa-github-404-page.mjs",
 		"analyzer": "vite-bundle-visualizer --output analyzer/stats.html",
 		"eslint-config-inspector": "eslint-config-inspector",
 		"lint": "eslint .",

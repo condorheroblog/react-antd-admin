@@ -9,7 +9,8 @@
 
 import { LayoutRoot } from "#src/layout";
 
-import { createBrowserRouter } from "react-router";
+// import { createBrowserRouter } from "react-router";
+import { createHashRouter } from "react-router";
 import { ROOT_ROUTE_ID } from "./constants";
 import { createRouterGuard } from "./guard";
 import { baseRoutes } from "./routes";
@@ -23,7 +24,7 @@ export const rootRoute = [
 	},
 ];
 
-export const router = createBrowserRouter(
+export const router = createHashRouter(
 	rootRoute,
 	{
 		basename: import.meta.env.BASE_URL,
