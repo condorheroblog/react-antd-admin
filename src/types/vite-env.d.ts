@@ -6,6 +6,7 @@ interface ImportMetaEnv {
 	readonly VITE_API_BASE_URL: string
 	readonly VITE_BASE_HOME_PATH: string
 	readonly VITE_GLOB_APP_TITLE: string
+	readonly VITE_ROUTER_MODE: string
 }
 
 interface ImportMeta {

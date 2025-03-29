@@ -4,7 +4,7 @@ outline: deep
 
 # 路由和菜单
 
-> 演示项目为了可以部署到 GitHub， 路由开启了 Hash 模式，如果你需要 History 模式，请在 `src/router/index.ts` 文件中修改 `createHashRouter()` 为 `createBrowserRouter()` 。
+> 演示项目为了可以部署到 GitHub，路由模式为 Hash 模式，如果你需要 History 模式，请修改 `.env.production` 文件中的变量 `VITE_ROUTER_MODE` 为 `history`。
 
 项目使用 [React Router](https://reactrouter.com/) 的数据路由生成路由，并根据路由自动生成菜单。
 
@@ -77,7 +77,6 @@ src/router
 ### 路由获取的方式
 
 查看权限控制章节，请查看 [权限](../advanced/access)。
-
 
 ## 路由 id
 
