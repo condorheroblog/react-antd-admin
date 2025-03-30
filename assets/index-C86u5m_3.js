@@ -1,1 +1,0 @@
-import{u as t,j as r}from"./index-jpWX0MXq.js";import{T as a}from"./antd-C3AkHkw7.js";import"./faker-Dcf0Eyuj.js";import"./react-B2eEhSVY.js";function c(){const{t:i}=t();return r.jsx("div",{className:"p-4 dark:bg-black",children:r.jsx(a.Title,{level:1,children:i("authority.privacyPolicy")})})}export{c as default};

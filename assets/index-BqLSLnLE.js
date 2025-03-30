@@ -1,0 +1,1 @@
+import{j as t}from"./index-Cu2kO6lS.js";import"./react-B2eEhSVY.js";import{B as r}from"./index-DGSq0kzj.js";import"./faker-Dcf0Eyuj.js";import"./antd-bHmztw5J.js";function m(){return t.jsx(r,{children:"Settings"})}export{m as default};
