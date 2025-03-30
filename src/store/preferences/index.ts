@@ -11,6 +11,7 @@ import { persist } from "zustand/middleware";
  */
 export const DEFAULT_PREFERENCES = {
 	/* ================== General ================== */
+	pageLayout: "layout-right",
 	enabledBackendAccess: true,
 	enableFrontendAceess: false,
 	language: "zh-CN",

@@ -8,6 +8,9 @@ import External from "./svg/external.svg?react";
 import FollowSystem from "./svg/follow-system.svg?react";
 import FullscreenExit from "./svg/fullscreen-exit.svg?react";
 import Fullscreen from "./svg/fullscreen.svg?react";
+import LayoutCenter from "./svg/layout-center.svg?react";
+import LayoutLeft from "./svg/layout-left.svg?react";
+import LayoutRight from "./svg/layout-right.svg?react";
 import MailCheck from "./svg/mail-check.svg?react";
 import MixedNavigation from "./svg/mixed-navigation.svg?react";
 import Moon from "./svg/moon.svg?react";
@@ -99,4 +102,16 @@ export function EmbeddedIcon(props: Partial<CustomIconComponentProps>) {
 
 export function ExternalIcon(props: Partial<CustomIconComponentProps>) {
 	return <Icon component={External} {...props} />;
+}
+
+export function LayoutLeftIcon(props: Partial<CustomIconComponentProps>) {
+	return <Icon component={LayoutLeft} {...props} />;
+}
+
+export function LayoutCenterIcon(props: Partial<CustomIconComponentProps>) {
+	return <Icon component={LayoutCenter} {...props} />;
+}
+
+export function LayoutRightIcon(props: Partial<CustomIconComponentProps>) {
+	return <Icon component={LayoutRight} {...props} />;
 }

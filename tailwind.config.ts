@@ -45,9 +45,15 @@ export default {
 					"60%": { transform: "rotateZ(-5deg)" },
 					"75%": { transform: "rotateZ(2deg)" },
 				},
+				bounceInDownOutUp: {
+					"0%": { transform: "translateY(0)" },
+					"50%": { transform: "translateY(-20px)" },
+					"100%": { transform: "translateY(0)" },
+				},
 			},
 			animation: {
 				wiggle: "wiggle 1s both",
+				bounceInDownOutUp: "bounceInDownOutUp 4s ease-in-out 0ms infinite",
 			},
 		},
 	},

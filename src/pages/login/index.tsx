@@ -1,103 +1,114 @@
 import type { FormComponentMapType } from "./form-mode-context";
-import hero from "#src/assets/svg/hero.svg?url";
+// import hero from "#src/assets/svg/hero.svg?url";
+import Banner from "#src/assets/svg/banner.svg?react";
 import logo from "#src/assets/svg/logo.svg?url";
+import { useLayoutMenu } from "#src/hooks";
 import { LayoutFooter } from "#src/layout";
 import { LanguageButton } from "#src/layout/layout-header/components/language-button";
 import { ThemeButton } from "#src/layout/layout-header/components/theme-button";
 
 import {
 	Col,
-	Layout,
 	Row,
-	Space,
-	Typography,
+	theme,
 } from "antd";
+import { clsx } from "clsx";
 import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
-import { createUseStyles } from "react-jss";
+import { useTranslation } from "react-i18next";
 import { FORM_COMPONENT_MAP, FormModeContext } from "./form-mode-context";
 
-const { Title } = Typography;
-
-const useStyles = createUseStyles(({ token }) => {
-	return {
-		loginWrapper: {
-			display: "flex",
-			minWidth: "300px",
-			justifyContent: "center",
-			alignItems: "center",
-			flexDirection: "column",
-			backgroundColor: token.colorBgContainer,
-			borderRadius: "0.8em",
-			border: `1px solid ${token.colorBorderSecondary}`,
-			boxShadow: token.boxShadow,
-		},
-		logo: {
-			width: "6em",
-		},
-		section: {
-			height: "100%",
-			display: "flex",
-			flexDirection: "column",
-			backgroundImage: () => {
-				return `radial-gradient(${token.colorBgContainer}, ${token.colorPrimaryBg})`;
-			},
-		},
-	};
-});
-
-const { Content } = Layout;
 export default function Login() {
-	const classes = useStyles();
+	const { token } = theme.useToken();
+	const { t } = useTranslation();
 	const [formMode, setFormMode] = useState<FormComponentMapType>("login");
+	const { pageLayout, layoutButtonTrigger } = useLayoutMenu("layout-right");
+	const isALignLeft = useMemo(() => pageLayout === "layout-left", [pageLayout]);
+	const isAlignCenter = useMemo(() => pageLayout === "layout-center", [pageLayout]);
 
 	const providedValue = useMemo(() => ({ formMode, setFormMode }), [formMode, setFormMode]);
 	return (
-		<Layout className={classes.section}>
-			<header className="absolute flex items-center scale-95 right-3 top-3">
-				<ThemeButton size="large" />
-				<LanguageButton size="large" className="px-[11px]" />
+		<div
+			style={{
+				backgroundColor: token.colorBgContainer,
+			}}
+		>
+			<div
+				className="absolute left-0 top-0 z-10 flex flex-1"
+			>
+				<div
+					className="text-colorText ml-4 mt-4 flex flex-1 items-center sm:left-6 sm:top-6"
+				>
+					<img alt="App Logo" src={logo} className="mr-2 w-11" />
+					<h1 className="m-0 text-xl font-medium">
+						{import.meta.env.VITE_GLOB_APP_TITLE}
+					</h1>
+				</div>
+			</div>
+			<header className="z-10 absolute flex items-center right-3 top-3">
+				{layoutButtonTrigger}
+				<ThemeButton />
+				<LanguageButton className="px-[11px]" />
 			</header>
-			<Content className="flex items-center justify-center overflow-hidden">
-				<Row gutter={[{ xs: 0, sm: 0, lg: 200 }, 0]}>
-					<Col xs={0} sm={0} lg={12}>
-						<div className="flex flex-col justify-center h-full gap-3">
-							<Space>
-								<img src={logo} alt="logo" className={classes.logo} />
-								<Title level={1} ellipsis className="!text-sm">
-									{import.meta.env.VITE_GLOB_APP_TITLE}
-								</Title>
-							</Space>
-							<img
-								width={500}
-								src={hero}
-								alt="hero"
+			<div
+				className="flex items-center overflow-hidden h-full"
+			>
+				<Row
+					className={clsx("h-screen w-full", { "flex-row-reverse": isALignLeft },
+					)}
+				>
+					<Col
+						xs={0}
+						sm={0}
+						lg={15}
+						style={{
+							backgroundImage: `radial-gradient(${token.colorBgContainer}, ${token.colorPrimaryBg})`,
+						}}
+						className={clsx({ hidden: isAlignCenter })}
+					>
+						<div className="flex flex-col items-center justify-center h-full gap-3">
+							<Banner
+								className="h-64 motion-safe:animate-bounceInDownOutUp"
 							/>
-						</div>
-					</Col>
-
-					<Col xs={24} sm={24} lg={12}>
-						<div className={classes.loginWrapper}>
-							<div className="w-4/5 my-10">
-								<FormModeContext.Provider value={providedValue}>
-									<AnimatePresence mode="wait" initial={false}>
-										<motion.div
-											key={formMode}
-											initial={{ x: 30, opacity: 0 }}
-											animate={{ x: 0, opacity: 1 }}
-											exit={{ x: 0, opacity: 0 }}
-											transition={{ duration: 0.3 }}
-										>
-											{FORM_COMPONENT_MAP[formMode]}
-										</motion.div>
-									</AnimatePresence>
-								</FormModeContext.Provider>
+							<div className="text-xl text-colorTextSecondary mt-6 font-sans lg:text-2xl">
+								{t("authority.pageTitle")}
+							</div>
+							<div className="text-colorTextTertiary mt-2">
+								{t("authority.pageDescription")}
 							</div>
 						</div>
 					</Col>
+
+					<Col
+						xs={24}
+						sm={24}
+						lg={isAlignCenter ? 24 : 9}
+						className="relative flex flex-col justify-center px-6 py-10 xl:px-8"
+						style={isAlignCenter
+							? {
+								backgroundImage: `radial-gradient(${token.colorBgContainer}, ${token.colorPrimaryBg})`,
+							}
+							: {}}
+					>
+						<LayoutFooter className="absolute bottom-3 text-center w-full" />
+						<div className="w-full sm:mx-auto md:max-w-md">
+							<FormModeContext.Provider value={providedValue}>
+								<AnimatePresence mode="wait" initial={false}>
+									<motion.div
+										key={formMode}
+										initial={{ x: 30, opacity: 0 }}
+										animate={{ x: 0, opacity: 1 }}
+										exit={{ x: 0, opacity: 0 }}
+										transition={{ duration: 0.3 }}
+									>
+										{FORM_COMPONENT_MAP[formMode]}
+									</motion.div>
+								</AnimatePresence>
+							</FormModeContext.Provider>
+						</div>
+					</Col>
 				</Row>
-			</Content>
-			<LayoutFooter />
-		</Layout>
+			</div>
+		</div>
 	);
 }

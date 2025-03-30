@@ -1,10 +1,18 @@
 {
+	"welcomeBack": "欢迎回来",
+	"loginDescription": "请输入帐户信息开始管理项目",
+	"pageTitle": "开箱即用的中后台管理系统",
+	"pageDescription": "简单、轻量、易于使用",
+	"layout": {
+		"alignLeft": "左对齐",
+		"alignCenter": "居中对齐",
+		"alignRight": "右对齐"
+	},
 	"username": "用户名",
 	"password": "密码",
 	"login": "登录",
 	"loginInProgress": "登录中...",
 	"loginSuccess": "登录成功",
-	"loginSuccessDesc": "欢迎回来",
 	"codeLogin": "验证码登录",
 	"forgotPassword": "忘记密码",
 	"retryAfterText": "{{ count }} 秒后重试",

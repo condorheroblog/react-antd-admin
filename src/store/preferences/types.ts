@@ -8,6 +8,7 @@ import type {
 import type { LanguageType } from "#src/locales";
 import type { MenuProps } from "antd";
 
+export type PageLayoutType = "layout-left" | "layout-center" | "layout-right";
 /**
  * @zh 标签栏风格
  * @en Tabbar style
@@ -59,6 +60,12 @@ interface LayoutState {
 }
 
 export interface GeneralState {
+	/**
+	 * @zh 登录页面的布局配置
+	 * @en Login page layout configuration
+	 * @default "layout-right"
+	 */
+	pageLayout: PageLayoutType
 	/**
 	 * @zh 开启前端路由权限
 	 * @en Enable frontend route permissions

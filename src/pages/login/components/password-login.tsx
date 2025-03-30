@@ -8,15 +8,12 @@ import {
 	Input,
 	message,
 	Space,
-	Typography,
 } from "antd";
 import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router";
 
 import { FormModeContext } from "../form-mode-context";
-
-const { Title } = Typography;
 
 const FORM_INITIAL_VALUES = {
 	username: "admin",
@@ -62,12 +59,15 @@ export function PasswordLogin() {
 		<>
 			{contextLoadingHolder}
 			<Space direction="vertical">
-				<Title level={3}>
-					Hello, Welcome to
-				</Title>
-				<Title className="mt-0" level={5}>
-					{import.meta.env.VITE_GLOB_APP_TITLE}
-				</Title>
+				<h2 className="text-colorText mb-3 text-3xl font-bold leading-9 tracking-tight lg:text-4xl">
+					{t("authority.welcomeBack")}
+					{" "}
+&nbsp;
+					👏
+				</h2>
+				<p className="lg:text-base text-sm text-colorTextSecondary">
+					{t("authority.loginDescription")}
+				</p>
 			</Space>
 
 			<Form

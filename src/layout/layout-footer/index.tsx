@@ -7,7 +7,7 @@ export default function LayoutFooter({ className }: LayoutFooterProps) {
 	return (
 		<footer
 			className={cn(
-				"h-10 flex-shrink-0 flex items-center justify-center text-xs md:text-sm",
+				"h-10 flex-shrink-0 flex items-center justify-center text-xs md:text-sm text-colorTextSecondary",
 				className,
 			)}
 		>
