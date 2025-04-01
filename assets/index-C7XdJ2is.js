@@ -1,0 +1,1 @@
+import{u as o,j as t}from"./index-DCJLHlK_.js";import{al as i,av as e}from"./antd-CVnYY_BH.js";import"./faker-Dcf0Eyuj.js";import"./react-B2eEhSVY.js";function r(){const{t:s}=o();return t.jsx(i,{icon:t.jsx(e,{}),status:"success",title:s("access.commonVisible.title"),subTitle:s("access.commonVisible.description")})}export{r as default};

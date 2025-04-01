@@ -1,1 +1,0 @@
-import{u as e,j as t}from"./index-Cu2kO6lS.js";import{ai as c,ar as o}from"./antd-bHmztw5J.js";import"./faker-Dcf0Eyuj.js";import"./react-B2eEhSVY.js";function u(){const{t:s}=e();return t.jsx(c,{icon:t.jsx(o,{}),status:"success",title:s("access.accessMode.title"),subTitle:s("access.accessMode.description")})}export{u as default};
