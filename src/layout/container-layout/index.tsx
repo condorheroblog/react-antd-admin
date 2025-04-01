@@ -2,9 +2,11 @@ import { useDeviceType } from "#src/hooks";
 import { usePreferencesStore, useTabsStore } from "#src/store";
 import { cn } from "#src/utils";
 
-import { Grid } from "antd";
+import { RocketOutlined } from "@ant-design/icons";
+import { FloatButton, Grid, Watermark } from "antd";
 import { useEffect, useMemo } from "react";
 
+import { ELEMENT_ID_MAIN_CONTENT } from "../constants";
 import { useLayout } from "../hooks";
 import LayoutContent from "../layout-content";
 import LayoutFooter from "../layout-footer";
@@ -33,7 +35,7 @@ export default function ContainerLayout() {
 	const screens = useBreakpoint();
 	const { isTopNav, isTwoColumnNav, isMixedNav, sidebarWidth, sideCollapsedWidth, firstColumnWidthInTwoColumnNavigation } = useLayout();
 	const isMaximize = useTabsStore(state => state.isMaximize);
-	const { tabbarEnable, sidebarEnable, sidebarCollapsed, setPreferences } = usePreferencesStore();
+	const { watermark, watermarkContent, enableFooter, fixedFooter, enableBackTopButton, tabbarEnable, sidebarEnable, sidebarCollapsed, setPreferences } = usePreferencesStore();
 	const { isMobile } = useDeviceType();
 	const { sideNavItems, topNavItems, handleMenuSelect } = useMenu();
 
@@ -79,62 +81,71 @@ export default function ContainerLayout() {
 	]);
 
 	return (
+		<Watermark content={watermark ? watermarkContent : ""}>
+			<section
+				style={{
+					paddingLeft: computedSidebarWidth,
+				}}
+				className={cn(
+					"transition-all flex flex-col h-screen",
+				)}
+			>
+				<LayoutHeader>
+					{isTopNav || isMixedNav
+						? (
+							<>
+								{isTopNav ? <Logo sidebarCollapsed={false} className="mr-8" /> : null}
+								<LayoutMenu mode="horizontal" menus={topNavItems} handleMenuSelect={handleMenuSelect} />
+							</>
+						)
+						: <BreadcrumbViews />}
+				</LayoutHeader>
+				{tabbarEnable ? <LayoutTabbar /> : null}
 
-		<section
-			style={{
-				paddingLeft: computedSidebarWidth,
-			}}
-			className={cn(
-				"transition-all flex flex-col h-screen",
-			)}
-		>
-			<LayoutHeader>
-				{isTopNav || isMixedNav
-					? (
-						<>
-							{isTopNav ? <Logo sidebarCollapsed={false} className="mr-8" /> : null}
-							<LayoutMenu mode="horizontal" menus={topNavItems} handleMenuSelect={handleMenuSelect} />
-						</>
-					)
-					: <BreadcrumbViews />}
-			</LayoutHeader>
-			{tabbarEnable ? <LayoutTabbar /> : null}
+				{/* Mobile Menu */}
+				<LayoutMobileMenu />
 
-			{/* Mobile Menu */}
-			<LayoutMobileMenu />
-
-			{/* PC */}
-			{
-				sidebarEnableState && !isTwoColumnNav
-					? (
-						<LayoutSidebar
-							computedSidebarWidth={computedSidebarWidth}
-						>
-							<LayoutMenu
-								autoOpenMenu
-								menus={sideNavItems}
+				{/* PC */}
+				{
+					sidebarEnableState && !isTwoColumnNav
+						? (
+							<LayoutSidebar
+								computedSidebarWidth={computedSidebarWidth}
+							>
+								<LayoutMenu
+									autoOpenMenu
+									menus={sideNavItems}
+									handleMenuSelect={handleMenuSelect}
+								/>
+							</LayoutSidebar>
+						)
+						: null
+				}
+				{
+					isTwoColumnNav
+						? (
+							<LayoutMixedSidebar
+								computedSidebarWidth={computedSidebarWidth}
+								sideNavItems={sideNavItems}
+								topNavItems={topNavItems}
 								handleMenuSelect={handleMenuSelect}
 							/>
-						</LayoutSidebar>
-					)
-					: null
-			}
-			{
-				isTwoColumnNav
+						)
+						: null
+				}
+
+				<LayoutContent />
+
+				{enableFooter && fixedFooter ? <LayoutFooter className="bg-colorBgContainer" /> : null}
+				{enableBackTopButton
 					? (
-						<LayoutMixedSidebar
-							computedSidebarWidth={computedSidebarWidth}
-							sideNavItems={sideNavItems}
-							topNavItems={topNavItems}
-							handleMenuSelect={handleMenuSelect}
+						<FloatButton.BackTop
+							icon={<RocketOutlined />}
+							target={() => document.querySelector(`#${ELEMENT_ID_MAIN_CONTENT} .simplebar-content-wrapper`) as HTMLElement || document}
 						/>
 					)
-					: null
-			}
-
-			<LayoutContent />
-
-			<LayoutFooter className="bg-colorBgContainer" />
-		</section>
+					: null}
+			</section>
+		</Watermark>
 	);
 }

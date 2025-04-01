@@ -92,7 +92,7 @@ export function SiteTheme() {
 			>
 				{t("preferences.theme.grayMode")}
 			</SwitchItem>
-			<div className="flex justify-between w-full px-2">
+			<div className="flex justify-between w-full rounded-md px-2 py-2.5 hover:bg-gray-100 dark:hover:bg-gray-700">
 				<span className="flex items-center text-sm">
 					{t("preferences.theme.radius")}
 				</span>

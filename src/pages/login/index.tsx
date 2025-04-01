@@ -22,7 +22,7 @@ export default function Login() {
 	const { token } = theme.useToken();
 	const { t } = useTranslation();
 	const [formMode, setFormMode] = useState<FormComponentMapType>("login");
-	const { pageLayout, layoutButtonTrigger } = useLayoutMenu("layout-right");
+	const { pageLayout, layoutButtonTrigger } = useLayoutMenu();
 	const isALignLeft = useMemo(() => pageLayout === "layout-left", [pageLayout]);
 	const isAlignCenter = useMemo(() => pageLayout === "layout-center", [pageLayout]);
 
@@ -90,7 +90,7 @@ export default function Login() {
 							}
 							: {}}
 					>
-						<LayoutFooter className="absolute bottom-3 text-center w-full" />
+						<LayoutFooter className="w-full absolute bottom-3 left-1/2 -translate-x-1/2" />
 						<div className="w-full sm:mx-auto md:max-w-md">
 							<FormModeContext.Provider value={providedValue}>
 								<AnimatePresence mode="wait" initial={false}>

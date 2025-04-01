@@ -1,8 +1,12 @@
 import { GlobalSpin, Scrollbar } from "#src/components";
+import { LayoutFooter } from "#src/layout";
+import { ELEMENT_ID_MAIN_CONTENT } from "#src/layout/constants";
 import { useAccessStore, usePreferencesStore, useTabsStore } from "#src/store";
+
 import { theme } from "antd";
 import KeepAlive, { useKeepAliveRef } from "keepalive-for-react";
 import { useEffect, useMemo } from "react";
+
 import { useLocation, useOutlet } from "react-router";
 
 export interface LayoutContentProps { }
@@ -20,6 +24,8 @@ export default function LayoutContent() {
 	const flatRouteList = useAccessStore(state => state.flatRouteList);
 	const transitionName = usePreferencesStore(state => state.transitionName);
 	const transitionEnable = usePreferencesStore(state => state.transitionEnable);
+	const enableFooter = usePreferencesStore(state => state.enableFooter);
+	const fixedFooter = usePreferencesStore(state => state.fixedFooter);
 
 	/**
 	 * to distinguish different pages to cache
@@ -82,7 +88,8 @@ export default function LayoutContent() {
 
 	return (
 		<main
-			className="overflow-y-auto overflow-x-hidden flex-grow"
+			id={ELEMENT_ID_MAIN_CONTENT}
+			className="relative overflow-y-auto overflow-x-hidden flex-grow"
 			style={
 				{
 					backgroundColor: colorBgLayout,
@@ -91,19 +98,25 @@ export default function LayoutContent() {
 		>
 			<Scrollbar>
 				<GlobalSpin>
-					<KeepAlive
-						max={20}
-						transition
-						duration={300}
-						cacheNodeClassName={transitionEnable ? `keepalive-${transitionName}` : undefined}
-						exclude={keepAliveExclude}
-						activeCacheKey={cacheKey}
-						aliveRef={aliveRef}
-					>
-						{outlet}
-					</KeepAlive>
+					<div className="flex flex-col h-full">
+						<div className="flex-grow">
+							<KeepAlive
+								max={20}
+								transition
+								duration={300}
+								cacheNodeClassName={transitionEnable ? `keepalive-${transitionName}` : undefined}
+								exclude={keepAliveExclude}
+								activeCacheKey={cacheKey}
+								aliveRef={aliveRef}
+							>
+								{outlet}
+							</KeepAlive>
+						</div>
+						{enableFooter && !fixedFooter ? <LayoutFooter /> : null}
+					</div>
 				</GlobalSpin>
 			</Scrollbar>
+
 		</main>
 	);
 }

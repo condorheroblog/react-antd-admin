@@ -71,8 +71,8 @@ src/router
 
 动态路由存储在 `src/router/routes/modules` 目录下。
 
-- 路由仅为调用后端获取的情况下，即 `设置 enabledBackendAccess 为 true 、enableFrontendAceess 为 false`，此目录仅仅作为备份，并不会被读取。
-- 路由仅为前端获取的情况下，即 `设置 enabledBackendAccess 为 false 、enableFrontendAceess 为 true`，则会读取此目录下的路由。
+- 路由仅为调用后端获取的情况下，即 `设置 enableBackendAccess 为 true 、enableFrontendAceess 为 false`，此目录仅仅作为备份，并不会被读取。
+- 路由仅为前端获取的情况下，即 `设置 enableBackendAccess 为 false 、enableFrontendAceess 为 true`，则会读取此目录下的路由。
 
 ### 路由获取的方式
 

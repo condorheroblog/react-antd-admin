@@ -8,6 +8,8 @@ declare global {
 		pkg: {
 			name: string
 			version: string
+			license: string
+			author: string
 			dependencies: typeof dependencies
 			devDependencies: typeof devDependencies
 		}

@@ -93,6 +93,20 @@
 	"general": {
 		"title": "General",
 		"language": "Language",
-		"enableCheckUpdate": "Check Update"
+		"watermark": "Watermark",
+		"watermarkTip": "Watermark nickname website psoriasis, not recommended",
+		"watermarkContent": "Watermark Content",
+		"enableCheckUpdate": "Check Update",
+		"enableBackTopButton": "Back Top Button"
+	},
+	"footer": {
+		"title": "Footer",
+		"showFooter": "Show Footer",
+		"fixedFooter": "Fixed Footer",
+		"companyName": "Company Name",
+		"companyWebsite": "Company Website",
+		"copyrightDate": "Copyright Date",
+		"ICPNumber": "ICP Number",
+		"ICPLink": "ICP Link"
 	}
 }

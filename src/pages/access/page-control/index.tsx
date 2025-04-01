@@ -21,7 +21,7 @@ const accounts: Record<string, PasswordLoginFormType> = {
 export default function PageControl() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	const { enableFrontendAceess, enabledBackendAccess, setPreferences } = usePreferences();
+	const { enableFrontendAceess, enableBackendAccess, setPreferences } = usePreferences();
 	const { roles: userRoles } = useUserStore();
 	const resetAllStores = useAuthStore(state => state.reset);
 	const authLogin = useAuthStore(state => state.login);
@@ -45,10 +45,10 @@ export default function PageControl() {
 	}
 
 	async function toggleAccessMode() {
-		if (enableFrontendAceess && !enabledBackendAccess) {
+		if (enableFrontendAceess && !enableBackendAccess) {
 			setPreferences({
 				enableFrontendAceess: false,
-				enabledBackendAccess: true,
+				enableBackendAccess: true,
 			});
 			resetAllStores();
 			authLogin(accounts.admin).then(() => {
@@ -58,10 +58,10 @@ export default function PageControl() {
 			});
 			return;
 		}
-		if (enabledBackendAccess && !enableFrontendAceess) {
+		if (enableBackendAccess && !enableFrontendAceess) {
 			setPreferences({
 				enableFrontendAceess: true,
-				enabledBackendAccess: false,
+				enableBackendAccess: false,
 			});
 			resetAllStores();
 			authLogin(accounts.admin).then(() => {
@@ -82,7 +82,7 @@ export default function PageControl() {
 					type="warning"
 					className={clsx(
 						"mb-4",
-						{ hidden: enableFrontendAceess !== enabledBackendAccess },
+						{ hidden: enableFrontendAceess !== enableBackendAccess },
 					)}
 					description={t("access.pageControl.warningMessage")}
 				/>
@@ -96,7 +96,7 @@ export default function PageControl() {
 							""
 						)}
 
-					{enabledBackendAccess
+					{enableBackendAccess
 						? (
 							<Typography.Text code>{t("access.pageControl.backendControl")}</Typography.Text>
 						)
@@ -104,10 +104,10 @@ export default function PageControl() {
 							""
 						)}
 
-					{enabledBackendAccess
+					{enableBackendAccess
 						? (
 							<Button
-								disabled={enableFrontendAceess === enabledBackendAccess}
+								disabled={enableFrontendAceess === enableBackendAccess}
 								type="primary"
 								onClick={() => toggleAccessMode()}
 							>
@@ -118,7 +118,7 @@ export default function PageControl() {
 					{enableFrontendAceess
 						? (
 							<Button
-								disabled={enableFrontendAceess === enabledBackendAccess}
+								disabled={enableFrontendAceess === enableBackendAccess}
 								type="primary"
 								onClick={() => toggleAccessMode()}
 							>

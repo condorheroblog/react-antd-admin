@@ -4,6 +4,10 @@
 	"projectMessage": "Project Message",
 	"version": "Version",
 	"lastBuildTime": "Last Build Time",
+	"license": "License",
+	"previewAddress": "Preview URL",
+	"documentAddress": "Documentation URL",
+	"author": "Author",
 	"dependencies": "Prod Dependencies",
 	"devDependencies": "Dev Dependencies"
 }

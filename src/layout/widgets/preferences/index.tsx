@@ -5,8 +5,8 @@ import { useDeviceType, usePreferences } from "#src/hooks";
 import { loginPath } from "#src/router/extra-info";
 import { useAuthStore, usePreferencesStore } from "#src/store";
 
-import { CopyOutlined, RedoOutlined, SettingOutlined } from "@ant-design/icons";
-import { theme as antdTheme, Badge, ConfigProvider, Divider, Drawer } from "antd";
+import { CopyOutlined, RedoOutlined, SettingOutlined, RocketOutlined } from "@ant-design/icons";
+import { theme as antdTheme, Badge, ConfigProvider, Divider, Drawer, FloatButton } from "antd";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
@@ -15,12 +15,14 @@ import {
 	Animation,
 	BuiltinTheme,
 	General,
+	PreferencesFooter,
 	PreferencesLayout,
 	Sidebar,
 	SiteTheme,
 	Tabbar,
 } from "./blocks";
 
+const preferencesContentId = "__react-antd-admin__preferences_drawer__"
 export function Preferences({ ...restProps }: ButtonProps) {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
@@ -110,6 +112,7 @@ export function Preferences({ ...restProps }: ButtonProps) {
 						}
 						: {})}
 					open={isOpen}
+					id={preferencesContentId}
 				>
 					<div
 						style={{
@@ -132,7 +135,13 @@ export function Preferences({ ...restProps }: ButtonProps) {
 						<Tabbar />
 						<Divider>{t("preferences.animation.title")}</Divider>
 						<Animation />
+						<Divider>{t("preferences.footer.title")}</Divider>
+						<PreferencesFooter />
 					</div>
+					<FloatButton.BackTop
+						icon={<RocketOutlined />}
+						target={() => document.querySelector(`#${preferencesContentId} .ant-drawer-body`) as HTMLElement}
+					/>
 				</Drawer>
 			</ConfigProvider>
 		</>

@@ -43,7 +43,7 @@ export function NumberInputSpinner({
 	};
 
 	return (
-		<div className="hover:bg-accent my-1 flex w-full items-center justify-between rounded-md px-2 py-2.5">
+		<div className="hover:bg-gray-100 dark:hover:bg-gray-700 my-1 flex w-full items-center justify-between rounded-md px-2 py-2.5">
 			<span className="flex items-center text-sm">{children}</span>
 			<InputNumber
 				className="w-40 [&_input]:!text-center [&_.ant-input-number-group-addon]:px-0"

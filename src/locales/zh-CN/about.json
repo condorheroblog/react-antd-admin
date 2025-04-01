@@ -3,7 +3,11 @@
 	"descriptions": "react-antd-admin 是一个基于 React Hooks、Vite 和 TypeScript 的中后台解决方案。它旨在帮助您快速搭建企业级中后台项目。无论是在采用新技术方面还是其他方面，它都能为您提供帮助。",
 	"projectMessage": "项目信息",
 	"version": "版本",
-	"lastBuildTime": "最后编译时间",
+	"lastBuildTime": "最后构建时间",
+	"license": "开源许可协议",
+	"previewAddress": "预览地址",
+	"documentAddress": "文档地址",
+	"author": "作者",
 	"dependencies": "生产依赖",
 	"devDependencies": "开发依赖"
 }

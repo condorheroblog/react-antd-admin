@@ -43,6 +43,7 @@
 	"success": "Success",
 	"deleteSuccess": "Deleted successfully",
 	"confirmDelete": "Are you sure to delete?",
+	"view": "View",
 	"edit": "Edit",
 	"error": "Error",
 	"index": "Index",

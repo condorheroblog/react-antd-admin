@@ -37,7 +37,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
 	const getUserInfo = useUserStore(state => state.getUserInfo);
 	const userRoles = useUserStore(state => state.roles);
 	const { setAccessStore, isAccessChecked, routeList } = useAccessStore();
-	const { enabledBackendAccess, enableFrontendAceess } = usePreferencesStore(state => state);
+	const { enableBackendAccess, enableFrontendAceess } = usePreferencesStore(state => state);
 
 	const isPathInNoLoginWhiteList = noLoginWhiteList.includes(pathname);
 
@@ -69,7 +69,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
 			 * @zh 启用了后端路由，且路由从单独接口中获取，则发起请求
 			 * @en If backend routing is enabled and the route is obtained from a separate interface, then initiate a request
 			 */
-			if (enabledBackendAccess && isSendRoutingRequest) {
+			if (enableBackendAccess && isSendRoutingRequest) {
 				promises.push(fetchAsyncRoutes());
 			}
 
@@ -88,14 +88,14 @@ export function AuthGuard({ children }: AuthGuardProps) {
 			 * @zh 启用了后端路由且路由从用户接口中获取
 			 * @en If backend routing is enabled and the route is obtained from the user interface
 			 */
-			if (enabledBackendAccess && !isSendRoutingRequest && userInfoResult.status === "fulfilled" && "menus" in userInfoResult.value) {
+			if (enableBackendAccess && !isSendRoutingRequest && userInfoResult.status === "fulfilled" && "menus" in userInfoResult.value) {
 				routes.push(...await generateRoutesFromBackend(userInfoResult.value?.menus ?? []));
 			}
 			/**
 			 * @zh 启用了后端路由且路由从单独接口中获取
 			 * @en If backend routing is enabled and the route is obtained from a separate interface
 			 */
-			if (enabledBackendAccess && isSendRoutingRequest && routeResult.status === "fulfilled" && "result" in routeResult.value) {
+			if (enableBackendAccess && isSendRoutingRequest && routeResult.status === "fulfilled" && "result" in routeResult.value) {
 				routes.push(...await generateRoutesFromBackend(routeResult.value?.result ?? []));
 			}
 

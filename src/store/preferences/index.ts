@@ -11,13 +11,15 @@ import { persist } from "zustand/middleware";
  */
 export const DEFAULT_PREFERENCES = {
 	/* ================== General ================== */
+	watermark: false,
+	watermarkContent: "react-antd-admin",
+	enableBackTopButton: true,
 	pageLayout: "layout-right",
-	enabledBackendAccess: true,
+	enableBackendAccess: true,
 	enableFrontendAceess: false,
 	language: "zh-CN",
 	enableCheckUpdates: true,
 	checkUpdatesInterval: 1,
-	/* ================== General ================== */
 
 	/* ================== Theme ================== */
 	theme: "auto",
@@ -26,19 +28,15 @@ export const DEFAULT_PREFERENCES = {
 	themeRadius: 6,
 	builtinTheme: "blue",
 	themeColorPrimary: "#1677ff",
-	/* ================== Theme ================== */
 
 	/* ================== Animation ================== */
 	transitionProgress: true,
 	transitionLoading: true,
 	transitionEnable: true,
 	transitionName: "fade-slide",
-	/* ================== Animation ================== */
 
 	/* ================== Layout ================== */
 	navigationStyle: SIDE_NAVIGATION,
-
-	/* ================== Layout ================== */
 
 	/* ================== Tabbar ================== */
 	tabbarEnable: true,
@@ -48,7 +46,6 @@ export const DEFAULT_PREFERENCES = {
 	tabbarStyleType: "chrome",
 	tabbarShowMore: true,
 	tabbarShowMaximize: true,
-	/* ================== Tabbar ================== */
 
 	/* ================== Sidebar ================== */
 	sidebarEnable: true,
@@ -59,7 +56,15 @@ export const DEFAULT_PREFERENCES = {
 	sidebarExtraCollapsedWidth: 48,
 	firstColumnWidthInTwoColumnNavigation: 80,
 	sidebarTheme: "light",
-	/* ================== Sidebar ================== */
+
+	/* ================== Footer ================== */
+	enableFooter: true,
+	fixedFooter: true,
+	companyName: "Condor Hero",
+	companyWebsite: "http://github.com/condorheroblog/",
+	copyrightDate: "2023",
+	ICPNumber: "",
+	ICPLink: "",
 } satisfies PreferencesState;
 
 /**
@@ -75,12 +80,14 @@ interface PreferencesAction {
 		// 对象形式批量更新
 		<T extends Partial<PreferencesState>>(preferences: T): void
 	}
-};
+}
 
 /**
  * 偏好设置状态管理
  */
-export const usePreferencesStore = create<PreferencesState & PreferencesAction>()(
+export const usePreferencesStore = create<
+	PreferencesState & PreferencesAction
+>()(
 	persist(
 		set => ({
 			...DEFAULT_PREFERENCES,
@@ -129,9 +136,7 @@ export const usePreferencesStore = create<PreferencesState & PreferencesAction>(
 					return { ...DEFAULT_PREFERENCES };
 				});
 			},
-
 		}),
 		{ name: "preferences" },
 	),
-
 );

@@ -40,11 +40,11 @@ outline: [2, 6]
 
 1. 确保当前模式为前端访问控制模式
 
-打开 `src/store/preferences/index.ts` 文件，在 DEFAULT_PREFERENCES 中将 `enabledBackendAccess` 设置为 `false`、`enableFrontendAceess` 设置为 `true`。
+打开 `src/store/preferences/index.ts` 文件，在 DEFAULT_PREFERENCES 中将 `enableBackendAccess` 设置为 `false`、`enableFrontendAceess` 设置为 `true`。
 
 ```ts
 export const DEFAULT_PREFERENCES = {
-	enabledBackendAccess: false,
+	enableBackendAccess: false,
 	enableFrontendAceess: true,
 };
 ```
@@ -111,11 +111,11 @@ export const DEFAULT_PREFERENCES = {
 
 1. 确保当前模式为后端访问控制模式
 
-打开 `src/store/preferences/index.ts` 文件，在 DEFAULT_PREFERENCES 中将 `enabledBackendAccess` 设置为 `true`、`enableFrontendAceess` 设置为 `false`。
+打开 `src/store/preferences/index.ts` 文件，在 DEFAULT_PREFERENCES 中将 `enableBackendAccess` 设置为 `true`、`enableFrontendAceess` 设置为 `false`。
 
 ```ts
 export const DEFAULT_PREFERENCES = {
-	enabledBackendAccess: true,
+	enableBackendAccess: true,
 	enableFrontendAceess: false,
 };
 ```
@@ -211,10 +211,10 @@ const accessRouter = {
 
 ```ts
 export const accessControlCodes = {
-	get: `permission:button:get`,
-	update: `permission:button:update`,
-	delete: `permission:button:delete`,
-	add: `permission:button:add`,
+	get: "permission:button:get",
+	update: "permission:button:update",
+	delete: "permission:button:delete",
+	add: "permission:button:add",
 };
 ```
 
@@ -322,7 +322,6 @@ export const AccessControlRoles = {
 	admin: "admin",
 	common: "common",
 };
-
 ```
 
 #### 组件方式

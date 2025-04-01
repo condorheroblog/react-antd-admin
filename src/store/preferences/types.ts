@@ -8,6 +8,10 @@ import type {
 import type { LanguageType } from "#src/locales";
 import type { MenuProps } from "antd";
 
+/**
+ * @zh 登录页面布局
+ * @en Login page layout
+ */
 export type PageLayoutType = "layout-left" | "layout-center" | "layout-right";
 /**
  * @zh 标签栏风格
@@ -52,14 +56,50 @@ interface AnimationState {
 	transitionName: string
 }
 
-export type NavigationType = typeof SIDE_NAVIGATION | typeof TOP_NAVIGATION | typeof TWO_COLUMN_NAVIGATION | typeof MIXED_NAVIGATION;
-export type BuiltinThemeType = "red" | "volcano" | "orange" | "gold" | "yellow" | "lime" | "green" | "cyan" | "blue" | "geekblue" | "purple" | "magenta" | "gray" | "custom";
+export type NavigationType =
+	| typeof SIDE_NAVIGATION
+	| typeof TOP_NAVIGATION
+	| typeof TWO_COLUMN_NAVIGATION
+	| typeof MIXED_NAVIGATION;
+export type BuiltinThemeType =
+	| "red"
+	| "volcano"
+	| "orange"
+	| "gold"
+	| "yellow"
+	| "lime"
+	| "green"
+	| "cyan"
+	| "blue"
+	| "geekblue"
+	| "purple"
+	| "magenta"
+	| "gray"
+	| "custom";
 
 interface LayoutState {
 	navigationStyle: NavigationType
 }
 
 export interface GeneralState {
+	/**
+	 * @zh 是否开启水印
+	 * @en Whether to enable watermark
+	 * @default false
+	 */
+	watermark: boolean
+	/**
+	 * @zh 水印内容
+	 * @en Watermark content
+	 * @default ""
+	 */
+	watermarkContent: string
+	/**
+	 * @zh 返回页面顶部的操作按钮
+	 * @en BackTop makes it easy to go back to the top of the page.
+	 * @default true
+	 */
+	enableBackTopButton: boolean
 	/**
 	 * @zh 登录页面的布局配置
 	 * @en Login page layout configuration
@@ -77,13 +117,13 @@ export interface GeneralState {
 	 * @en Enable backend route permissions
 	 * @default true
 	 */
-	enabledBackendAccess: boolean
+	enableBackendAccess: boolean
 
 	/**
-		* @zh 当前语言
-		* @en Current language
-		* @default "zh-CN"
-		*/
+	 * @zh 当前语言
+	 * @en Current language
+	 * @default "zh-CN"
+	 */
 	language: LanguageType
 	/**
 	 * @zh 是否开启更新检查
@@ -142,7 +182,22 @@ export interface SidebarState {
 	sidebarTheme: MenuProps["theme"]
 }
 
-export interface PreferencesState extends AnimationState, LayoutState, GeneralState, SidebarState {
+export interface FooterState {
+	enableFooter: boolean
+	fixedFooter: boolean
+	companyName: string
+	companyWebsite: string
+	copyrightDate: string
+	ICPNumber: string
+	ICPLink: string
+}
+
+export interface PreferencesState
+	extends AnimationState,
+	LayoutState,
+	GeneralState,
+	SidebarState,
+	FooterState {
 	/* ================== Theme ================== */
 	/**
 	 * @zh 当前主题

@@ -9,10 +9,10 @@ import { checker } from "vite-plugin-checker";
 import { vitePluginFakeServer } from "vite-plugin-fake-server";
 import svgrPlugin from "vite-plugin-svgr";
 
-import { dependencies, devDependencies, name, version } from "./package.json";
+import { author, dependencies, devDependencies, license, name, version } from "./package.json";
 
 const __APP_INFO__ = {
-	pkg: { dependencies, devDependencies, name, version },
+	pkg: { dependencies, devDependencies, name, version, license, author },
 	lastBuildTime: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"),
 };
 

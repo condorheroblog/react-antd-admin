@@ -1,9 +1,21 @@
+import { usePreferencesStore } from "#src/store";
 import { cn } from "#src/utils";
 
 interface LayoutFooterProps {
 	className?: string
 }
 export default function LayoutFooter({ className }: LayoutFooterProps) {
+	const {
+		enableFooter,
+		companyName,
+		companyWebsite,
+		copyrightDate,
+		ICPNumber,
+		ICPLink,
+	} = usePreferencesStore();
+	if (!enableFooter)
+		return null;
+
 	return (
 		<footer
 			className={cn(
@@ -11,7 +23,20 @@ export default function LayoutFooter({ className }: LayoutFooterProps) {
 				className,
 			)}
 		>
-			Copyright &copy; 2023 Condor Hero All right reserved
+			<span>
+				<a href={ICPLink} rel="noreferrer noopener" target="_blank">{ICPNumber}</a>
+			</span>
+			&nbsp;
+			Copyright &copy;
+			{copyrightDate}
+			<span>
+				<a href={companyWebsite} rel="noreferrer noopener" target="_blank">
+					&nbsp;
+					{companyName}
+					&nbsp;
+				</a>
+			</span>
+			All right reserved
 		</footer>
 	);
 }

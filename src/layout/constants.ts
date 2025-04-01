@@ -1,11 +1,25 @@
-// header 的高度
+/**
+ * Layout Header Height
+ */
 export const headerHeight = 48;
 
-// 侧边栏标题的高度
+/**
+ * Sidebar Title Height
+ */
 export const sidebarTitleHeight = 52;
 
-// 侧边栏触发按钮的高度
+/**
+ * Sider Trigger Height
+ */
 export const siderTriggerHeight = 40;
 
-// 标签栏的高度
+/**
+ * Tabbar Height Height
+ */
 export const tabbarHeight = 35;
+
+/**
+ * @zh 主内容区域的元素 ID
+ * @en Main content element ID
+ */
+export const ELEMENT_ID_MAIN_CONTENT = "__react-antd-admin_main_content";

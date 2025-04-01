@@ -61,8 +61,7 @@ export function PasswordLogin() {
 			<Space direction="vertical">
 				<h2 className="text-colorText mb-3 text-3xl font-bold leading-9 tracking-tight lg:text-4xl">
 					{t("authority.welcomeBack")}
-					{" "}
-&nbsp;
+					&nbsp;
 					👏
 				</h2>
 				<p className="lg:text-base text-sm text-colorTextSecondary">

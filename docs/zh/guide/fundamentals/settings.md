@@ -112,7 +112,7 @@ interface ImportMeta {
  */
 export const DEFAULT_PREFERENCES = {
 	/* ================== General ================== */
-	enabledBackendAccess: true,
+	enableBackendAccess: true,
 	enableFrontendAceess: false,
 	language: "zh-CN",
 	enableCheckUpdates: true,

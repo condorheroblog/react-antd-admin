@@ -93,6 +93,20 @@
 	"general": {
 		"title": "通用",
 		"language": "语言",
-		"enableCheckUpdate": "定时检查更新"
+		"watermark": "水印",
+		"watermarkTip": "水印外号网站牛皮癣，不推荐使用",
+		"watermarkContent": "水印内容",
+		"enableCheckUpdate": "定时检查更新",
+		"enableBackTopButton": "显示返回顶部按钮"
+	},
+	"footer": {
+		"title": "底栏",
+		"showFooter": "显示底栏",
+		"fixedFooter": "固定底栏",
+		"companyName": "公司名称",
+		"companyWebsite": "公司官网",
+		"copyrightDate": "版权年份",
+		"ICPNumber": "ICP 备案号",
+		"ICPLink": "ICP 备案链接"
 	}
 }

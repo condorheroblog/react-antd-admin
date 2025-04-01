@@ -28,16 +28,62 @@ export default function About() {
 			children: <Tag color="#55acee">{lastBuildTime}</Tag>,
 		},
 		{
-			key: 2,
-			label: "Github",
+			key: 3,
+			label: t("about.license"),
+			children: <Tag color="green">{__APP_INFO__.pkg.license}</Tag>,
+		},
+		{
+			key: 4,
+			label: t("about.previewAddress"),
 			children: (
 				<Link
 					rel="noreferrer noopener"
 					copyable
-					href="https://github.com/condorheroblog/react-antd-admin"
 					target="_blank"
+					href="https://condorheroblog.github.io/react-antd-admin/"
 				>
-					react-antd-admin
+					{t("common.view")}
+				</Link>
+			),
+		},
+		{
+			key: 5,
+			label: t("about.documentAddress"),
+			children: (
+				<Link
+					rel="noreferrer noopener"
+					copyable
+					target="_blank"
+					href="https://condorheroblog.github.io/react-antd-admin/docs/"
+				>
+					{t("common.view")}
+				</Link>
+			),
+		},
+		{
+			key: 6,
+			label: "Github",
+			children: (
+				<Link
+				rel="noreferrer noopener"
+				copyable
+				target="_blank"
+				href="https://github.com/condorheroblog/react-antd-admin"
+				>
+					{import.meta.env.VITE_GLOB_APP_TITLE}
+				</Link>
+			),
+		},
+		{
+			key: 7,
+			label: t("about.author"),
+			children: (
+				<Link
+					rel="noreferrer noopener"
+					target="_blank"
+					href="https://github.com/condorheroblog/"
+				>
+					{__APP_INFO__.pkg.author}
 				</Link>
 			),
 		},
