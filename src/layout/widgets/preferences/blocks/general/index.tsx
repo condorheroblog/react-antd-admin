@@ -11,6 +11,7 @@ export function General() {
 	const { t } = useTranslation();
 	const {
 		language,
+		enableDynamicTitle,
 		watermark,
 		watermarkContent,
 		enableCheckUpdates,
@@ -27,6 +28,14 @@ export function General() {
 			>
 				{t("preferences.general.language")}
 			</SelectItem>
+
+			<SwitchItem
+				name="enableDynamicTitle"
+				checked={enableDynamicTitle}
+				onChange={(name, value) => setPreferences(name, value)}
+			>
+				{t("preferences.general.dynamicTitle")}
+			</SwitchItem>
 
 			<SwitchItem
 				name="enableCheckUpdates"

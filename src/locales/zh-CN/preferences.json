@@ -93,6 +93,7 @@
 	"general": {
 		"title": "通用",
 		"language": "语言",
+		"dynamicTitle": "动态标题",
 		"watermark": "水印",
 		"watermarkTip": "水印外号网站牛皮癣，不推荐使用",
 		"watermarkContent": "水印内容",

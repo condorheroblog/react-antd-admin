@@ -93,6 +93,7 @@
 	"general": {
 		"title": "General",
 		"language": "Language",
+		"dynamicTitle": "Dynamic Title",
 		"watermark": "Watermark",
 		"watermarkTip": "Watermark nickname website psoriasis, not recommended",
 		"watermarkContent": "Watermark Content",

@@ -126,6 +126,12 @@ export interface GeneralState {
 	 */
 	language: LanguageType
 	/**
+	 * @zh 是否开启动态标题
+	 * @en Whether to enable dynamic title
+	 * @default true
+	 */
+	enableDynamicTitle: boolean
+	/**
 	 * @zh 是否开启更新检查
 	 * @en Whether to enable update check
 	 * @default true

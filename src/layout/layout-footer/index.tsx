@@ -23,19 +23,31 @@ export default function LayoutFooter({ className }: LayoutFooterProps) {
 				className,
 			)}
 		>
-			<span>
-				<a href={ICPLink} rel="noreferrer noopener" target="_blank">{ICPNumber}</a>
-			</span>
-			&nbsp;
-			Copyright &copy;
+			{
+				ICPNumber
+					? (
+						<span>
+							<a href={ICPLink} rel="noreferrer noopener" target="_blank">{ICPNumber}</a>
+							&nbsp;
+						</span>
+					)
+					: null
+			}
+			Copyright &copy;&nbsp;
 			{copyrightDate}
-			<span>
-				<a href={companyWebsite} rel="noreferrer noopener" target="_blank">
-					&nbsp;
-					{companyName}
-					&nbsp;
-				</a>
-			</span>
+			{copyrightDate ? <>&nbsp;</> : ""}
+			{
+				companyName
+					? (
+						<span>
+							<a href={companyWebsite} rel="noreferrer noopener" target="_blank">
+								{companyName}
+								&nbsp;
+							</a>
+						</span>
+					)
+					: null
+			}
 			All right reserved
 		</footer>
 	);

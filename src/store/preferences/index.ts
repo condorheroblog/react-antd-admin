@@ -18,6 +18,7 @@ export const DEFAULT_PREFERENCES = {
 	enableBackendAccess: true,
 	enableFrontendAceess: false,
 	language: "zh-CN",
+	enableDynamicTitle: true,
 	enableCheckUpdates: true,
 	checkUpdatesInterval: 1,
 

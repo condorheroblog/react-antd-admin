@@ -77,7 +77,7 @@ const systemManagementRouter = {
 const homeRouter = {
 	path: "/home",
 	handle: {
-		icon: "HomeFilled",
+		icon: "HomeOutlined",
 		title: "common.menu.home",
 		order: home,
 	},

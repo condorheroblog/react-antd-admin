@@ -2,5 +2,6 @@
 	"404SubTitle": "Sorry, the page you visited does not exist.",
 	"403SubTitle": "Sorry, you are not authorized to access this page.",
 	"500SubTitle": "Sorry, the server is reporting an error.",
-	"unknownComponentSubTitle": "Sorry, the current route has no corresponding component, please contact the developer."
+	"unknownComponentSubTitle": "Sorry, the current route has no corresponding component, please contact the developer.",
+	"pageErrorTitle": "Oops! Something went wrong!"
 }
