@@ -50,6 +50,7 @@
 		"ky": "^1.7.5",
 		"motion": "^12.5.0",
 		"nprogress": "^0.2.0",
+		"pinyin-pro": "^3.26.0",
 		"react": "18",
 		"react-countup": "^6.5.3",
 		"react-dom": "18",

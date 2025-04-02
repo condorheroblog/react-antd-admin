@@ -1,7 +1,7 @@
 import type { ButtonProps } from "antd";
 import { useDeviceType, usePreferences } from "#src/hooks";
 import { useLayout } from "#src/layout/hooks/use-layout";
-import { Preferences } from "#src/layout/widgets";
+import { GlobalSearch, Preferences } from "#src/layout/widgets";
 import { NotificationContainer } from "#src/layout/widgets/notification/notification-container";
 import { useTabsStore } from "#src/store";
 import { cn } from "#src/utils";
@@ -78,6 +78,7 @@ export default function LayoutHeader({ className, children }: LayoutHeaderProps)
 				</div>
 
 				<div className="flex items-center">
+					<GlobalSearch />
 					<Preferences {...buttonProps} />
 					<ThemeButton {...buttonProps} />
 					<LanguageButton {...buttonProps} />

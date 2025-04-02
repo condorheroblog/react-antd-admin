@@ -12,13 +12,13 @@
 	"versionMonitorConfirm": "立即刷新",
 	"versionMonitorCancel": "稍后再说",
 	"search": {
+		"placeholder": "输入关键字搜索菜单（支持拼音）",
 		"title": "搜索",
-		"searchNavigate": "搜索导航菜单",
 		"select": "选择",
 		"navigate": "导航",
 		"close": "关闭",
 		"noResults": "未找到搜索结果",
 		"noRecent": "没有搜索历史",
-		"recent": "搜索历史"
+		"total": "共 {{total}} 项"
 	}
 }

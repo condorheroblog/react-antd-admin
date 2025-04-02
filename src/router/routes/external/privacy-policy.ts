@@ -1,8 +1,7 @@
 import type { AppRouteRecordRaw } from "#src/router/types";
 import { $t } from "#src/locales";
-import { UserOutlined } from "@ant-design/icons";
 
-import { createElement, lazy } from "react";
+import { lazy } from "react";
 import { Outlet } from "react-router";
 
 const PrivacyPolicy = lazy(() => import("#src/pages/privacy-policy"));
@@ -14,7 +13,6 @@ const routes: AppRouteRecordRaw[] = [
 		handle: {
 			hideInMenu: true,
 			title: $t("authority.privacyPolicy"),
-			icon: createElement(UserOutlined),
 		},
 		children: [
 			{
@@ -22,7 +20,6 @@ const routes: AppRouteRecordRaw[] = [
 				Component: PrivacyPolicy,
 				handle: {
 					title: $t("authority.privacyPolicy"),
-					icon: createElement(UserOutlined),
 				},
 			},
 		],

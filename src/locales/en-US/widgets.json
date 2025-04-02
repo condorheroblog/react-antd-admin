@@ -12,13 +12,13 @@
 	"versionMonitorConfirm": "Refresh Now",
 	"versionMonitorCancel": "Later",
 	"search": {
+		"placeholder": "Enter keyword to search menu",
 		"title": "Search",
-		"searchNavigate": "Search Navigation",
 		"select": "Select",
 		"navigate": "Navigate",
 		"close": "Close",
 		"noResults": "No Search Results Found",
 		"noRecent": "No Search History",
-		"recent": "Search History"
+		"total": "Total {{total}} items"
 	}
 }

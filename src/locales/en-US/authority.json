@@ -20,7 +20,7 @@
 	"mobile": "Mobile",
 	"mobileLogin": "Mobile Login",
 	"sendCode": "Get Security code",
-	"sendText": "Resend in { second } s",
+	"sendText": "Resend in {{ second }} s",
 	"forgotPasswordSubtitle": "Enter your email and we'll send you instructions to reset your password",
 	"email": "Email",
 	"sendResetLink": "Send Reset Link",
