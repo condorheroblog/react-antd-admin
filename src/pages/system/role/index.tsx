@@ -42,7 +42,7 @@ export default function Role() {
 	const handleDeleteRow = async (id: number, action?: ProCoreActionType<object>) => {
 		const responseData = await deleteRoleItemMutation.mutateAsync(id);
 		await action?.reload?.();
-		window.$message?.success(`${t("common.deleteSuccess")} userId = ${responseData.result}`);
+		window.$message?.success(`${t("common.deleteSuccess")} id = ${responseData.result}`);
 	};
 
 	const columns: ProColumns<RoleItemType>[] = [

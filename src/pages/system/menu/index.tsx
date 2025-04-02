@@ -27,7 +27,7 @@ export default function Menu() {
 	const handleDeleteRow = async (id: number, action?: ProCoreActionType<object>) => {
 		const responseData = await fetchDeleteMenuItem(id);
 		await action?.reload?.();
-		window.$message?.success(`${t("common.deleteSuccess")} userId = ${responseData.result}`);
+		window.$message?.success(`${t("common.deleteSuccess")} id = ${responseData.result}`);
 	};
 
 	const columns: ProColumns<MenuItemType>[] = [

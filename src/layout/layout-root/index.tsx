@@ -20,7 +20,7 @@ export default function LayoutRoot() {
 	const location = useLocation();
 	const { language, isDark, enableDynamicTitle } = usePreferences();
 	const isLogin = useAuthStore(state => Boolean(state.token));
-	const isAuthorized = useUserStore(state => Boolean(state.userId));
+	const isAuthorized = useUserStore(state => Boolean(state.id));
 
 	/* document title */
 	useEffect(() => {

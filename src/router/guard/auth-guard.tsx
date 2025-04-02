@@ -33,7 +33,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
 	const currentRoute = useCurrentRoute();
 	const { pathname, search } = useLocation();
 	const isLogin = useAuthStore(state => Boolean(state.token));
-	const isAuthorized = useUserStore(state => Boolean(state.userId));
+	const isAuthorized = useUserStore(state => Boolean(state.id));
 	const getUserInfo = useUserStore(state => state.getUserInfo);
 	const userRoles = useUserStore(state => state.roles);
 	const { setAccessStore, isAccessChecked, routeList } = useAccessStore();
@@ -141,8 +141,8 @@ export function AuthGuard({ children }: AuthGuardProps) {
 				/**
 				 * @zh 保证替换路由前不会显示 404 页面（登录页面，网速切换为 3G 会闪烁显示 404 页面）
 				 * @en Ensure that the 404 page will not be displayed before replacing the route
-				*/
-				flushSync: true
+				 */
+				flushSync: true,
 			});
 		}
 		/**
@@ -213,7 +213,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
 	if (pathname === loginPath) {
 		/**
 		 * @example login?redirect=/system/user
-		*/
+		 */
 		const redirectPath = searchParams.get("redirect");
 		if (redirectPath?.length && redirectPath !== pathname) {
 			return (
@@ -234,14 +234,14 @@ export function AuthGuard({ children }: AuthGuardProps) {
 	/**
 	 * @zh 等待获取用户信息
 	 * @en  Waiting for user information to be obtained
-	*/
+	 */
 	if (!isAuthorized) {
 		return null;
 	}
 	/**
 	 * @zh 等待获取路由信息
 	 * @en Waiting for route information to be obtained
-	*/
+	 */
 	if (!isAccessChecked) {
 		return null;
 	}
@@ -249,7 +249,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
 	/**
 	 * @zh 隐藏加载动画
 	 * @en Hide loading animation
-	*/
+	 */
 	hideLoading();
 
 	/**
@@ -277,7 +277,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
 	/**
 	 * @zh 忽略权限校验
 	 * @en Ignore permission verification
-	*/
+	 */
 	if (ignoreAccess === true) {
 		return children;
 	}

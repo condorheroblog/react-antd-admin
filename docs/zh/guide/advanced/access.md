@@ -70,7 +70,7 @@ export const DEFAULT_PREFERENCES = {
 {
 	"code": 200,
 	"result": {
-		"userId": 1,
+		"id": 1,
 		"avatar": "https://avatars.githubusercontent.com/u/47056890",
 		"username": "Admin",
 		"email": "<EMAIL>",

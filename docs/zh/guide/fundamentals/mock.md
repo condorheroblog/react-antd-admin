@@ -24,7 +24,7 @@ export default defineFakeRoute([
 		response: ({ headers }) => {
 			if (headers.authorization?.split?.(" ")?.[1] === ADMIN_TOKEN) {
 				return resultSuccess({
-					userId: 1,
+					id: 1,
 					avatar: "https://avatars.githubusercontent.com/u/47056890",
 					username: "Admin",
 					email: "<EMAIL>",
@@ -35,7 +35,7 @@ export default defineFakeRoute([
 			}
 			else {
 				return resultSuccess({
-					userId: 2,
+					id: 2,
 					avatar: "https://avatar.vercel.sh/avatar.svg?text=Common",
 					username: "Tom",
 					email: "<EMAIL>",

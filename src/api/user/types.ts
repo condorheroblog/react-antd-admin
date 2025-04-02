@@ -6,7 +6,7 @@ export interface AuthType {
 }
 
 export interface UserInfoType {
-	userId: string
+	id: string
 	avatar: string
 	username: string
 	email: string
