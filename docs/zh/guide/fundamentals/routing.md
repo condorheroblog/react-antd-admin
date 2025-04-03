@@ -169,12 +169,6 @@ export default routes;
 
 :::
 
-::: warning
-
-React 的 lazy 一定要放在模块的顶部，否则使用的方式是无效的，参见 [My lazy component’s state gets reset unexpectedly](https://react.dev/reference/react/lazy#my-lazy-components-state-gets-reset-unexpectedly)
-
-:::
-
 ## 索引路由
 
 如果使用了 [索引路由](https://reactrouter.com/en/main/route/route#index) 请把权限、图标等信息写在 `index` 路由中，这样在生成菜单时，会自动获取到权限、图标等信息。

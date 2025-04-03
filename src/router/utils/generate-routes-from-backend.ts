@@ -7,21 +7,28 @@ import { addRouteIdByPath } from "./add-route-id-by-path";
 
 const ExceptionUnknownComponent = lazy(() => import("#src/pages/exception/unknown-component"));
 
-// Vite 的 glob 导入功能
-const pageModules = import.meta.glob<Record<string, React.ComponentType>>([
+/**
+ * @zh 异步获取页面组件
+ * @en Async load page components
+ */
+const pageModules = import.meta.glob([
 	"/src/pages/**/*.tsx",
-	// 排除异常页面
+	// Exclude exception pages from lazy loading
 	"!/src/pages/exception/**/*.tsx",
 ]);
 
-/** 根据后端路由配置生成前端路由 */
+/**
+ * @zh 根据后端路由配置生成前端路由
+ * @en Generate frontend routes based on backend route configurations
+ */
 export async function generateRoutesFromBackend(backendRoutes: Array<AppRouteRecordRaw>) {
 	const pageModulePaths = Object.keys(pageModules);
 	if (!backendRoutes?.length)
 		return [];
 
 	/**
-	 * 动态加载并设置路由组件
+	 * @zh 动态加载并设置路由组件
+	 * @en Dynamically load and set route components
 	 * @param route 路由配置对象
 	 * @param componentPath 组件文件路径
 	 */
@@ -30,8 +37,8 @@ export async function generateRoutesFromBackend(backendRoutes: Array<AppRouteRec
 		const moduleIndex = pageModulePaths.findIndex(path => path === modulePath);
 
 		if (moduleIndex !== -1) {
-			const module = await pageModules[pageModulePaths[moduleIndex]]?.();
-			route.Component = module?.default || module;
+			const lazyComponent = pageModules[pageModulePaths[moduleIndex]];
+			route.Component = lazy(lazyComponent as any);
 		}
 		else {
 			console.warn(`[Frontend component not found]: ${componentPath}`);
