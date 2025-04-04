@@ -255,8 +255,10 @@ export function AuthGuard({ children }: AuthGuardProps) {
 	/**
 	 * @zh 如果是根路由则跳转到首页（获取完用户信息之后跳转到默认首页，防止请求两次用户信息接口）
 	 * @en If it is the root route, jump to the home page (jump to the default home page after obtaining user information to prevent requesting twice for user information interface)
+	 * @zh pathname 返回的是相对 import.meta.env.BASE_URL 的路径，所以这里是相对于 BASE_URL 的根路由 "/"
+	 * @en pathname returns the path relative to import.meta.env.BASE_URL, so here is the root route "/" relative to BASE_URL
 	 */
-	if (pathname === import.meta.env.BASE_URL) {
+	if (pathname === "/") {
 		return (
 			<Navigate
 				to={import.meta.env.VITE_BASE_HOME_PATH}
@@ -285,8 +287,12 @@ export function AuthGuard({ children }: AuthGuardProps) {
 	const matches = matchRoutes(
 		routeList,
 		pathname,
-		import.meta.env.BASE_URL,
+		/**
+		 * @zh pathname 返回的是相对 import.meta.env.BASE_URL 的路径，所以不需要指定第三个参数 basename 了
+		 * @en pathname returns the path relative to import.meta.env.BASE_URL, so there is no need to specify the third parameter basename
+		 */
 	) ?? [];
+
 	const hasChildren = matches[matches.length - 1]?.route?.children?.filter(item => !item.index)?.length;
 	/**
 	 * @zh 如果当前路由有子路由，则跳转到 404 页面

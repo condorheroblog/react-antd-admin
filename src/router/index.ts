@@ -25,7 +25,7 @@ export const rootRoute: RouteObject[] = [
 		id: ROOT_ROUTE_ID,
 		Component: LayoutRoot,
 		children: baseRoutes,
-		loader: () => {
+		loader: ({ request }) => {
 			/**
 			 * @zh 初次加载路由时，开始进度条动画
 			 * @en Start the progress bar animation when loading routes for the first time
@@ -33,7 +33,8 @@ export const rootRoute: RouteObject[] = [
 			const { transitionProgress } = usePreferencesStore.getState();
 			if (transitionProgress) {
 				NProgress.start();
-				loadedPaths.add(location.pathname);
+				const relativePath = new URL(request.url).pathname;
+				loadedPaths.add(relativePath);
 			}
 			return null;
 		},
