@@ -23,8 +23,6 @@ src/router
 ├── types                          # 路由类型
 │   │   ├── guard                  # 路由守卫
 │   │   │   ├── auth-guard.tsx     # 权限守卫
-│   │   │   ├── common-guard.ts    # 通用守卫（加载顶部动画）
-│   │   │   ├── guard.ts           # 创建守卫
 │   │   │   └── index.ts           # 路由守卫聚合
 ├── index.ts                       # 路由配置文件
 ├── extra-info

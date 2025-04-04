@@ -3,7 +3,7 @@ import { usePreferences } from "#src/hooks";
 import { AuthGuard } from "#src/router/guard";
 import { whiteRouteNames } from "#src/router/routes";
 import { useAuthStore, useUserStore } from "#src/store";
-import { isString, toggleHtmlClass } from "#src/utils";
+import { isString, NProgress, toggleHtmlClass } from "#src/utils";
 
 import { useEffect } from "react";
 import { ErrorBoundary } from "react-error-boundary";
@@ -49,6 +49,14 @@ export default function LayoutRoot() {
 			toggleHtmlClass("dark").remove();
 		}
 	}, [isDark]);
+
+	/**
+	 * @zh 关闭页面加载进度条，配合 ROOT_ROUTE_ID 路由的 loader 和 shouldRevalidate 使用
+	 * @en Close the page loading progress bar, used with the loader and shouldRevalidate of the ROOT_ROUTE_ID route
+	 */
+	useEffect(() => {
+		NProgress.done();
+	}, [location.pathname]);
 
 	return (
 		<ErrorBoundary FallbackComponent={PageError}>

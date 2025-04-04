@@ -7,19 +7,52 @@
  * 4. ……
  */
 
+import type { RouteObject } from "react-router";
 import { LayoutRoot } from "#src/layout";
+import { usePreferencesStore } from "#src/store";
+import { NProgress } from "#src/utils";
 
 import { createBrowserRouter, createHashRouter } from "react-router";
 import { ROOT_ROUTE_ID } from "./constants";
-import { createRouterGuard } from "./guard";
 import { baseRoutes } from "./routes";
 
-export const rootRoute = [
+// 记录已经加载的页面
+const loadedPaths = new Set<string>();
+
+export const rootRoute: RouteObject[] = [
 	{
 		path: "/",
 		id: ROOT_ROUTE_ID,
 		Component: LayoutRoot,
 		children: baseRoutes,
+		loader: () => {
+			/**
+			 * @zh 初次加载路由时，开始进度条动画
+			 * @en Start the progress bar animation when loading routes for the first time
+			 */
+			const { transitionProgress } = usePreferencesStore.getState();
+			if (transitionProgress) {
+				NProgress.start();
+				loadedPaths.add(location.pathname);
+			}
+			return null;
+		},
+		shouldRevalidate: ({ nextUrl, currentUrl }) => {
+			if (nextUrl.pathname === currentUrl.pathname) {
+				return false;
+			}
+			/**
+			 * @zh 路由更新时，开始进度条动画
+			 * @en Start the progress bar animation when the route is updated
+			 */
+			const { transitionProgress } = usePreferencesStore.getState();
+			const isLoaded = loadedPaths.has(nextUrl.pathname);
+			if (transitionProgress && !isLoaded) {
+				NProgress.start();
+				loadedPaths.add(nextUrl.pathname);
+			}
+			return false;
+		},
 	},
 ];
 
@@ -46,9 +79,5 @@ function createRouter() {
 }
 
 export const router = createRouter();
-
-export async function setupRouter() {
-	createRouterGuard(router);
-}
 
 export default router;
