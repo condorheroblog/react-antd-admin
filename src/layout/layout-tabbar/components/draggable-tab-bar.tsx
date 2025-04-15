@@ -19,7 +19,7 @@ interface DraggableTabPaneProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 export function DraggableTabNode({ className, children, ...props }: DraggableTabPaneProps) {
-	const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+	const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
 		id: props["data-node-key"],
 		// transition: null,
 	});
@@ -28,7 +28,7 @@ export function DraggableTabNode({ className, children, ...props }: DraggableTab
 		...props.style,
 		transform: CSS.Translate.toString({ x: transform?.x || 0, y: 0, scaleX: 1, scaleY: 1 }),
 		transition,
-		cursor: "move",
+		cursor: isDragging ? "move" : "pointer",
 	};
 
 	return cloneElement(children, {

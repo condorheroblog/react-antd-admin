@@ -14,6 +14,8 @@ export const useStyles = createUseStyles(({ token }) => {
 			"& .ant-tabs-nav": {
 				"margin": 0,
 				"& .ant-tabs-tab": {
+					// antd 自带的动画和 DND 动画冲突
+					transition: "inherit",
 					marginLeft: "0px !important",
 					border: "none !important",
 					borderRadius: "0px !important",
@@ -26,8 +28,6 @@ export const useStyles = createUseStyles(({ token }) => {
 			"& .ant-tabs-nav": {
 				"& .ant-tabs-tab": {
 					borderRight: `1px solid ${token.colorBorder} !important`,
-					// antd 自带的动画和 DND 动画冲突
-					transition: "inherit",
 				},
 			},
 			"& .ant-tabs-ink-bar": {
