@@ -69,6 +69,7 @@
 	"search": "搜索",
 	"switch": "切换",
 	"tip": "提示",
+	"tipMessage": "确定执行本次操作?",
 	"trigger": "触发",
 	"update": "更新",
 	"updateSuccess": "更新成功",

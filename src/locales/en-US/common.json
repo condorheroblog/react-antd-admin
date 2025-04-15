@@ -69,6 +69,7 @@
 	"search": "Search",
 	"switch": "Switch",
 	"tip": "Tip",
+	"tipMessage": "Confirm to perform this operation?",
 	"trigger": "Trigger",
 	"update": "Update",
 	"updateSuccess": "Updated successfully",

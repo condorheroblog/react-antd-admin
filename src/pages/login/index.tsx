@@ -9,6 +9,7 @@ import { ThemeButton } from "#src/layout/layout-header/components/theme-button";
 
 import {
 	Col,
+	Grid,
 	Row,
 	theme,
 } from "antd";
@@ -21,6 +22,7 @@ import { FORM_COMPONENT_MAP, FormModeContext } from "./form-mode-context";
 export default function Login() {
 	const { token } = theme.useToken();
 	const { t } = useTranslation();
+	const screens = Grid.useBreakpoint();
 	const [formMode, setFormMode] = useState<FormComponentMapType>("login");
 	const { pageLayout, layoutButtonTrigger } = useLayoutMenu();
 	const isALignLeft = useMemo(() => pageLayout === "layout-left", [pageLayout]);
@@ -33,22 +35,20 @@ export default function Login() {
 				backgroundColor: token.colorBgContainer,
 			}}
 		>
-			<div
-				className="absolute left-0 top-0 z-10 flex flex-1"
-			>
+			<header className="z-10 absolute flex items-center right-3 top-3 left-3">
 				<div
-					className="text-colorText ml-4 mt-4 flex flex-1 items-center sm:left-6 sm:top-6"
+					className="text-colorText flex flex-1 items-center"
 				>
 					<img alt="App Logo" src={logo} className="mr-2 w-11" />
 					<h1 className="m-0 text-xl font-medium">
 						{import.meta.env.VITE_GLOB_APP_TITLE}
 					</h1>
 				</div>
-			</div>
-			<header className="z-10 absolute flex items-center right-3 top-3">
-				{layoutButtonTrigger}
-				<ThemeButton />
-				<LanguageButton className="px-[11px]" />
+				<div className="flex items-center">
+					{layoutButtonTrigger}
+					<ThemeButton />
+					<LanguageButton className="px-2" />
+				</div>
 			</header>
 			<div
 				className="flex items-center overflow-hidden h-full"
@@ -84,7 +84,7 @@ export default function Login() {
 						sm={24}
 						lg={isAlignCenter ? 24 : 9}
 						className="relative flex flex-col justify-center px-6 py-10 xl:px-8"
-						style={isAlignCenter
+						style={isAlignCenter || (!screens.xl && !screens.xxl && !screens.lg)
 							? {
 								backgroundImage: `radial-gradient(${token.colorBgContainer}, ${token.colorPrimaryBg})`,
 							}
