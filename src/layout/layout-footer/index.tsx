@@ -19,7 +19,7 @@ export default function LayoutFooter({ className }: LayoutFooterProps) {
 	return (
 		<footer
 			className={cn(
-				"h-10 flex flex-wrap items-center justify-center text-xs md:text-sm text-colorTextSecondary",
+				"h-10 flex flex-wrap shrink-0 items-center justify-center text-xs md:text-sm text-colorTextSecondary",
 				className,
 			)}
 		>

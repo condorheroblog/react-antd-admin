@@ -1,4 +1,5 @@
 export * from "./cn";
+export * from "./dom";
 export * from "./get-all-expanded-keys";
 export * from "./is";
 export * from "./is-dark-theme";

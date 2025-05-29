@@ -1,6 +1,7 @@
 import { GlobalSpin, Scrollbar } from "#src/components";
+import { useLayoutContentStyle } from "#src/hooks";
 import { LayoutFooter } from "#src/layout";
-import { ELEMENT_ID_MAIN_CONTENT } from "#src/layout/constants";
+import { CSS_VARIABLE_LAYOUT_CONTENT_HEIGHT, ELEMENT_ID_MAIN_CONTENT } from "#src/layout/constants";
 import { useAccessStore, usePreferencesStore, useTabsStore } from "#src/store";
 
 import { theme } from "antd";
@@ -17,6 +18,8 @@ export default function LayoutContent() {
 	} = theme.useToken();
 	const { pathname, search } = useLocation();
 	const outlet = useOutlet();
+	const { contentElement } = useLayoutContentStyle();
+
 	const aliveRef = useKeepAliveRef();
 	const isRefresh = useTabsStore(state => state.isRefresh);
 	const openTabs = useTabsStore(state => state.openTabs);
@@ -89,6 +92,7 @@ export default function LayoutContent() {
 	return (
 		<main
 			id={ELEMENT_ID_MAIN_CONTENT}
+			ref={contentElement}
 			className="relative overflow-y-auto overflow-x-hidden flex-grow"
 			style={
 				{
@@ -98,8 +102,14 @@ export default function LayoutContent() {
 		>
 			<Scrollbar>
 				<GlobalSpin>
-					<div className="flex flex-col h-full">
-						<div className="flex-grow">
+					<div
+						className="flex flex-col h-full"
+					>
+						<div
+							style={{
+								height: `var(${CSS_VARIABLE_LAYOUT_CONTENT_HEIGHT})`,
+							}}
+						>
 							<KeepAlive
 								max={20}
 								transition

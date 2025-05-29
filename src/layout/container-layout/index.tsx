@@ -1,4 +1,4 @@
-import { useDeviceType } from "#src/hooks";
+import { useDeviceType, useLayoutFooterStyle, useLayoutHeaderStyle } from "#src/hooks";
 import { usePreferencesStore, useTabsStore } from "#src/store";
 import { cn } from "#src/utils";
 
@@ -6,7 +6,7 @@ import { RocketOutlined } from "@ant-design/icons";
 import { FloatButton, Grid, Watermark } from "antd";
 import { useEffect, useMemo } from "react";
 
-import { ELEMENT_ID_MAIN_CONTENT } from "../constants";
+import { ELEMENT_ID_MAIN_CONTENT, footerHeight, headerHeight, tabbarHeight } from "../constants";
 import { useLayout } from "../hooks";
 import LayoutContent from "../layout-content";
 import LayoutFooter from "../layout-footer";
@@ -38,6 +38,9 @@ export default function ContainerLayout() {
 	const { watermark, watermarkContent, enableFooter, fixedFooter, enableBackTopButton, tabbarEnable, sidebarEnable, sidebarCollapsed, setPreferences } = usePreferencesStore();
 	const { isMobile } = useDeviceType();
 	const { sideNavItems, topNavItems, handleMenuSelect } = useMenu();
+
+	const { setLayoutHeaderHeight } = useLayoutHeaderStyle();
+	const { setLayoutFooterHeight } = useLayoutFooterStyle();
 
 	useEffect(() => {
 		/* iPad */
@@ -79,6 +82,26 @@ export default function ContainerLayout() {
 		sideCollapsedWidth,
 		firstColumnWidthInTwoColumnNavigation,
 	]);
+
+	/**
+	 * @zh 计算 header 和 tabbar 的高度
+	 * @en Calculate the height of header and tabbar
+	 */
+	const headerWrapperHeight = useMemo(() => {
+		let height = headerHeight;
+		if (tabbarEnable) {
+			height += tabbarHeight;
+		}
+		return height;
+	}, [tabbarEnable, tabbarHeight]);
+
+	useEffect(() => {
+		setLayoutHeaderHeight(isMaximize ? tabbarHeight : headerWrapperHeight);
+	}, [headerWrapperHeight, isMaximize]);
+
+	useEffect(() => {
+		setLayoutFooterHeight(footerHeight);
+	}, []);
 
 	return (
 		<Watermark content={watermark ? watermarkContent : ""}>
