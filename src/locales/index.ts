@@ -34,7 +34,7 @@ export const i18nInitOptions: InitOptions = {
 			return;
 		}
 		const currentLanguage = i18next.language;
-		if (!["404"].includes(translationKey)) {
+		if (!["404"].includes(translationKey) && import.meta.env.DEV) {
 			/**
 			 * @see https://www.i18next.com/overview/api#missingkeyhandler
 			 * 消息的格式参考：https://github.com/intlify/vue-i18n/blob/v11.1.2/packages/shared/src/warn.ts
@@ -43,7 +43,6 @@ export const i18nInitOptions: InitOptions = {
 		}
 	},
 };
-
 
 export const i18n = i18next.use(initReactI18next);
 

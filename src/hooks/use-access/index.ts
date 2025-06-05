@@ -31,10 +31,12 @@ export function useAccess() {
 		}
 		permission = isString(permission) ? [permission] : permission;
 		permission = permission.map(item => item.toLowerCase());
-		// 校验权限代码是否合法，不合法的权限代码会打印警告信息
-		for (const code of permission) {
-			if (!Object.values(accessControlCodes).includes(code)) {
-				console.warn(`[hasAccessByCodes]: '${code}' is not a valid permission code`);
+		if (import.meta.env.DEV) {
+			// 校验权限代码是否合法，不合法的权限代码会打印警告信息
+			for (const code of permission) {
+				if (!Object.values(accessControlCodes).includes(code)) {
+					console.warn(`[hasAccessByCodes]: '${code}' is not a valid permission code`);
+				}
 			}
 		}
 		const isAuth = metaAuth.some(item => permission.includes(item.toLowerCase()));
@@ -53,10 +55,12 @@ export function useAccess() {
 		}
 		roles = isString(roles) ? [roles] : roles;
 		roles = roles.map(item => item.toLowerCase());
-		// 校验角色是否合法，不合法的角色会打印警告信息
-		for (const roleItem of roles) {
-			if (!Object.values(AccessControlRoles).includes(roleItem)) {
-				console.warn(`[hasAccessByRoles]: '${roleItem}' is not a valid role`);
+		if (import.meta.env.DEV) {
+			// 校验角色是否合法，不合法的角色会打印警告信息
+			for (const roleItem of roles) {
+				if (!Object.values(AccessControlRoles).includes(roleItem)) {
+					console.warn(`[hasAccessByRoles]: '${roleItem}' is not a valid role`);
+				}
 			}
 		}
 		const isAuth = userRoles.some(item => roles.includes(item.toLowerCase()));
