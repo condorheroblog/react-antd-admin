@@ -57,6 +57,7 @@ export const DEFAULT_PREFERENCES = {
 	sidebarExtraCollapsedWidth: 48,
 	firstColumnWidthInTwoColumnNavigation: 80,
 	sidebarTheme: "light",
+	accordion: true,
 
 	/* ================== Footer ================== */
 	enableFooter: true,

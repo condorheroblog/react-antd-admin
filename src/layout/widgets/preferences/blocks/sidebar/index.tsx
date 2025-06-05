@@ -7,6 +7,7 @@ import { SwitchItem } from "../../switch-item";
 
 export function Sidebar() {
 	const {
+		accordion,
 		sidebarEnable,
 		sidebarCollapsed,
 		sidebarWidth,
@@ -28,6 +29,12 @@ export function Sidebar() {
 			label: t("preferences.sidebar.collapsed"),
 			name: "sidebarCollapsed",
 			value: sidebarCollapsed,
+			disabled: !sidebarEnable,
+		},
+		{
+			label: t("preferences.sidebar.accordion"),
+			name: "accordion",
+			value: accordion,
 			disabled: !sidebarEnable,
 		},
 	] as const;

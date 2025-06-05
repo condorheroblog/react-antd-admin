@@ -47,7 +47,7 @@ export default function LayoutMobileMenu() {
 				>
 					<Scrollbar>
 						<LayoutMenu
-							autoOpenMenu
+							autoExpandCurrentMenu
 							menus={sideNavItems}
 							handleMenuSelect={handleMenuSelect}
 						/>

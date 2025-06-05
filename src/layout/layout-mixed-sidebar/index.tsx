@@ -67,7 +67,7 @@ export default function LayoutMixedSidebar({
 					>
 						<Scrollbar>
 							<LayoutMenu
-								autoOpenMenu
+								autoExpandCurrentMenu
 								menus={sideNavItems}
 								handleMenuSelect={handleMenuSelect}
 							/>

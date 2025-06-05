@@ -57,25 +57,25 @@ interface AnimationState {
 }
 
 export type NavigationType =
-	| typeof SIDE_NAVIGATION
-	| typeof TOP_NAVIGATION
-	| typeof TWO_COLUMN_NAVIGATION
-	| typeof MIXED_NAVIGATION;
+  | typeof SIDE_NAVIGATION
+  | typeof TOP_NAVIGATION
+  | typeof TWO_COLUMN_NAVIGATION
+  | typeof MIXED_NAVIGATION;
 export type BuiltinThemeType =
-	| "red"
-	| "volcano"
-	| "orange"
-	| "gold"
-	| "yellow"
-	| "lime"
-	| "green"
-	| "cyan"
-	| "blue"
-	| "geekblue"
-	| "purple"
-	| "magenta"
-	| "gray"
-	| "custom";
+  | "red"
+  | "volcano"
+  | "orange"
+  | "gold"
+  | "yellow"
+  | "lime"
+  | "green"
+  | "cyan"
+  | "blue"
+  | "geekblue"
+  | "purple"
+  | "magenta"
+  | "gray"
+  | "custom";
 
 interface LayoutState {
 	navigationStyle: NavigationType
@@ -182,10 +182,15 @@ export interface SidebarState {
 	 */
 	firstColumnWidthInTwoColumnNavigation: number
 	/**
-	 * 侧边栏
+	 * 侧边栏主题
 	 * @default dark
 	 */
 	sidebarTheme: MenuProps["theme"]
+	/**
+	 * @zh 导航菜单手风琴模式
+	 * @en Accordion mode of navigation menu
+	 */
+	accordion: boolean
 }
 
 export interface FooterState {

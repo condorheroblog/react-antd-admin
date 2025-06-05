@@ -136,7 +136,7 @@ export default function ContainerLayout() {
 								computedSidebarWidth={computedSidebarWidth}
 							>
 								<LayoutMenu
-									autoOpenMenu
+									autoExpandCurrentMenu
 									menus={sideNavItems}
 									handleMenuSelect={handleMenuSelect}
 								/>

@@ -50,6 +50,7 @@
 		"collapsedShowTitle": "Show Menu Title",
 		"firstColumnWidthInTwoColumnNavigation": "First Column Width in Two-Column Navigation",
 		"sidebarTheme": "Sidebar Theme",
+		"accordion": "Accordion Menu",
 		"autoActivateChild": "Auto Activate SubMenu",
 		"autoActivateChildTip": "`Enabled` to automatically activate the submenu while click menu.",
 		"expandOnHover": "Expand On Hover",
