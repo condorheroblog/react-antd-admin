@@ -46,8 +46,12 @@
 		"react-i18next"
 	],
 	"i18n-ally.keystyle": "nested",
-	"svg.preview.background": "editor"
+	"svg.preview.background": "editor",
 	// https://github.com/r5n-dev/vscode-react-javascript-snippets/issues/244
 	// "reactSnippets.settings.prettierEnabled": true,
-	// "reactSnippets.settings.importReactOnTop": false
+	// "reactSnippets.settings.importReactOnTop": false,
+	// https://x.com/rxliuli/status/1930431929691844752
+	"gitlens.defaultDateFormat": "YYYY-MM-DD HH:mm:ss",
+	// https://x.com/Condor2Hero/status/1930816870501990831
+	"git-graph.date.format": "ISO Date & Time"
 }

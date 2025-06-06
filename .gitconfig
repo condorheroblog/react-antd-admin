@@ -1,2 +1,12 @@
+[log]
+  # https://x.com/wyh236/status/1930535877035360291
+  # Use ISO format for dates in logs
+  # date = iso
+
+  # https://x.com/yisibl/status/1930595306842026239
+  # Custom date format: YYYY-MM-DD HH:MM:SS
+  date = format:%Y-%m-%d %H:%M:%S
+
 [core]
+  # Disable case-insensitive file/directory handling
   ignorecase = false
