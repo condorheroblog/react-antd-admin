@@ -95,6 +95,7 @@ export default function Role() {
 	return (
 		<BasicContent className="h-full">
 			<BasicTable<RoleItemType>
+				adaptive
 				columns={columns}
 				actionRef={actionRef}
 				request={async (params) => {

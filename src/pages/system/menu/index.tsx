@@ -79,6 +79,7 @@ export default function Menu() {
 	return (
 		<BasicContent className="h-full">
 			<BasicTable<MenuItemType>
+				adaptive
 				columns={columns}
 				actionRef={actionRef}
 				request={async (params) => {
