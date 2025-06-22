@@ -4,7 +4,7 @@ import type { TablePaginationConfig } from "antd";
 
 import { footerHeight as layoutFooterHeight } from "#src/layout/constants";
 import { usePreferencesStore } from "#src/store";
-import { cn, isObject } from "#src/utils";
+import { cn, isObject, isUndefined } from "#src/utils";
 
 import { LoadingOutlined } from "@ant-design/icons";
 import { ProTable } from "@ant-design/pro-components";
@@ -17,7 +17,7 @@ import { useStyles } from "./styles";
 
 export interface BasicTableProps<D, U, V> extends ProTableProps<D, U, V> {
 	/**
-	 * @description 自适应内容区高度
+	 * @description 自适应内容区高度，如果设置了 scroll.y，则不进行自适应
 	 * @default false
 	 */
 	adaptive?: boolean | {
@@ -105,6 +105,11 @@ export function BasicTable<
 	 * @see https://github.com/ant-design/ant-design/issues/23974
 	 */
 	useEffect(() => {
+		if (!isUndefined(props.scroll?.y)) {
+			// 如果 scroll.y 已经被设置，则不进行高度自适应
+			return;
+		}
+
 		if (adaptive && tableWrapperRef.current && size?.height) {
 			const basicTable = tableWrapperRef.current.getElementsByClassName(BASIC_TABLE_ROOT_CLASS_NAME)[0];
 
@@ -136,7 +141,7 @@ export function BasicTable<
 			tableBody.setAttribute("style", `overflow-y: auto;min-height: ${bodyHeight}px;max-height: ${bodyHeight}px;`);
 			setScrollY(bodyHeight);
 		}
-	}, [size, adaptive, paginationHeight, footerHeight]);
+	}, [size, adaptive, paginationHeight, footerHeight, props.scroll?.y]);
 
 	const getLoadingProps = () => {
 		if (props.loading === false) {
