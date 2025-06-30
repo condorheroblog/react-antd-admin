@@ -3,11 +3,13 @@ import type { MenuItemType } from "./types";
 
 import { useDeviceType, usePreferences } from "#src/hooks";
 import { removeTrailingSlash } from "#src/router/utils";
+import { cn } from "#src/utils";
 
 import { Menu } from "antd";
 import { useEffect, useMemo, useState } from "react";
 import { useMatches } from "react-router";
 
+import { useStyles } from "./style";
 import { getParentKeys } from "./utils";
 
 interface LayoutMenuProps {
@@ -31,6 +33,7 @@ export default function LayoutMenu({
 	handleMenuSelect,
 	menus = emptyArray,
 }: LayoutMenuProps) {
+	const classes = useStyles();
 	const matches = useMatches();
 	const { sidebarCollapsed, sidebarTheme, isDark, accordion } = usePreferences();
 	const [openKeys, setOpenKeys] = useState<string[]>([]);
@@ -121,7 +124,16 @@ export default function LayoutMenu({
 			 * min-w-0 flex-auto 解决在 Flex 布局中，Menu 没有按照预期响应式省略菜单
 			 * @see https://ant-design.antgroup.com/components/menu#why-menu-do-not-responsive-collapse-in-flex-layout
 			 */
-			className="!border-none min-w-0 flex-auto"
+			className={cn(
+				"!border-none min-w-0 flex-auto",
+				{
+					/**
+					 * @zh 当侧边菜单折叠时，添加背景色
+					 * @en When the side menu is collapsed, add background color
+					 */
+					[classes.menuBackgroundColor]: sidebarCollapsed,
+				},
+			)}
 			inlineIndent={16}
 			{...menuInlineCollapsedProp}
 			style={{ height: isMobile ? "100%" : "initial" }}
