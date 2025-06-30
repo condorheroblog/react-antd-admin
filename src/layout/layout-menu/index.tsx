@@ -2,12 +2,13 @@ import type { MenuProps } from "antd";
 import type { MenuItemType } from "./types";
 
 import { useDeviceType, usePreferences } from "#src/hooks";
+import { removeTrailingSlash } from "#src/router/utils";
 
 import { Menu } from "antd";
 import { useEffect, useMemo, useState } from "react";
 import { useMatches } from "react-router";
 
-import { findChildrenLen } from "./utils";
+import { getParentKeys } from "./utils";
 
 interface LayoutMenuProps {
 	mode?: MenuProps["mode"]
@@ -35,9 +36,18 @@ export default function LayoutMenu({
 	const [openKeys, setOpenKeys] = useState<string[]>([]);
 	const { isMobile } = useDeviceType();
 
+	const menuParentKeys = useMemo(() => {
+		return getParentKeys(menus);
+	}, [menus]);
+
 	const getSelectedKeys = useMemo(
-		() => matches.map(item => item.id),
-		[matches],
+		() => {
+			const latestMatch = matches.findLast((routeItem) => {
+				return routeItem.handle?.hideInMenu !== true;
+			});
+			return latestMatch?.id ? [...menuParentKeys[removeTrailingSlash(latestMatch.id)], removeTrailingSlash(latestMatch.id)] : [];
+		},
+		[matches, menuParentKeys],
 	);
 
 	const menuInlineCollapsedProp = useMemo(() => {
@@ -50,18 +60,28 @@ export default function LayoutMenu({
 
 	const handleOpenChange: MenuProps["onOpenChange"] = (keys) => {
 		/**
-		 * 1. 手风琴模式，点开菜单自动关闭其他菜单
-		 * 2. 非手风琴模式且菜单是收起的，悬浮菜单自动关闭其他菜单
+		 * 1. 手风琴模式，点击菜单项，自动关闭其他菜单
+		 * 2. 非手风琴模式且菜单是收起的，鼠标悬浮菜单自动关闭其他菜单
+		 *
+		 * 为什么不使用 antd menu 案例中的代码：
+		 * @see https://ant.design/components/menu-cn#menu-demo-sider-current
+		 * 原因：非手风琴模式下打开多个菜单，切换到手风琴模式下，点击菜单项，不会自动关闭其他菜单
 		 */
 		if (accordion || sidebarCollapsed) {
 			// eslint-disable-next-line unicorn/prefer-includes
-			const latestOpenKey = keys.find(key => openKeys.indexOf(key) === -1);
-			// 检查新打开的菜单是否有子菜单
-			const shouldKeepOpen = latestOpenKey
-				? Boolean(findChildrenLen(menus, latestOpenKey))
-				: false;
-
-			setOpenKeys(shouldKeepOpen ? [latestOpenKey!] : []);
+			const currentOpenKey = keys.find(key => openKeys.indexOf(key) === -1);
+			// open
+			if (currentOpenKey !== undefined) {
+				setOpenKeys([...menuParentKeys[currentOpenKey], currentOpenKey]);
+			}
+			else {
+				// eslint-disable-next-line unicorn/prefer-includes
+				const currentCloseKey = openKeys.find(key => keys.indexOf(key) === -1);
+				// close
+				if (currentCloseKey) {
+					setOpenKeys(menuParentKeys[currentCloseKey]);
+				}
+			}
 		}
 		else {
 			setOpenKeys(keys);
@@ -79,21 +99,21 @@ export default function LayoutMenu({
 		return {};
 	}, [autoExpandCurrentMenu, openKeys, handleOpenChange]);
 
+	/**
+	 * 侧边菜单展开时，自动展开激活的菜单
+	 * 侧边菜单收起时，自动关闭所有激活的菜单
+	 * @see https://github.com/user-attachments/assets/df2d7b63-acf4-4faa-bea6-7616b7e69621
+	 */
 	useEffect(() => {
-		/**
-		 * 如果菜单是收起的，则不需要自动展开，防止子路由激活，菜单自动弹出
-		 * @see https://github.com/user-attachments/assets/df2d7b63-acf4-4faa-bea6-7616b7e69621
-		 */
-		if (!sidebarCollapsed) {
-			setOpenKeys((prevOpenKeys) => {
-				// 如果不是手风琴模式（不需要自动关闭其他菜单），只有初次进入页面时，才需要自动展开菜单
-				if (!accordion && prevOpenKeys.length !== 0) {
-					return prevOpenKeys;
-				}
-				return matches.map(item => item.id);
-			});
+		// 折叠
+		if (sidebarCollapsed) {
+			setOpenKeys([]);
 		}
-	}, [matches, sidebarCollapsed]);
+		else {
+			// 展开
+			setOpenKeys(getSelectedKeys);
+		}
+	}, [matches, sidebarCollapsed, getSelectedKeys]);
 
 	return (
 		<Menu

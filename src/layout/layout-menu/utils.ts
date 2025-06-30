@@ -150,20 +150,48 @@ export function findDeepestFirstItem(splitSideNavItems: MenuItemType[]): MenuIte
 }
 
 /**
- * 判断目标键是否在子路由列表中
+ * 获取菜单项中所有键及其对应的层级
+ *
+ * @param menuItems1 菜单项数组
+ * @returns 一个对象，键为菜单项的 key，值为菜单项的层级
+ */
+export function getLevelKeys(menuItems1: MenuItemType[]) {
+	const key: Record<string, number> = {};
+	const func = (menuItems2: MenuItemType[], level = 1) => {
+		menuItems2.forEach((item) => {
+			if (item.key) {
+				key[item.key] = level;
+			}
+			if (item.children) {
+				func(item.children, level + 1);
+			}
+		});
+	};
+	func(menuItems1);
+	return key;
+};
+
+/**
+ * 获取菜单项的父级键
  *
  * @param menuItems 菜单项数组
- * @param targetKey 目标键
- * @returns 如果目标键在子路由列表中，则返回 true；否则返回 false
+ * @returns 返回记录每个菜单项键对应的父级键数组的对象
  */
-export function findChildrenLen(menuItems: MenuItemType[], targetKey: string) {
-	const subRouteChildren: string[] = [];
+export function getParentKeys(menuItems: MenuItemType[]): Record<string, string[]> {
+	const parentKeyMap: Record<string, string[]> = {};
 
-	for (const { children, key } of menuItems) {
-		if (Array.isArray(children) && children.length) {
-			subRouteChildren.push(key);
+	function traverse(items: MenuItemType[], parentKeys: string[] = []) {
+		for (const item of items) {
+			// 记录当前 key 的父级 key 数组
+			parentKeyMap[item.key] = [...parentKeys];
+
+			// 如果有子节点，递归遍历
+			if (Array.isArray(item.children) && item.children.length) {
+				traverse(item.children, [...parentKeys, item.key]);
+			}
 		}
 	}
 
-	return subRouteChildren.includes(targetKey);
+	traverse(menuItems);
+	return parentKeyMap;
 }

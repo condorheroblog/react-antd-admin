@@ -120,7 +120,6 @@ export function BasicTable<
 
 			// 如果表格在屏幕外，不进行高度自适应
 			if (tableWrapperRect.top > window.innerHeight) {
-				setScrollY(undefined);
 				return;
 			}
 
@@ -138,6 +137,10 @@ export function BasicTable<
 			const realOffsetBottom = offsetBottom + paginationHeight + footerHeight;
 
 			const bodyHeight = window.innerHeight - tableBodyRect.top - realOffsetBottom;
+			/**
+			 * @zh scroll.y 设置的是 max-height，所以需要手动设置高度
+			 * @en scroll.y sets the max-height, so we need to set the height manually
+			 */
 			tableBody.setAttribute("style", `overflow-y: auto;min-height: ${bodyHeight}px;max-height: ${bodyHeight}px;`);
 			setScrollY(bodyHeight);
 		}
