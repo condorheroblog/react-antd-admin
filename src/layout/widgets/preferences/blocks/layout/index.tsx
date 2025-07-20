@@ -22,25 +22,25 @@ export function PreferencesLayout() {
 		{
 			name: t("preferences.layout.sideNavigation"),
 			tip: t("preferences.layout.sideNavigationTip"),
-			icon: <SideNavigationIcon className="text-[4rem] en-US:text-[9rem]" />,
+			icon: <SideNavigationIcon className="h-[0.63em] text-[4rem] en-US:text-[9rem]" />,
 			type: SIDE_NAVIGATION,
 		},
 		{
 			name: t("preferences.layout.topNavigation"),
 			tip: t("preferences.layout.topNavigationTip"),
-			icon: <TopNavigationIcon className="text-[4rem] en-US:text-[9rem]" />,
+			icon: <TopNavigationIcon className="h-[0.63em] text-[4rem] en-US:text-[9rem]" />,
 			type: TOP_NAVIGATION,
 		},
 		{
 			name: t("preferences.layout.twoColumnNavigation"),
 			tip: t("preferences.layout.twoColumnNavigationTip"),
-			icon: <TwoColumnNavigationIcon className="text-[4rem] en-US:text-[9rem]" />,
+			icon: <TwoColumnNavigationIcon className="h-[0.63em] text-[4rem] en-US:text-[9rem]" />,
 			type: TWO_COLUMN_NAVIGATION,
 		},
 		{
 			name: t("preferences.layout.mixedNavigation"),
 			tip: t("preferences.layout.mixedNavigationTip"),
-			icon: <MixedNavigationIcon className="text-[4rem] en-US:text-[9rem]" />,
+			icon: <MixedNavigationIcon className="h-[0.63em] text-[4rem] en-US:text-[9rem]" />,
 			type: MIXED_NAVIGATION,
 		},
 	] as const;

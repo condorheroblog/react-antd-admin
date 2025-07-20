@@ -1,9 +1,12 @@
 /// <reference types="vitest/config" />
 
 import process from "node:process";
+import { cleanupSVG, isEmptyColor, parseColors, runSVGO, SVG } from "@iconify/tools";
 import react from "@vitejs/plugin-react";
 import { codeInspectorPlugin } from "code-inspector-plugin";
 import dayjs from "dayjs";
+import { FileSystemIconLoader } from "unplugin-icons/loaders";
+import Icons from "unplugin-icons/vite";
 import { defineConfig } from "vite";
 import { checker } from "vite-plugin-checker";
 import { vitePluginFakeServer } from "vite-plugin-fake-server";
@@ -55,6 +58,51 @@ export default defineConfig({
 		codeInspectorPlugin({
 			bundler: "vite",
 			// hideConsole: true,
+		}),
+
+		/**
+		 * 按需加载图标
+		 * https://github.com/antfu/unplugin-icons
+		 */
+		Icons({
+			customCollections: {
+				svg: FileSystemIconLoader("./src/icons/svg"),
+			},
+			/**
+			 * @see https://iconify.design/docs/articles/cleaning-up-icons/#parsing-one-monotone-icon
+			 * Cleaning up icons
+			 * Set default color to currentColor
+			 * Set default width and height to 1em
+			 */
+			transform: (svg, collection) => {
+				if (collection === "svg") {
+					const svgObject = new SVG(svg);
+					cleanupSVG(svgObject);
+					runSVGO(svgObject);
+					parseColors(svgObject, {
+						defaultColor: "currentColor",
+						callback: (attr, colorStr, color) => {
+							if (!color) {
+								// Color cannot be parsed!
+								throw new Error(`Invalid color: "${colorStr}" in attribute ${attr}`);
+							}
+
+							if (isEmptyColor(color)) {
+								// Color is empty: 'none' or 'transparent'. Return as is
+								return color;
+							}
+
+							// If color is not empty, return it
+							return color;
+						},
+					});
+					return svgObject.toString({ height: "1em", width: "1em" });;
+				}
+				return svg;
+			},
+			compiler: "jsx",
+			jsx: "react",
+			scale: 1,
 		}),
 	],
 	test: {

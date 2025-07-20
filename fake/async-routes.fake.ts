@@ -135,7 +135,7 @@ const outsideRouter = {
 				{
 					path: "/outside/external-link/react-docs",
 					handle: {
-						icon: "ReactLogoIcon",
+						icon: "RiReactjsLine",
 						title: "common.menu.reactDocs",
 						externalLink: "https://react.dev/",
 					},
@@ -150,21 +150,21 @@ const personalCenterRouter = {
 	handle: {
 		order: personalCenter,
 		title: "common.menu.personalCenter",
-		icon: "UserCircleIcon",
+		icon: "RiAccountCircleLine",
 	},
 	children: [
 		{
 			path: "/personal-center/my-profile",
 			handle: {
 				title: "common.menu.profile",
-				icon: "ProfileIcon",
+				icon: "ProfileCardIcon",
 			},
 		},
 		{
 			path: "/personal-center/settings",
 			handle: {
 				title: "common.menu.settings",
-				icon: "UserSettingsIcon",
+				icon: "RiUserSettingsLine",
 			},
 		},
 	],
@@ -190,6 +190,8 @@ const routeNestRouter = {
 					handle: {
 						title: "common.menu.menu1-1",
 						icon: ("SubnodeOutlined"),
+						currentActiveMenu: "/home",
+						hideInMenu: true,
 					},
 				},
 				{
@@ -230,7 +232,7 @@ export default defineFakeRoute([
 					/**
 					 * @zh 通过接口获取路由时可见
 					 * @en Visible only when getting routes through the interface
-					*/
+					 */
 					{
 						path: "/access/access-mode",
 						handle: {

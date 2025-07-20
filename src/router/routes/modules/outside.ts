@@ -1,7 +1,7 @@
 import type { AppRouteRecordRaw } from "#src/router/types";
 
 import { Iframe } from "#src/components/iframe";
-import { ReactLogoIcon } from "#src/icons";
+import { RiReactjsLine } from "#src/icons";
 import { ContainerLayout } from "#src/layout";
 import { $t } from "#src/locales";
 import { outside } from "#src/router/extra-info";
@@ -60,7 +60,7 @@ const routes: AppRouteRecordRaw[] = [
 						path: "/outside/external-link/react-docs",
 						Component: Iframe,
 						handle: {
-							icon: createElement(ReactLogoIcon),
+							icon: createElement(RiReactjsLine),
 							title: $t("common.menu.reactDocs"),
 							externalLink: "https://react.dev/",
 						},

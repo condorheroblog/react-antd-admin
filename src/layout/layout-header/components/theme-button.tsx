@@ -2,7 +2,7 @@ import type { ButtonProps } from "antd";
 
 import { BasicButton } from "#src/components";
 import { usePreferences } from "#src/hooks";
-import { MoonIcon, SunIcon } from "#src/icons";
+import { RiMoonIcon, RiSunIcon } from "#src/icons";
 import { useEffect } from "react";
 import { flushSync } from "react-dom";
 
@@ -94,7 +94,7 @@ export function ThemeButton({ ...restProps }: ButtonProps) {
 		<BasicButton
 			type="text"
 			{...restProps}
-			icon={isDark ? <SunIcon /> : <MoonIcon />}
+			icon={isDark ? <RiSunIcon /> : <RiMoonIcon />}
 			onPointerDown={(e) => {
 				restProps?.onPointerDown?.(e);
 				toggleTheme(e);

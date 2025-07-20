@@ -1,7 +1,7 @@
 import type { ButtonProps, MenuProps } from "antd";
 
 import { BasicButton } from "#src/components";
-import { UserCircleIcon } from "#src/icons";
+import { RiAccountCircleLine } from "#src/icons";
 import { loginPath } from "#src/router/extra-info";
 import { useAuthStore, useUserStore } from "#src/store";
 import { cn, isWindowsOs } from "#src/utils";
@@ -34,7 +34,7 @@ export function UserMenu({ ...restProps }: ButtonProps) {
 		{
 			label: t("common.menu.personalCenter"),
 			key: "personal-center",
-			icon: <UserCircleIcon />,
+			icon: <RiAccountCircleLine />,
 			extra: `${altView}P`,
 		},
 		{

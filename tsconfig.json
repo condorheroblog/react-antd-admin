@@ -12,7 +12,8 @@
 		"resolveJsonModule": true,
 		"types": [
 			"vitest/globals",
-			"@testing-library/jest-dom"
+			"@testing-library/jest-dom",
+			"unplugin-icons/types/react"
 		],
 		"allowJs": true,
 		"strict": true,

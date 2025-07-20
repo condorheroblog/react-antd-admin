@@ -1,7 +1,7 @@
 import type { ThemeType } from "#src/store/preferences/types";
 import type { InputNumberProps } from "antd";
 
-import { FollowSystemIcon, MoonIcon, SunIcon } from "#src/icons";
+import { RiContrastFill, RiMoonIcon, RiSunIcon } from "#src/icons";
 import { usePreferencesStore } from "#src/store";
 
 import { cn } from "#src/utils";
@@ -24,17 +24,17 @@ export function SiteTheme() {
 	const themePresets = [
 		{
 			name: t("preferences.theme.light"),
-			icon: <SunIcon className="text-xl" />,
+			icon: <RiSunIcon className="text-xl" />,
 			type: "light",
 		},
 		{
 			name: t("preferences.theme.dark"),
-			icon: <MoonIcon className="text-xl" />,
+			icon: <RiMoonIcon className="text-xl" />,
 			type: "dark",
 		},
 		{
 			name: t("preferences.theme.followSystem"),
-			icon: <FollowSystemIcon className="text-xl" />,
+			icon: <RiContrastFill className="text-xl" />,
 			type: "auto",
 		},
 	] as const;

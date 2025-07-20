@@ -37,7 +37,7 @@ export default function ContainerLayout() {
 	const isMaximize = useTabsStore(state => state.isMaximize);
 	const { watermark, watermarkContent, enableFooter, fixedFooter, enableBackTopButton, tabbarEnable, sidebarEnable, sidebarCollapsed, setPreferences } = usePreferencesStore();
 	const { isMobile } = useDeviceType();
-	const { sideNavItems, topNavItems, handleMenuSelect } = useMenu();
+	const { sideNavItems, topNavItems, handleMenuSelect, sideNavMenuKeyInSplitMode } = useMenu();
 
 	const { setLayoutHeaderHeight } = useLayoutHeaderStyle();
 	const { setLayoutFooterHeight } = useLayoutFooterStyle();
@@ -148,6 +148,7 @@ export default function ContainerLayout() {
 					isTwoColumnNav
 						? (
 							<LayoutMixedSidebar
+								sideNavMenuKeyInSplitMode={sideNavMenuKeyInSplitMode}
 								computedSidebarWidth={computedSidebarWidth}
 								sideNavItems={sideNavItems}
 								topNavItems={topNavItems}

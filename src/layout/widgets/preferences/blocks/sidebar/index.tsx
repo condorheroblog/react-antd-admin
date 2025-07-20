@@ -1,4 +1,4 @@
-import { FollowSystemIcon, MoonIcon } from "#src/icons";
+import { RiContrastFill, RiMoonIcon } from "#src/icons";
 import { NumberInputSpinner } from "#src/layout/widgets/preferences/number-input-spinner";
 import { usePreferencesStore } from "#src/store";
 
@@ -65,8 +65,8 @@ export function Sidebar() {
 				onChange={(name, value) => setPreferences(name, value ? "light" : "dark")}
 				children={t("preferences.sidebar.sidebarTheme")}
 				disabled={!sidebarEnable}
-				unCheckedChildren={<FollowSystemIcon />}
-				checkedChildren={<MoonIcon />}
+				unCheckedChildren={<RiContrastFill />}
+				checkedChildren={<RiMoonIcon />}
 			/>
 			<NumberInputSpinner
 				min={40}

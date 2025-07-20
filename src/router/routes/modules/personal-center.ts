@@ -1,5 +1,5 @@
 import type { AppRouteRecordRaw } from "#src/router/types";
-import { ProfileIcon, UserCircleIcon, UserSettingsIcon } from "#src/icons";
+import { ProfileCardIcon, RiAccountCircleLine, RiUserSettingsLine } from "#src/icons";
 import { ContainerLayout } from "#src/layout";
 import { $t } from "#src/locales";
 import { personalCenter } from "#src/router/extra-info";
@@ -16,7 +16,7 @@ const routes: AppRouteRecordRaw[] = [
 		handle: {
 			order: personalCenter,
 			title: $t("common.menu.personalCenter"),
-			icon: createElement(UserCircleIcon),
+			icon: createElement(RiAccountCircleLine),
 		},
 		children: [
 			{
@@ -24,7 +24,7 @@ const routes: AppRouteRecordRaw[] = [
 				Component: MyProfile,
 				handle: {
 					title: $t("common.menu.profile"),
-					icon: createElement(ProfileIcon),
+					icon: createElement(ProfileCardIcon),
 				},
 			},
 			{
@@ -32,7 +32,7 @@ const routes: AppRouteRecordRaw[] = [
 				Component: Settings,
 				handle: {
 					title: $t("common.menu.settings"),
-					icon: createElement(UserSettingsIcon),
+					icon: createElement(RiUserSettingsLine),
 				},
 			},
 		],

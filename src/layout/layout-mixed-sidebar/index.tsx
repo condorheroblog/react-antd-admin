@@ -15,6 +15,7 @@ interface LayoutMixedSidebarProps {
 	computedSidebarWidth?: number
 	topNavItems?: MenuItemType[]
 	sideNavItems?: MenuItemType[]
+	sideNavMenuKeyInSplitMode?: string
 	handleMenuSelect?: (key: string, mode: MenuProps["mode"]) => void
 }
 
@@ -28,6 +29,7 @@ export default function LayoutMixedSidebar({
 	sideNavItems = emptyArray,
 	topNavItems = emptyArray,
 	handleMenuSelect,
+	sideNavMenuKeyInSplitMode,
 }: LayoutMixedSidebarProps) {
 	const { isDark, sidebarTheme, sidebarCollapsed, firstColumnWidthInTwoColumnNavigation } = usePreferences();
 	const {
@@ -50,7 +52,7 @@ export default function LayoutMixedSidebar({
 					boxShadow: "3px 0 5px 0 rgb(29, 35, 41, 0.05)",
 				}}
 			>
-				<FirstColumnMenu menus={topNavItems} handleMenuSelect={handleMenuSelect} />
+				<FirstColumnMenu sideNavMenuKeyInSplitMode={sideNavMenuKeyInSplitMode} menus={topNavItems} handleMenuSelect={handleMenuSelect} />
 				<div style={{ width: computedSidebarWidth - firstColumnWidthInTwoColumnNavigation }} className="relative transition-all">
 					{
 						!sidebarCollapsed

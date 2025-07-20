@@ -3,6 +3,8 @@ import type { MenuItemType } from "./types";
 
 import { useDeviceType, usePreferences } from "#src/hooks";
 import { removeTrailingSlash } from "#src/router/utils";
+
+import { useAccessStore } from "#src/store";
 import { cn } from "#src/utils";
 
 import { Menu } from "antd";
@@ -35,20 +37,43 @@ export default function LayoutMenu({
 }: LayoutMenuProps) {
 	const classes = useStyles();
 	const matches = useMatches();
+	const wholeMenus = useAccessStore(state => state.wholeMenus);
 	const { sidebarCollapsed, sidebarTheme, isDark, accordion } = usePreferences();
 	const [openKeys, setOpenKeys] = useState<string[]>([]);
 	const { isMobile } = useDeviceType();
 
 	const menuParentKeys = useMemo(() => {
-		return getParentKeys(menus);
-	}, [menus]);
+		return getParentKeys(wholeMenus);
+	}, [wholeMenus]);
 
 	const getSelectedKeys = useMemo(
 		() => {
-			const latestMatch = matches.findLast((routeItem) => {
-				return routeItem.handle?.hideInMenu !== true;
-			});
-			return latestMatch?.id ? [...menuParentKeys[removeTrailingSlash(latestMatch.id)], removeTrailingSlash(latestMatch.id)] : [];
+			// First, try to find a route that specifies currentActiveMenu (highest priority)
+			const currentActiveMatch = matches.findLast(routeItem =>
+				routeItem.handle?.currentActiveMenu,
+			);
+
+			// If found, return the currentActiveMenu path with its parent keys
+			if (currentActiveMatch?.handle?.currentActiveMenu) {
+				const activeMenuPath = removeTrailingSlash(currentActiveMatch.handle.currentActiveMenu);
+				const parentKeys = menuParentKeys[activeMenuPath] || [];
+				return [...parentKeys, activeMenuPath];
+			}
+
+			// Fallback: Find the last visible route (not hidden in menu)
+			const latestVisibleMatch = matches.findLast(routeItem =>
+				routeItem.handle?.hideInMenu !== true,
+			);
+
+			// If found, return the route ID path with its parent keys
+			if (latestVisibleMatch?.id) {
+				const routePath = removeTrailingSlash(latestVisibleMatch.id);
+				const parentKeys = menuParentKeys[routePath] || [];
+				return [...parentKeys, routePath];
+			}
+
+			// Default return empty array if no matches found
+			return [];
 		},
 		[matches, menuParentKeys],
 	);
@@ -75,7 +100,8 @@ export default function LayoutMenu({
 			const currentOpenKey = keys.find(key => openKeys.indexOf(key) === -1);
 			// open
 			if (currentOpenKey !== undefined) {
-				setOpenKeys([...menuParentKeys[currentOpenKey], currentOpenKey]);
+				const parentKeys = menuParentKeys[currentOpenKey] || [];
+				setOpenKeys([...parentKeys, currentOpenKey]);
 			}
 			else {
 				// eslint-disable-next-line unicorn/prefer-includes

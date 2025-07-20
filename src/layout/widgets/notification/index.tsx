@@ -2,7 +2,7 @@ import type { ButtonProps } from "antd";
 import type { NotificationItem } from "./types";
 
 import { BasicButton } from "#src/components";
-import { MailCheckIcon } from "#src/icons";
+import { RiMailCheckLine } from "#src/icons";
 import { cn } from "#src/utils";
 
 import { BellOutlined } from "@ant-design/icons";
@@ -99,7 +99,7 @@ export const NotificationPopup: React.FC<Props> = ({ dot, notifications, onEvent
 									disabled={!notifications?.length}
 									onClick={handleMakeAll}
 									type="text"
-									icon={<MailCheckIcon />}
+									icon={<RiMailCheckLine />}
 								/>
 							</Tooltip>
 						</div>
@@ -121,14 +121,14 @@ export const NotificationPopup: React.FC<Props> = ({ dot, notifications, onEvent
 					dataSource={notifications}
 					renderItem={item => (
 						<List.Item className="relative !justify-start gap-5 hover:!bg-gray-100 cursor-pointer" onClick={() => handleClick(item)}>
-							{!item.isRead && <span className="bg-primary absolute right-2 top-2 h-2 w-2 rounded"></span>}
-							<span className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
-								<img src={item.avatar} className="aspect-square h-full w-full object-cover" role="img" />
+							{!item.isRead && <span className="absolute w-2 h-2 rounded bg-primary right-2 top-2"></span>}
+							<span className="relative flex w-10 h-10 overflow-hidden rounded-full shrink-0">
+								<img src={item.avatar} className="object-cover w-full h-full aspect-square" role="img" />
 							</span>
 							<div className="flex flex-col gap-1 leading-none">
 								<p className="font-semibold">{item.title}</p>
-								<p className="text-muted-foreground my-1 line-clamp-2 text-xs">{item.message}</p>
-								<p className="text-muted-foreground line-clamp-2 text-xs">{item.date}</p>
+								<p className="my-1 text-xs text-muted-foreground line-clamp-2">{item.message}</p>
+								<p className="text-xs text-muted-foreground line-clamp-2">{item.date}</p>
 							</div>
 						</List.Item>
 					)}

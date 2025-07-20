@@ -1,5 +1,6 @@
 {
 	"recommendations": [
+		"antfu.iconify",
 		"editorconfig.editorconfig",
 		"davidanson.vscode-markdownlint",
 		"dbaeumer.vscode-eslint",

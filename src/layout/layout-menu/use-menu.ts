@@ -6,7 +6,7 @@ import { useAccessStore } from "#src/store";
 
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
+import { useMatches, useNavigate } from "react-router";
 
 import { useLayout } from "../hooks";
 import { findDeepestFirstItem, findRootMenuByPath, translateMenus } from "./utils";
@@ -14,12 +14,12 @@ import { findDeepestFirstItem, findRootMenuByPath, translateMenus } from "./util
 export function useMenu() {
 	const wholeMenus = useAccessStore(state => state.wholeMenus);
 	const { isMixedNav, isTwoColumnNav } = useLayout();
-	const [rootMenuKey, setRootMenuKey] = useState("");
 	const navigate = useNavigate();
 	const { t } = useTranslation();
 	const translatedMenus = translateMenus(wholeMenus, t);
 
 	const { pathname } = useCurrentRoute();
+	const matches = useMatches();
 	/**
 	 * 混合菜单模式下需要拆分 menu 的 items
 	 */
@@ -27,16 +27,36 @@ export function useMenu() {
 		() => isMixedNav || isTwoColumnNav,
 		[isMixedNav, isTwoColumnNav],
 	);
+
+	/**
+	 * 混合导航模式下，侧边导航的顶级菜单 key
+	 */
+	const sideNavMenuKeyInSplitMode = useMemo(() => {
+		if (!shouldSplitMenuItems)
+			return "";
+
+		// Try to find active menu from currentActiveMenu first
+		const activeMenuPath = matches.findLast(routeItem =>
+			routeItem.handle?.currentActiveMenu,
+		)?.handle?.currentActiveMenu;
+
+		// Fallback to current pathname if no currentActiveMenu found
+		const targetPath = activeMenuPath ? removeTrailingSlash(activeMenuPath) : removeTrailingSlash(pathname);
+
+		const { rootMenuPath } = findRootMenuByPath(translatedMenus, targetPath);
+		return rootMenuPath ?? "";
+	}, [shouldSplitMenuItems, pathname, matches]);
+
 	/* 混合菜单模式下需要拆分 menu 的 items */
 	const splitSideNavItems = useMemo(
 		() => {
-			const foundMenu = translatedMenus.find(item => item?.key === rootMenuKey);
+			const foundMenu = translatedMenus.find(item => item?.key === sideNavMenuKeyInSplitMode);
 			if (!foundMenu) {
 				return [];
 			}
 			return foundMenu?.children ?? [foundMenu];
 		},
-		[rootMenuKey, translatedMenus],
+		[sideNavMenuKeyInSplitMode, translatedMenus],
 	);
 
 	/**
@@ -93,20 +113,9 @@ export function useMenu() {
 		}
 	};
 
-	/**
-	 * 混合导航模式下，侧边导航的展示
-	 */
-	useEffect(() => {
-		if (shouldSplitMenuItems) {
-			const { rootMenuPath } = findRootMenuByPath(translatedMenus, removeTrailingSlash(pathname));
-			if (rootMenuPath) {
-				setRootMenuKey(rootMenuPath);
-			}
-		}
-	}, [shouldSplitMenuItems, pathname]);
-
 	return {
 		handleMenuSelect,
+		sideNavMenuKeyInSplitMode,
 		topNavItems,
 		sideNavItems,
 	};

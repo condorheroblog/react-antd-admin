@@ -1,0 +1,9 @@
+export { default as RiContrastFill } from "~icons/ri/contrast-fill";
+export { default as RiFullscreenExitLine } from "~icons/ri/fullscreen-exit-line";
+export { default as RiFullscreenLine } from "~icons/ri/fullscreen-line";
+export { default as RiMoonIcon } from "~icons/ri/moon-line";
+export { default as RiSunIcon } from "~icons/ri/sun-line";
+export { default as RiReactjsLine } from "~icons/ri/reactjs-line";
+export { default as RiAccountCircleLine } from "~icons/ri/account-circle-line";
+export { default as RiUserSettingsLine } from "~icons/ri/user-settings-line";
+export { default as RiMailCheckLine } from "~icons/ri/mail-check-line";

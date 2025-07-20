@@ -1,16 +1,14 @@
 import type { MenuProps } from "antd";
 import type { MenuItemType } from "../layout-menu/types";
-import { Scrollbar } from "#src/components";
-import { useCurrentRoute, usePreferences } from "#src/hooks";
-import { removeTrailingSlash } from "#src/router/utils";
-import { useAccessStore } from "#src/store";
 
+import { Scrollbar } from "#src/components";
+import { usePreferences } from "#src/hooks";
 import { ConfigProvider, Menu } from "antd";
+
 import { clsx } from "clsx";
 import { createUseStyles } from "react-jss";
 
 import { headerHeight } from "../constants";
-import { findRootMenuByPath } from "../layout-menu/utils";
 import { Logo } from "../widgets";
 
 const useStyles = createUseStyles(({ token }) => {
@@ -35,6 +33,7 @@ const useStyles = createUseStyles(({ token }) => {
 
 interface FirstColumnMenuProps {
 	menus?: MenuItemType[]
+	sideNavMenuKeyInSplitMode?: string
 	handleMenuSelect?: (key: string, mode: MenuProps["mode"]) => void
 }
 
@@ -42,13 +41,10 @@ const emptyArray: MenuItemType[] = [];
 export default function FirstColumnMenu({
 	handleMenuSelect,
 	menus = emptyArray,
+	sideNavMenuKeyInSplitMode,
 }: FirstColumnMenuProps) {
 	const classes = useStyles();
-	const { pathname } = useCurrentRoute();
-	const wholeMenus = useAccessStore(state => state.wholeMenus);
 	const { firstColumnWidthInTwoColumnNavigation, isDark, sidebarTheme } = usePreferences();
-
-	const { rootMenuPath } = findRootMenuByPath(wholeMenus, removeTrailingSlash(pathname));
 
 	return (
 
@@ -71,7 +67,7 @@ export default function FirstColumnMenu({
 					<Menu
 						mode="vertical"
 						// inlineCollapsed
-						selectedKeys={[rootMenuPath ?? ""]}
+						selectedKeys={[sideNavMenuKeyInSplitMode ?? ""]}
 						className={clsx(classes.menu)}
 						items={menus}
 						theme={isDark ? "dark" : sidebarTheme}
