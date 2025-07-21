@@ -138,9 +138,21 @@ export default function LayoutMenu({
 		if (sidebarCollapsed) {
 			setOpenKeys([]);
 		}
+		// 展开
 		else {
-			// 展开
-			setOpenKeys(getSelectedKeys);
+			// 手风琴模式，只展开当前激活的菜单
+			if (accordion) {
+				setOpenKeys(getSelectedKeys);
+			}
+			// 非手风琴模式，展开所有激活的菜单
+			else {
+				setOpenKeys((prevOpenKeys) => {
+					if (prevOpenKeys.length === 0) {
+						return getSelectedKeys;
+					}
+					return prevOpenKeys;
+				});
+			}
 		}
 	}, [matches, sidebarCollapsed, getSelectedKeys]);
 
@@ -165,7 +177,7 @@ export default function LayoutMenu({
 			style={{ height: isMobile ? "100%" : "initial" }}
 			mode={mode}
 			theme={isDark ? "dark" : sidebarTheme}
-			items={menus}
+			items={menus as MenuProps["items"]}
 			{...menuOpenProps}
 			selectedKeys={getSelectedKeys}
 			/**

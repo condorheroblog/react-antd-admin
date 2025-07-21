@@ -190,8 +190,6 @@ const routeNestRouter = {
 					handle: {
 						title: "common.menu.menu1-1",
 						icon: ("SubnodeOutlined"),
-						currentActiveMenu: "/home",
-						hideInMenu: true,
 					},
 				},
 				{

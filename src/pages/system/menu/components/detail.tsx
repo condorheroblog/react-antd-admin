@@ -8,9 +8,7 @@ import {
 	ProFormDependency,
 	ProFormDigit,
 	ProFormRadio,
-	ProFormSelect,
 	ProFormText,
-	ProFormTreeSelect,
 } from "@ant-design/pro-components";
 import { Form } from "antd";
 import { useEffect } from "react";
@@ -76,7 +74,7 @@ export function Detail({
 			form={form}
 			autoFocusFirstInput
 			modalProps={{
-				destroyOnClose: true,
+				destroyOnHidden: true,
 			}}
 			grid
 			width={{

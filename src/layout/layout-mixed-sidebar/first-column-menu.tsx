@@ -69,7 +69,7 @@ export default function FirstColumnMenu({
 						// inlineCollapsed
 						selectedKeys={[sideNavMenuKeyInSplitMode ?? ""]}
 						className={clsx(classes.menu)}
-						items={menus}
+						items={menus as MenuProps["items"]}
 						theme={isDark ? "dark" : sidebarTheme}
 						/**
 						 * 使用 onClick 替代 onSelect 事件，原因是当子路由激活父菜单时，点击父菜单依然可以正常导航。

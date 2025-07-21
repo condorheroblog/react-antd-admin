@@ -79,7 +79,7 @@ export function Detail({ title, open, onCloseChange, detailData, treeData, refre
 			form={form}
 			autoFocusFirstInput
 			drawerProps={{
-				destroyOnClose: true,
+				destroyOnHidden: true,
 			}}
 			onFinish={onFinish}
 			initialValues={{
