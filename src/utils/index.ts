@@ -1,6 +1,7 @@
 export * from "./cn";
 export * from "./dom";
 export * from "./get-all-expanded-keys";
+export * from "./get-app-namespace";
 export * from "./is";
 export * from "./is-dark-theme";
 export * from "./is-light-theme";

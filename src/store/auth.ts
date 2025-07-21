@@ -2,6 +2,7 @@ import type { AuthType } from "#src/api/user/types";
 import type { PasswordLoginFormType } from "#src/pages/login/components/password-login";
 import { fetchLogin, fetchLogout } from "#src/api/user";
 import { useAccessStore, useTabsStore, useUserStore } from "#src/store";
+import { getAppNamespace } from "#src/utils";
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
@@ -74,6 +75,6 @@ export const useAuthStore = create<AuthState & AuthAction>()(
 			 */
 		},
 
-	}), { name: "access-token" }),
+	}), { name: getAppNamespace("access-token") }),
 
 );

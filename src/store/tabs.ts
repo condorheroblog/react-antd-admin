@@ -1,5 +1,8 @@
 import type { TabPaneProps } from "antd";
+
 import { usePreferencesStore } from "#src/store/preferences";
+import { getAppNamespace } from "#src/utils";
+
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -296,7 +299,7 @@ export const useTabsStore = create<TabsState & TabsAction>()(
 
 		}),
 		{
-			name: "tabbar",
+			name: getAppNamespace("tabbar"),
 			/**
 			 * activeKey 不需要持久化存储
 			 *
