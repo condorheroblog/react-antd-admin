@@ -15,7 +15,7 @@
 
 项目默认安装 `@ant-design/icons`，可以直接使用 [Ant Design Icons](https://github.com/ant-design/ant-design-icons) 提供的图标：
 
-```tsx
+```ts
 import {
 	HomeOutlined,
 	SettingFilled,
@@ -44,7 +44,7 @@ import {
 
 > ~icons 是写死的虚拟路径，ri 是 RemixIcon 的缩写，后面跟上图标名即可。例如：ri/sun-line
 
-```tsx
+```ts
 import SunLineIcon from "~icons/ri/sun-line";
 ```
 
@@ -73,10 +73,10 @@ npm install --save @iconify/json
 
 ## 如何自定义图标？
 
-在 `src/icons` 下新建一个 svg 文件夹，所有的 SVG 文件放在这个目录下，然后在 `src/icons/index.tsx` 中导出即可，例如：
+在 `src/icons` 下新建一个 svg 文件夹，所有的 SVG 文件放在这个目录下，然后在 `src/icons/index.ts` 中导出即可，例如：
 
-```tsx
-// src/icons/index.tsx
+```ts
+// src/icons/index.ts
 export { default as ExternalIcon } from "~icons/svg/external";
 ```
 
@@ -84,7 +84,7 @@ export { default as ExternalIcon } from "~icons/svg/external";
 
 其他文件中使用这个图标：
 
-```tsx
+```ts
 import { ExternalIcon } from "#src/icons";
 // 图标自动响应设置的字体和文字颜色
 // <ExternalIcon className="text-xl" />
@@ -130,14 +130,14 @@ Iconify 推荐使用方式是**在线加载**，用户初次打开页面时，�
 
 ### 作为组件使用
 
-```tsx
+```ts
 import Logo from "#src/assets/svg/logo.svg?react";
 // <Logo />
 ```
 
 ### 作为 img 标签的地址
 
-```tsx
+```ts
 import logo from "#src/assets/svg/logo.svg?url";
 // <img src={logo} alt="logo" />
 ```

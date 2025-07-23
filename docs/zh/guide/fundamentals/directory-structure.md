@@ -54,7 +54,7 @@ react-antd-admin
 │   │   ├── use-language                   # 获取语言
 │   │   ├── use-preferences                # 获取偏好设置
 │   ├── icons                              # 图标
-│   ├── index.tsx                          # 入口文件
+│   ├── index.ts                           # 入口文件
 │   ├── layout                             # 布局文件所在目录
 │   │   ├── container-layout               # 容器布局
 │   │   ├── hooks                          # 获取布局配置相关的信息
