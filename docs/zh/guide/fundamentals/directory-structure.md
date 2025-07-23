@@ -53,6 +53,10 @@ react-antd-admin
 │   │   ├── use-device-type                # 获取设备类型
 │   │   ├── use-language                   # 获取语言
 │   │   ├── use-preferences                # 获取偏好设置
+│   ├── create-icon.ts                     # 手动加载本地图标（暂未使用）
+│   ├── local-icons.ts                     # 导出本地 SVG 图标
+│   ├── ri.ts                              # Remix Icon
+│   ├── menu-icons.ts                      # 菜单图标
 │   ├── icons                              # 图标
 │   ├── index.ts                           # 入口文件
 │   ├── layout                             # 布局文件所在目录

@@ -1,15 +1,11 @@
 import type { MenuItemType } from "#src/layout/layout-menu/types";
 import type { AppRouteRecordRaw } from "#src/router/types";
 
-import * as basicIcons from "#src/icons";
+import { menuIcons } from "#src/icons/menu-icons";
 import { isString } from "#src/utils";
 
-import * as antdIcons from "@ant-design/icons";
 import { createElement } from "react";
 import { Link } from "react-router";
-
-const allAntdIcons: { [key: string]: any } = antdIcons;
-const allBasicIcons: { [key: string]: any } = basicIcons;
 
 /**
  * 根据路由列表生成菜单项数组
@@ -46,15 +42,12 @@ export function generateMenuItemsFromRoutes(routeList: AppRouteRecordRaw[]) {
 		if (iconName) {
 			menuItem.icon = iconName;
 			if (isString(iconName)) {
-				if (allAntdIcons[iconName]) {
-					menuItem.icon = createElement(allAntdIcons[iconName]);
-				}
-				else if (allBasicIcons[iconName]) {
-					menuItem.icon = createElement(allBasicIcons[iconName]);
+				if (menuIcons[iconName]) {
+					menuItem.icon = createElement(menuIcons[iconName]);
 				}
 				else {
 					console.warn(
-						`iconName: ${iconName} is not found in allAntdIcons or allBasicIcons`,
+						`menu-icon: icon "${iconName}" not found in src/icons/menu-icons.ts file`,
 					);
 				}
 			}

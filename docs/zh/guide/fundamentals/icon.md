@@ -73,10 +73,10 @@ npm install --save @iconify/json
 
 ## 如何自定义图标？
 
-在 `src/icons` 下新建一个 svg 文件夹，所有的 SVG 文件放在这个目录下，然后在 `src/icons/index.ts` 中导出即可，例如：
+在 `src/icons` 下新建一个 svg 文件夹，所有的 SVG 文件放在这个目录下，然后在 `src/icons/local-icons.ts` 中导出即可，例如：
 
 ```ts
-// src/icons/index.ts
+// src/icons/local-icons.ts
 export { default as ExternalIcon } from "~icons/svg/external";
 ```
 
