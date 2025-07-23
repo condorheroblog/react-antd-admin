@@ -20,6 +20,7 @@ const systemManagementRouter = {
 	children: [
 		{
 			path: "/system/user",
+			component: "/system/user/index.tsx",
 			handle: {
 				icon: "UserOutlined",
 				title: "common.menu.user",
@@ -33,6 +34,7 @@ const systemManagementRouter = {
 		},
 		{
 			path: "/system/role",
+			component: "/system/role/index.tsx",
 			handle: {
 				icon: "TeamOutlined",
 				title: "common.menu.role",
@@ -46,6 +48,7 @@ const systemManagementRouter = {
 		},
 		{
 			path: "/system/menu",
+			component: "/system/menu/index.tsx",
 			handle: {
 				icon: "MenuOutlined",
 				title: "common.menu.menu",
@@ -59,6 +62,7 @@ const systemManagementRouter = {
 		},
 		{
 			path: "/system/dept",
+			component: "/system/dept/index.tsx",
 			handle: {
 				keepAlive: false,
 				icon: "ApartmentOutlined",
@@ -76,6 +80,7 @@ const systemManagementRouter = {
 
 const homeRouter = {
 	path: "/home",
+	component: "/home/index.tsx",
 	handle: {
 		icon: "HomeOutlined",
 		title: "common.menu.home",
@@ -85,6 +90,7 @@ const homeRouter = {
 
 const aboutRouter = {
 	path: "/about",
+	component: "/about/index.tsx",
 	handle: {
 		icon: "CopyrightOutlined",
 		title: "common.menu.about",

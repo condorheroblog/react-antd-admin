@@ -124,6 +124,16 @@ export const DEFAULT_PREFERENCES = {
 
 后端返回的菜单数据结构可以在这个文件中查看：[`fake/async-routes.fake.ts`](https://github.com/condorheroblog/react-antd-admin/blob/9bfbd987341e14e61757885a7426b0f88481f78c/fake/async-routes.fake.ts)
 
+::: tip
+后端存储的路由对象路由路径 path 是必须的， component 是可选的（但十分推荐使用这个字段，下面解释为什么），根据路由查找组件路径时，优先根据 component 字段查找，如果没有 component 字段则根据 path 字段拼接组件路径。
+
+1. 路由的 component 字段规则：必须以 `/` 开头，后面跟上相对于 `src/pages` 目录的相对路径，路径必须具体到文件，不能省略文件名。例如：`/system/user/index.tsx`。
+
+2. 路由的 path 字段规则：必须以 `/` 开头，后面跟上相对于 `src/pages` 目录的相对路径，路径结尾一般不加 `/`。例如：`/system/user`。
+
+为什么推荐使用 component 字段？可以做到路由路径和组件路径分离。想象你有一个动态路由，比如 `/dashboard/:id`，这个页面有一些按钮是通过角色绑定的菜单控制的，这个路由将会被写入数据库，前端的组件路径和路由的 path 则无法关联了，如果使用了 component 字段，则可以避免这个问题。
+:::
+
 下面是一个典型的权限格式案例。
 
 ```ts
@@ -137,6 +147,7 @@ const accessRouter = {
 	children: [
 		{
 			path: "/access/page-control",
+			component: "/access/page-control/index.tsx",
 			handle: {
 				icon: "FileTextOutlined",
 				title: "common.menu.pageControl",
@@ -144,6 +155,7 @@ const accessRouter = {
 		},
 		{
 			path: "/access/button-control",
+			component: "/access/button-control/index.tsx",
 			handle: {
 				icon: "LockOutlined",
 				title: "common.menu.buttonControl",
@@ -157,6 +169,7 @@ const accessRouter = {
 		},
 		{
 			path: "/access/common-visible",
+			component: "/access/common-visible/index.tsx",
 			handle: {
 				icon: "EyeOutlined",
 				title: "common.menu.commonVisible",

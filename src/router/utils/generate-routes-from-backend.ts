@@ -18,6 +18,19 @@ const pageModules = import.meta.glob([
 ]);
 
 /**
+ * @zh 根据路由获取组件路径
+ * @en Get component path based on route
+ */
+export function getComponentPathByRoute(route: AppRouteRecordRaw & { component?: string }) {
+	if (route.component) {
+		return `/src/pages${route.component}`;
+	}
+	else {
+		return `/src/pages${route.path}/index.tsx`;
+	}
+}
+
+/**
  * @zh 根据后端路由配置生成前端路由
  * @en Generate frontend routes based on backend route configurations
  */
@@ -33,7 +46,7 @@ export async function generateRoutesFromBackend(backendRoutes: Array<AppRouteRec
 	 * @param componentPath 组件文件路径
 	 */
 	const loadRouteComponent = async (route: AppRouteRecordRaw, componentPath: string) => {
-		const modulePath = `/src/pages${componentPath}/index.tsx`;
+		const modulePath = componentPath;
 		const moduleIndex = pageModulePaths.findIndex(path => path === modulePath);
 
 		if (moduleIndex !== -1) {
@@ -52,7 +65,7 @@ export async function generateRoutesFromBackend(backendRoutes: Array<AppRouteRec
 	 * @param parentPath 父级路径（用于嵌套路由）
 	 * @returns 转换后的路由配置
 	 */
-	const transformRoute = async (route: AppRouteRecordRaw, parentPath?: string): Promise<AppRouteRecordRaw> => {
+	const transformRoute = async (route: AppRouteRecordRaw, parentComponentPath?: string): Promise<AppRouteRecordRaw> => {
 		const transformedRoute: AppRouteRecordRaw = {
 			...route,
 			handle: {
@@ -62,8 +75,8 @@ export async function generateRoutesFromBackend(backendRoutes: Array<AppRouteRec
 		};
 
 		// 处理 index 路由（继承父级路径）
-		if (transformedRoute.index === true && parentPath) {
-			await loadRouteComponent(transformedRoute, parentPath);
+		if (transformedRoute.index === true && parentComponentPath) {
+			await loadRouteComponent(transformedRoute, parentComponentPath);
 		}
 		// 处理 iframe 路由
 		else if (transformedRoute.handle?.iframeLink) {
@@ -75,18 +88,18 @@ export async function generateRoutesFromBackend(backendRoutes: Array<AppRouteRec
 		}
 		// 处理有子路由的情况
 		else if (transformedRoute.children?.length) {
-			transformedRoute.Component = parentPath ? Outlet : ContainerLayout;
+			transformedRoute.Component = parentComponentPath ? Outlet : ContainerLayout;
 		}
 		// 处理普通路由
 		else {
-			await loadRouteComponent(transformedRoute, transformedRoute.path!);
+			await loadRouteComponent(transformedRoute, getComponentPathByRoute(transformedRoute));
 		}
 
 		// 递归处理子路由
 		if (transformedRoute.children?.length) {
 			transformedRoute.children = await Promise.all(
 				transformedRoute.children.map(child =>
-					transformRoute(child, transformedRoute.path),
+					transformRoute(child, getComponentPathByRoute(transformedRoute)),
 				),
 			);
 		}
