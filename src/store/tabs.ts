@@ -7,13 +7,15 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 /**
- * 标签页项目属性接口
+ * @zh 标签页项目属性接口
+ * @en Tab item properties interface.
  */
 export interface TabItemProps extends Omit<TabPaneProps, "tab"> {
 	key: string
 	label: React.ReactNode
 	/**
-	 * 是否可拖拽
+	 * @zh 是否可拖拽
+	 * @en Whether it can be dragged.
 	 */
 	draggable?: boolean
 	/**
@@ -26,26 +28,45 @@ export interface TabItemProps extends Omit<TabPaneProps, "tab"> {
 
 export interface TabStateType extends Omit<TabItemProps, "label"> {
 	label: string
+	/**
+	 * @zh 标签页的新标题，用于修改标签页的标题
+	 * @en The new title of the tab, used to modify the title of the tab.
+	 */
+	newTabTitle?: React.ReactNode
 }
 
 /**
- * 初始状态
+ * @zh 初始状态
+ * @en Initial state.
  */
 const initialState = {
-	// 打开的标签页
+	/**
+	 * @zh 标签页集合
+	 * @en Tab collection.
+	 */
 	openTabs: new Map<string, TabStateType>([]),
-	// 当前激活的标签页
+	/**
+	 * @zh 当前激活的标签页
+	 * @en The currently active tab.
+	 */
 	activeKey: "",
-	// 标签页是否处于刷新状态
+	/**
+	 * @zh 标签页是否处于刷新状态
+	 * @en Whether it is in a refresh state.
+	 */
 	isRefresh: false,
-	// 是否处于最大化
+	/**
+	 * @zh 标签页是否最大化
+	 * @en Whether the tab is maximized.
+	 */
 	isMaximize: false,
 };
 
 type TabsState = typeof initialState;
 
 /**
- * 标签页操作接口
+ * @zh 标签页的操作方法
+ * @en Tab operation methods.
  */
 interface TabsAction {
 	setIsRefresh: (state: boolean) => void
@@ -60,10 +81,13 @@ interface TabsAction {
 	resetTabs: () => void
 	changeTabOrder: (from: number, to: number) => void
 	toggleMaximize: (state: boolean) => void
+	setTableTitle: (routePath: string, title: string) => void
+	resetTableTitle: (routePath: string) => void
 };
 
 /**
- * 标签页状态管理
+ * @zh 标签页状态管理
+ * @en Tab state management.
  */
 export const useTabsStore = create<TabsState & TabsAction>()(
 	persist(
@@ -71,21 +95,24 @@ export const useTabsStore = create<TabsState & TabsAction>()(
 			...initialState,
 
 			/**
-			 * 设置标签页是否处于刷新状态
+			 * @zh 设置标签页是否处于刷新状态
+			 * @en Set whether the tab is in a refresh state.
 			 */
 			setIsRefresh: (state: boolean) => {
 				set({ isRefresh: state });
 			},
 
 			/**
-			 * 设置标签页
+			 * @zh 设置标签页
+			 * @en Set the tab.
 			 */
 			setActiveKey: (routePath: string) => {
 				set({ activeKey: routePath });
 			},
 
 			/**
-			 * 在最前面插入标签页
+			 * @zh 在最前面插入标签页
+			 * @en Insert a tab at the front.
 			 */
 			insertBeforeTab: (routePath: string, tabProps: TabStateType) => {
 				set((state) => {
@@ -101,7 +128,8 @@ export const useTabsStore = create<TabsState & TabsAction>()(
 			},
 
 			/**
-			 * 添加标签页
+			 * @zh 添加标签页
+			 * @en Add a tab.
 			 */
 			addTab: (routePath: string, tabProps: TabStateType) => {
 				set((state) => {
@@ -119,7 +147,8 @@ export const useTabsStore = create<TabsState & TabsAction>()(
 			},
 
 			/**
-			 * 移除标签页
+			 * @zh 移除标签页
+			 * @en Remove a tab.
 			 */
 			removeTab: (routePath: string) => {
 				set((state) => {
@@ -151,7 +180,8 @@ export const useTabsStore = create<TabsState & TabsAction>()(
 			},
 
 			/**
-			 * 关闭右侧标签页
+			 * @zh 关闭右侧标签页
+			 * @en Close tabs on the right.
 			 */
 			closeRightTabs: (routePath: string) => {
 				set((state) => {
@@ -189,7 +219,8 @@ export const useTabsStore = create<TabsState & TabsAction>()(
 			},
 
 			/**
-			 * 关闭左侧标签页
+			 * @zh 关闭左侧标签页
+			 * @en Close tabs on the left.
 			 */
 			closeLeftTabs: (routePath: string) => {
 				set((state) => {
@@ -228,7 +259,8 @@ export const useTabsStore = create<TabsState & TabsAction>()(
 			},
 
 			/**
-			 * 关闭其他标签页
+			 * @zh 关闭其他标签页
+			 * @en Close other tabs.
 			 */
 			closeOtherTabs: (routePath: string) => {
 				set((state) => {
@@ -254,7 +286,8 @@ export const useTabsStore = create<TabsState & TabsAction>()(
 			},
 
 			/**
-			 * 关闭所有标签页
+			 * @zh 关闭所有标签页
+			 * @en Close all tabs.
 			 */
 			closeAllTabs: () => {
 				set((state) => {
@@ -266,7 +299,8 @@ export const useTabsStore = create<TabsState & TabsAction>()(
 			},
 
 			/**
-			 * 更改标签页顺序
+			 * @zh 更改标签页顺序
+			 * @en Change tab order.
 			 */
 			changeTabOrder: (from: number, to: number) => {
 				set((state) => {
@@ -281,7 +315,8 @@ export const useTabsStore = create<TabsState & TabsAction>()(
 			},
 
 			/**
-			 * 切换标签页最大化状态
+			 * @zh 切换标签页最大化状态
+			 * @en Toggle tab maximization status
 			 * @param {boolean} state - 最大化状态
 			 */
 			toggleMaximize: (state: boolean) => {
@@ -289,7 +324,42 @@ export const useTabsStore = create<TabsState & TabsAction>()(
 			},
 
 			/**
-			 * 重置标签页状态
+			 * @zh 设置标签页标题
+			 * @en Set the tab title
+			 */
+			setTableTitle: (routePath: string, title: React.ReactNode) => {
+				set((state) => {
+					const newTabs = new Map(state.openTabs);
+					const targetTab = newTabs.get(routePath);
+					if (targetTab) {
+						targetTab.newTabTitle = title;
+						newTabs.set(routePath, targetTab);
+						return { openTabs: newTabs };
+					}
+					return state;
+				});
+			},
+
+			/**
+			 * @zh 重置标签页标题（删除自定义的标题）
+			 * @en Reset the tab title (delete custom titles)
+			 */
+			resetTableTitle: (routePath: string) => {
+				set((state) => {
+					const newTabs = new Map(state.openTabs);
+					const targetTab = newTabs.get(routePath);
+					if (targetTab) {
+						delete targetTab.newTabTitle;
+						newTabs.set(routePath, targetTab);
+						return { openTabs: newTabs };
+					}
+					return state;
+				});
+			},
+
+			/**
+			 * @zh 重置所有标签页的状态
+			 * @en Reset all tab states
 			 */
 			resetTabs: () => {
 				set(() => {

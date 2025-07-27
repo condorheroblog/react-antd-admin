@@ -37,14 +37,17 @@ export default function LayoutTabbar() {
 	const { activeKey, isRefresh, setActiveKey, setIsRefresh, openTabs, addTab, insertBeforeTab } = useTabsStore();
 	const [items, onClickMenu] = useDropdownMenu();
 
-	const tabItems: TabItemProps[] = Array.from(openTabs.values()).map(item => ({
-		...item,
-		label: (
-			<div className="relative flex items-center gap-1">
-				{isString(item.label) ? t(item.label) : item.label}
-			</div>
-		),
-	}));
+	const tabItems: TabItemProps[] = Array.from(openTabs.values()).map((item) => {
+		const tabLabel = item.newTabTitle ?? item.label;
+		return {
+			...item,
+			label: (
+				<div className="relative flex items-center gap-1">
+					{isString(tabLabel) ? t(tabLabel) : tabLabel}
+				</div>
+			),
+		};
+	});
 
 	/**
 	 * 自动重置刷新状态

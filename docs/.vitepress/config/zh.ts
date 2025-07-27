@@ -85,10 +85,11 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
 			items: [
 				{ text: "目录结构", link: "fundamentals/directory-structure" },
 				{ text: "路由和菜单", link: "fundamentals/routing" },
+				{ text: "标签页", link: "fundamentals/tab" },
 				{ text: "图标", link: "fundamentals/icon" },
 				{ text: "样式", link: "fundamentals/style" },
-				{ text: "请求", link: "fundamentals/request" },
-				{ text: "Mock", link: "fundamentals/mock" },
+				{ text: "数据请求", link: "fundamentals/request" },
+				{ text: "数据 Mock", link: "fundamentals/mock" },
 				{ text: "构建和部署", link: "fundamentals/build" },
 				{ text: "配置", link: "fundamentals/settings" },
 			],

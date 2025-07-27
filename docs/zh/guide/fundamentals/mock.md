@@ -1,4 +1,4 @@
-# Mock {#mock}
+# 数据 Mock {#mock}
 
 借助 [vite-plugin-fake-server](https://github.com/condorheroblog/vite-plugin-fake-server) 插件的力量，dev 环境可以提供真实和后端交互的 HTTP 请求，打通联调的最后一步，支持常用的 post、get 等请求方法，生产环境通过拦截 XHR 和 Fetch 请求，也能完成数据模拟的任务，**一旦和后端联调完成，建议删除 mock 数据，避免请求优先使用 mock 数据**。
 
