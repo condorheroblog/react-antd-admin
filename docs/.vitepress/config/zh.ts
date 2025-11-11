@@ -105,6 +105,12 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
 				{ text: "项目升级", link: "advanced/upgrading" },
 			],
 		},
+		{
+			text: "其他",
+			items: [
+				{ text: "常见问题", link: "other/faq" },
+			],
+		},
 	];
 }
 

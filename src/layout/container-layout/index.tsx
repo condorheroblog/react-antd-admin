@@ -32,7 +32,7 @@ const { useBreakpoint } = Grid;
  * const ContainerLayout = lazy(() => import("#src/layout/container-layout"));
  *
  * YES:
- * import { ContainerLayout } from "#src/layout";
+ * import ContainerLayout from "#src/layout/container-layout";
  */
 export default function ContainerLayout() {
 	const screens = useBreakpoint();

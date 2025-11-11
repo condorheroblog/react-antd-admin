@@ -17,7 +17,7 @@
 现在你可以使用 setTableTitle 修改当前标签页的标题，代码如下所示：
 
 ```ts
-import { useTabsStore } from "#src/store";
+import { useTabsStore } from "#src/store/tabs";
 
 export function TaskDetail() {
 	const { setTableTitle, resetTableTitle } = useTabsStore();
@@ -34,7 +34,7 @@ export function TaskDetail() {
 如果需要恢复修改前的标题，可以调用 resetTableTitle 方法重置。
 
 ```ts
-import { useTabsStore } from "#src/store";
+import { useTabsStore } from "#src/store/tabs";
 
 export function TaskDetail() {
 	const { resetTableTitle } = useTabsStore();
