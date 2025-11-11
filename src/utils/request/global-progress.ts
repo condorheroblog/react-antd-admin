@@ -1,4 +1,4 @@
-import { useGlobalStore } from "#src/store";
+import { useGlobalStore } from "#src/store/global";
 
 // 定义一个全局变量用于追踪当前有多少请求正在进行中
 let requestCount = 0;

@@ -1,5 +1,5 @@
 import { usePreferencesStore } from "#src/store/preferences";
-import { isDarkTheme } from "#src/utils";
+import { isDarkTheme } from "#src/utils/is-dark-theme";
 
 export const loadingId = "loading-e8a3a985";
 export const loadingContainerId = "loading-container-e8a3a985";

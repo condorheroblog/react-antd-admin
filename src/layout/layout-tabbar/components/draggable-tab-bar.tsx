@@ -1,7 +1,7 @@
-import type { TabItemProps } from "#src/store";
+import type { TabItemProps } from "#src/store/tabs";
 import type { DragEndEvent } from "@dnd-kit/core";
 import type { MenuProps, TabsProps } from "antd";
-import { useTabsStore } from "#src/store";
+import { useTabsStore } from "#src/store/tabs";
 import { closestCenter, DndContext, PointerSensor, useSensor } from "@dnd-kit/core";
 import {
 	horizontalListSortingStrategy,

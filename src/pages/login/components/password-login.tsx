@@ -1,6 +1,8 @@
-import { BasicButton } from "#src/components";
-import { PASSWORD_RULES, USERNAME_RULES } from "#src/constants";
-import { useAuthStore } from "#src/store";
+import type { LoginInfo } from "#src/api/user";
+
+import { BasicButton } from "#src/components/basic-button";
+import { PASSWORD_RULES, USERNAME_RULES } from "#src/constants/rules";
+import { useAuthStore } from "#src/store/auth";
 
 import {
 	Button,
@@ -15,11 +17,10 @@ import { useNavigate, useSearchParams } from "react-router";
 
 import { FormModeContext } from "../form-mode-context";
 
-const FORM_INITIAL_VALUES = {
+const FORM_INITIAL_VALUES: LoginInfo = {
 	username: "admin",
 	password: "123456789admin",
 };
-export type PasswordLoginFormType = typeof FORM_INITIAL_VALUES;
 
 export function PasswordLogin() {
 	const [loading, setLoading] = useState(false);
@@ -31,7 +32,7 @@ export function PasswordLogin() {
 	const login = useAuthStore(state => state.login);
 	const { setFormMode } = useContext(FormModeContext);
 
-	const handleFinish = async (values: PasswordLoginFormType) => {
+	const handleFinish = async (values: LoginInfo) => {
 		setLoading(true);
 		messageLoadingApi?.loading(t("authority.loginInProgress"), 0);
 

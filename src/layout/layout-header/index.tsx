@@ -1,10 +1,12 @@
 import type { ButtonProps } from "antd";
-import { useDeviceType, usePreferences } from "#src/hooks";
+import { useDeviceType } from "#src/hooks/use-device-type";
+import { usePreferences } from "#src/hooks/use-preferences";
 import { useLayout } from "#src/layout/hooks/use-layout";
-import { GlobalSearch, Preferences } from "#src/layout/widgets";
+import { GlobalSearch } from "#src/layout/widgets/global-search";
 import { NotificationContainer } from "#src/layout/widgets/notification/notification-container";
-import { useTabsStore } from "#src/store";
-import { cn } from "#src/utils";
+import { Preferences } from "#src/layout/widgets/preferences";
+import { useTabsStore } from "#src/store/tabs";
+import { cn } from "#src/utils/cn";
 
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { theme as antdTheme, Button, ConfigProvider, theme } from "antd";

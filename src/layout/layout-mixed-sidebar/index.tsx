@@ -1,14 +1,14 @@
 import type { MenuProps } from "antd";
 import type { MenuItemType } from "../layout-menu/types";
 
-import { Scrollbar } from "#src/components";
-import { usePreferences } from "#src/hooks";
+import { Scrollbar } from "#src/components/scrollbar";
+import { usePreferences } from "#src/hooks/use-preferences";
 
 import { theme as antdTheme, ConfigProvider, Typography } from "antd";
 
 import { sidebarTitleHeight, siderTriggerHeight } from "../constants";
 import LayoutMenu from "../layout-menu";
-import { SiderTrigger } from "../widgets";
+import { SiderTrigger } from "../widgets/sider-trigger";
 import FirstColumnMenu from "./first-column-menu";
 
 interface LayoutMixedSidebarProps {

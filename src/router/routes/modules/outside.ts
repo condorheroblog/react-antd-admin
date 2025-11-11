@@ -2,7 +2,7 @@ import type { AppRouteRecordRaw } from "#src/router/types";
 
 import { Iframe } from "#src/components/iframe";
 import { RiReactjsLine } from "#src/icons";
-import { ContainerLayout } from "#src/layout";
+import ContainerLayout from "#src/layout/container-layout";
 import { $t } from "#src/locales";
 import { outside } from "#src/router/extra-info";
 

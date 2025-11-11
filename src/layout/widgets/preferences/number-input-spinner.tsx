@@ -1,4 +1,4 @@
-import { isNumber } from "#src/utils";
+import { isNumber } from "#src/utils/is";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 
 import { Button, InputNumber } from "antd";

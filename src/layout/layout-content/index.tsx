@@ -1,8 +1,11 @@
-import { GlobalSpin, Scrollbar } from "#src/components";
-import { useLayoutContentStyle } from "#src/hooks";
-import { LayoutFooter } from "#src/layout";
+import { GlobalSpin } from "#src/components/global-spin";
+import { Scrollbar } from "#src/components/scrollbar";
+import { useLayoutContentStyle } from "#src/hooks/use-layout-style";
 import { CSS_VARIABLE_LAYOUT_CONTENT_HEIGHT, ELEMENT_ID_MAIN_CONTENT } from "#src/layout/constants";
-import { useAccessStore, usePreferencesStore, useTabsStore } from "#src/store";
+import LayoutFooter from "#src/layout/layout-footer";
+import { useAccessStore } from "#src/store/access";
+import { usePreferencesStore } from "#src/store/preferences";
+import { useTabsStore } from "#src/store/tabs";
 
 import { theme } from "antd";
 import KeepAlive, { useKeepAliveRef } from "keepalive-for-react";

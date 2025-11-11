@@ -1,4 +1,4 @@
-import { BasicButton } from "#src/components";
+import { BasicButton } from "#src/components/basic-button";
 
 import { LeftOutlined } from "@ant-design/icons";
 import { useCountDown } from "ahooks";

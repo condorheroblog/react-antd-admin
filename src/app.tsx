@@ -1,5 +1,7 @@
-import { AntdApp, JSSThemeProvider } from "#src/components";
-import { usePreferences, useScrollToHash } from "#src/hooks";
+import { AntdApp } from "#src/components/antd-app";
+import { JSSThemeProvider } from "#src/components/jss-theme-provider";
+import { usePreferences } from "#src/hooks/use-preferences";
+import { useScrollToHash } from "#src/hooks/use-scroll-to-hash";
 import { AppVersionMonitor } from "#src/layout/widgets/version-monitor";
 import { ANT_DESIGN_LOCALE } from "#src/locales";
 
@@ -37,7 +39,7 @@ export default function App() {
 	 * @link https://ant.design/docs/react/i18n
 	 */
 	const getAntdLocale = () => {
-		return ANT_DESIGN_LOCALE[language];
+		return ANT_DESIGN_LOCALE[language as keyof typeof ANT_DESIGN_LOCALE];
 	};
 
 	/**

@@ -1,15 +1,15 @@
 import type { MenuProps } from "antd";
 import type { MenuItemType } from "../layout-menu/types";
 
-import { Scrollbar } from "#src/components";
-import { usePreferences } from "#src/hooks";
+import { Scrollbar } from "#src/components/scrollbar";
+import { usePreferences } from "#src/hooks/use-preferences";
 import { ConfigProvider, Menu } from "antd";
 
 import { clsx } from "clsx";
 import { createUseStyles } from "react-jss";
 
 import { headerHeight } from "../constants";
-import { Logo } from "../widgets";
+import { Logo } from "../widgets/logo";
 
 const useStyles = createUseStyles(({ token }) => {
 	return {

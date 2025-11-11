@@ -1,6 +1,6 @@
 import type { SelectProps } from "antd";
 
-import { usePreferencesStore } from "#src/store";
+import { usePreferencesStore } from "#src/store/preferences";
 import { Select } from "antd";
 
 export interface SelectItemProps {

@@ -1,5 +1,5 @@
 import type { AppRouteRecordRaw } from "#src/router/types";
-import { ContainerLayout } from "#src/layout";
+import ContainerLayout from "#src/layout/container-layout";
 import { $t } from "#src/locales";
 import { about } from "#src/router/extra-info";
 

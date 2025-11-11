@@ -1,7 +1,7 @@
-import type { RoleItemType } from "#src/api/system";
-import type { TreeDataNodeWithId } from "#src/components";
-import { fetchAddRoleItem, fetchUpdateRoleItem } from "#src/api/system";
-import { FormTreeItem } from "#src/components";
+import type { RoleItemType } from "#src/api/system/role";
+import type { TreeDataNodeWithId } from "#src/components/basic-form";
+import { fetchAddRoleItem, fetchUpdateRoleItem } from "#src/api/system/role";
+import { FormTreeItem } from "#src/components/basic-form";
 
 import {
 	DrawerForm,

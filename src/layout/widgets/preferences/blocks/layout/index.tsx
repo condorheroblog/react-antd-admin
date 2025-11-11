@@ -6,8 +6,8 @@ import {
 	TOP_NAVIGATION,
 	TWO_COLUMN_NAVIGATION,
 } from "#src/layout/widgets/preferences/blocks/layout/constants";
-import { usePreferencesStore } from "#src/store";
-import { cn } from "#src/utils";
+import { usePreferencesStore } from "#src/store/preferences";
+import { cn } from "#src/utils/cn";
 
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";

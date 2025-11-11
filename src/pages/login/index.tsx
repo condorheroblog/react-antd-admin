@@ -1,12 +1,13 @@
 import type { FormComponentMapType } from "./form-mode-context";
+
 // import hero from "#src/assets/svg/hero.svg?url";
 import Banner from "#src/assets/svg/banner.svg?react";
 import logo from "#src/assets/svg/logo.svg?url";
-import { useLayoutMenu } from "#src/hooks";
-import { LayoutFooter } from "#src/layout";
+import { useLayoutMenu } from "#src/hooks/use-layout-menu";
+import LayoutFooter from "#src/layout/layout-footer";
 import { LanguageButton } from "#src/layout/layout-header/components/language-button";
-import { ThemeButton } from "#src/layout/layout-header/components/theme-button";
 
+import { ThemeButton } from "#src/layout/layout-header/components/theme-button";
 import {
 	Col,
 	Grid,
@@ -17,7 +18,9 @@ import { clsx } from "clsx";
 import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FORM_COMPONENT_MAP, FormModeContext } from "./form-mode-context";
+
+import { FORM_COMPONENT_MAP } from "./constants";
+import { FormModeContext } from "./form-mode-context";
 
 export default function Login() {
 	const { token } = theme.useToken();

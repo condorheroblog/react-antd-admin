@@ -1,6 +1,6 @@
 import { RiContrastFill, RiMoonIcon } from "#src/icons";
 import { NumberInputSpinner } from "#src/layout/widgets/preferences/number-input-spinner";
-import { usePreferencesStore } from "#src/store";
+import { usePreferencesStore } from "#src/store/preferences";
 
 import { useTranslation } from "react-i18next";
 import { SwitchItem } from "../../switch-item";

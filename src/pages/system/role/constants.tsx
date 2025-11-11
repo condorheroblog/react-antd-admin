@@ -1,4 +1,4 @@
-import type { RoleItemType } from "#src/api/system";
+import type { RoleItemType } from "#src/api/system/role";
 import type { ProColumns } from "@ant-design/pro-components";
 import type { TFunction } from "i18next";
 

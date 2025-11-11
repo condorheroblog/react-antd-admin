@@ -1,6 +1,6 @@
 import type { MenuItemType } from "./types";
 
-import { isString } from "#src/utils";
+import { isString } from "#src/utils/is";
 import { cloneElement, isValidElement } from "react";
 
 /**

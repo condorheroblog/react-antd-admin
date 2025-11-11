@@ -1,6 +1,6 @@
-import type { MenuItemType } from "#src/api/system";
-import { fetchAddMenuItem, fetchUpdateMenuItem } from "#src/api/system";
-import { handleTree } from "#src/utils";
+import type { MenuItemType } from "#src/api/system/menu";
+import { fetchAddMenuItem, fetchUpdateMenuItem } from "#src/api/system/menu";
+import { handleTree } from "#src/utils/tree";
 
 import {
 	ModalForm,

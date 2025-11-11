@@ -1,6 +1,6 @@
-import { BasicButton } from "#src/components";
-import { useTabsStore } from "#src/store";
-import { cn } from "#src/utils";
+import { BasicButton } from "#src/components/basic-button";
+import { useTabsStore } from "#src/store/tabs";
+import { cn } from "#src/utils/cn";
 
 import { FullscreenExitOutlined, FullscreenOutlined } from "@ant-design/icons";
 import { useShallow } from "zustand/shallow";

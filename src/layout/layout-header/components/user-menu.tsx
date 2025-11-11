@@ -1,10 +1,12 @@
 import type { ButtonProps, MenuProps } from "antd";
 
-import { BasicButton } from "#src/components";
+import { BasicButton } from "#src/components/basic-button";
 import { RiAccountCircleLine } from "#src/icons";
 import { loginPath } from "#src/router/extra-info";
-import { useAuthStore, useUserStore } from "#src/store";
-import { cn, isWindowsOs } from "#src/utils";
+import { useAuthStore } from "#src/store/auth";
+import { useUserStore } from "#src/store/user";
+import { cn } from "#src/utils/cn";
+import { isWindowsOs } from "#src/utils/is-windows-os";
 
 import { LogoutOutlined } from "@ant-design/icons";
 import { useKeyPress } from "ahooks";

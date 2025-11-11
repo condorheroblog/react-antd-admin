@@ -1,6 +1,6 @@
 import { i18n } from "#src/locales";
 import { usePreferencesStore } from "#src/store/preferences";
-import { isDarkTheme } from "#src/utils";
+import { isDarkTheme } from "#src/utils/is-dark-theme";
 
 import { loadingContainerId, loadingId } from './loading'
 /**

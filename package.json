@@ -19,7 +19,7 @@
 		"#*": "./*"
 	},
 	"scripts": {
-		"dev": "vite --host",
+		"dev": "vite --host --debug hmr",
 		"build": "NODE_OPTIONS=--max-old-space-size=8192 vite build",
 		"preview": "vite preview",
 		"typecheck": "tsc --noEmit",
@@ -30,6 +30,7 @@
 		"prepare": "simple-git-hooks",
 		"pnpm:install": "pnpm install",
 		"npm-check": "taze major -lrw",
+		"check-circular-dependency": "NODE_OPTIONS=--max-old-space-size=8192 ds src --output circular-deps-$(date +%Y%m%d-%H%M).json",
 		"test": "vitest"
 	},
 	"dependencies": {
@@ -61,7 +62,7 @@
 		"simplebar-react": "^3.3.0",
 		"spin-delay": "^2.0.1",
 		"tailwind-merge": "^2.6.0",
-		"zustand": "^5.0.3"
+		"zustand": "^5.0.8"
 	},
 	"devDependencies": {
 		"@antfu/eslint-config": "^4.10.1",
@@ -84,6 +85,7 @@
 		"@types/react-dom": "^18.3.1",
 		"@vitejs/plugin-react": "^4.3.4",
 		"autoprefixer": "^10.4.21",
+		"circular-dependency-scanner": "^2.3.0",
 		"clsx": "^2.1.1",
 		"code-inspector-plugin": "^0.20.6",
 		"eslint": "^9.22.0",

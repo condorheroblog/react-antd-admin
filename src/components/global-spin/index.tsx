@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
-import { useGlobalStore, usePreferencesStore } from "#src/store";
+import { useGlobalStore } from "#src/store/global";
+import { usePreferencesStore } from "#src/store/preferences";
 
-import { cn } from "#src/utils";
+import { cn } from "#src/utils/cn";
 import { Spin } from "antd";
 
 import { createUseStyles } from "react-jss";

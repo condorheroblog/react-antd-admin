@@ -1,7 +1,8 @@
-import { cn } from "#src/utils";
+import type { Props as SimplebarProps } from "simplebar-react";
 
+import { cn } from "#src/utils/cn";
 import { forwardRef } from "react";
-import SimpleBar, { type Props as SimplebarProps } from "simplebar-react";
+import SimpleBar from "simplebar-react";
 
 /**
  * @see https://github.com/Grsmto/simplebar/tree/master/packages/simplebar-react

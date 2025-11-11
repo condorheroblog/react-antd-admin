@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { usePreferences } from "#src/hooks";
+import { usePreferences } from "#src/hooks/use-preferences";
 
 import { ConfigProvider, theme } from "antd";
 import { useContext } from "react";

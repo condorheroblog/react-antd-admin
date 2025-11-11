@@ -1,5 +1,5 @@
-import { BasicButton } from "#src/components";
-import { PASSWORD_RULES, USERNAME_RULES } from "#src/constants";
+import { BasicButton } from "#src/components/basic-button";
+import { PASSWORD_RULES, USERNAME_RULES } from "#src/constants/rules";
 
 import {
 	Button,

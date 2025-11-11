@@ -1,6 +1,6 @@
 import type { BreadcrumbProps } from "antd";
 
-import { isString } from "#src/utils";
+import { isString } from "#src/utils/is";
 
 import { Breadcrumb } from "antd";
 import { useTranslation } from "react-i18next";

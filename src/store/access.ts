@@ -4,7 +4,9 @@ import type { AppRouteRecordRaw } from "#src/router/types";
 import { rootRoute, router } from "#src/router";
 import { ROOT_ROUTE_ID } from "#src/router/constants";
 import { baseRoutes } from "#src/router/routes";
-import { ascending, flattenRoutes, generateMenuItemsFromRoutes } from "#src/router/utils";
+import { ascending } from "#src/router/utils/ascending";
+import { flattenRoutes } from "#src/router/utils/flatten-routes";
+import { generateMenuItemsFromRoutes } from "#src/router/utils/generate-menu-items-from-routes";
 
 import { create } from "zustand";
 

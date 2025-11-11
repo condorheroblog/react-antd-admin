@@ -1,7 +1,7 @@
 import type { AppRouteRecordRaw } from "#src/router/types";
 
 import { ServerErrorIcon } from "#src/icons";
-import { ContainerLayout } from "#src/layout";
+import ContainerLayout from "#src/layout/container-layout";
 import { $t } from "#src/locales";
 import { exception, exception403Path, exception404Path, exception500Path, exceptionPath, exceptionUnknownComponentPath } from "#src/router/extra-info";
 

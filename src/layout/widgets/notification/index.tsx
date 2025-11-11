@@ -1,9 +1,9 @@
 import type { ButtonProps } from "antd";
 import type { NotificationItem } from "./types";
 
-import { BasicButton } from "#src/components";
+import { BasicButton } from "#src/components/basic-button";
 import { RiMailCheckLine } from "#src/icons";
-import { cn } from "#src/utils";
+import { cn } from "#src/utils/cn";
 
 import { BellOutlined } from "@ant-design/icons";
 import { useToggle } from "ahooks";

@@ -1,10 +1,12 @@
-import type { TabItemProps } from "#src/store";
+import type { TabItemProps } from "#src/store/tabs";
 import type { TabsProps } from "antd";
 
-import { useCurrentRoute } from "#src/hooks";
-import { removeTrailingSlash } from "#src/router/utils";
-import { useAccessStore, usePreferencesStore, useTabsStore } from "#src/store";
-import { isString } from "#src/utils";
+import { useCurrentRoute } from "#src/hooks/use-current-route";
+import { removeTrailingSlash } from "#src/router/utils/remove-trailing-slash";
+import { useAccessStore } from "#src/store/access";
+import { usePreferencesStore } from "#src/store/preferences";
+import { useTabsStore } from "#src/store/tabs";
+import { isString } from "#src/utils/is";
 
 import { RedoOutlined } from "@ant-design/icons";
 import { Button, Tabs } from "antd";

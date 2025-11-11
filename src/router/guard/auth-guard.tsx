@@ -1,11 +1,16 @@
 import { fetchAsyncRoutes } from "#src/api/user";
-import { useCurrentRoute } from "#src/hooks";
-import { hideLoading, setupLoading } from "#src/plugins";
+import { useCurrentRoute } from "#src/hooks/use-current-route";
+import { hideLoading } from "#src/plugins/hide-loading";
+import { setupLoading } from "#src/plugins/loading";
 import { exception403Path, exception404Path, exception500Path, loginPath } from "#src/router/extra-info";
 import { accessRoutes, whiteRouteNames } from "#src/router/routes";
 import { isSendRoutingRequest } from "#src/router/routes/config";
-import { generateRoutesByFrontend, generateRoutesFromBackend } from "#src/router/utils";
-import { useAccessStore, useAuthStore, usePreferencesStore, useUserStore } from "#src/store";
+import { generateRoutesFromBackend } from "#src/router/utils/generate-routes-from-backend";
+import { generateRoutesByFrontend } from "#src/router/utils/generate-routes-from-frontend";
+import { useAccessStore } from "#src/store/access";
+import { useAuthStore } from "#src/store/auth";
+import { usePreferencesStore } from "#src/store/preferences";
+import { useUserStore } from "#src/store/user";
 
 import { useEffect } from "react";
 import { matchRoutes, Navigate, useLocation, useNavigate, useSearchParams } from "react-router";

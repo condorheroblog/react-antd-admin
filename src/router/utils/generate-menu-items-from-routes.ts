@@ -2,7 +2,7 @@ import type { MenuItemType } from "#src/layout/layout-menu/types";
 import type { AppRouteRecordRaw } from "#src/router/types";
 
 import { menuIcons } from "#src/icons/menu-icons";
-import { isString } from "#src/utils";
+import { isString } from "#src/utils/is";
 
 import { createElement } from "react";
 import { Link } from "react-router";
