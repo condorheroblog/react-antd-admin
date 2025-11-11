@@ -1,5 +1,5 @@
-import { useUserStore } from "#src/store";
-import { isString } from "#src/utils";
+import { useUserStore } from "#src/store/user";
+import { isString } from "#src/utils/is";
 
 import { useMatches } from "react-router";
 import { accessControlCodes, AccessControlRoles } from "./constants";

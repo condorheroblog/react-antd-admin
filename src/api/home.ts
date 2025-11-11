@@ -1,4 +1,4 @@
-import { request } from "#src/utils";
+import { request } from "#src/utils/request";
 
 export interface PieDataType {
 	value: number

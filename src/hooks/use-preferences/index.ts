@@ -1,5 +1,7 @@
-import { DEFAULT_PREFERENCES, usePreferencesStore } from "#src/store";
-import { isDarkTheme, isLightTheme } from "#src/utils";
+import { DEFAULT_PREFERENCES, usePreferencesStore } from "#src/store/preferences";
+import { isDarkTheme } from "#src/utils/is-dark-theme";
+import { isLightTheme } from "#src/utils/is-light-theme";
+
 
 import { useMemo } from "react";
 

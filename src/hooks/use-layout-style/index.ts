@@ -1,14 +1,14 @@
-import type { VisibleDomRect } from "#src/utils";
+import type { VisibleDomRect } from "#src/utils/dom";
 import type { CSSProperties } from "react";
 
-import { useCssVar } from "#src/hooks";
+import { useCssVar } from "#src/hooks/use-css-var";
 import {
 	CSS_VARIABLE_LAYOUT_CONTENT_HEIGHT,
 	CSS_VARIABLE_LAYOUT_CONTENT_WIDTH,
 	CSS_VARIABLE_LAYOUT_FOOTER_HEIGHT,
 	CSS_VARIABLE_LAYOUT_HEADER_HEIGHT,
 } from "#src/layout/constants";
-import { getElementVisibleRect } from "#src/utils";
+import { getElementVisibleRect } from "#src/utils/dom";
 import { useDebounceFn } from "ahooks";
 
 import { useEffect, useMemo, useRef, useState } from "react";

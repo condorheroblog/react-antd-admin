@@ -1,10 +1,10 @@
 import type { MenuProps } from "antd";
 
-import { useCurrentRoute } from "#src/hooks";
-import { removeTrailingSlash } from "#src/router/utils";
-import { useAccessStore } from "#src/store";
+import { useCurrentRoute } from "#src/hooks/use-current-route";
+import { removeTrailingSlash } from "#src/router/utils/remove-trailing-slash";
+import { useAccessStore } from "#src/store/access";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useMatches, useNavigate } from "react-router";
 

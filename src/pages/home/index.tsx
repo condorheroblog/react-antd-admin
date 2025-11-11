@@ -1,6 +1,6 @@
 import type { ColProps } from "antd";
 
-import { BasicContent } from "#src/components";
+import { BasicContent } from "#src/components/basic-content";
 import { Col, Row } from "antd";
 
 import BarChart from "./components/bar-chart";

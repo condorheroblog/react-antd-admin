@@ -3,8 +3,9 @@ import type { ParamsType, ProTableProps } from "@ant-design/pro-components";
 import type { TablePaginationConfig } from "antd";
 
 import { footerHeight as layoutFooterHeight } from "#src/layout/constants";
-import { usePreferencesStore } from "#src/store";
-import { cn, isObject, isUndefined } from "#src/utils";
+import { usePreferencesStore } from "#src/store/preferences";
+import { cn } from "#src/utils/cn";
+import { isObject, isUndefined } from "#src/utils/is";
 
 import { LoadingOutlined } from "@ant-design/icons";
 import { ProTable } from "@ant-design/pro-components";

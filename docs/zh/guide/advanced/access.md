@@ -302,7 +302,7 @@ export const accessControlCodes = {
 引入 AccessControl 组件，需要呈现的内容作为组件的 children 传入，对应的权限码作为组件的 codes 属性传入。
 
 ```tsx
-import { AccessControl } from "#src/components";
+import { AccessControl } from "#src/components/access-control";
 import { accessControlCodes } from "#src/hooks/use-access/constants";
 
 import { Typography } from "antd";
@@ -343,8 +343,8 @@ export function AccessDemo() {
 引入 useAccess 钩子，通过 hasAccessByCodes 方法来判断是否有权限。
 
 ```tsx
-import { AccessControl } from "#src/components";
-import { useAccess } from "#src/hooks";
+import { AccessControl } from "#src/components/access-control";
+import { useAccess } from "#src/hooks/use-access";
 import { accessControlCodes } from "#src/hooks/use-access/constants";
 
 import { Typography } from "antd";
@@ -408,8 +408,8 @@ export const AccessControlRoles = {
 引入 AccessControl 组件，需要呈现的内容作为组件的 children 传入，对应的权限码作为组件的 codes 属性传入，判断类型 type 属性设置为 `"role"`。
 
 ```tsx
-import { AccessControl } from "#src/components";
-import { useAccess } from "#src/hooks";
+import { AccessControl } from "#src/components/access-control";
+import { useAccess } from "#src/hooks/use-access";
 import { AccessControlRoles } from "#src/hooks/use-access/constants";
 
 import { Typography } from "antd";
@@ -450,8 +450,8 @@ export function AccessDemo() {
 引入 useAccess 钩子，通过 hasAccessByRoles 方法来判断是否有权限。
 
 ```tsx
-import { AccessControl } from "#src/components";
-import { useAccess } from "#src/hooks";
+import { AccessControl } from "#src/components/access-control";
+import { useAccess } from "#src/hooks/use-access";
 import { AccessControlRoles } from "#src/hooks/use-access/constants";
 
 import { Typography } from "antd";

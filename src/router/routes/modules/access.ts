@@ -1,9 +1,9 @@
 import type { AppRouteRecordRaw } from "#src/router/types";
 
-import { ContainerLayout } from "#src/layout";
+import { accessControlCodes } from "#src/hooks/use-access/constants";
+import ContainerLayout from "#src/layout/container-layout";
 import { $t } from "#src/locales";
 import { access } from "#src/router/extra-info";
-import { accessControlCodes } from "#src/hooks/use-access/constants";
 
 import { lazy } from "react";
 
@@ -30,7 +30,7 @@ const routes: AppRouteRecordRaw[] = [
 					title: $t("common.menu.pageControl"),
 					permissions: [
 						accessControlCodes.get,
-					]
+					],
 				},
 			},
 			{

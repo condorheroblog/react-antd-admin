@@ -41,28 +41,25 @@ react-antd-admin
 │   │   ├── fullscreen-button              # 全屏按钮
 │   │   ├── global-spin                    # 全局 spin 组件
 │   │   ├── iframe                         # iframe 组件
-│   │   ├── index.ts                       # 聚合导出所有的组件
 │   │   ├── jss-theme-provider             # CSS in jss 继承 antd 的 token
 │   │   ├── scrollbar                      # 滚动条
 │   │   └── tanstack-query                 # tanstack-query 组件
 │   ├── constants                          # 全局常用的一些常量
 │   ├── hooks                              # 自定义 hooks
-│   │   ├── index.ts                       # 聚合导出所有的 hooks
 │   │   ├── use-access                     # 权限
 │   │   ├── use-current-route              # 获取当前最新路由
 │   │   ├── use-device-type                # 获取设备类型
 │   │   ├── use-language                   # 获取语言
 │   │   ├── use-preferences                # 获取偏好设置
-│   ├── create-icon.ts                     # 手动加载本地图标（暂未使用）
-│   ├── local-icons.ts                     # 导出本地 SVG 图标
-│   ├── ri.ts                              # Remix Icon
-│   ├── menu-icons.ts                      # 菜单图标
 │   ├── icons                              # 图标
-│   ├── index.ts                           # 入口文件
+│   │   ├── create-icon.ts                 # 手动加载本地图标（暂未使用）
+│   │   ├── local-icons.ts                 # 导出本地 SVG 图标
+│   │   ├── ri.ts                          # Remix Icon
+│   │   ├── menu-icons.ts                  # 菜单图标
+│   │   ├── index.ts                       # 入口文件
 │   ├── layout                             # 布局文件所在目录
 │   │   ├── container-layout               # 容器布局
 │   │   ├── hooks                          # 获取布局配置相关的信息
-│   │   ├── index.ts                       # 聚合导出所有的布局
 │   │   ├── layout-content                 # 动态路由呈现的内容
 │   │   ├── layout-footer                  # 布局页脚
 │   │   ├── layout-header                  # 布局头部
@@ -94,7 +91,6 @@ react-antd-admin
 │   │   ├── privacy-policy                 # 隐私政策页面
 │   │   └── terms-of-service               # 服务条款页面
 │   ├── plugins	                           # App 插件
-│   │   ├── index.ts                       # 聚合导出所有的插件
 │   │   └── loading.ts                     # 应用加载动画
 │   │   └── loading2.ts                    # 应用加载动画 2
 │   ├── router                             # 路由
@@ -114,7 +110,6 @@ react-antd-admin
 │   ├── store                              # 状态管理
 │   │   ├── auth.ts                        # accessToken 和 refreshToken
 │   │   ├── global.ts                      # 全局 store，比如 loading 等
-│   │   ├── index.ts                       # 聚合导出所有的 store
 │   │   ├── access.ts                      # 页面路由、菜单、权限
 │   │   ├── preferences                    # 偏好设置
 │   │   ├── tabs.ts                        # 标签页
@@ -135,7 +130,6 @@ react-antd-admin
 │   │   └── vite-env.d.ts
 │   └── utils                              # 工具库
 │       ├── cn                             # 组合类名，保证样式名不重复
-│       ├── index.ts                       # 聚合导出所有的工具函数
 │       ├── is                             # 常见判断变量类型的方法
 │       ├── is-dark-theme                  # 判断是否是暗黑主题
 │       ├── is-light-theme                 # 判断是否是亮色主题

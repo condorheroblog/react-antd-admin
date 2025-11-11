@@ -66,11 +66,15 @@ export default {
 			 * @example
 			 * ```
 			 * en-US:text-white
+			 * not-en-US:text-black
 			 * ```
 			 */
 
 			for (const lang of languages) {
+				// 添加语言匹配变体
 				addVariant(`${lang}`, `&:lang(${lang})`);
+				// 添加语言不匹配变体
+				addVariant(`not-${lang}`, `&:not(:lang(${lang}))`);
 			}
 		}),
 	],

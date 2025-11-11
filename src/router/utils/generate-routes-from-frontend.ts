@@ -1,6 +1,6 @@
 import type { AppRouteRecordRaw } from "#src/router/types";
 
-import { filterTree } from "#src/utils";
+import { filterTree } from "#src/utils/tree";
 
 /**
  * 动态生成路由 - 前端方式

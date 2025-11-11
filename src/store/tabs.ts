@@ -1,7 +1,7 @@
 import type { TabPaneProps } from "antd";
 
 import { usePreferencesStore } from "#src/store/preferences";
-import { getAppNamespace } from "#src/utils";
+import { getAppNamespace } from "#src/utils/get-app-namespace";
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";

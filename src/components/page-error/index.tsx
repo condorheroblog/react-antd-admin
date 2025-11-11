@@ -2,7 +2,7 @@ import type { FallbackProps } from "react-error-boundary";
 
 // https://undraw.co/search
 import BugFixing from "#src/assets/svg/undraw-bug-fixing.svg?react";
-import { usePreferencesStore } from "#src/store";
+import { usePreferencesStore } from "#src/store/preferences";
 
 import { ArrowLeftOutlined, ReloadOutlined } from "@ant-design/icons";
 import { Button, Result, Space, Typography } from "antd";

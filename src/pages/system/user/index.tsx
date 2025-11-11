@@ -1,4 +1,4 @@
-import { BasicContent } from "#src/components";
+import { BasicContent } from "#src/components/basic-content";
 
 import { Input } from "antd";
 

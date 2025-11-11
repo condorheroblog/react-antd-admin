@@ -5,6 +5,11 @@ export interface AuthType {
 	refreshToken: string
 }
 
+export interface LoginInfo {
+	username: string
+	password: string
+}
+
 export interface UserInfoType {
 	id: string
 	avatar: string

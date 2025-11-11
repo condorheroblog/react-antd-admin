@@ -1,4 +1,5 @@
-import { isObject, message } from "#src/utils";
+import { isObject } from "#src/utils/is";
+import { message } from "#src/utils/static-antd";
 
 /**
  * 处理错误响应

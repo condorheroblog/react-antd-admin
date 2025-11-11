@@ -1,10 +1,11 @@
-import { Scrollbar } from "#src/components";
-import { usePreferences } from "#src/hooks";
+import { Scrollbar } from "#src/components/scrollbar";
+import { usePreferences } from "#src/hooks/use-preferences";
 
 import { theme as antdTheme, ConfigProvider } from "antd";
 
 import { headerHeight, siderTriggerHeight } from "../constants";
-import { Logo, SiderTrigger } from "../widgets";
+import { Logo } from "../widgets/logo";
+import { SiderTrigger } from "../widgets/sider-trigger";
 
 export interface LayoutSidebarProps {
 	children?: React.ReactNode

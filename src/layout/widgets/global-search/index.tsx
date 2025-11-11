@@ -1,10 +1,10 @@
 import type { MenuItemType } from "#src/layout/layout-menu/types";
 import type { InputRef } from "antd";
 
-import { Scrollbar } from "#src/components";
-import { useDeviceType } from "#src/hooks";
-import { useAccessStore } from "#src/store";
-import { isString } from "#src/utils";
+import { Scrollbar } from "#src/components/scrollbar";
+import { useDeviceType } from "#src/hooks/use-device-type";
+import { useAccessStore } from "#src/store/access";
+import { isString } from "#src/utils/is";
 
 import { SearchOutlined } from "@ant-design/icons";
 import { useDebounceFn, useKeyPress, useLocalStorageState } from "ahooks";

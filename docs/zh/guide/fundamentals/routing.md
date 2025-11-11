@@ -141,7 +141,7 @@ export default routes;
 
 ```ts
 import type { AppRouteRecordRaw } from "#src/router/types";
-import { ContainerLayout } from "#src/layout";
+import ContainerLayout from "#src/layout/container-layout";
 import { $t } from "#src/locales";
 import { about } from "#src/router/extra-info";
 
@@ -175,7 +175,7 @@ export default routes;
 
 ```ts
 import type { AppRouteRecordRaw } from "#src/router/types";
-import { ContainerLayout } from "#src/layout";
+import ContainerLayout from "#src/layout/container-layout";
 
 import { $t } from "#src/locales";
 import { home } from "#src/router/extra-info";
@@ -219,7 +219,7 @@ export default routes;
 
 ```ts
 import type { AppRouteRecordRaw } from "#src/router/types";
-import { ContainerLayout } from "#src/layout";
+import ContainerLayout from "#src/layout/container-layout";
 
 import { $t } from "#src/locales";
 import { home } from "#src/router/extra-info";
@@ -270,7 +270,7 @@ export default routes;
 
 ```ts
 import type { AppRouteRecordRaw } from "#src/router/types";
-import { ContainerLayout } from "#src/layout";
+import ContainerLayout from "#src/layout/container-layout";
 
 import { $t } from "#src/locales";
 import { home } from "#src/router/extra-info";

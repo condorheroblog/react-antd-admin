@@ -1,7 +1,7 @@
 import type { ButtonProps } from "antd";
 
-import { BasicButton } from "#src/components";
-import { usePreferences } from "#src/hooks";
+import { BasicButton } from "#src/components/basic-button";
+import { usePreferences } from "#src/hooks/use-preferences";
 import { RiMoonIcon, RiSunIcon } from "#src/icons";
 import { useEffect } from "react";
 import { flushSync } from "react-dom";

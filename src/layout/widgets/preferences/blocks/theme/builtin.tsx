@@ -1,8 +1,8 @@
 import type { BuiltinThemeType } from "#src/store/preferences/types";
 import type { ColorPickerProps } from "antd";
 
-import { usePreferencesStore } from "#src/store";
-import { cn } from "#src/utils";
+import { usePreferencesStore } from "#src/store/preferences";
+import { cn } from "#src/utils/cn";
 
 import { ColorPicker } from "antd";
 import { useState } from "react";

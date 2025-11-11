@@ -1,5 +1,5 @@
-import { useAuthStore } from "#src/store";
-import { rememberRoute } from "#src/utils";
+import { useAuthStore } from "#src/store/auth";
+import { rememberRoute } from "#src/utils/remember-route";
 
 /**
  * 跳转到登录页面

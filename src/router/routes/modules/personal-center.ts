@@ -1,6 +1,6 @@
 import type { AppRouteRecordRaw } from "#src/router/types";
 import { ProfileCardIcon, RiAccountCircleLine, RiUserSettingsLine } from "#src/icons";
-import { ContainerLayout } from "#src/layout";
+import ContainerLayout from "#src/layout/container-layout";
 import { $t } from "#src/locales";
 import { personalCenter } from "#src/router/extra-info";
 

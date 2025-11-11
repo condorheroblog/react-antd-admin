@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { useAccess } from "#src/hooks";
+import { useAccess } from "#src/hooks/use-access";
 
 interface AccessControlProps {
 	// 权限类型，默认为 code

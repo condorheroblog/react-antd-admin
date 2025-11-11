@@ -1,11 +1,11 @@
-import { useDeviceType } from "#src/hooks";
+import { useDeviceType } from "#src/hooks/use-device-type";
 import {
 	MIXED_NAVIGATION,
 	SIDE_NAVIGATION,
 	TOP_NAVIGATION,
 	TWO_COLUMN_NAVIGATION,
 } from "#src/layout/widgets/preferences/blocks/layout/constants";
-import { usePreferencesStore } from "#src/store";
+import { usePreferencesStore } from "#src/store/preferences";
 
 import { useMemo } from "react";
 

@@ -1,5 +1,5 @@
-import { useTranslation } from "react-i18next";
 import { Typography } from "antd";
+import { useTranslation } from "react-i18next";
 
 export default function PrivacyPolicy() {
 	const { t } = useTranslation();

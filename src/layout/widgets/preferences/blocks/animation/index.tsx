@@ -1,5 +1,5 @@
-import { usePreferencesStore } from "#src/store";
-import { cn } from "#src/utils";
+import { usePreferencesStore } from "#src/store/preferences";
+import { cn } from "#src/utils/cn";
 
 import { useTranslation } from "react-i18next";
 import { SwitchItem } from "../../switch-item";

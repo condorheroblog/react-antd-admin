@@ -10,7 +10,6 @@
 ├── src
 │   └── api
 │       └── system              # 系统管理
-│           ├── index.ts        # 聚合所有接口
 │           └── role            # 角色管理
 │               ├── index.ts    # 角色管理接口
 │               └── types.ts    # 角色管理接口类型定义
@@ -20,7 +19,7 @@
 
 ```ts
 import type { RoleItemType } from "./types";
-import { request } from "#src/utils";
+import { request } from "#src/utils/request";
 
 export * from "./types";
 

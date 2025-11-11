@@ -1,11 +1,11 @@
 import type { Options } from "ky";
-import { refreshTokenPath } from "#src/api/user";
 
 import { loginPath } from "#src/router/extra-info";
-import { useAuthStore, usePreferencesStore } from "#src/store";
+import { useAuthStore } from "#src/store/auth";
+import { usePreferencesStore } from "#src/store/preferences";
 import ky from "ky";
 
-import { AUTH_HEADER, LANG_HEADER } from "./constants";
+import { AUTH_HEADER, LANG_HEADER, REFRESH_TOKEN_PATH } from "./constants";
 import { handleErrorResponse } from "./error-response";
 import { globalProgress } from "./global-progress";
 import { goLogin } from "./go-login";
@@ -52,7 +52,7 @@ const defaultConfig: Options = {
 				if (!response.ok) {
 					if (response.status === 401) {
 						// 防止刷新 refresh-token 继续接收到的 401 错误，出现死循环
-						if ([`/${refreshTokenPath}`].some(url => request.url.endsWith(url))) {
+						if ([`/${REFRESH_TOKEN_PATH}`].some(url => request.url.endsWith(url))) {
 							goLogin();
 							return response;
 						}

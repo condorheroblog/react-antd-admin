@@ -1,5 +1,5 @@
 import type { MenuProps } from "antd";
-import { useTabsStore } from "#src/store";
+import { useTabsStore } from "#src/store/tabs";
 import {
 	CloseOutlined,
 	RedoOutlined,

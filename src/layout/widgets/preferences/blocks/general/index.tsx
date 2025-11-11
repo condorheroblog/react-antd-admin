@@ -1,4 +1,4 @@
-import { usePreferencesStore } from "#src/store";
+import { usePreferencesStore } from "#src/store/preferences";
 
 import { useTranslation } from "react-i18next";
 

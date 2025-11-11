@@ -1,5 +1,5 @@
 import type { RoleItemType } from "./types";
-import { request } from "#src/utils";
+import { request } from "#src/utils/request";
 
 export * from "./types";
 

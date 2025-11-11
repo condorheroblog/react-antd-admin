@@ -35,7 +35,6 @@ yarn.lock
 **/.vitepress/dist
 **/.vitepress/cache
 
-Other
 .eslintcache
 analyzer
 TODO.md

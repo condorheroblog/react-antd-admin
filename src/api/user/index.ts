@@ -1,11 +1,12 @@
-import type { PasswordLoginFormType } from "#src/pages/login/components/password-login";
 import type { AppRouteRecordRaw } from "#src/router/types";
-import type { AuthType, UserInfoType } from "./types";
-import { request } from "#src/utils";
+import type { AuthType, LoginInfo, UserInfoType } from "./types";
+
+import { request } from "#src/utils/request";
+import { REFRESH_TOKEN_PATH } from "#src/utils/request/constants";
 
 export * from "./types";
 
-export function fetchLogin(data: PasswordLoginFormType) {
+export function fetchLogin(data: LoginInfo) {
 	return request
 		.post("login", { json: data })
 		.json<ApiResponse<AuthType>>();
@@ -28,7 +29,6 @@ export interface RefreshTokenResult {
 	refreshToken: string
 }
 
-export const refreshTokenPath = "refresh-token";
 export function fetchRefreshToken(data: { readonly refreshToken: string }) {
-	return request.post(refreshTokenPath, { json: data }).json<ApiResponse<RefreshTokenResult>>();
+	return request.post(REFRESH_TOKEN_PATH, { json: data }).json<ApiResponse<RefreshTokenResult>>();
 }

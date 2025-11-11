@@ -1,6 +1,8 @@
-import { useDeviceType, useLayoutFooterStyle, useLayoutHeaderStyle } from "#src/hooks";
-import { usePreferencesStore, useTabsStore } from "#src/store";
-import { cn } from "#src/utils";
+import { useDeviceType } from "#src/hooks/use-device-type";
+import {  useLayoutFooterStyle, useLayoutHeaderStyle } from "#src/hooks/use-layout-style";
+import { usePreferencesStore } from "#src/store/preferences";
+import { useTabsStore } from "#src/store/tabs";
+import { cn } from "#src/utils/cn";
 
 import { RocketOutlined } from "@ant-design/icons";
 import { FloatButton, Grid, Watermark } from "antd";
@@ -17,7 +19,8 @@ import LayoutMixedSidebar from "../layout-mixed-sidebar";
 import LayoutMobileMenu from "../layout-mobile-menu";
 import LayoutSidebar from "../layout-sidebar";
 import LayoutTabbar from "../layout-tabbar";
-import { BreadcrumbViews, Logo } from "../widgets";
+import { BreadcrumbViews } from "../widgets/breadcrumb-views";
+import { Logo } from "../widgets/logo";
 
 const { useBreakpoint } = Grid;
 
@@ -29,7 +32,7 @@ const { useBreakpoint } = Grid;
  * const ContainerLayout = lazy(() => import("#src/layout/container-layout"));
  *
  * YES:
- * import { ContainerLayout } from "#src/layout";
+ * import ContainerLayout from "#src/layout/container-layout";
  */
 export default function ContainerLayout() {
 	const screens = useBreakpoint();
