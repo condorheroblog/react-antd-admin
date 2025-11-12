@@ -1,1 +1,0 @@
-import{u as t,j as r}from"./index-BNEG2OEn.js";import{T as s}from"./antd-CuXJcghv.js";import"./faker-Dcf0Eyuj.js";import"./react-UQ1dNgW8.js";function n(){const{t:e}=t();return r.jsx("div",{className:"p-4 dark:bg-black",children:r.jsx(s.Title,{level:1,children:r.jsx(r.Fragment,{children:e("authority.termsOfService")})})})}export{n as default};
