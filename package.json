@@ -103,7 +103,7 @@
 		"vite": "^6.2.3",
 		"vite-bundle-visualizer": "^1.2.1",
 		"vite-plugin-checker": "^0.9.1",
-		"vite-plugin-fake-server": "^2.2.0",
+		"vite-plugin-fake-server": "^2.2.2",
 		"vite-plugin-svgr": "^4.3.0",
 		"vitest": "^3.0.9"
 	},
