@@ -4,10 +4,11 @@ import type { FormComponentMapType } from "./form-mode-context";
 import Banner from "#src/assets/svg/banner.svg?react";
 import logo from "#src/assets/svg/logo.svg?url";
 import { useLayoutMenu } from "#src/hooks/use-layout-menu";
+import { usePreferences } from "#src/hooks/use-preferences";
 import LayoutFooter from "#src/layout/layout-footer";
 import { LanguageButton } from "#src/layout/layout-header/components/language-button";
-
 import { ThemeButton } from "#src/layout/layout-header/components/theme-button";
+
 import {
 	Col,
 	Grid,
@@ -23,6 +24,7 @@ import { FORM_COMPONENT_MAP } from "./constants";
 import { FormModeContext } from "./form-mode-context";
 
 export default function Login() {
+	const { isDark } = usePreferences();
 	const { token } = theme.useToken();
 	const { t } = useTranslation();
 	const screens = Grid.useBreakpoint();
@@ -65,7 +67,7 @@ export default function Login() {
 						sm={0}
 						lg={15}
 						style={{
-							backgroundImage: `radial-gradient(${token.colorBgContainer}, ${token.colorPrimaryBg})`,
+							backgroundImage: `radial-gradient(${token.colorBgContainer}, ${isDark ? token.colorBgBlur : token.colorPrimaryBg})`,
 						}}
 						className={clsx({ hidden: isAlignCenter })}
 					>

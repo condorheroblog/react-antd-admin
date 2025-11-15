@@ -52,8 +52,7 @@ export function ThemeButton({ ...restProps }: ButtonProps) {
 	}, []);
 
 	function toggleTheme(event: React.PointerEvent<HTMLElement>) {
-		const isAppearanceTransition = !!document.startViewTransition
-			&& !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+		const isAppearanceTransition = !!document.startViewTransition && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 		if (!isAppearanceTransition || !event) {
 			changeSiteTheme(isDark ? "light" : "dark");
 			return;
@@ -82,6 +81,7 @@ export function ThemeButton({ ...restProps }: ButtonProps) {
 				{
 					duration: 500,
 					easing: "ease-in",
+					fill: "forwards",
 					pseudoElement: isDark
 						? "::view-transition-old(root)"
 						: "::view-transition-new(root)",
