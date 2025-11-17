@@ -1,0 +1,1 @@
+import{u as t,j as i}from"./index-B4D4TeV5.js";import{R as e,aE as a}from"./antd-BreSrAtA.js";import"./faker-Dcf0Eyuj.js";import"./react-UQ1dNgW8.js";function m(){const{t:s}=t();return i.jsx(e,{icon:i.jsx(a,{}),status:"success",title:s("access.adminVisible.title"),subTitle:s("access.adminVisible.description")})}export{m as default};
