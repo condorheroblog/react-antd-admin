@@ -2,6 +2,7 @@
 
 import process from "node:process";
 import { cleanupSVG, isEmptyColor, parseColors, runSVGO, SVG } from "@iconify/tools";
+import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { codeInspectorPlugin } from "code-inspector-plugin";
 import dayjs from "dayjs";
@@ -26,6 +27,7 @@ export default defineConfig({
 
 	base: isDev ? "/" : "/react-antd-admin/",
 	plugins: [
+		tailwindcss(),
 		react(),
 		vitePluginFakeServer({
 			basename: "/api",
@@ -96,7 +98,7 @@ export default defineConfig({
 							return color;
 						},
 					});
-					return svgObject.toString({ height: "1em", width: "1em" });;
+					return svgObject.toString({ height: "1em", width: "1em" }); ;
 				}
 				return svg;
 			},

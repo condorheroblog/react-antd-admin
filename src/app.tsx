@@ -5,6 +5,7 @@ import { useScrollToHash } from "#src/hooks/use-scroll-to-hash";
 import { AppVersionMonitor } from "#src/layout/widgets/version-monitor";
 import { ANT_DESIGN_LOCALE } from "#src/locales";
 
+import { StyleProvider } from "@ant-design/cssinjs";
 import { theme as antdTheme, ConfigProvider } from "antd";
 import dayjs from "dayjs";
 import { Suspense, useCallback, useEffect } from "react";
@@ -116,43 +117,45 @@ export default function App() {
 	}, [colorBlindMode, colorGrayMode]);
 
 	return (
-		<ConfigProvider
-			input={{ autoComplete: "off" }}
-			locale={getAntdLocale()}
-			theme={{
-				cssVar: true,
-				hashed: false,
-				algorithm:
-					isDark
-						? antdTheme.darkAlgorithm
-						: antdTheme.defaultAlgorithm,
-				...(isDark ? customAntdDarkTheme : customAntdLightTheme),
-				token: {
-					...(isDark ? customAntdDarkTheme.token : customAntdLightTheme.token),
-					borderRadius: themeRadius,
-					colorPrimary: themeColorPrimary,
-				},
-				components: {
-					...(isDark ? customAntdDarkTheme.components : customAntdLightTheme.components),
-					Menu: {
-						darkItemBg: "#141414",
-						itemBg: "#fff",
-						...(isDark
-							? customAntdDarkTheme.components?.Menu
-							: customAntdLightTheme.components?.Menu),
-						collapsedWidth: sideCollapsedWidth,
+		<StyleProvider layer>
+			<ConfigProvider
+				input={{ autoComplete: "off" }}
+				locale={getAntdLocale()}
+				theme={{
+					cssVar: true,
+					hashed: false,
+					algorithm:
+						isDark
+							? antdTheme.darkAlgorithm
+							: antdTheme.defaultAlgorithm,
+					...(isDark ? customAntdDarkTheme : customAntdLightTheme),
+					token: {
+						...(isDark ? customAntdDarkTheme.token : customAntdLightTheme.token),
+						borderRadius: themeRadius,
+						colorPrimary: themeColorPrimary,
 					},
-				},
-			}}
-		>
-			<AntdApp>
-				<JSSThemeProvider>
-					<Suspense fallback={null}>
-						{enableCheckUpdates ? <AppVersionMonitor checkUpdatesInterval={checkUpdatesInterval} /> : null}
-						<RouterProvider router={router} />
-					</Suspense>
-				</JSSThemeProvider>
-			</AntdApp>
-		</ConfigProvider>
+					components: {
+						...(isDark ? customAntdDarkTheme.components : customAntdLightTheme.components),
+						Menu: {
+							darkItemBg: "#141414",
+							itemBg: "#fff",
+							...(isDark
+								? customAntdDarkTheme.components?.Menu
+								: customAntdLightTheme.components?.Menu),
+							collapsedWidth: sideCollapsedWidth,
+						},
+					},
+				}}
+			>
+				<AntdApp>
+					<JSSThemeProvider>
+						<Suspense fallback={null}>
+							{enableCheckUpdates ? <AppVersionMonitor checkUpdatesInterval={checkUpdatesInterval} /> : null}
+							<RouterProvider router={router} />
+						</Suspense>
+					</JSSThemeProvider>
+				</AntdApp>
+			</ConfigProvider>
+		</StyleProvider>
 	);
 }

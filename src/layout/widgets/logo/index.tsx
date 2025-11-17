@@ -35,7 +35,7 @@ export function Logo({ sidebarCollapsed, className }: LogoProps) {
 
 			<Title
 				level={1}
-				className={clsx("!text-sm !m-0", { hidden: sidebarCollapsed })}
+				className={clsx("text-sm m-0", { hidden: sidebarCollapsed })}
 				ellipsis
 			>
 				{import.meta.env.VITE_GLOB_APP_TITLE}

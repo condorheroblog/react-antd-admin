@@ -81,7 +81,9 @@ export const NotificationPopup: React.FC<Props> = ({ dot, notifications, onEvent
 		<Popover
 			// getPopupContainer={triggerNode => triggerNode}
 			placement="bottomLeft"
-			overlayClassName={clsx(classes.notification, "w-72 md:w-96 !right-3")}
+			classNames={{
+				root: clsx(classes.notification, "w-72 md:w-96 right-4"),
+			}}
 			open={open}
 			arrow={false}
 			trigger="click"
@@ -120,7 +122,7 @@ export const NotificationPopup: React.FC<Props> = ({ dot, notifications, onEvent
 					)}
 					dataSource={notifications}
 					renderItem={item => (
-						<List.Item className="relative !justify-start gap-5 hover:!bg-gray-100 cursor-pointer" onClick={() => handleClick(item)}>
+						<List.Item className="relative justify-start gap-5 hover:bg-gray-100 cursor-pointer" onClick={() => handleClick(item)}>
 							{!item.isRead && <span className="absolute w-2 h-2 rounded bg-primary right-2 top-2"></span>}
 							<span className="relative flex w-10 h-10 overflow-hidden rounded-full shrink-0">
 								<img src={item.avatar} className="object-cover w-full h-full aspect-square" role="img" />

@@ -42,7 +42,7 @@ export default function Login() {
 		>
 			<header className="z-10 absolute flex items-center right-3 top-3 left-3">
 				<div
-					className="text-colorText flex flex-1 items-center"
+					className="text-color-text flex flex-1 items-center"
 				>
 					<img alt="App Logo" src={logo} className="mr-2 w-11" />
 					<h1 className="m-0 text-xl font-medium">
@@ -51,8 +51,8 @@ export default function Login() {
 				</div>
 				<div className="flex items-center">
 					{layoutButtonTrigger}
-					<ThemeButton />
-					<LanguageButton className="px-2" />
+					<ThemeButton size="large" />
+					<LanguageButton size="large" className="px-2.75" />
 				</div>
 			</header>
 			<div
@@ -75,10 +75,10 @@ export default function Login() {
 							<Banner
 								className="h-64 motion-safe:animate-bounceInDownOutUp"
 							/>
-							<div className="text-xl text-colorTextSecondary mt-6 font-sans lg:text-2xl">
+							<div className="text-xl text-color-text-secondary mt-6 font-sans lg:text-2xl">
 								{t("authority.pageTitle")}
 							</div>
-							<div className="text-colorTextTertiary mt-2">
+							<div className="text-color-text-tertiary mt-2">
 								{t("authority.pageDescription")}
 							</div>
 						</div>

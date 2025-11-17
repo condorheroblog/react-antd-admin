@@ -52,7 +52,7 @@ export default function FirstColumnMenu({
 			style={{
 				width: firstColumnWidthInTwoColumnNavigation,
 			}}
-			className={clsx("border-r h-full", sidebarTheme === "dark" ? "border-r-[#303030]" : "border-r-colorBorderSecondary")}
+			className={clsx("border-r h-full", sidebarTheme === "dark" ? "border-r-[#303030]" : "border-r-color-border-secondary")}
 		>
 			<Logo sidebarCollapsed />
 			<Scrollbar style={{ height: `calc(100% - ${headerHeight}px)` }}>

@@ -1,5 +1,5 @@
 import { useDeviceType } from "#src/hooks/use-device-type";
-import {  useLayoutFooterStyle, useLayoutHeaderStyle } from "#src/hooks/use-layout-style";
+import { useLayoutFooterStyle, useLayoutHeaderStyle } from "#src/hooks/use-layout-style";
 import { usePreferencesStore } from "#src/store/preferences";
 import { useTabsStore } from "#src/store/tabs";
 import { cn } from "#src/utils/cn";
@@ -163,7 +163,7 @@ export default function ContainerLayout() {
 
 				<LayoutContent />
 
-				{enableFooter && fixedFooter ? <LayoutFooter className="bg-colorBgContainer" /> : null}
+				{enableFooter && fixedFooter ? <LayoutFooter className="bg-color-bg-container" /> : null}
 				{enableBackTopButton
 					? (
 						<FloatButton.BackTop

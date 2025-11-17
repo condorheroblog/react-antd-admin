@@ -117,11 +117,11 @@ export default function LayoutTabbar() {
 					)}
 					size="middle"
 					type="text"
-					className={clsx("rounded-none h-full border-l border-l-colorBorderSecondary")}
+					className={clsx("rounded-none h-full border-l border-l-color-border-secondary")}
 					onClick={() => onClickMenu(TabActionKeys.REFRESH, activeKey)}
 				/>
-				{tabbarShowMaximize ? (<TabMaximize className="h-full border-l rounded-none border-l-colorBorderSecondary" />) : null}
-				{tabbarShowMore ? (<TabOptions activeKey={activeKey} className="h-full border-l rounded-none border-l-colorBorderSecondary" />) : null}
+				{tabbarShowMaximize ? (<TabMaximize className="h-full border-l rounded-none border-l-color-border-secondary" />) : null}
+				{tabbarShowMore ? (<TabOptions activeKey={activeKey} className="h-full border-l rounded-none border-l-color-border-secondary" />) : null}
 			</div>
 		),
 	}), [isRefresh, activeKey, onClickMenu, tabbarShowMore, tabbarShowMaximize]);

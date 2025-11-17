@@ -60,12 +60,12 @@ export function PasswordLogin() {
 		<>
 			{contextLoadingHolder}
 			<Space direction="vertical">
-				<h2 className="text-colorText mb-3 text-3xl font-bold leading-9 tracking-tight lg:text-4xl">
+				<h2 className="text-color-text mb-3 text-3xl font-bold leading-9 tracking-tight lg:text-4xl">
 					{t("authority.welcomeBack")}
 					&nbsp;
 					👏
 				</h2>
-				<p className="lg:text-base text-sm text-colorTextSecondary">
+				<p className="lg:text-base text-sm text-color-text-secondary">
 					{t("authority.loginDescription")}
 				</p>
 			</Space>

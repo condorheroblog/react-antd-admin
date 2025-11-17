@@ -7,8 +7,7 @@ export default defineConfig({
 		"react-dom",
 		"@types/react",
 		"@types/react-dom",
-		"tailwind-merge",
-		"tailwindcss",
+		"@ant-design/icons",
 	],
 	// recursively check all subdirectories
 	recursive: true,

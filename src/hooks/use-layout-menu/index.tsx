@@ -56,7 +56,7 @@ export function useLayoutMenu() {
 			arrow={false}
 			placement="bottom"
 		>
-			<Button type="text" icon={dropdownItems.find(item => item.key === pageLayout)?.icon} />
+			<Button size="large" type="text" icon={dropdownItems.find(item => item.key === pageLayout)?.icon} />
 		</Dropdown>
 	);
 

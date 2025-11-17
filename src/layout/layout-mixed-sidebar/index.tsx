@@ -57,7 +57,7 @@ export default function LayoutMixedSidebar({
 					{
 						!sidebarCollapsed
 							? (
-								<Typography.Title level={1} ellipsis className="flex items-center !my-0 pl-2 !text-lg mx-3" style={{ height: sidebarTitleHeight }}>
+								<Typography.Title level={1} ellipsis className="flex items-center my-0 pl-2 text-lg mx-3" style={{ height: sidebarTitleHeight }}>
 									{import.meta.env.VITE_GLOB_APP_TITLE}
 								</Typography.Title>
 							)

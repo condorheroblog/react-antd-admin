@@ -4,6 +4,9 @@
 /* 第三方库样式 */
 @import './global.css';
 
+/* 引入 tailwindcss 样式 */
+@import './tailwind.css';
+
 /* 动画 */
 @import './animation.css';
 

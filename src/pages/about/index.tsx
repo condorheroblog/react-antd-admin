@@ -65,10 +65,10 @@ export default function About() {
 			label: "Github",
 			children: (
 				<Link
-				rel="noreferrer noopener"
-				copyable
-				target="_blank"
-				href="https://github.com/condorheroblog/react-antd-admin"
+					rel="noreferrer noopener"
+					copyable
+					target="_blank"
+					href="https://github.com/condorheroblog/react-antd-admin"
 				>
 					{import.meta.env.VITE_GLOB_APP_TITLE}
 				</Link>

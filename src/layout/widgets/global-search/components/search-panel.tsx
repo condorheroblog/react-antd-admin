@@ -33,9 +33,9 @@ export function SearchPanel({ menuItem, active, enter, setActiveKey, showCloseBu
 				}}
 				onClick={() => enter(isExternalLink)}
 				className={clsx(
-					"flex flex-col bg-colorBgLayout cursor-pointer px-4 py-4 rounded-md mb-2",
-					active ? "text-colorBgContainer" : "text-colorText",
-					{ "bg-primaryActive": active },
+					"flex flex-col bg-color-bg-layout cursor-pointer px-4 py-4 rounded-md mb-2",
+					active ? "text-color-bg-container" : "text-color-text",
+					{ "bg-primary-active": active },
 				)}
 			>
 				<div className="flex items-center justify-between">
@@ -48,7 +48,7 @@ export function SearchPanel({ menuItem, active, enter, setActiveKey, showCloseBu
 						<Button
 							className={clsx(
 								{ hidden: !showCloseButton },
-								active ? "!text-colorBgContainer" : "!text-colorText",
+								active ? "text-color-bg-container!" : "text-color-text!",
 							)}
 							size="small"
 							ghost={false}

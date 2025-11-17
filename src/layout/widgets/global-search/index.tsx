@@ -188,13 +188,13 @@ export function GlobalSearch() {
 		<>
 			<div
 				onClick={() => setOpen(open => !open)}
-				className="group flex justify-center items-center gap-2 md:bg-colorBgLayout px-3 py-1.5 rounded-full cursor-pointer text-colorTextSecondary hover:text-colorText md:mr-2.5"
+				className="group flex justify-center items-center gap-2 md:bg-color-bg-layout px-3 py-1.5 rounded-full cursor-pointer text-color-text-secondary hover:text-color-text md:mr-2.5"
 			>
 				<SearchOutlined />
 				<span className="hidden text-xs duration-300 md:block">
 					{t("common.search")}
 				</span>
-				<span className="bg-colorBgContainer relative hidden rounded-sm rounded-r-xl px-1.5 py-1 text-xs leading-none group-hover:opacity-100 md:block">
+				<span className="bg-color-bg-container relative hidden rounded-sm rounded-r-xl px-1.5 py-1 text-xs leading-none group-hover:opacity-100 md:block">
 					&#x2318;
 					<kbd>K</kbd>
 				</span>
@@ -210,21 +210,24 @@ export function GlobalSearch() {
 				}}
 				keyboard
 				title={(
-					<div>
-						<Input
-							ref={inputRef}
-							value={keyword}
-							onChange={handleChange}
-							onInput={setSearch}
-							variant="outlined"
-							placeholder={t("widgets.search.placeholder")}
-							allowClear
-							autoFocus
-							prefix={<SearchOutlined />}
-							className="mx-4 w-4/5 md:w-[88%] mt-4"
-						/>
+					<>
+						<div className="mr-17">
+							<Input
+								ref={inputRef}
+								value={keyword}
+								onChange={handleChange}
+								onInput={setSearch}
+								variant="outlined"
+								placeholder={t("widgets.search.placeholder")}
+								allowClear
+								autoFocus
+								prefix={<SearchOutlined />}
+								name="global-search-input"
+								className="mx-4 mt-4"
+							/>
+						</div>
 						<Divider className="my-4" />
-					</div>
+					</>
 				)}
 				footer={isMobile ? null : <SearchFooter searchItems={resultOptions.length} />}
 				style={isMobile ? { margin: 0, maxWidth: "100%", top: 0, paddingBottom: 0 } : undefined}
@@ -255,7 +258,7 @@ export function GlobalSearch() {
 								<Empty
 									className="my-8"
 									styles={{ image: { height: 40 } }}
-									image={keyword.length ? <SearchOutlined className="text-colorTextTertiary" style={{ fontSize: 40 }} /> : Empty.PRESENTED_IMAGE_SIMPLE}
+									image={keyword.length ? <SearchOutlined className="text-color-text-tertiary" style={{ fontSize: 40 }} /> : Empty.PRESENTED_IMAGE_SIMPLE}
 									description={keyword.length ? `${t("widgets.search.noResults")} ${JSON.stringify(keyword)}` : t("widgets.search.noRecent")}
 								>
 								</Empty>

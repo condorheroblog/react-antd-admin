@@ -75,7 +75,7 @@ export default function LayoutHeader({ className, children }: LayoutHeaderProps)
 						: null
 				}
 
-				<div className="flex items-center flex-grow h-full overflow-hidden">
+				<div className="flex items-center grow h-full overflow-hidden">
 					{children}
 				</div>
 
