@@ -35,8 +35,8 @@ export const shared = defineConfig({
 
 	/* prettier-ignore */
 	head: [
-		["link", { rel: "icon", type: "image/svg+xml", href: "/logo.svg" }],
-		["link", { rel: "icon", type: "image/png", href: "/logo.png" }],
+		["link", { rel: "icon", type: "image/svg+xml", href: "./logo.svg" }],
+		["link", { rel: "icon", type: "image/png", href: "./logo.png" }],
 		["meta", { name: "theme-color", content: "#5f67ee" }],
 		["meta", { property: "og:type", content: "website" }],
 		["meta", { property: "og:locale", content: "en" }],
