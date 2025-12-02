@@ -2,7 +2,7 @@
 
 ## 介绍 {#introduction}
 
-项目所有的请求均存放于 `src/api` 目录下，且所有的请求都是通过 request 方法发起的，这个方法存放在 `src/utils/request` 中，内部封装了 `[Ky](https://github.com/sindresorhus/ky)` 库。
+项目所有的请求均存放于 `src/api` 目录下，且所有的请求都是通过 request 方法发起的，这个方法存放在 `src/utils/request` 中，内部封装了 [Ky](https://github.com/sindresorhus/ky) 库。
 
 一个经典的目录结构如下：
 
@@ -57,7 +57,7 @@ ignoreLoading 默认值为 false 为 true 时，不显示 loading 加载动画�
 1. 当 useEffect 有依赖项时，依赖快速变化，网络请求无法按请求顺序返回，会存在[竞速条件](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect) 的问题，老的数据可能覆盖新的数据，已经过时的请求不会自动取消。
 2. loading 状态，error 状态，等需要自己手动管理。
 
-强烈建议阅读 [How to fetch data with React Hooks](https://www.robinwieruch.de/react-hooks-fetch-data/) 了解如何发送请求以及 [Tanstack Query](https://tanstack.com/query/latest) 的原理。
+强烈建议阅读 [How to fetch data with React Hooks](https://www.robinwieruch.de/react-hooks-fetch-data/) 这篇文章，了解 [Tanstack Query](https://tanstack.com/query/latest) 的原理以及其必要性。
 
 ## 请求白名单 {#request-white-list}
 
@@ -119,9 +119,14 @@ export default defineConfig({
 
 :::
 
-虽然原生的 Fetch 不支持获取文件下载进度百分比，但 Ky 提供了进度回调函数，解决了这个问题。
+浏览器原生 Fetch API 无法直接监听文件上传进度；下载进度虽可借助 `response.body` 的 `ReadableStream` 手动实现，但代码繁琐。Ky 内置 `onUploadProgress / onDownloadProgress` 回调，一行配置即可精确追踪上传与下载进度。
 
-::: info [onDownloadProgress 进度回调函数](https://github.com/sindresorhus/ky?tab=readme-ov-file#ondownloadprogress)
+::: info
+
+- [onDownloadProgress 下载进度回调函数](https://github.com/sindresorhus/ky?tab=readme-ov-file#ondownloadprogress)
+- [onUploadProgress 上传进度回调函数](https://github.com/sindresorhus/ky?tab=readme-ov-file#onuploadprogress)
+
+以 下载进度回调函数 为例，其 API 调用方式简洁明了：
 
 ```ts
 import ky from "ky";
@@ -140,8 +145,8 @@ const response = await ky("https://example.com", {
 
 ## 为什么不使用 Axios ？ {#why-not-use-axios}
 
-Axios 是基于 XmlHttpRequest 的。gzip 压缩后大小为 11.7KB。
-Ky 是基于 fetch 的。gzip 压缩后大小为 3.3KB。 Ky 的包大小较小。
+1. [Axios 不支持 HTTP/2 协议](https://github.com/axios/axios/issues/6984)，而 Ky 原生支持。
+2. Axios 基于 XMLHttpRequest，包大小约为 [2.19 MB](https://packagephobia.com/result?p=axios)。Ky 基于 fetch，包大小约为 [269 kB](https://packagephobia.com/result?p=ky)，体积更小。
 
 ## 其他 Fetch 库 {#other-fetch-libraries}
 
@@ -151,4 +156,4 @@ Ky 是基于 fetch 的。gzip 压缩后大小为 3.3KB。 Ky 的包大小较小�
 
 ## 参考 {#reference}
 
-- [Using fetch? Consider Ky.](https://x.com/housecor/status/1815730974694449396)
+- [Using fetch? Consider Ky](https://x.com/housecor/status/1815730974694449396)

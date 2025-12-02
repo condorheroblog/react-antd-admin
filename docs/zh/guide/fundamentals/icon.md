@@ -90,6 +90,10 @@ import { ExternalIcon } from "#src/icons";
 // <ExternalIcon className="text-xl" />
 ```
 
+## 将项目图标发布为独立仓库
+
+若希望把项目中的**图标抽离成独立仓库**，方便团队统一维护与复用，可参考 [admin-icon](https://github.com/condorheroblog/admin-icon) 模板仓库，按步骤操作即可。
+
 ## 如何管理项目中的 SVG 图标？
 
 UI 设计师给提供的图标全部放在 `src/icons/svg` 目录下，在放到项目之前，如何管理这些图标呢？
