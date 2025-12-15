@@ -48,7 +48,7 @@
 		"echarts-for-react": "^3.0.5",
 		"i18next": "^24.2.3",
 		"keepalive-for-react": "^4.0.2",
-		"ky": "^1.7.5",
+		"ky": "^1.14.1",
 		"motion": "^12.5.0",
 		"nprogress": "^0.2.0",
 		"pinyin-pro": "^3.26.0",

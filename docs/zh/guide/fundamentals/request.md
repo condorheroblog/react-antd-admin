@@ -123,8 +123,8 @@ export default defineConfig({
 
 ::: info
 
-- [onDownloadProgress 下载进度回调函数](https://github.com/sindresorhus/ky?tab=readme-ov-file#ondownloadprogress)
-- [onUploadProgress 上传进度回调函数](https://github.com/sindresorhus/ky?tab=readme-ov-file#onuploadprogress)
+- [onDownloadProgress 下载进度回调函数](https://github.com/sindresorhus/ky/tree/v1.14.1?tab=readme-ov-file#ondownloadprogress)
+- [onUploadProgress 上传进度回调函数](https://github.com/sindresorhus/ky/tree/v1.14.1?tab=readme-ov-file#onuploadprogress)
 
 以 下载进度回调函数 为例，其 API 调用方式简洁明了：
 
