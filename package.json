@@ -30,7 +30,7 @@
 		"prepare": "simple-git-hooks",
 		"pnpm:install": "pnpm install",
 		"npm-check": "taze major -lrw",
-		"check-circular-dependency": "NODE_OPTIONS=--max-old-space-size=8192 ds src --output circular-deps-$(date +%Y%m%d-%H%M).json",
+		"check:circular-deps": "ds src --output circular-deps.json",
 		"test": "vitest"
 	},
 	"dependencies": {
@@ -87,7 +87,7 @@
 		"@types/react-dom": "^18.3.1",
 		"@vitejs/plugin-react": "^4.3.4",
 		"autoprefixer": "^10.4.21",
-		"circular-dependency-scanner": "^2.3.0",
+		"circular-dependency-scanner": "^3.0.1",
 		"clsx": "^2.1.1",
 		"code-inspector-plugin": "^0.20.6",
 		"eslint": "^9.22.0",

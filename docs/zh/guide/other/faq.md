@@ -10,7 +10,7 @@
 如果发现修改一个页面没有触发热更新而是重载了整个页面，则代码可能存在循环依赖的问题，有以下两个选择。
 
 1. 可以运行 `vite --debug hmr` 来记录循环依赖路径，如果文件变化触发了它。
-2. 运行命令 `npm run check-circular-dependency` 来检查循环依赖。
+2. 运行命令 `npm run check:circular-deps` 来检查循环依赖。
 
 > 更多信息参考：
 > 1. [A full reload happens instead of HMR](https://vite.dev/guide/troubleshooting#a-full-reload-happens-instead-of-hmr)
