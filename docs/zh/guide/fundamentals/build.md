@@ -87,3 +87,9 @@ http {
 
 当开启了 Nginx 的 gzip_static 功能，我们需要预提供压缩文件，比如开启 gzip 压缩，当请求 index.html，需要在同级目录下提供 `index.html.gz` 用来让 Nginx 响应请求。
 前端可以选择通过 [vite-plugin-compression](https://github.com/vbenjs/vite-plugin-compression) 或者 [vite-plugin-compression2](https://github.com/nonzzz/vite-plugin-compression) 插件来在构建自动生成对应的压缩文件，但不是推荐，要么使用仅开启 `gzip on` 进行动态压缩（云服务基本都提供，推荐这个方法），要么通过 Nginx 配置来自动生成压缩文件。
+
+## 生成许可证文件 {#generate-license-file}
+
+项目构建后，会在 `build` 目录下自动生成 `build/.vite/license.md` 文件，该文件包含了项目中使用的所有依赖的许可证信息。可以在 `vite.config.ts` 中的 build 字段配置此行为——`license: true`。
+
+> 参考：https://vite.dev/config/build-options#build-license

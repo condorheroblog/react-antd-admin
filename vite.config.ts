@@ -127,6 +127,8 @@ export default defineConfig({
 		__APP_INFO__: JSON.stringify(__APP_INFO__),
 	},
 	build: {
+		// Generate license file after build
+		license: true,
 		outDir: "build",
 		sourcemap: false,
 		rollupOptions: {
