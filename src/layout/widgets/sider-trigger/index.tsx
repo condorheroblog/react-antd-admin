@@ -26,7 +26,7 @@ export function SiderTrigger({ className }: SiderTriggerProps) {
 			className={cn(
 				"w-full rounded-none border-t",
 				className,
-				sidebarTheme === "dark" ? "border-t-[#303030]" : "border-t-color-border-secondary",
+				sidebarTheme === "dark" ? "border-t-[#303030]" : "border-t-colorBorderSecondary",
 			)}
 		/>
 

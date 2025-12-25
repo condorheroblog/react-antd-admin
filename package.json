@@ -97,7 +97,7 @@
 		"happy-dom": "^17.4.4",
 		"lint-staged": "^15.5.0",
 		"simple-git-hooks": "^2.11.1",
-		"tailwindcss": "^4.1.17",
+		"tailwindcss": "^4.1.18",
 		"taze": "^19.0.2",
 		"typescript": "^5.8.2",
 		"unplugin-icons": "^22.1.0",

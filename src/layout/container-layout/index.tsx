@@ -163,7 +163,7 @@ export default function ContainerLayout() {
 
 				<LayoutContent />
 
-				{enableFooter && fixedFooter ? <LayoutFooter className="bg-color-bg-container" /> : null}
+				{enableFooter && fixedFooter ? <LayoutFooter className="bg-colorBgContainer" /> : null}
 				{enableBackTopButton
 					? (
 						<FloatButton.BackTop
