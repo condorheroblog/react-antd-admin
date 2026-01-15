@@ -27,8 +27,6 @@ export default defineConfig({
 
 	base: isDev ? "/" : "/react-antd-admin/",
 	plugins: [
-		tailwindcss(),
-		react(),
 		vitePluginFakeServer({
 			basename: "/api",
 			enableProd: true,
@@ -106,6 +104,9 @@ export default defineConfig({
 			jsx: "react",
 			scale: 1,
 		}),
+
+		tailwindcss(),
+		react(),
 	],
 	test: {
 		globals: true,

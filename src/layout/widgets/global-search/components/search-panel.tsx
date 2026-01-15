@@ -1,4 +1,5 @@
 import type { MenuItemType } from "#src/layout/layout-menu/types";
+import type { ReactElement } from "react";
 
 import { CloseOutlined } from "@ant-design/icons";
 import { Button } from "antd";
@@ -41,7 +42,7 @@ export function SearchPanel({ menuItem, active, enter, setActiveKey, showCloseBu
 				<div className="flex items-center justify-between">
 					<div className="flex items-center">
 						{menuItem.icon && <div className="mr-3">{menuItem.icon}</div>}
-						<span>{isValidElement(menuItem?.label) ? cloneElement(menuItem.label, {}, t(menuItem.label.props.children)) : t(`${menuItem?.label}`)}</span>
+						<span>{isValidElement(menuItem?.label) ? cloneElement(menuItem.label, {}, t((menuItem.label as ReactElement<{ children: string }>)?.props?.children)) : t(`${menuItem?.label}`)}</span>
 					</div>
 					<div className="flex items-center gap-2">
 						<div className="opacity-50">{menuItem.key}</div>

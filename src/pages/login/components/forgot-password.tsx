@@ -9,7 +9,7 @@ import {
 	Space,
 	Typography,
 } from "antd";
-import { useContext, useState } from "react";
+import { use, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FormModeContext } from "../form-mode-context";
 
@@ -33,7 +33,7 @@ export function ForgotPassword() {
 	const [loading, setLoading] = useState(false);
 	const [forgotForm] = Form.useForm();
 	const { t } = useTranslation();
-	const { setFormMode } = useContext(FormModeContext);
+	const { setFormMode } = use(FormModeContext);
 
 	const handleFinish = async () => {
 		setLoading(true);
@@ -45,7 +45,7 @@ export function ForgotPassword() {
 
 	return (
 		<>
-			<Space direction="vertical">
+			<Space orientation="vertical">
 				<Title level={3}>
 					{t("authority.forgotPassword")}
 				</Title>

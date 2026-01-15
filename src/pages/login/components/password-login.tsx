@@ -11,7 +11,7 @@ import {
 	message,
 	Space,
 } from "antd";
-import { useContext, useState } from "react";
+import { use, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router";
 
@@ -30,7 +30,7 @@ export function PasswordLogin() {
 	const [searchParams] = useSearchParams();
 	const navigate = useNavigate();
 	const login = useAuthStore(state => state.login);
-	const { setFormMode } = useContext(FormModeContext);
+	const { setFormMode } = use(FormModeContext);
 
 	const handleFinish = async (values: LoginInfo) => {
 		setLoading(true);
@@ -59,7 +59,7 @@ export function PasswordLogin() {
 	return (
 		<>
 			{contextLoadingHolder}
-			<Space direction="vertical">
+			<Space orientation="vertical">
 				<h2 className="text-colorText mb-3 text-3xl font-bold leading-9 tracking-tight lg:text-4xl">
 					{t("authority.welcomeBack")}
 					&nbsp;

@@ -9,7 +9,7 @@ import {
 	Space,
 	Typography,
 } from "antd";
-import { useContext, useState } from "react";
+import { use, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 
 import { Link } from "react-router";
@@ -28,7 +28,7 @@ export function RegisterPassword() {
 	const [loading] = useState(false);
 	const [registerForm] = Form.useForm();
 	const { t } = useTranslation();
-	const { setFormMode } = useContext(FormModeContext);
+	const { setFormMode } = use(FormModeContext);
 
 	const handleFinish = async () => {
 		window.$message?.success("注册成功");
@@ -36,7 +36,7 @@ export function RegisterPassword() {
 
 	return (
 		<>
-			<Space direction="vertical">
+			<Space orientation="vertical">
 				<Title level={3}>
 					Hello, Welcome to
 				</Title>

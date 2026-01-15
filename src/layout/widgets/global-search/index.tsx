@@ -1,11 +1,12 @@
 import type { MenuItemType } from "#src/layout/layout-menu/types";
 import type { InputRef } from "antd";
 
+import type { ReactElement } from "react";
 import { Scrollbar } from "#src/components/scrollbar";
 import { useDeviceType } from "#src/hooks/use-device-type";
 import { useAccessStore } from "#src/store/access";
-import { isString } from "#src/utils/is";
 
+import { isString } from "#src/utils/is";
 import { SearchOutlined } from "@ant-design/icons";
 import { useDebounceFn, useKeyPress, useLocalStorageState } from "ahooks";
 import { Divider, Empty, Input, Modal } from "antd";
@@ -117,7 +118,7 @@ export function GlobalSearch() {
 		const matchRoutes = searchMenuList.filter((menuItem) => {
 			let labelText = "";
 			if (isValidElement(menuItem.label)) {
-				labelText = menuItem.label.props.children;
+				labelText = (menuItem.label as ReactElement<{ children: string }>).props.children;
 			}
 			if (isString(menuItem.label)) {
 				labelText = menuItem.label;
@@ -236,7 +237,7 @@ export function GlobalSearch() {
 						flexGrow: "1",
 						overflow: "hidden",
 					},
-					content: {
+					container: {
 						padding: 0,
 						height: isMobile ? "100vh" : undefined,
 						display: isMobile ? "flex" : "block",
