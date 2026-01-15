@@ -89,7 +89,7 @@ export function BasicTable<
 			return 0;
 		}
 		else {
-			if (paginationProps.size === "default") {
+			if (!paginationProps.size) {
 				// 默认分页器高度为 32px
 				return 32 + 16 + 16;
 			}
