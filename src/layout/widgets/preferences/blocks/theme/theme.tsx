@@ -107,6 +107,8 @@ export function SiteTheme() {
 				</div>
 				<div>
 					<InputNumber
+						keyboard
+						changeOnWheel
 						className="ml-4"
 						min={0}
 						max={16}

@@ -31,7 +31,7 @@ export function DraggableTabNode({ className, children, ...props }: DraggableTab
 		cursor: isDragging ? "move" : "pointer",
 	};
 
-	return cloneElement(children, {
+	const clonedProps = {
 		ref: setNodeRef,
 		...props,
 		style,
@@ -39,7 +39,9 @@ export function DraggableTabNode({ className, children, ...props }: DraggableTab
 		...attributes,
 		...listeners,
 		// draggable: "true",
-	});
+	};
+
+	return cloneElement(children, clonedProps);
 }
 interface DraggableTabBarProps {
 	tabBarProps: Parameters<Required<TabsProps>["renderTabBar"]>[0]
@@ -81,7 +83,7 @@ export function DraggableTabBar({ tabBarProps, DefaultTabBar, tabItems, items, o
 								}}
 								trigger={["contextMenu"]}
 							>
-								{tabItems.some(tabItem => tabItem.key === node.key && tabItem.draggable === false) ? node : <DraggableTabNode {...node.props}>{node}</DraggableTabNode>}
+								{tabItems.some(tabItem => tabItem.key === node.key && tabItem.draggable === false) ? node : <DraggableTabNode {...(node.props as any)}>{node}</DraggableTabNode>}
 							</Dropdown>
 						);
 					}}

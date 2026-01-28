@@ -37,7 +37,7 @@ export default function LayoutRoot() {
 		const authGuardDependencies = !whiteRouteNames.includes(location.pathname) && isLogin && !isAuthorized;
 		if (!authGuardDependencies) {
 			const currentRoute = matches[matches.length - 1];
-			const documentTitle = currentRoute.handle?.title as React.ReactElement | string;
+			const documentTitle = currentRoute.handle?.title as React.ReactElement<{ children: string }> | string;
 			const newTitle = isString(documentTitle) ? documentTitle : documentTitle?.props?.children;
 			document.title = t(newTitle) || document.title;
 		}

@@ -49,7 +49,7 @@ export default function ButtonControl() {
 
 	return (
 		<BasicContent className="flex flex-col gap-4">
-			<Alert message={t("access.buttonControl.alertMessage")} description={t("access.buttonControl.alertDescription")}></Alert>
+			<Alert title={t("access.buttonControl.alertMessage")} description={t("access.buttonControl.alertDescription")}></Alert>
 			<Card
 				title={(
 					<>

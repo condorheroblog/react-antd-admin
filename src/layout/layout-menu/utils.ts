@@ -1,5 +1,6 @@
-import type { MenuItemType } from "./types";
+import type { ReactElement } from "react";
 
+import type { MenuItemType } from "./types";
 import { isString } from "#src/utils/is";
 import { cloneElement, isValidElement } from "react";
 
@@ -13,7 +14,8 @@ export function translateMenus(menus: MenuItemType[], t: (key: string) => string
 	return menus.map((menu) => {
 		let translatedLabel: React.ReactNode = menu.label;
 		if (isValidElement(menu.label)) {
-			translatedLabel = cloneElement(menu.label, {}, t(menu.label.props.children));
+			const translatedChildren = t((menu.label as ReactElement<{ children: string }>).props.children);
+			translatedLabel = cloneElement(menu.label, {}, translatedChildren ?? "");
 		}
 		if (isString(menu.label)) {
 			translatedLabel = t(menu.label);

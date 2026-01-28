@@ -2,13 +2,7 @@ import { defineConfig } from "taze";
 
 export default defineConfig({
 	// ignore packages from bumping
-	exclude: [
-		"react",
-		"react-dom",
-		"@types/react",
-		"@types/react-dom",
-		"@ant-design/icons",
-	],
+	exclude: [],
 	// recursively check all subdirectories
 	recursive: true,
 	// fetch latest package info from registry without cache

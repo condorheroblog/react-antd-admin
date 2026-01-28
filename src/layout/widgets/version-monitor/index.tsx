@@ -21,7 +21,7 @@ export function AppVersionMonitor({
 	const { t } = useTranslation();
 	const currentVersionTag = useRef("");
 	const lastVersionTag = useRef("");
-	const timer = useRef<ReturnType<typeof setInterval>>();
+	const timer = useRef<ReturnType<typeof setInterval>>(undefined);
 
 	function handleNotice(versionTag: string) {
 		currentVersionTag.current = versionTag;

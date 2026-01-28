@@ -73,7 +73,7 @@ export default function Login() {
 					>
 						<div className="flex flex-col items-center justify-center h-full gap-3">
 							<Banner
-								className="h-64 motion-safe:animate-bounceInDownOutUp"
+								className="h-64 motion-safe:animate-bounce-in-down-out-up"
 							/>
 							<div className="text-xl text-colorTextSecondary mt-6 font-sans lg:text-2xl">
 								{t("authority.pageTitle")}
@@ -97,7 +97,7 @@ export default function Login() {
 					>
 						<LayoutFooter className="w-full absolute bottom-3 left-1/2 -translate-x-1/2" />
 						<div className="w-full sm:mx-auto md:max-w-md">
-							<FormModeContext.Provider value={providedValue}>
+							<FormModeContext value={providedValue}>
 								<AnimatePresence mode="wait" initial={false}>
 									<motion.div
 										key={formMode}
@@ -109,7 +109,7 @@ export default function Login() {
 										{FORM_COMPONENT_MAP[formMode]}
 									</motion.div>
 								</AnimatePresence>
-							</FormModeContext.Provider>
+							</FormModeContext>
 						</div>
 					</Col>
 				</Row>

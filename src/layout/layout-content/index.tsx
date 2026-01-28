@@ -8,7 +8,7 @@ import { usePreferencesStore } from "#src/store/preferences";
 import { useTabsStore } from "#src/store/tabs";
 
 import { theme } from "antd";
-import KeepAlive, { useKeepAliveRef } from "keepalive-for-react";
+import { KeepAlive, useKeepAliveRef } from "keepalive-for-react";
 import { useEffect, useMemo } from "react";
 
 import { useLocation, useOutlet } from "react-router";

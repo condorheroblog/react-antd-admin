@@ -122,7 +122,7 @@ export default function App() {
 				input={{ autoComplete: "off" }}
 				locale={getAntdLocale()}
 				theme={{
-					cssVar: true,
+					cssVar: {},
 					hashed: false,
 					algorithm:
 						isDark

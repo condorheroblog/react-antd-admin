@@ -79,7 +79,7 @@ export default function PageControl() {
 
 	return (
 		<BasicContent className="flex flex-col gap-4">
-			<Alert type="info" message={t("access.pageControl.alertMessage")} description={t("access.pageControl.alertDescription")}></Alert>
+			<Alert type="info" title={t("access.pageControl.alertMessage")} description={t("access.pageControl.alertDescription")}></Alert>
 			<Card title={t("access.pageControl.cardTitle")}>
 				<Alert
 					type="warning"

@@ -1,13 +1,14 @@
 import type { TabItemProps } from "#src/store/tabs";
 import type { TabsProps } from "antd";
+import type { ReactElement } from "react";
 
 import { useCurrentRoute } from "#src/hooks/use-current-route";
 import { removeTrailingSlash } from "#src/router/utils/remove-trailing-slash";
 import { useAccessStore } from "#src/store/access";
 import { usePreferencesStore } from "#src/store/preferences";
 import { useTabsStore } from "#src/store/tabs";
-import { isString } from "#src/utils/is";
 
+import { isString } from "#src/utils/is";
 import { RedoOutlined } from "@ant-design/icons";
 import { Button, Tabs } from "antd";
 import { clsx } from "clsx";
@@ -161,10 +162,10 @@ export default function LayoutTabbar() {
 		const isDefaultTabMissing = !Array.from(openTabs.keys()).includes(import.meta.env.VITE_BASE_HOME_PATH);
 
 		if (isDefaultTabMissing) {
-			const routeTitle = flatRouteList[import.meta.env.VITE_BASE_HOME_PATH]?.handle?.title;
+			const routeTitle = flatRouteList[import.meta.env.VITE_BASE_HOME_PATH]?.handle?.title as string;
 			insertBeforeTab(import.meta.env.VITE_BASE_HOME_PATH, {
 				key: import.meta.env.VITE_BASE_HOME_PATH,
-				label: isValidElement(routeTitle) ? routeTitle?.props?.children : routeTitle,
+				label: isValidElement(routeTitle) ? (routeTitle as ReactElement<{ children: string }>).props?.children : routeTitle,
 				closable: false,
 				draggable: false,
 			});
@@ -181,12 +182,12 @@ export default function LayoutTabbar() {
 		if (normalizedPath !== activeKey) {
 			setActiveKey(normalizedPath);
 
-			const routeTitle = currentRoute.handle?.title;
+			const routeTitle = currentRoute.handle?.title as string;
 
 			addTab(normalizedPath, {
 				key: normalizedPath,
 				// 保证 label 为 string 类型，存储到 sessionStorage。
-				label: isValidElement(routeTitle) ? routeTitle?.props?.children : routeTitle,
+				label: isValidElement(routeTitle) ? (routeTitle as ReactElement<{ children: string }>)?.props?.children : routeTitle,
 				historyState: { search: location.search, hash: location.hash },
 				/* 登录之后跳转的默认路由，不可以关闭和拖拽 */
 				closable: normalizedPath !== import.meta.env.VITE_BASE_HOME_PATH,
