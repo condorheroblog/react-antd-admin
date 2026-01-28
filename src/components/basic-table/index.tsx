@@ -66,7 +66,7 @@ export function BasicTable<
 		}
 
 		return {
-			position: ["bottomRight"],
+			placement: ["bottomStart"],
 			defaultPageSize: 10,
 			showQuickJumper: true,
 			showSizeChanger: true,

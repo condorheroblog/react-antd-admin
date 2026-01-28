@@ -39,7 +39,7 @@ export function PageError({ error, resetErrorBoundary }: FallbackProps) {
 					<BugFixing />
 				</div>
 			)}
-			title={error.message ?? t("exception.pageErrorTitle")}
+			title={(error as any)?.message ?? t("exception.pageErrorTitle")}
 			// subTitle={error.stack}
 			extra={(
 				<Space size={20}>
@@ -60,7 +60,7 @@ export function PageError({ error, resetErrorBoundary }: FallbackProps) {
 			)}
 		>
 			<Typography.Paragraph type="warning" className="text-center">
-				{error.stack}
+				{(error as any)?.stack}
 			</Typography.Paragraph>
 
 		</Result>
