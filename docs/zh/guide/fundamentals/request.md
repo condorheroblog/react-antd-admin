@@ -2,7 +2,9 @@
 
 ## 介绍 {#introduction}
 
-项目所有的请求均存放于 `src/api` 目录下，且所有的请求都是通过 request 方法发起的，这个方法存放在 `src/utils/request` 中，内部封装了 [Ky](https://github.com/sindresorhus/ky) 库。
+> 项目发送请求底层是基于 [Ky](https://github.com/sindresorhus/ky) 库封装的，Ky 是一个基于 Fetch API 的轻量级 HTTP 客户端，它的 API 设计简单符合 Promise 风格，使用起来也很方便。
+
+项目所有的接口均存放于 `src/api` 目录下，且所有的请求都是通过 request 方法发起的，这个方法存放在 `src/utils/request` 中，内部封装了 [Ky](https://github.com/sindresorhus/ky) 库，主要增加了请求鉴权、401 处理、loading 加载动画等功能。
 
 一个经典的目录结构如下：
 
@@ -46,7 +48,8 @@ export function fetchDeleteRoleItem(id: number) {
 
 ## 请求配置 {#request-config}
 
-ignoreLoading 默认值为 false 为 true 时，不显示 loading 加载动画，接口将在后台静默请求。
+ignoreLoading 参数可以控制请求发送时，是否在页面中使用 antd 的 [Spin 组件](https://ant.design/components/spin-cn/) 显示 loading 加载动画。
+默认值为 false，当设置为 true 时，不显示 loading 加载动画，接口将在后台静默请求。
 
 ## Tanstack Query
 
@@ -61,7 +64,7 @@ ignoreLoading 默认值为 false 为 true 时，不显示 loading 加载动画�
 
 ## 请求白名单 {#request-white-list}
 
-当遇到项目某些请求不需要携带 token 的情况下，可以添加到白名单中，在 `src/utils/request/index.ts` 文件中设置 requestWhiteList 变量的值：
+当遇到项目某些请求不需要携带 token 校验是否有权限的情况下，可以把接口添加到白名单中，在 `src/utils/request/index.ts` 文件中设置 requestWhiteList 变量的值：
 
 ```ts
 // 请求白名单, 请求白名单内的接口不需要携带 token
@@ -99,6 +102,33 @@ export default defineConfig({
 		},
 	},
 });
+```
+
+## Server-Sent Events {#server-sent-events}
+
+项目先安装依赖 [parse-sse](https://github.com/sindresorhus/parse-sse) 用来解析 Server-Sent Events 事件流。
+
+```js
+import { request } from "#src/utils/request";
+import { parseServerSentEvents } from "parse-sse";
+
+const response = await request.get("https://api.example.com/events");
+
+for await (const event of parseServerSentEvents(response)) {
+	switch (event.type) {
+		case "update":
+			console.log("Update:", event.data);
+			break;
+		case "complete":
+			console.log("Complete:", event.data);
+			break;
+		case "error":
+			console.error("Error:", event.data);
+			break;
+		default:
+			console.log("Message:", event.data);
+	}
+}
 ```
 
 ## 为什么使用 Ky ？ {#why-use-ky}
@@ -147,6 +177,7 @@ const response = await ky("https://example.com", {
 
 1. [Axios 不支持 HTTP/2 协议](https://github.com/axios/axios/issues/6984)，而 Ky 原生支持。
 2. Axios 基于 XMLHttpRequest，包大小约为 [2.19 MB](https://packagephobia.com/result?p=axios)。Ky 基于 fetch，包大小约为 [269 kB](https://packagephobia.com/result?p=ky)，体积更小。
+3. Ky 提供了符合 Promise 风格的 API，比 Axios 更简单易用。
 
 ## 其他 Fetch 库 {#other-fetch-libraries}
 
