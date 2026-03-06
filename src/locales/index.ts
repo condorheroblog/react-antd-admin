@@ -25,7 +25,7 @@ export const i18nResources = {
 	},
 };
 
-export const i18nInitOptions: InitOptions = {
+export const i18nInitOptions: InitOptions & { showSupportNotice?: boolean } = {
 	lng: "zh-CN",
 	resources: i18nResources,
 	saveMissing: import.meta.env.DEV,
