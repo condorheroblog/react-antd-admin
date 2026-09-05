@@ -1,17 +1,17 @@
+import { theme } from "antd";
+import { KeepAlive, useKeepAliveRef } from "keepalive-for-react";
+import { useEffect, useMemo } from "react";
+import { useLocation, useOutlet } from "react-router";
 import { GlobalSpin } from "#src/components/global-spin";
 import { Scrollbar } from "#src/components/scrollbar";
 import { useLayoutContentStyle } from "#src/hooks/use-layout-style";
 import { CSS_VARIABLE_LAYOUT_CONTENT_HEIGHT, ELEMENT_ID_MAIN_CONTENT } from "#src/layout/constants";
+
 import LayoutFooter from "#src/layout/layout-footer";
 import { useAccessStore } from "#src/store/access";
 import { usePreferencesStore } from "#src/store/preferences";
+
 import { useTabsStore } from "#src/store/tabs";
-
-import { theme } from "antd";
-import { KeepAlive, useKeepAliveRef } from "keepalive-for-react";
-import { useEffect, useMemo } from "react";
-
-import { useLocation, useOutlet } from "react-router";
 
 export interface LayoutContentProps { }
 
@@ -21,7 +21,7 @@ export default function LayoutContent() {
 	} = theme.useToken();
 	const { pathname, search } = useLocation();
 	const outlet = useOutlet();
-	const { contentElement } = useLayoutContentStyle();
+	const { contentElementRef } = useLayoutContentStyle();
 
 	const aliveRef = useKeepAliveRef();
 	const isRefresh = useTabsStore(state => state.isRefresh);
@@ -95,7 +95,7 @@ export default function LayoutContent() {
 	return (
 		<main
 			id={ELEMENT_ID_MAIN_CONTENT}
-			ref={contentElement}
+			ref={contentElementRef}
 			className="relative overflow-y-auto overflow-x-hidden grow"
 			style={
 				{
