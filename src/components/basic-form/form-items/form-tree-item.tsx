@@ -2,7 +2,7 @@ import type { TreeProps } from "antd";
 
 import type { BasicDataNode } from "antd/lib/tree";
 import { Checkbox, Input, Tree } from "antd";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export interface TreeDataNodeWithId extends BasicDataNode {
@@ -87,23 +87,17 @@ export function FormTreeItem({ treeData, value, onChange }: FormTreeItemProps) {
 	};
 
 	const onCheckboxChange = (checkedValues: string[]) => {
-		setCheckedOptions(checkedValues);
-	};
+		const expandChanged = checkedValues.includes("expandAll") !== checkedOptions.includes("expandAll");
+		const checkChanged = checkedValues.includes("checkAll") !== checkedOptions.includes("checkAll");
 
-	useEffect(() => {
-		if (checkedOptions.includes("expandAll")) {
-			setExpandedKeys(flattenTreeData.map(item => item.id));
+		setCheckedOptions(checkedValues);
+		if (expandChanged) {
+			setExpandedKeys(checkedValues.includes("expandAll") ? flattenTreeData.map(item => item.id) : []);
 		}
-		else {
-			setExpandedKeys([]);
+		if (checkChanged) {
+			onChange?.(checkedValues.includes("checkAll") ? flattenTreeData.map(item => item.id) : []);
 		}
-		if (checkedOptions.includes("checkAll")) {
-			onChange?.(flattenTreeData.map(item => item.id));
-		}
-		else {
-			onChange?.([]);
-		}
-	}, [checkedOptions, flattenTreeData]);
+	};
 	return (
 		<>
 			<Search
