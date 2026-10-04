@@ -1,7 +1,7 @@
 {
 	"name": "react-antd-admin",
 	"type": "module",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"private": true,
 	"packageManager": "pnpm@11.1.2",
 	"description": "React Hooks + TypeScript + Ant Design = react-antd-admin",
